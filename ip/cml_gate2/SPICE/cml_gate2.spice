@@ -1,0 +1,66 @@
+* cml_gate2 -- netlist livrable derivee de gate2.sp par make netlist (specification/defs/netlist.tcl)
+* NE PAS EDITER : modifier la source puis make netlist. .param et .subckt seulement, includes inlines, sans modele ni banc.
+* -real-c cap_cmim : condensateurs ideaux -> cap_cmim du PDK, carre, w = l = sf*(-4*cjsw + sqrt(16*cjsw^2 + 4*ca*C))/(2*ca) avec ca=1.5E-15 cjsw=40E-18 sf=1E-6 (cap_typ ; ca en F par unite^2, unite = sf) ; gardes ideaux : aucun
+* -real-r rppd 1u : resistances ideales -> rppd du PDK, l = ((R) - 2*rz)/rsh*w avec rsh=260.0 rz=rzspec/w, rzspec=35e-6 (res_typ) ; substrat 0 ; gardees ideales : Rldpol
+* --- inline de GATE2.genes
+.param k_load = 1
+.param k_tail = 1
+.param k_WAMP = 1
+.param LAMP   = 130n
+.param NAMP   = 12
+.param k_WMUX = 1
+.param LMUX   = 130n
+.param NMUX   = 12
+* --- fin de GATE2.genes
+.param sortance = 2
+* --- inline de ../SHARED_SPICE/slug_ipol.sp
+.param Fmax    = 2.5g
+.param Cin_max = '10f * sortance'
+.param Vswng   = 0.3
+.param Ipol    = 'Cin_max * Vswng * 10*Fmax'
+* --- fin de ../SHARED_SPICE/slug_ipol.sp
+.param Rload   = 'Vswng / (k_load * Ipol)'
+.param Rtail   = '0.2 / (k_tail * Ipol)'
+.param WAMP = 'Ipol / 23.4 * k_WAMP'
+.param WMUX = 'Ipol / 23.4 * k_WMUX'
+.subckt cml_load_r down vdd
+XRl DOWN VDD 0 rppd w=1e-6 l='((Rload) - 2*35e-6/1e-6)/260.0*1e-6' b=0 m=1
+.ends
+.subckt cml_amp inp inn upp upn down vdd vss
+XP upp inn down vss sg13_lv_nmos W='WAMP' L='LAMP' NG='NAMP' m=1
+XN upN inP down vss sg13_lv_nmos W='WAMP' L='LAMP' NG='NAMP' m=1
+.ends
+.subckt cml_mem upp upn down vss
+XP upp upn down vss sg13_lv_nmos W='WAMP' L='LAMP' NG='NAMP' m=1
+XN upN upP down vss sg13_lv_nmos W='WAMP' L='LAMP' NG='NAMP' m=1
+.ends
+.subckt cml_triode gate up vss
+.ends
+.subckt cml_mirror gate up vss
+.ends
+.subckt cml_mux clkp clkn upp upn down vss
+XP upp clkp down vss sg13_lv_nmos W='WMUX' L='LMUX' NG='NMUX' m=1
+XN upN clkn down vss sg13_lv_nmos W='WMUX' L='LMUX' NG='NMUX' m=1
+.ends
+.subckt cml_gate2 AP AN BP BN XP XN pol VDD VSS
+XLP XP vdd cml_load_r
+XLN XN vdd cml_load_r
+XAMP AP AN XP XN taila vdd vss cml_amp
+*XMEM outp outn tailm vss cml_mem
+XMUX BP BN taila XP tail vss cml_mux
+*XTAIL pol tail vss cml_triode
+XRTail tail VSS 0 rppd w=1e-6 l='((Rtail) - 2*35e-6/1e-6)/260.0*1e-6' b=0 m=1
+Rldpol POL VSS 1g
+.ends
+.subckt cml_nand2 AP AN BP BN XP XN pol vdd vss
+* NAND = AND aux sorties croisees
+X1 AP AN BP BN XN XP pol vdd vss cml_gate2
+.ends
+.subckt cml_or2 AP AN BP BN XP XN pol vdd vss
+* OR = NAND aux entrees croisees (De Morgan)
+X1 AN AP BN BP XN XP pol vdd vss cml_gate2
+.ends
+.subckt cml_nor2 AP AN BP BN XP XN pol vdd vss
+* NOR = AND aux entrees croisees
+X1 AN AP BN BP XP XN pol vdd vss cml_gate2
+.ends

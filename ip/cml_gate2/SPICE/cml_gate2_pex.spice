@@ -1,0 +1,163 @@
+* cml_gate2_pex -- cml_gate2 POST-LAYOUT : extrait Magic MAG/cml_gate2_pex_raw.spice (md5 e8cecc6eddec5b0e49a98cf9cf9f786d)
+* enveloppe par shared/magic/pex_wrap.tcl aux bornes de la livrable run/cml_gate2_livrable_seule.spice (md5 3270e007b2aa4597e3ca56b30be91a49) ;
+* sous-circuit du layout gate2_yg renomme cml_gate2_routed ; bornes appariees par nom : VDD VSS AN AP XN XP BN BP
+* bornes hors dessin, tenues par la livrable : pol (Rldpol POL VSS 1g)
+* noeuds flottants (capacites seules) ramenes a VSS dans cml_gate2_routed : xlp.xrl/a_n100_n742# xrtail/a_n100_n486# xln.xrl/a_n100_n742#
+* --- extrait Magic, verbatim (gate2_yg -> cml_gate2_routed) ---
+* NGSPICE file created from gate2_yg.ext - technology: ihp-sg13g2
+
+.subckt rppd_W2KASE B R1 R2 a_n100_n742#
+X0 R1 R2 B rppd l=7.42u w=1u
+C0 a_n100_n742# R2 0.06687f
+C1 R1 R2 0.00433f
+C2 a_n100_n742# R1 0.06687f
+C3 R2 B 1.04708f
+C4 R1 B 1.04708f
+.ends
+
+.subckt sg13_lv_nmos_FTPY57 G D0 S1 D2 S3 D4 S5 D6 S7 D8 S9 D10 S11 sub a_574_n53#
+X0 S5 G D4 sub sg13_lv_nmos ad=0.1007p pd=0.91u as=0.1007p ps=0.91u w=0.53u l=0.13u
+X1 D4 G S3 sub sg13_lv_nmos ad=0.1007p pd=0.91u as=0.1007p ps=0.91u w=0.53u l=0.13u
+X2 S3 G D2 sub sg13_lv_nmos ad=0.1007p pd=0.91u as=0.1007p ps=0.91u w=0.53u l=0.13u
+X3 D2 G S1 sub sg13_lv_nmos ad=0.1007p pd=0.91u as=0.1007p ps=0.91u w=0.53u l=0.13u
+X4 S1 G D0 sub sg13_lv_nmos ad=0.1007p pd=0.91u as=0.1802p ps=1.74u w=0.53u l=0.13u
+X5 D8 G S7 sub sg13_lv_nmos ad=0.1007p pd=0.91u as=0.1007p ps=0.91u w=0.53u l=0.13u
+X6 S9 G D8 sub sg13_lv_nmos ad=0.1007p pd=0.91u as=0.1007p ps=0.91u w=0.53u l=0.13u
+X7 D10 G S9 sub sg13_lv_nmos ad=0.1007p pd=0.91u as=0.1007p ps=0.91u w=0.53u l=0.13u
+X8 S11 G D10 sub sg13_lv_nmos ad=0.1007p pd=0.91u as=0.1007p ps=0.91u w=0.53u l=0.13u
+X9 D6 G S5 sub sg13_lv_nmos ad=0.1007p pd=0.91u as=0.1007p ps=0.91u w=0.53u l=0.13u
+X10 a_574_n53# G S11 sub sg13_lv_nmos ad=0.1802p pd=1.74u as=0.1007p ps=0.91u w=0.53u l=0.13u
+X11 S7 G D6 sub sg13_lv_nmos ad=0.1007p pd=0.91u as=0.1007p ps=0.91u w=0.53u l=0.13u
+C0 S9 D8 0.02947f
+C1 G a_574_n53# 0.02856f
+C2 D6 S5 0.02947f
+C3 D8 S7 0.02947f
+C4 S3 D2 0.02947f
+C5 S1 D0 0.02947f
+C6 G S5 0.05712f
+C7 S9 G 0.05712f
+C8 G S3 0.05712f
+C9 D6 S7 0.02947f
+C10 G D10 0.05712f
+C11 G S7 0.05712f
+C12 D2 S1 0.02947f
+C13 G D4 0.05712f
+C14 G S1 0.05712f
+C15 S9 D10 0.02947f
+C16 G S11 0.05712f
+C17 a_574_n53# S11 0.02947f
+C18 S5 D4 0.02947f
+C19 D4 S3 0.02947f
+C20 G D0 0.02856f
+C21 G D8 0.05712f
+C22 S11 D10 0.02947f
+C23 G D6 0.05712f
+C24 G D2 0.05712f
+C25 S11 sub 0.00115f
+C26 D10 sub 0.00115f
+C27 S9 sub 0.00115f
+C28 D8 sub 0.00115f
+C29 S7 sub 0.00115f
+C30 D6 sub 0.00115f
+C31 S5 sub 0.75075f
+C32 D4 sub 0.75075f
+C33 S3 sub 0.00115f
+C34 D2 sub 0.00115f
+C35 S1 sub 0.00115f
+C36 D0 sub 0.02585f
+C37 a_574_n53# sub 0.02585f
+.ends
+
+.subckt rppd_XV6GFH B R1 R2 a_n100_n486#
+X0 R1 R2 B rppd l=4.86u w=1u
+C0 R2 R1 0.00667f
+C1 a_n100_n486# R1 0.06304f
+C2 R2 a_n100_n486# 0.06304f
+C3 R2 B 0.77403f
+C4 R1 B 0.77403f
+.ends
+
+.subckt cml_gate2_routed VDD VSS AN AP XN XP BN BP
+Xxlp.xrl VSS VDD XP xlp.xrl/a_n100_n742# rppd_W2KASE
+Xsg13_lv_nmos_FTPY57_0 AN xmux.xn/S9 XP xmux.xn/S9 XP xmux.xn/S9 XP xmux.xn/S9 XP
++ xmux.xn/S9 XP xmux.xn/S9 XP VSS xmux.xn/S9 sg13_lv_nmos_FTPY57
+Xsg13_lv_nmos_FTPY57_1 AP xmux.xn/S9 XN xmux.xn/S9 XN xmux.xn/S9 XN xmux.xn/S9 XN
++ xmux.xn/S9 XN xmux.xn/S9 XN VSS xmux.xn/S9 sg13_lv_nmos_FTPY57
+Xxmux.xn BP xrtail/R1 xmux.xn/S9 xrtail/R1 xmux.xn/S9 xrtail/R1 xmux.xn/S9 xrtail/R1
++ xmux.xn/S9 xrtail/R1 xmux.xn/S9 xrtail/R1 xmux.xn/S9 VSS xrtail/R1 sg13_lv_nmos_FTPY57
+Xxrtail VSS xrtail/R1 VSS xrtail/a_n100_n486# rppd_XV6GFH
+Xxmux.xp BN xrtail/R1 XP xrtail/R1 XP xrtail/R1 XP xrtail/R1 XP xrtail/R1 XP xrtail/R1
++ XP VSS xrtail/R1 sg13_lv_nmos_FTPY57
+Xxln.xrl VSS VDD XN xln.xrl/a_n100_n742# rppd_W2KASE
+C0 XN BP 0.00305f
+C1 XP AP 0.00114f
+C2 AN AP 0.35101f
+C3 XP xlp.xrl/a_n100_n742# 0.09465f
+C4 XN xln.xrl/a_n100_n742# 0.12383f
+C5 BN xlp.xrl/a_n100_n742# 0
+C6 XP xmux.xn/S9 0.67013f
+C7 xlp.xrl/a_n100_n742# AN 0.01036f
+C8 VDD xln.xrl/a_n100_n742# -0.00972f
+C9 BN xmux.xn/S9 0.01405f
+C10 xrtail/R1 XP 0.66235f
+C11 xmux.xn/S9 AN 0.67491f
+C12 xrtail/R1 BN 0.62368f
+C13 xrtail/a_n100_n486# XP 0.00358f
+C14 XP BP 0
+C15 XN VDD 0.13949f
+C16 xrtail/R1 AN 0.00244f
+C17 xrtail/a_n100_n486# BN 0.00699f
+C18 BP BN 0.30751f
+C19 xlp.xrl/a_n100_n742# AP 0
+C20 BP AN 0
+C21 xmux.xn/S9 AP 0.54481f
+C22 XP xln.xrl/a_n100_n742# 0.02766f
+C23 xrtail/R1 AP 0.00207f
+C24 xlp.xrl/a_n100_n742# xmux.xn/S9 0.00354f
+C25 xln.xrl/a_n100_n742# AN 0
+C26 BP AP 0.04392f
+C27 XN XP 0.58185f
+C28 xrtail/R1 xlp.xrl/a_n100_n742# 0
+C29 XN BN 0.00264f
+C30 XP VDD 0.01682f
+C31 XN AN 0.14624f
+C32 BP xlp.xrl/a_n100_n742# 0
+C33 xrtail/R1 xmux.xn/S9 0.6992f
+C34 VDD AN 0.10467f
+C35 BP xmux.xn/S9 0.30952f
+C36 xrtail/a_n100_n486# xrtail/R1 0.00822f
+C37 xln.xrl/a_n100_n742# xlp.xrl/a_n100_n742# 0.01866f
+C38 xrtail/R1 BP 0.50728f
+C39 XN AP 0.48531f
+C40 VDD AP 0.08207f
+C41 XN xlp.xrl/a_n100_n742# 0.04307f
+C42 XP BN 0.31012f
+C43 XP AN 0.31268f
+C44 VDD xlp.xrl/a_n100_n742# -0
+C45 XN xmux.xn/S9 0.87856f
+C46 BN AN 0.0439f
+C47 VDD xmux.xn/S9 0.01379f
+C48 XN xrtail/R1 0.00297f
+C49 AN VSS -0.00797f
+C50 AP VSS 0.12076f
+C51 BN VSS 0.06693f
+C52 BP VSS 0.15997f
+C53 VDD VSS 2.1547f
+C54 xln.xrl/a_n100_n742# VSS 0.0031f
+C55 xrtail/a_n100_n486# VSS 0.02085f
+C56 xrtail/R1 VSS 0.31433f
+C57 XN VSS 1.0579f
+C58 XP VSS 1.09139f
+C59 xmux.xn/S9 VSS 0.46398f
+C60 xlp.xrl/a_n100_n742# VSS 0.0031f
+R_pex_flottant_1 xlp.xrl/a_n100_n742# VSS 1m
+R_pex_flottant_2 xrtail/a_n100_n486# VSS 1m
+R_pex_flottant_3 xln.xrl/a_n100_n742# VSS 1m
+.ends
+
+
+* --- enveloppe ---
+.subckt cml_gate2_pex AP AN BP BN XP XN pol VDD VSS
+Xcml_gate2_routed VDD VSS AN AP XN XP BN BP cml_gate2_routed
+Rldpol POL VSS 1g
+.ends

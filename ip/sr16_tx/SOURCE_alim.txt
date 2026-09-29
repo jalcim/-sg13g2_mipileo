@@ -1,0 +1,14 @@
+# sr16_tx : vue enveloppee d alimentation, LEF d integration UNIQUE pour MSPHY5973 et MSPHY4263 (alim-cml, 29/09/2026).
+# GDS : GDS d origine copie tel quel + formes AJOUTEES dans la cellule top sr16_tx : piles Via1..TopVia1 dans les
+# fenetres libres de Metal2..Metal5 au-dessus des rails Metal1 (garde 0,30 um), piles deportees par une bande Metal4
+# (12 um au plus) la ou Metal5 couvre le rail, bandes TopMetal1 VDD / VSS pleine hauteur (ecart >= 2,5 um).
+# LEF : PIN du LEF source + bandes TopMetal1 et formes Metal2..Metal5 des piles en PORT VDD / VSS ; OBS Metal1..Metal5
+# et vias = metal reel du GDS ENVELOPPE moins les PIN (scripts/lef_obs_gds.py de prompt-063-leo, 7a43067, inchange) ;
+# OBS TopMetal1 = boite moins les bandes.
+origine gitlab.com/nebula_microsystems/mipi commit 7ed5d558da04bc5505b7cfce2e4e0b0279157f22 chemin 3_digital/CML_SR/SR16_TX/COLLATERALS
+origine_gds f4ff3ca67045726a7b4704ec413e310c  sr16_tx.gds
+origine_lef 94ba863fb647447fd2269f21807c8f8f  sr16_tx_integ.lef
+generation PCML_SEG=20 PCML_OBS_RAILS=0 pcml_wrap.py puis pcml_lef_final.py ; controle pcml_verif.py OK
+d173290a7ea1916b9483796b36e918a3  GDS/sr16_tx.gds
+c893456ece08b8760189eae5ede3e33e  LEF/sr16_tx.lef
+00ff596d3756caf5043ba76e5c4a123b  sr16_tx_piles.json

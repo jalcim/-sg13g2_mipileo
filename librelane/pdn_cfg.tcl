@@ -185,7 +185,7 @@ if { $::env(PDN_CORE_RING) == 1 } {
 # MSPHY5973 : grille de macro limitee aux macros qui exposent VPWR / VGND en TopMetal1 (csi2_top, dphy_rx,
 # dphy_tx). Les macros du kit CML (sr16_rx4, sr16_tx, cml_to_cmos, cmos_to_cml) n ont VDD / VSS qu en Metal1,
 # sous des obstructions Metal2 a Metal5 : PDN-0006 sur sr16_rx4 (coupe3). Elles restent hors grille en v1.0.0,
-# ecart ecrit en tete du README (trou 8 de doc/cablage_msphy5973.md).
+# alimentees par pcml_pdn.tcl ci-dessous (alim-cml, preuve 7).
 define_pdn_grid \
     -macro \
     -instances "csi2_top dphy_rx dphy_tx" \
@@ -196,6 +196,10 @@ define_pdn_grid \
 add_pdn_connect \
     -grid macro \
     -layers "$::env(PDN_VERTICAL_LAYER) $::env(PDN_HORIZONTAL_LAYER)"
+
+# Kit CML (sr16_rx4, sr16_tx, cml_to_cmos, cmos_to_cml) : vues enveloppees d alim-cml, grille TopMetal1 / TopMetal2
+# sans descente sous l OBS. Ne jamais remettre de grille -default ni de connect TopMetal1 Metal1 sur ces macros.
+source [file join [file dirname $::env(PDN_CFG)] pcml_pdn.tcl]
 
 # --- Macro analogique suiveur_npn (deux instances, une seule grille : les deux
 # exposent leurs rails sur Metal5) ------------------------------------------

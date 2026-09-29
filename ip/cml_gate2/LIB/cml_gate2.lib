@@ -1,0 +1,54 @@
+/* cml_gate2.lib -- liberty de cml_gate2 pour l'outil de synthese de 3_digital (yosys / abc / dfflibmap).
+ * GENERE par 2_analog/CML_LIB/liberty_synthese.py, ne pas editer. NOTE-LIBERTY-SYNTHESE.md : points 1 a 3
+ * (fonction et unateness, capacites, cml_level) ; delais SCALAIRES = pire cas post-layout sur 27 points (Max de
+ * la datasheet), pour qu'abc accepte la liberty : ce n'est pas une caracterisation (ni pente, ni charge, ni
+ * transition : 0). Un seul jeu de conditions nominal (typ), valeurs pire cas.
+ * Equivalent unipolaire : une paire = une borne logique ; P / N au dessin seulement.
+ * Sources : LEF/cml_gate2.lef md5 52e603b55fb2e7cf71d5c847a8733913 ;
+ *   DOC/cml_gate2_pex_sim.md md5 c2baac1edb32231b7c1e765f3cd1a504 ;
+ *   spec cml_gate2_spec.tcl md5 e918e2bdb6987e61eed5a30bee46096d.
+ *   A : C_IN Max
+ *   B : C_CK Max
+ *   X : max_capacitance = C_LOAD (spec), A->X T_PAX Max, B->X T_PBX Max
+ */
+library (cml_gate2) {
+  comment : "MIPI D-PHY, lib CML, cml_gate2, equivalent unipolaire";
+  define (cml_level, pin, string);
+  delay_model : table_lookup;
+  time_unit : "1ns";
+  voltage_unit : "1V";
+  current_unit : "1uA";
+  leakage_power_unit : "1pW";
+  capacitive_load_unit (1,pf);
+  pulling_resistance_unit : "1kohm";
+  nom_process : 1;
+  nom_temperature : 25;
+  nom_voltage : 1.2;
+  voltage_map (VDD, 1.2);
+  voltage_map (VSS, 0);
+  operating_conditions (typ) { process : 1; temperature : 25; voltage : 1.2; }
+  default_operating_conditions : typ;
+  cell (cml_gate2) {
+    area : 279.05;
+    pg_pin (VDD) { pg_type : primary_power;  voltage_name : "VDD"; }
+    pg_pin (VSS) { pg_type : primary_ground; voltage_name : "VSS"; }
+    pin (A) {
+      direction : input;
+      cml_level : "A";
+      capacitance : 0.012;
+    }
+    pin (B) {
+      direction : input;
+      cml_level : "B";
+      capacitance : 0.0129;
+    }
+    pin (X) {
+      direction : output;
+      cml_level : "A";
+      max_capacitance : 0.02;
+      function : "A&B";
+      timing () { related_pin : "A"; timing_sense : positive_unate; cell_rise (scalar) { values ("0.125"); } cell_fall (scalar) { values ("0.125"); } rise_transition (scalar) { values ("0"); } fall_transition (scalar) { values ("0"); } }
+      timing () { related_pin : "B"; timing_sense : positive_unate; cell_rise (scalar) { values ("0.201"); } cell_fall (scalar) { values ("0.201"); } rise_transition (scalar) { values ("0"); } fall_transition (scalar) { values ("0"); } }
+    }
+  }
+}

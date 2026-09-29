@@ -87,7 +87,8 @@ PAD_NORTH: [
   tx_clk_p_pad, tx_clk_n_pad,
   tx_d0_p_pad, tx_d0_n_pad, tx_d1_p_pad, tx_d1_n_pad,
   tx_d2_p_pad, tx_d2_n_pad, tx_d3_p_pad, tx_d3_n_pad,
-  clkin_n_pad, clkin_p_pad
+  clkin_i_n_pad, clkin_i_p_pad,
+  clkin_q_n_pad, clkin_q_p_pad
 ]
 
 PAD_WEST: [
@@ -145,7 +146,7 @@ NON_DEFAULT_RULES:
 
 DRT_ASSIGN_NDR: {}
 
-RSZ_DONT_TOUCH_RX: "^(pd_\\w+|tx_\\w+_(hsp|hsn|lpinp|lpinn))$"
+RSZ_DONT_TOUCH_RX: "^(pd_\\w+|tx_\\w+_(hsp|hsn|lpinp|lpinn)|sync_run\\d|gate_clk_lane|run_q\\d|clk_lane|clk_q)$"
 
 # PDN
 PDN_CORE_RING: True
@@ -234,6 +235,8 @@ MAGIC_EXT_UNIQUE: notopports
 FP_MACRO_VERTICAL_HALO: 7.56
 PDN_VERTICAL_HALO: 7.56
 
+# Positions : plan de masse de la livraison 1 (061, msphy4263/scripts/floorplan.py, a408a54, die 2 560).
+# Kit CML : vues enveloppees d alim-cml (preuve 7), alimentees par librelane/pcml_pdn.tcl.
 MACROS:
   csi2_top:
     gds: [dir::../ip/csi2_top/GDS/csi2_top.gds]
@@ -261,79 +264,87 @@ MACROS:
     instances:
       dphy_tx: {location: [801.60, 1833.30], orientation: N}
   sr16_rx4:
-    gds: [dir::../ip/sr16_rx4/GDS/sr16_rx4.gds]
-    lef: [dir::../ip/sr16_rx4/LEF/sr16_rx4_integ.lef]
+    gds: [dir::../ip/sr16_rx4/GDS/sr16_rx4_alim.gds]
+    lef: [dir::../ip/sr16_rx4/LEF/sr16_rx4_alim.lef]
     vh: [dir::../ip/sr16_rx4/HDL/sr16_rx4_bb.v]
     spice: [dir::../ip/sr16_rx4/SPICE/sr16_rx4.spice]
     instances:
       sr16_rx4: {location: [1949.76, 423.36], orientation: N}
-  cml_to_cmos:
-    gds: [dir::../ip/cml_to_cmos/GDS/cml_to_cmos.gds]
-    lef: [dir::../ip/cml_to_cmos/LEF/cml_to_cmos_integ.lef]
-    vh: [dir::../ip/cml_to_cmos/HDL/cml_to_cmos_bb.v]
-    spice: [dir::../ip/cml_to_cmos/SPICE/cml_to_cmos.spice]
-    instances:
-      c2c_mot0: {location: [1869.60, 423.36], orientation: N}
-      c2c_mot1: {location: [1869.60, 453.60], orientation: N}
-      c2c_mot2: {location: [1869.60, 483.84], orientation: N}
-      c2c_mot3: {location: [1869.60, 514.08], orientation: N}
-      c2c_mot4: {location: [1869.60, 544.32], orientation: N}
-      c2c_mot5: {location: [1869.60, 574.56], orientation: N}
-      c2c_mot6: {location: [1869.60, 604.80], orientation: N}
-      c2c_mot7: {location: [1869.60, 635.04], orientation: N}
-      c2c_mot8: {location: [1869.60, 665.28], orientation: N}
-      c2c_mot9: {location: [1869.60, 695.52], orientation: N}
-      c2c_mot10: {location: [1869.60, 725.76], orientation: N}
-      c2c_mot11: {location: [1869.60, 756.00], orientation: N}
-      c2c_mot12: {location: [1889.76, 423.36], orientation: N}
-      c2c_mot13: {location: [1889.76, 453.60], orientation: N}
-      c2c_mot14: {location: [1889.76, 483.84], orientation: N}
-      c2c_mot15: {location: [1889.76, 514.08], orientation: N}
-      c2c_mot16: {location: [1889.76, 544.32], orientation: N}
-      c2c_mot17: {location: [1889.76, 574.56], orientation: N}
-      c2c_mot18: {location: [1889.76, 604.80], orientation: N}
-      c2c_mot19: {location: [1889.76, 635.04], orientation: N}
-      c2c_mot20: {location: [1889.76, 665.28], orientation: N}
-      c2c_mot21: {location: [1889.76, 695.52], orientation: N}
-      c2c_mot22: {location: [1889.76, 725.76], orientation: N}
-      c2c_mot23: {location: [1889.76, 756.00], orientation: N}
-      c2c_mot24: {location: [1909.92, 423.36], orientation: N}
-      c2c_mot25: {location: [1909.92, 453.60], orientation: N}
-      c2c_mot26: {location: [1909.92, 483.84], orientation: N}
-      c2c_mot27: {location: [1909.92, 514.08], orientation: N}
-      c2c_mot28: {location: [1909.92, 544.32], orientation: N}
-      c2c_mot29: {location: [1909.92, 574.56], orientation: N}
-      c2c_mot30: {location: [1909.92, 604.80], orientation: N}
-      c2c_mot31: {location: [1909.92, 635.04], orientation: N}
-      c2c_clk_w: {location: [1909.92, 665.28], orientation: N}
-      c2c_rx_clk: {location: [1909.92, 695.52], orientation: N}
-      c2c_tx_ck: {location: [1107.84, 1833.30], orientation: N}
-      c2c_tx_dout0: {location: [1778.40, 2075.22], orientation: N}
-      c2c_tx_dout1: {location: [1803.36, 2075.22], orientation: N}
-      c2c_tx_dout2: {location: [1828.32, 2075.22], orientation: N}
-      c2c_tx_dout3: {location: [1853.28, 2075.22], orientation: N}
-  cmos_to_cml:
-    gds: [dir::../ip/cmos_to_cml/GDS/cmos_to_cml.gds]
-    lef: [dir::../ip/cmos_to_cml/LEF/cmos_to_cml_integ.lef]
-    vh: [dir::../ip/cmos_to_cml/HDL/cmos_to_cml_bb.v]
-    spice: [dir::../ip/cmos_to_cml/SPICE/cmos_to_cml.spice]
-    instances:
-      c2l_tx_mot0: {location: [1653.60, 2075.22], orientation: N}
-      c2l_tx_mot1: {location: [1678.56, 2075.22], orientation: N}
-      c2l_tx_mot2: {location: [1703.52, 2075.22], orientation: N}
-      c2l_tx_mot3: {location: [1728.48, 2075.22], orientation: N}
-      c2l_tx_clk_w: {location: [1753.44, 2075.22], orientation: N}
   sr16_tx:
-    gds: [dir::../ip/sr16_tx/GDS/sr16_tx.gds]
-    lef: [dir::../ip/sr16_tx/LEF/sr16_tx_integ.lef]
+    gds: [dir::../ip/sr16_tx/GDS/sr16_tx_alim.gds]
+    lef: [dir::../ip/sr16_tx/LEF/sr16_tx_alim.lef]
     vh: [dir::../ip/sr16_tx/HDL/sr16_tx_bb.v]
     spice: [dir::../ip/sr16_tx/SPICE/sr16_tx.spice]
     instances:
-      sr16_tx0: {location: [1278.24, 1833.30], orientation: N}
-      sr16_tx1: {location: [1653.60, 1833.30], orientation: N}
-      sr16_tx2: {location: [1278.24, 1946.70], orientation: N}
-      sr16_tx3: {location: [1653.60, 1946.70], orientation: N}
-
+      sr16_tx0: {location: [1107.84, 1833.30], orientation: N}
+      sr16_tx1: {location: [1483.20, 1833.30], orientation: N}
+      sr16_tx2: {location: [1107.84, 1946.70], orientation: N}
+      sr16_tx3: {location: [1483.20, 1946.70], orientation: N}
+  cml_to_cmos:
+    gds: [dir::../ip/cml_to_cmos/GDS/cml_to_cmos_alim.gds]
+    lef: [dir::../ip/cml_to_cmos/LEF/cml_to_cmos_alim.lef]
+    vh: [dir::../ip/cml_to_cmos/HDL/cml_to_cmos_bb.v]
+    spice: [dir::../ip/cml_to_cmos/SPICE/cml_to_cmos.spice]
+    instances:
+      c2c_clk_tx: {location: [1107.84, 2113.02], orientation: N}
+      c2c_clk_q: {location: [1140.96, 2113.02], orientation: N}
+      c2c_mot0: {location: [1949.76, 759.78], orientation: N}
+      c2c_mot1: {location: [1982.88, 759.78], orientation: N}
+      c2c_mot2: {location: [2016.00, 759.78], orientation: N}
+      c2c_mot3: {location: [2049.12, 759.78], orientation: N}
+      c2c_mot4: {location: [2082.24, 759.78], orientation: N}
+      c2c_mot5: {location: [2115.36, 759.78], orientation: N}
+      c2c_mot6: {location: [1949.76, 805.14], orientation: N}
+      c2c_mot7: {location: [1982.88, 805.14], orientation: N}
+      c2c_mot8: {location: [2016.00, 805.14], orientation: N}
+      c2c_mot9: {location: [2049.12, 805.14], orientation: N}
+      c2c_mot10: {location: [2082.24, 805.14], orientation: N}
+      c2c_mot11: {location: [2115.36, 805.14], orientation: N}
+      c2c_mot12: {location: [1949.76, 850.50], orientation: N}
+      c2c_mot13: {location: [1982.88, 850.50], orientation: N}
+      c2c_mot14: {location: [2016.00, 850.50], orientation: N}
+      c2c_mot15: {location: [2049.12, 850.50], orientation: N}
+      c2c_mot16: {location: [2082.24, 850.50], orientation: N}
+      c2c_mot17: {location: [2115.36, 850.50], orientation: N}
+      c2c_mot18: {location: [1949.76, 895.86], orientation: N}
+      c2c_mot19: {location: [1982.88, 895.86], orientation: N}
+      c2c_mot20: {location: [2016.00, 895.86], orientation: N}
+      c2c_mot21: {location: [2049.12, 895.86], orientation: N}
+      c2c_mot22: {location: [2082.24, 895.86], orientation: N}
+      c2c_mot23: {location: [2115.36, 895.86], orientation: N}
+      c2c_mot24: {location: [1949.76, 941.22], orientation: N}
+      c2c_mot25: {location: [1982.88, 941.22], orientation: N}
+      c2c_mot26: {location: [2016.00, 941.22], orientation: N}
+      c2c_mot27: {location: [2049.12, 941.22], orientation: N}
+      c2c_mot28: {location: [2082.24, 941.22], orientation: N}
+      c2c_mot29: {location: [2115.36, 941.22], orientation: N}
+      c2c_mot30: {location: [1949.76, 986.58], orientation: N}
+      c2c_mot31: {location: [1982.88, 986.58], orientation: N}
+      c2c_clk_w: {location: [2016.00, 986.58], orientation: N}
+      c2c_rx_clk: {location: [2049.12, 986.58], orientation: N}
+      c2c_dout0: {location: [1174.08, 2113.02], orientation: N}
+      c2c_dout1: {location: [1207.20, 2113.02], orientation: N}
+      c2c_dout2: {location: [1240.32, 2113.02], orientation: N}
+      c2c_dout3: {location: [1273.44, 2113.02], orientation: N}
+  cmos_to_cml:
+    gds: [dir::../ip/cmos_to_cml/GDS/cmos_to_cml_alim.gds]
+    lef: [dir::../ip/cmos_to_cml/LEF/cmos_to_cml_alim.lef]
+    vh: [dir::../ip/cmos_to_cml/HDL/cmos_to_cml_bb.v]
+    spice: [dir::../ip/cmos_to_cml/SPICE/cmos_to_cml.spice]
+    instances:
+      c2m_clk_w: {location: [1306.56, 2113.02], orientation: N}
+      c2m_clk_rx_en: {location: [1982.40, 1031.94], orientation: N}
+      c2m_mot0: {location: [1349.76, 2113.02], orientation: N}
+      c2m_mot1: {location: [1392.96, 2113.02], orientation: N}
+      c2m_mot2: {location: [1436.16, 2113.02], orientation: N}
+      c2m_mot3: {location: [1479.36, 2113.02], orientation: N}
+  cml_gate2:
+    gds: [dir::../ip/cml_gate2/GDS/cml_gate2_alim.gds]
+    lef: [dir::../ip/cml_gate2/LEF/cml_gate2_alim.lef]
+    vh: [dir::../ip/cml_gate2/HDL/cml_gate2_bb.v]
+    spice: [dir::../ip/cml_gate2/SPICE/cml_gate2.spice]
+    instances:
+      gate_rx_clk: {location: [1949.76, 1031.94], orientation: N}
 
 # This is an alternative method compared to
 # specifying the power connections in the RTL

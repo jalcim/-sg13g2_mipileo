@@ -1,0 +1,13 @@
+# Vues importees telles quelles (cml_gate2 seule), aucune modification locale (sauf HDL/cml_gate2_bb.v genere du LEF).
+depot gitlab.com/nebula_microsystems/mipi
+commit fe70f9b8ee4cc91cc1742710454b537dd5af192b
+chemin 2_analog/CML_LIB/GATE2/COLLATERALS
+7970b62758cbf3cdc79d64af2880cfce  ./DOC/README_ANGEL.md
+62185da2c0967e5546c42815dc271074  ./GDS/cml_gate2.gds
+73a95149b9781097726f5d195e65d60f  ./HDL/cml_gate2_bb.v
+069d2836054cea987a478f17bfa8ebb6  ./HDL/cml_gate2.v
+52e603b55fb2e7cf71d5c847a8733913  ./LEF/cml_gate2.lef
+56ceac4b3bdc98399fd83a496188dca3  ./LIB/cml_gate2_dummy.lib
+8179d07196fa61b0774bfae00685a490  ./LIB/cml_gate2.lib
+5cb84995c29a74abdcd9b75f573e2d90  ./SPICE/cml_gate2_pex.spice
+b1fe0a557a97a87621d70ef72336831d  ./SPICE/cml_gate2.spice

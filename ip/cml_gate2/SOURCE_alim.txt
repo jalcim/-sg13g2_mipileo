@@ -1,0 +1,14 @@
+# cml_gate2 : vue enveloppee d alimentation, LEF d integration UNIQUE pour MSPHY5973 et MSPHY4263 (alim-cml, 29/09/2026).
+# GDS : GDS d origine copie tel quel + formes AJOUTEES dans la cellule top cml_gate2 : piles Via1..TopVia1 dans les
+# fenetres libres de Metal2..Metal5 au-dessus des rails Metal1 (garde 0,30 um), piles deportees par une bande Metal4
+# (12 um au plus) la ou Metal5 couvre le rail, bandes TopMetal1 VDD / VSS pleine hauteur (ecart >= 2,5 um).
+# LEF : PIN du LEF source + bandes TopMetal1 et formes Metal2..Metal5 des piles en PORT VDD / VSS ; OBS Metal1..Metal5
+# et vias = metal reel du GDS ENVELOPPE moins les PIN (scripts/lef_obs_gds.py de prompt-063-leo, 7a43067, inchange) ;
+# OBS TopMetal1 = boite moins les bandes.
+origine gitlab.com/nebula_microsystems/mipi commit fe70f9b8e chemin 2_analog/CML_LIB/GATE2/COLLATERALS (extrait de nebula:~/depots/bancs-imx)
+origine_gds 62185da2c0967e5546c42815dc271074  cml_gate2.gds
+origine_lef 52e603b55fb2e7cf71d5c847a8733913  cml_gate2.lef
+generation PCML_SEG=20 PCML_OBS_RAILS=0 pcml_wrap.py puis pcml_lef_final.py ; controle pcml_verif.py OK
+2b9254080baae76a113b92a6640f2007  GDS/cml_gate2.gds
+543ac2ff4ecd4592892074fdc050e407  LEF/cml_gate2.lef
+b44759cc13df2e6b1bce911cf562fd27  cml_gate2_piles.json

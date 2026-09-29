@@ -1,0 +1,14 @@
+# cml_to_cmos : vue enveloppee d alimentation, LEF d integration UNIQUE pour MSPHY5973 et MSPHY4263 (alim-cml, 29/09/2026).
+# GDS : GDS d origine copie tel quel + formes AJOUTEES dans la cellule top cml_to_cmos : piles Via1..TopVia1 dans les
+# fenetres libres de Metal2..Metal5 au-dessus des rails Metal1 (garde 0,30 um), piles deportees par une bande Metal4
+# (12 um au plus) la ou Metal5 couvre le rail, bandes TopMetal1 VDD / VSS pleine hauteur (ecart >= 2,5 um).
+# LEF : PIN du LEF source + bandes TopMetal1 et formes Metal2..Metal5 des piles en PORT VDD / VSS ; OBS Metal1..Metal5
+# et vias = metal reel du GDS ENVELOPPE moins les PIN (scripts/lef_obs_gds.py de prompt-063-leo, 7a43067, inchange) ;
+# OBS TopMetal1 = boite moins les bandes.
+origine gitlab.com/nebula_microsystems/mipi commit 163130648def60a33b4f0e6796f54961921a750f chemin 2_analog/CML_LIB/CML_TO_CMOS/COLLATERALS
+origine_gds 12e28302bdbd9bb7c6507fc094fc9bbd  cml_to_cmos.gds
+origine_lef 5251c0cf8ad364050dbc23c27ed6de5b  cml_to_cmos_integ.lef
+generation PCML_SEG=20 PCML_OBS_RAILS=0 pcml_wrap.py puis pcml_lef_final.py ; controle pcml_verif.py OK
+3b3667ee6fe1a8a548e8b6d4aaba4b6e  GDS/cml_to_cmos.gds
+51517d6dd19b2fcd24b08a2b33907483  LEF/cml_to_cmos.lef
+510944a450a2feff6c9c698b9cea13de  cml_to_cmos_piles.json

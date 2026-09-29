@@ -1,0 +1,36 @@
+/* cml_gate2_dummy.lib -- liberty MINIMAL de cml_gate2 pour l'integration (Angel), sans timing ni puissance, comme le
+ * sg13g2_io_dummy.lib du PDK : bornes, directions, rails, surface. Ecrit le 24/09/2026 depuis LEF/cml_gate2.lef
+ * (SIZE 23,04 x 22,36) ; netlist SPICE/cml_gate2.spice md5 b1fe0a557a97a87621d70ef72336831d.
+ * Capacites d'entree : pire cas POST-LAYOUT sur 27 points de cml_gate2 (SPICE/cml_gate2_pex.spice md5 eb675838cd9987e3420a8916dd660822,
+ * DOC/cml_gate2_pex_sim.md) : C_IN 12,0 fF (A), C_CK 12,9 fF (B) ; memes transistors et memes pistes pour les quatre
+ * portes (seul le cablage pad -> noeud change). Timing : voir DOC/ et HDL/cml_gate2.v. */
+library (cml_gate2_dummy) {
+  comment : "MIPI D-PHY, lib CML, cellule cml_gate2 : porte a deux entrees, X = A.B (AND)";
+  delay_model : table_lookup;
+  time_unit : "1ns";
+  voltage_unit : "1V";
+  current_unit : "1uA";
+  leakage_power_unit : "1pW";
+  capacitive_load_unit (1,pf);
+  pulling_resistance_unit : "1kohm";
+  nom_process : 1;
+  nom_temperature : 25;
+  nom_voltage : 1.2;
+  voltage_map (VDD, 1.2);
+  voltage_map (VSS, 0);
+  operating_conditions (typ) { process : 1; temperature : 25; voltage : 1.2; }
+  default_operating_conditions : typ;
+  cell (cml_gate2) {
+    area : 279.05;
+    dont_touch : true;
+    dont_use : true;
+    pg_pin (VDD) { pg_type : primary_power;  voltage_name : "VDD"; }
+    pg_pin (VSS) { pg_type : primary_ground; voltage_name : "VSS"; }
+    pin (AP) { direction : input;  related_power_pin : VDD; related_ground_pin : VSS; capacitance : 0.0120; }
+    pin (AN) { direction : input;  related_power_pin : VDD; related_ground_pin : VSS; capacitance : 0.0120; }
+    pin (BP) { direction : input;  related_power_pin : VDD; related_ground_pin : VSS; capacitance : 0.0129; }
+    pin (BN) { direction : input;  related_power_pin : VDD; related_ground_pin : VSS; capacitance : 0.0129; }
+    pin (XP) { direction : output; related_power_pin : VDD; related_ground_pin : VSS; }
+    pin (XN) { direction : output; related_power_pin : VDD; related_ground_pin : VSS; }
+  }
+}

@@ -1,0 +1,11 @@
+PART autres 1654
+PART ldf_enable 4
+PART ldf_tailles_r 68
+PART llp 736
+PART llp_u_rx 230
+PART lm 1646
+PART pix_rx 189
+PART pix_tx 285
+PART trame 1400
+RES nom_slow_1p08V_125C 5 setup -3.215467003769845e-9 hold 1.623625678348617e-10
+RES nom_slow_1p08V_125C 10 setup -3.802941961339457e-9 hold 2.1593837828959295e-11

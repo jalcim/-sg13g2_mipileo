@@ -1,0 +1,631 @@
+{
+ "coins": {
+  "nom_slow_1p08V_125C|5": {
+   "setup": -3.215,
+   "hold": 0.162
+  },
+  "nom_slow_1p08V_125C|10": {
+   "setup": -3.803,
+   "hold": 0.022
+  },
+  "nom_typ_1p20V_25C|5": {
+   "setup": 0.803,
+   "hold": 0.185
+  },
+  "nom_typ_1p20V_25C|10": {
+   "setup": 0.43,
+   "hold": 0.094
+  },
+  "nom_fast_1p32V_m40C|5": {
+   "setup": 3.129,
+   "hold": 0.097
+  },
+  "nom_fast_1p32V_m40C|10": {
+   "setup": 2.88,
+   "hold": 0.036
+  }
+ },
+ "bascules": {
+  "autres": 1654,
+  "ldf_enable": 4,
+  "ldf_tailles_r": 68,
+  "llp": 736,
+  "llp_u_rx": 230,
+  "lm": 1646,
+  "pix_rx": 189,
+  "pix_tx": 285,
+  "trame": 1400
+ },
+ "chemins": {
+  "pire|5": {
+   "marge": -3.215,
+   "depart": "rx_sol_wc[4]",
+   "arrivee": "u_renvoi.g_n3.u_n3.r_entrer[15]",
+   "parties": "pix_rx -> autres",
+   "arrivee_ns": 12.796,
+   "cellules": 52,
+   "tampons": 27,
+   "part_tampons": 0.445
+  },
+  "pire|10": {
+   "marge": -3.803,
+   "depart": "rx_sol_wc[4]",
+   "arrivee": "u_renvoi.g_n3.u_n3.r_entrer[15]",
+   "parties": "pix_rx -> autres",
+   "arrivee_ns": 13.405,
+   "cellules": 52,
+   "tampons": 27,
+   "part_tampons": 0.445
+  },
+  "lm|5": {
+   "marge": 1.278,
+   "depart": "lm.sit.aligneur.ligne[4][8]",
+   "arrivee": "lm.sit.lm.lmf.out_data[6]",
+   "parties": "lm -> lm",
+   "arrivee_ns": 8.216,
+   "cellules": 30,
+   "tampons": 14,
+   "part_tampons": 0.455
+  },
+  "lm|10": {
+   "marge": 0.836,
+   "depart": "lm.sit.aligneur.ligne[4][8]",
+   "arrivee": "lm.sit.lm.lmf.out_data[6]",
+   "parties": "lm -> lm",
+   "arrivee_ns": 8.607,
+   "cellules": 30,
+   "tampons": 14,
+   "part_tampons": 0.455
+  },
+  "ldf|5": {
+   "marge": 2.725,
+   "depart": "lm.sit.lm.ldf.calcul.enable[1]",
+   "arrivee": "lm.sit.lm.ldf.tailles_r[18]",
+   "parties": "lm -> lm",
+   "arrivee_ns": 6.858,
+   "cellules": 27,
+   "tampons": 14,
+   "part_tampons": 0.597
+  },
+  "ldf|10": {
+   "marge": 2.445,
+   "depart": "lm.sit.lm.ldf.calcul.enable[1]",
+   "arrivee": "lm.sit.lm.ldf.tailles_r[18]",
+   "parties": "lm -> lm",
+   "arrivee_ns": 7.185,
+   "cellules": 27,
+   "tampons": 14,
+   "part_tampons": 0.597
+  },
+  "llp|5": {
+   "marge": 1.127,
+   "depart": "llp.tx_in_total[2]",
+   "arrivee": "llp.u_tx.r_ps_first",
+   "parties": "llp -> llp",
+   "arrivee_ns": 8.478,
+   "cellules": 27,
+   "tampons": 14,
+   "part_tampons": 0.534
+  },
+  "llp|10": {
+   "marge": 0.744,
+   "depart": "llp.tx_in_total[2]",
+   "arrivee": "llp.u_tx.r_ps_first",
+   "parties": "llp -> llp",
+   "arrivee_ns": 8.881,
+   "cellules": 27,
+   "tampons": 14,
+   "part_tampons": 0.534
+  },
+  "llp_u_rx|5": {
+   "marge": 1.666,
+   "depart": "llp.u_rx.a_hdr[15]",
+   "arrivee": "end_status[0]",
+   "parties": "llp/u_rx -> llp/u_rx",
+   "arrivee_ns": 7.958,
+   "cellules": 29,
+   "tampons": 14,
+   "part_tampons": 0.402
+  },
+  "llp_u_rx|10": {
+   "marge": 1.343,
+   "depart": "llp.u_rx.a_hdr[20]",
+   "arrivee": "end_status[0]",
+   "parties": "llp/u_rx -> llp/u_rx",
+   "arrivee_ns": 8.271,
+   "cellules": 29,
+   "tampons": 14,
+   "part_tampons": 0.411
+  },
+  "pix_rx|5": {
+   "marge": -0.525,
+   "depart": "hdr_valid",
+   "arrivee": "rx_pix_valid",
+   "parties": "llp/u_rx -> pix_rx",
+   "arrivee_ns": 10.087,
+   "cellules": 27,
+   "tampons": 17,
+   "part_tampons": 0.717
+  },
+  "pix_rx|10": {
+   "marge": -1.061,
+   "depart": "hdr_valid",
+   "arrivee": "rx_pix_valid",
+   "parties": "llp/u_rx -> pix_rx",
+   "arrivee_ns": 10.567,
+   "cellules": 27,
+   "tampons": 17,
+   "part_tampons": 0.717
+  },
+  "trame|5": {
+   "marge": -1.072,
+   "depart": "trame.r_pk_dt[3]",
+   "arrivee": "trame.g_vc[2].r_bad",
+   "parties": "trame -> trame",
+   "arrivee_ns": 10.589,
+   "cellules": 34,
+   "tampons": 15,
+   "part_tampons": 0.402
+  },
+  "trame|10": {
+   "marge": -1.592,
+   "depart": "trame.r_pk_dt[3]",
+   "arrivee": "trame.g_vc[2].r_bad",
+   "parties": "trame -> trame",
+   "arrivee_ns": 11.094,
+   "cellules": 34,
+   "tampons": 15,
+   "part_tampons": 0.402
+  },
+  "pix_tx|5": {
+   "marge": 0.229,
+   "depart": "n3_req_width[4]",
+   "arrivee": "tx_evt_width",
+   "parties": "autres -> pix_tx",
+   "arrivee_ns": 9.149,
+   "cellules": 41,
+   "tampons": 18,
+   "part_tampons": 0.452
+  },
+  "pix_tx|10": {
+   "marge": -0.234,
+   "depart": "n3_req_width[6]",
+   "arrivee": "pix_tx.o_req_ready",
+   "parties": "autres -> pix_tx",
+   "arrivee_ns": 9.707,
+   "cellules": 46,
+   "tampons": 22,
+   "part_tampons": 0.508
+  },
+  "top|5": null,
+  "top|10": null,
+  "autres|5": {
+   "marge": -3.215,
+   "depart": "rx_sol_wc[4]",
+   "arrivee": "u_renvoi.g_n3.u_n3.r_entrer[15]",
+   "parties": "pix_rx -> autres",
+   "arrivee_ns": 12.796,
+   "cellules": 52,
+   "tampons": 27,
+   "part_tampons": 0.445
+  },
+  "autres|10": {
+   "marge": -3.803,
+   "depart": "rx_sol_wc[4]",
+   "arrivee": "u_renvoi.g_n3.u_n3.r_entrer[15]",
+   "parties": "pix_rx -> autres",
+   "arrivee_ns": 13.405,
+   "cellules": 52,
+   "tampons": 27,
+   "part_tampons": 0.445
+  },
+  "llp_vers_pix_rx|5": {
+   "marge": -0.525,
+   "depart": "hdr_valid",
+   "arrivee": "rx_pix_valid",
+   "parties": "llp/u_rx -> pix_rx",
+   "arrivee_ns": 10.087,
+   "cellules": 27,
+   "tampons": 17,
+   "part_tampons": 0.717
+  },
+  "llp_vers_pix_rx|10": {
+   "marge": -1.061,
+   "depart": "hdr_valid",
+   "arrivee": "rx_pix_valid",
+   "parties": "llp/u_rx -> pix_rx",
+   "arrivee_ns": 10.567,
+   "cellules": 27,
+   "tampons": 17,
+   "part_tampons": 0.717
+  },
+  "llp_vers_trame|5": {
+   "marge": 1.045,
+   "depart": "hdr_wc[0]",
+   "arrivee": "trame.e_size_ok",
+   "parties": "llp/u_rx -> trame",
+   "arrivee_ns": 8.546,
+   "cellules": 37,
+   "tampons": 17,
+   "part_tampons": 0.475
+  },
+  "llp_vers_trame|10": {
+   "marge": 0.671,
+   "depart": "hdr_wc[0]",
+   "arrivee": "trame.e_size_ok",
+   "parties": "llp/u_rx -> trame",
+   "arrivee_ns": 8.953,
+   "cellules": 37,
+   "tampons": 17,
+   "part_tampons": 0.475
+  },
+  "pix_tx_vers_llp|5": {
+   "marge": 4.954,
+   "depart": "pix_tx.o_llp_pay_valid",
+   "arrivee": "llp.r_pay_valid",
+   "parties": "pix_tx -> llp",
+   "arrivee_ns": 4.635,
+   "cellules": 11,
+   "tampons": 7,
+   "part_tampons": 0.699
+  },
+  "pix_tx_vers_llp|10": {
+   "marge": 4.754,
+   "depart": "pix_tx.o_llp_pay_valid",
+   "arrivee": "llp.r_pay_valid",
+   "parties": "pix_tx -> llp",
+   "arrivee_ns": 4.856,
+   "cellules": 11,
+   "tampons": 7,
+   "part_tampons": 0.7
+  },
+  "entrees|5": {
+   "marge": 1.094,
+   "depart": "tx_req_width[5]",
+   "arrivee": "pix_tx.o_req_ready",
+   "parties": "autres -> pix_tx",
+   "arrivee_ns": 8.378,
+   "cellules": 45,
+   "tampons": 22,
+   "part_tampons": 0.528
+  },
+  "entrees|10": {
+   "marge": 0.671,
+   "depart": "tx_req_width[5]",
+   "arrivee": "pix_tx.o_req_ready",
+   "parties": "autres -> pix_tx",
+   "arrivee_ns": 8.701,
+   "cellules": 45,
+   "tampons": 22,
+   "part_tampons": 0.528
+  },
+  "sorties|5": {
+   "marge": 2.192,
+   "depart": "pix_tx.o_req_ready",
+   "arrivee": "tx_req_ready",
+   "parties": "pix_tx -> pix_tx",
+   "arrivee_ns": 3.951,
+   "cellules": 5,
+   "tampons": 3,
+   "part_tampons": 0.419
+  },
+  "sorties|10": {
+   "marge": 2.004,
+   "depart": "pix_tx.o_req_ready",
+   "arrivee": "tx_req_ready",
+   "parties": "pix_tx -> pix_tx",
+   "arrivee_ns": 4.14,
+   "cellules": 5,
+   "tampons": 3,
+   "part_tampons": 0.419
+  }
+ },
+ "dix_pires": [
+  {
+   "derate": "5",
+   "lignes": [
+    [
+     "u_renvoi.g_n3.u_n3.r_entrer[15]",
+     -3.215
+    ],
+    [
+     "u_renvoi.g_n3.u_n3.r_entrer[14]",
+     -3.193
+    ],
+    [
+     "u_renvoi.g_n3.u_n3.r_entrer[13]",
+     -3.107
+    ],
+    [
+     "u_renvoi.g_n3.u_n3.o_evt_bourre",
+     -3.035
+    ],
+    [
+     "u_renvoi.g_n3.u_n3.r_entrer[12]",
+     -2.983
+    ],
+    [
+     "u_renvoi.g_n3.u_n3.r_entrer[11]",
+     -2.915
+    ],
+    [
+     "u_renvoi.g_n3.u_n3.r_entrer[10]",
+     -2.914
+    ],
+    [
+     "n3_req_width[9]",
+     -2.865
+    ],
+    [
+     "u_renvoi.g_n3.u_n3.r_entrer[9]",
+     -2.542
+    ],
+    [
+     "n3_req_width[14]",
+     -2.529
+    ],
+    [
+     "lm.sit.fifo.mem[4][17]",
+     3.427
+    ],
+    [
+     "lm.sit.fifo.mem[4][14]",
+     3.433
+    ],
+    [
+     "lm.sit.fifo.mem[4][15]",
+     3.435
+    ],
+    [
+     "lm.sit.fifo.mem[4][20]",
+     3.436
+    ],
+    [
+     "lm.sit.fifo.mem[4][18]",
+     3.443
+    ],
+    [
+     "lm.sit.fifo.mem[4][19]",
+     3.456
+    ],
+    [
+     "lm.sit.fifo.mem[4][16]",
+     3.459
+    ],
+    [
+     "lm.sit.fifo.mem[5][4]",
+     3.464
+    ],
+    [
+     "lm.sit.fifo.mem[4][13]",
+     3.469
+    ],
+    [
+     "lm.sit.fifo.mem[5][14]",
+     3.471
+    ],
+    [
+     "lm.sit.aligneur.lane[0].aligneur.deux_1",
+     4.55
+    ],
+    [
+     "lm.sit.aligneur.lane[3].aligneur.deux_1",
+     4.619
+    ],
+    [
+     "lm.sit.aligneur.lane[0].aligneur.ecart[9]",
+     4.665
+    ],
+    [
+     "lm.sit.aligneur.lane[0].aligneur.fenetre[22]",
+     4.665
+    ],
+    [
+     "lm.sit.aligneur.lane[0].aligneur.fenetre[20]",
+     4.667
+    ],
+    [
+     "lm.sit.aligneur.lane[1].aligneur.deux_1",
+     4.669
+    ],
+    [
+     "lm.sit.aligneur.lane[0].aligneur.fenetre[19]",
+     4.669
+    ],
+    [
+     "lm.sit.aligneur.lane[0].aligneur.ecart[14]",
+     4.671
+    ],
+    [
+     "lm.sit.aligneur.lane[0].aligneur.fenetre[18]",
+     4.671
+    ],
+    [
+     "lm.sit.aligneur.lane[0].aligneur.fenetre[23]",
+     4.677
+    ]
+   ],
+   "sous_seuil": {
+    "autres": [
+     1384,
+     327
+    ],
+    "trame": [
+     451,
+     123
+    ],
+    "pix_rx": [
+     148,
+     25
+    ],
+    "pix_tx": [
+     54,
+     0
+    ],
+    "llp": [
+     78,
+     0
+    ],
+    "lm": [
+     16,
+     0
+    ]
+   }
+  },
+  {
+   "derate": "10",
+   "lignes": [
+    [
+     "u_renvoi.g_n3.u_n3.r_entrer[15]",
+     -3.803
+    ],
+    [
+     "u_renvoi.g_n3.u_n3.r_entrer[14]",
+     -3.778
+    ],
+    [
+     "u_renvoi.g_n3.u_n3.r_entrer[13]",
+     -3.69
+    ],
+    [
+     "u_renvoi.g_n3.u_n3.o_evt_bourre",
+     -3.678
+    ],
+    [
+     "u_renvoi.g_n3.u_n3.r_entrer[12]",
+     -3.558
+    ],
+    [
+     "u_renvoi.g_n3.u_n3.r_entrer[11]",
+     -3.488
+    ],
+    [
+     "u_renvoi.g_n3.u_n3.r_entrer[10]",
+     -3.488
+    ],
+    [
+     "n3_req_width[9]",
+     -3.412
+    ],
+    [
+     "u_renvoi.g_n3.u_n3.r_entrer[9]",
+     -3.097
+    ],
+    [
+     "n3_req_width[14]",
+     -3.061
+    ],
+    [
+     "lm.sit.fifo.mem[4][17]",
+     3.182
+    ],
+    [
+     "lm.sit.fifo.mem[4][14]",
+     3.188
+    ],
+    [
+     "lm.sit.fifo.mem[4][15]",
+     3.191
+    ],
+    [
+     "lm.sit.fifo.mem[4][20]",
+     3.192
+    ],
+    [
+     "lm.sit.fifo.mem[4][18]",
+     3.198
+    ],
+    [
+     "lm.sit.fifo.mem[4][19]",
+     3.21
+    ],
+    [
+     "lm.sit.fifo.mem[4][16]",
+     3.214
+    ],
+    [
+     "lm.sit.fifo.mem[4][13]",
+     3.226
+    ],
+    [
+     "lm.sit.fifo.mem[5][14]",
+     3.229
+    ],
+    [
+     "lm.sit.fifo.mem[5][15]",
+     3.229
+    ],
+    [
+     "lm.sit.aligneur.lane[0].aligneur.deux_1",
+     4.395
+    ],
+    [
+     "lm.sit.aligneur.lane[3].aligneur.deux_1",
+     4.467
+    ],
+    [
+     "lm.sit.aligneur.lane[0].aligneur.ecart[9]",
+     4.515
+    ],
+    [
+     "lm.sit.aligneur.lane[0].aligneur.fenetre[22]",
+     4.515
+    ],
+    [
+     "lm.sit.aligneur.lane[0].aligneur.fenetre[20]",
+     4.517
+    ],
+    [
+     "lm.sit.aligneur.lane[0].aligneur.fenetre[19]",
+     4.519
+    ],
+    [
+     "lm.sit.aligneur.lane[1].aligneur.deux_1",
+     4.52
+    ],
+    [
+     "lm.sit.aligneur.lane[0].aligneur.ecart[14]",
+     4.521
+    ],
+    [
+     "lm.sit.aligneur.lane[0].aligneur.fenetre[18]",
+     4.521
+    ],
+    [
+     "lm.sit.aligneur.lane[0].aligneur.fenetre[23]",
+     4.528
+    ]
+   ],
+   "sous_seuil": {
+    "autres": [
+     1427,
+     430
+    ],
+    "trame": [
+     682,
+     160
+    ],
+    "pix_rx": [
+     152,
+     101
+    ],
+    "pix_tx": [
+     124,
+     6
+    ],
+    "llp": [
+     137,
+     0
+    ],
+    "lm": [
+     24,
+     0
+    ],
+    "llp/u_rx": [
+     1,
+     0
+    ]
+   }
+  }
+ ]
+}

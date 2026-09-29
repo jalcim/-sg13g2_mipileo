@@ -1,0 +1,110 @@
+[
+ {
+  "coin": "nom_slow_1p08V_125C",
+  "mode": "00",
+  "setup": -1.615,
+  "hold": 0.171,
+  "fmax_mhz": 104.1,
+  "depart": "_134006_",
+  "arrivee": "_135153_"
+ },
+ {
+  "coin": "nom_slow_1p08V_125C",
+  "mode": "01",
+  "setup": -1.615,
+  "hold": 0.329,
+  "fmax_mhz": 104.1,
+  "depart": "_134006_",
+  "arrivee": "_135153_"
+ },
+ {
+  "coin": "nom_slow_1p08V_125C",
+  "mode": "10",
+  "setup": -1.615,
+  "hold": 0.329,
+  "fmax_mhz": 104.1,
+  "depart": "_134006_",
+  "arrivee": "_135153_"
+ },
+ {
+  "coin": "nom_slow_1p08V_125C",
+  "mode": "11",
+  "setup": -3.215,
+  "hold": 0.329,
+  "fmax_mhz": 89.2,
+  "depart": "_132972_",
+  "arrivee": "_129761_"
+ },
+ {
+  "coin": "nom_typ_1p20V_25C",
+  "mode": "00",
+  "setup": 1.858,
+  "hold": 0.185,
+  "fmax_mhz": null,
+  "depart": "_129500_",
+  "arrivee": "_129536_"
+ },
+ {
+  "coin": "nom_typ_1p20V_25C",
+  "mode": "01",
+  "setup": 1.858,
+  "hold": 0.185,
+  "fmax_mhz": null,
+  "depart": "_129500_",
+  "arrivee": "_129536_"
+ },
+ {
+  "coin": "nom_typ_1p20V_25C",
+  "mode": "10",
+  "setup": 1.858,
+  "hold": 0.185,
+  "fmax_mhz": null,
+  "depart": "_129500_",
+  "arrivee": "_129536_"
+ },
+ {
+  "coin": "nom_typ_1p20V_25C",
+  "mode": "11",
+  "setup": 0.803,
+  "hold": 0.185,
+  "fmax_mhz": null,
+  "depart": "_132972_",
+  "arrivee": "_129761_"
+ },
+ {
+  "coin": "nom_fast_1p32V_m40C",
+  "mode": "00",
+  "setup": 3.859,
+  "hold": 0.097,
+  "fmax_mhz": null,
+  "depart": "_134006_",
+  "arrivee": "_135153_"
+ },
+ {
+  "coin": "nom_fast_1p32V_m40C",
+  "mode": "01",
+  "setup": 3.859,
+  "hold": 0.097,
+  "fmax_mhz": null,
+  "depart": "_134006_",
+  "arrivee": "_135153_"
+ },
+ {
+  "coin": "nom_fast_1p32V_m40C",
+  "mode": "10",
+  "setup": 3.859,
+  "hold": 0.097,
+  "fmax_mhz": null,
+  "depart": "_134006_",
+  "arrivee": "_135153_"
+ },
+ {
+  "coin": "nom_fast_1p32V_m40C",
+  "mode": "11",
+  "setup": 3.129,
+  "hold": 0.097,
+  "fmax_mhz": null,
+  "depart": "_132972_",
+  "arrivee": "_129761_"
+ }
+]

@@ -1,0 +1,31 @@
+Startpoint: _135402_ (rising edge-triggered flip-flop clocked by clk)
+Endpoint: tx_req_ready (output port clocked by clk)
+Path Group: clk
+Path Type: max
+
+Fanout    Delay     Time   Description
+-----------------------------------------------------------------
+          0.000    0.000   clock clk (rise edge)
+          2.143    2.143   clock network delay (propagated)
+          0.000    2.143 ^ _135402_/CLK (sg13g2_dfrbpq_1)
+     1    0.283    2.426 ^ _135402_/Q (sg13g2_dfrbpq_1)
+     4    0.285    2.711 ^ _065165_/X (sg13g2_buf_1)
+     2    0.768    3.479 ^ _071558_/X (sg13g2_and2_1)
+     1    0.339    3.818 ^ _071559_/X (sg13g2_buf_1)
+     1    0.134    3.951 ^ output235/X (sg13g2_buf_1)
+          0.000    3.951 ^ tx_req_ready (out)
+                   3.951   data arrival time
+
+          7.992    7.992   clock clk (rise edge)
+          0.000    7.992   clock network delay (propagated)
+         -0.250    7.742   clock uncertainty
+          0.000    7.742   clock reconvergence pessimism
+         -1.598    6.144   output external delay
+                   6.144   data required time
+-----------------------------------------------------------------
+                   6.144   data required time
+                  -3.951   data arrival time
+-----------------------------------------------------------------
+                   2.192   slack (MET)
+
+

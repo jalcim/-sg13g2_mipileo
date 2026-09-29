@@ -1,3 +1,8 @@
+# MIPI_ring de ANALOG_DESIGN 7efada02e, GDS et LEF remplaces par la vue bandgap corrigee (agent bandgap-fix, commit
+# cd8b322f6, MR !11 non fusionnee, decision de la principale du 29/09 19:28) : seule la geometrie de
+# MIPI_IOPadBandgap change (MIPI_bgr_core devient MIPI_bgr_core_fix). Detail : SOURCE_bandgap_fix.txt.
+bab41e964c80b5cd1b5bbc87b0303c7f  GDS/MIPI_ring.gds
+9f90cdb1c210fe7cb7997fc697d7a22b  LEF/MIPI_ring.lef
 # Vues importees telles quelles, aucune modification locale.
 depot gitlab.com/nebula_microsystems/mipi
 commit 7efada02e3eb064415d03a9bd1c4a68ce85d70d0

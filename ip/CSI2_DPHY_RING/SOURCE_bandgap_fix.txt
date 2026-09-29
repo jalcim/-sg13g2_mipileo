@@ -1,0 +1,62 @@
+MIPI_IOPadBandgap, vue corrigee (bandgap stable : M1 en diode, C2 = 4,482 pF), 29/09/2026
+
+Source
+  depot         gitlab.com/nebula_microsystems/mipi
+  branche       claude/bandgap-fix, commit cd8b322f6 (base ANALOG_DESIGN 7efada02e)
+  MR            !11 vers ANALOG_DESIGN, relecteur lionel.sc, non fusionnee
+  dossier       2_analog/BANDGAP_FIX (README.md : cause, correctif, preuves, point ouvert sur l offset)
+
+Generation (nebula)
+  cd 2_analog/BANDGAP_FIX && make gds drc lvs pex sim report
+  pad/pad_fix.sh ~/depots/pbgfix/COLLATERALS    (flot CSI2_DPHY_RING rejoue dans build/ring, ring_BGR.tcl pointe
+                                                 sur gds/bgr_core_fix.gds / MIPI_bgr_core_fix)
+
+Outils
+  PDK           /opt/nebula-eda/IHP-Open-PDK cfc0e22b 2026-09-03
+  KLayout       KLayout 0.30.12
+  Magic         8.3.682
+  netgen        Netgen 1.5.323 compiled on Sat Sep 19 07:51:37 PM UTC 2026
+  ngspice       ngspice-47
+
+Contenu
+  GDS/MIPI_ring.gds            ring complet : remplace CSI2_DPHY_RING/COLLATERALS/GDS/MIPI_ring.gds ; seule la geometrie
+                               de MIPI_IOPadBandgap change, MIPI_bgr_core devient MIPI_bgr_core_fix
+  GDS/MIPI_IOPadBandgap.gds    le pad seul avec sa hierarchie (160 x 180 um, meme boite)
+  LEF/MIPI_ring.lef            ring complet ; MIPI_IOPadBandgap : meme SIZE, memes PIN, OBS du coeur mises a jour
+  LEF/MIPI_IOPadBandgap.lef    le pad seul
+  LIB/, HDL/                   identiques a CSI2_DPHY_RING/COLLATERALS (compare octet par octet)
+  SPICE/MIPI_IOPadBandgap.sp   schema au brochage du Verilog (coeur, OTA, demarrage, decouplage, bgr_bias ; sans ESD)
+  SPICE/MIPI_IOPadBandgap_ext.spice   extraction Magic du pad (LVS, hierarchique)
+  SPICE/MIPI_bgr_core_fix.sp   reference LVS du coeur a plat
+  SPICE/MIPI_bgr_core_fix_pex.sp + bgr_fix_pex.sp   coeur extrait (C couplees), au brochage du coeur
+  SPICE/bandgap_fix.sp, bgr_core_fix.sp, bgr_ota_fix.sp, bgr_startup.sp, bgr_iout.sp, bgr_bias.sp   schema
+  DOC/                         tableaux, courbes, README de BANDGAP_FIX
+
+Verifications
+  DRC KLayout IHP complet sans densite : coeur 0, pad entier 0
+  LVS Magic + netgen du coeur : Circuits match uniquely
+  Pad : netlist extraite identique a l original au nom du coeur pres
+  Vue extraite, 5 coins x 3 VDD : PM 50,3 a 71,4 deg, marge de gain >= 8,2 dB, demarrage en 2,9 a 7,8 us
+  Point ouvert : VBG +42 a +79 mV a ff 125 (offset de l OTA), voir DOC/rext.md
+
+md5
+  677a7271de34736a29364038f4c5c2d0  GDS/MIPI_IOPadBandgap.gds
+  bab41e964c80b5cd1b5bbc87b0303c7f  GDS/MIPI_ring.gds
+  f5c08c45d1b41081bfe0de09a466ac2d  HDL/MIPI_ring.v
+  57eb5e74c66b6f68e774d240ced92fa3  LEF/MIPI_IOPadBandgap.lef
+  9f90cdb1c210fe7cb7997fc697d7a22b  LEF/MIPI_ring.lef
+  02abb98d5abc83dda9df31d6a7a68083  LIB/MIPI_io_ff_bcs_m40.lib
+  1b59e9d8fb1252815176bbbe1a481dda  LIB/MIPI_io_ss_wcs_125.lib
+  c950fe9514f9b9d605c53e7852bd1bd8  LIB/MIPI_io_tt_typ_25.lib
+  4ac4520c7031da2f7b3429004f9e8e1b  LIB/MIPI_ring_dummy.lib
+  2f85f74ddef9ec44f380859eafe44dbe  SPICE/bandgap_fix.sp
+  7ddc4d5fa4769e33cc6e4731f23a6171  SPICE/bgr_bias.sp
+  87924d3732d2751c1526cf6c59bd670d  SPICE/bgr_core_fix.sp
+  db4a23db97614343c73ee3503cb381ee  SPICE/bgr_fix_pex.sp
+  b3fcacfb898c25cecc80b45348f07b6e  SPICE/bgr_iout.sp
+  51da7a966cd3e66a55744c034014a870  SPICE/bgr_ota_fix.sp
+  648ae52242b68638ee43108990cc65df  SPICE/bgr_startup.sp
+  8f0a2935b4d347b41ece5214f3d1dd87  SPICE/MIPI_bgr_core_fix_pex.sp
+  8fabea950d63d91e577e9df5cdc186c9  SPICE/MIPI_bgr_core_fix.sp
+  5bc14a93ece4cbc65a87eb2d4756fd9f  SPICE/MIPI_IOPadBandgap_ext.spice
+  e6859b9c10d6fa3384b0aee6b0bfc1b0  SPICE/MIPI_IOPadBandgap.sp

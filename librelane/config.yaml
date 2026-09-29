@@ -73,7 +73,7 @@ PAD_SPACING_MULTIPLE: 2
 
 # Brochage : doc/cablage_msphy5973.md (lanes numerotees depuis 0)
 PAD_EAST: [
-  iovdd_mipi_pad, iovss_mipi_pad, vdd_e_pad, vss_e_pad, bandgap_pad,
+  iovdd_mipi_pad, iovss_mipi_pad, vdd_e_pad, vss_e_pad, vdd_e2_pad, vss_e2_pad, bandgap_pad,
   rx_clk_p_pad, rx_clk_n_pad,
   rx_d0_p_pad, rx_d0_n_pad, rx_d1_p_pad, rx_d1_n_pad,
   rx_d2_p_pad, rx_d2_n_pad, rx_d3_p_pad, rx_d3_n_pad
@@ -84,8 +84,8 @@ PAD_NORTH: [
   tx_clk_p_pad, tx_clk_n_pad,
   tx_d0_p_pad, tx_d0_n_pad, tx_d1_p_pad, tx_d1_n_pad,
   tx_d2_p_pad, tx_d2_n_pad, tx_d3_p_pad, tx_d3_n_pad,
-  tx_analog_pad, vdd_n_pad, vss_n_pad,
-  clkin_i_n_pad, clkin_i_p_pad, clkin_q_n_pad, clkin_q_p_pad
+  vdd_n_pad, vss_n_pad, tx_analog_pad,
+  clkin_i_n_pad, clkin_i_p_pad, vdd_n2_pad, vss_n2_pad, clkin_q_n_pad, clkin_q_p_pad
 ]
 
 PAD_WEST: [
@@ -247,7 +247,7 @@ PDN_VERTICAL_HALO: 7.56
 
 # GDS : librelane/gen/, produits par scripts/gds_uniques.sh (sous-cellules renommees <macro>__<cellule>, 42 homonymes
 # au contenu different entre les GDS, precheck de coupe6 : 568 M3.b).
-# Positions : plan de masse de la livraison 1 (061, floorplan.py de db34c2d, die 2 560), sauf csi2_top (y 404,46,
+# Positions : plan de masse de la livraison 1 (061, floorplan.py de c682b7a, die 2 560), sauf csi2_top (y 404,46,
 # calee sur les bandes TopMetal2 de ce flot). Kit CML : vues enveloppees d alim-cml, alimentees par pcml_pdn.tcl.
 # GDS : librelane/gen/, produits par scripts/gds_uniques.sh (sous-cellules renommees <macro>__<cellule>).
 MACROS:
@@ -268,14 +268,14 @@ MACROS:
     vh: [dir::../ip/dphy_sm/HDL/dphy_rx_bb.v]
     nl: [dir::../ip/dphy_sm/HDL/dphy_rx.v]
     instances:
-      dphy_rx: {location: [1776.48, 1818.18], orientation: N}
+      dphy_rx: {location: [1671.36, 1818.18], orientation: N}
   dphy_tx:
     gds: [dir::gen/dphy_tx.gds]
     lef: [dir::../ip/dphy_sm/LEF/dphy_tx.lef]
     vh: [dir::../ip/dphy_sm/HDL/dphy_tx_bb.v]
     nl: [dir::../ip/dphy_sm/HDL/dphy_tx.v]
     instances:
-      dphy_tx: {location: [1470.24, 1818.18], orientation: N}
+      dphy_tx: {location: [1365.12, 1818.18], orientation: N}
   sr16_rx4:
     gds: [dir::gen/sr16_rx4.gds]
     lef: [dir::../ip/sr16_rx4/LEF/sr16_rx4_alim.lef]
@@ -332,20 +332,20 @@ MACROS:
       c2c_rx_clk: {location: [2049.12, 1164.24], orientation: N}
       c2c_clk_tx: {location: [420.48, 2067.66], orientation: N}
       c2c_clk_q: {location: [453.60, 2067.66], orientation: N}
-      c2c_dout0: {location: [713.28, 2067.66], orientation: N}
-      c2c_dout1: {location: [913.44, 2067.66], orientation: N}
-      c2c_dout2: {location: [1113.12, 2067.66], orientation: N}
-      c2c_dout3: {location: [1313.28, 2067.66], orientation: N}
+      c2c_dout0: {location: [688.32, 2067.66], orientation: N}
+      c2c_dout1: {location: [868.32, 2067.66], orientation: N}
+      c2c_dout2: {location: [1048.32, 2067.66], orientation: N}
+      c2c_dout3: {location: [1228.32, 2067.66], orientation: N}
   cmos_to_cml:
     gds: [dir::gen/cmos_to_cml.gds]
     lef: [dir::../ip/cmos_to_cml/LEF/cmos_to_cml_alim.lef]
     vh: [dir::../ip/cmos_to_cml/HDL/cmos_to_cml_bb.v]
     instances:
       c2m_clk_w: {location: [486.72, 2067.66], orientation: N}
-      c2m_mot0: {location: [670.08, 2067.66], orientation: N}
-      c2m_mot1: {location: [870.24, 2067.66], orientation: N}
-      c2m_mot2: {location: [1069.92, 2067.66], orientation: N}
-      c2m_mot3: {location: [1270.08, 2067.66], orientation: N}
+      c2m_mot0: {location: [645.12, 2067.66], orientation: N}
+      c2m_mot1: {location: [825.12, 2067.66], orientation: N}
+      c2m_mot2: {location: [1005.12, 2067.66], orientation: N}
+      c2m_mot3: {location: [1185.12, 2067.66], orientation: N}
       c2m_clk_rx_en: {location: [1982.40, 1239.84], orientation: N}
   cml_gate2:
     gds: [dir::gen/cml_gate2.gds]
@@ -359,18 +359,18 @@ MACROS:
     vh: [dir::../ip/hs_tx_pd/HDL/hs_tx_pd_bb.v]
     nl: [dir::../ip/hs_tx_pd/HDL/hs_tx_pd.nl.v]
     instances:
-      hstxpd_clk: {location: [609.60, 2060.10], orientation: N}
-      hstxpd_d0: {location: [809.76, 2060.10], orientation: N}
-      hstxpd_d1: {location: [1009.44, 2060.10], orientation: N}
-      hstxpd_d2: {location: [1209.60, 2060.10], orientation: N}
-      hstxpd_d3: {location: [1409.76, 2060.10], orientation: N}
+      hstxpd_clk: {location: [584.64, 2060.10], orientation: N}
+      hstxpd_d0: {location: [764.64, 2060.10], orientation: N}
+      hstxpd_d1: {location: [944.64, 2060.10], orientation: N}
+      hstxpd_d2: {location: [1124.64, 2060.10], orientation: N}
+      hstxpd_d3: {location: [1304.64, 2060.10], orientation: N}
   iref:
     gds: [dir::gen/iref.gds]
     lef: [dir::../ip/iref/LEF/iref.lef]
     vh: [dir::../ip/iref/HDL/iref_bb.v]
     instances:
       iref_rx: {location: [1809.12, 1765.26], orientation: W}
-      iref_tx: {location: [1408.80, 1840.86], orientation: W}
+      iref_tx: {location: [1303.68, 1840.86], orientation: W}
 
 # LVS de puce : plots, bondpad et macros extraits en cellules abstraites (boites noires), comme la livraison 1
 # (061, ee396f4) et TPU9012 ; netgen compare les connexions a leurs broches. Coquilles .subckt vides dans

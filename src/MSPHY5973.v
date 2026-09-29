@@ -127,6 +127,20 @@ module MSPHY5973 (
         .POLN_RX(pol_e_POLN_RX), .VB(pol_e_VB), .PBIAS(pol_e_PBIAS), .PS(pol_e_PS), .POLN(pol_e_POLN)
     );
 
+    (* keep *) MIPI_IOPadVdd vdd_e2_pad (
+        `ifdef USE_POWER_PINS
+        .IOVDD(IOVDD_MIPI), .IOVSS(IOVSS_MIPI), .VDD(VDD), .VSS(VSS),
+        `endif
+        .POLN_RX(pol_e_POLN_RX), .VB(pol_e_VB), .PBIAS(pol_e_PBIAS), .PS(pol_e_PS), .POLN(pol_e_POLN)
+    );
+
+    (* keep *) MIPI_IOPadVss vss_e2_pad (
+        `ifdef USE_POWER_PINS
+        .IOVDD(IOVDD_MIPI), .IOVSS(IOVSS_MIPI), .VDD(VDD), .VSS(VSS),
+        `endif
+        .POLN_RX(pol_e_POLN_RX), .VB(pol_e_VB), .PBIAS(pol_e_PBIAS), .PS(pol_e_PS), .POLN(pol_e_POLN)
+    );
+
     (* keep *) MIPI_IOPadBandgap bandgap_pad (
         `ifdef USE_POWER_PINS
         .IOVDD(IOVDD_MIPI), .IOVSS(IOVSS_MIPI), .VDD(VDD), .VSS(VSS),
@@ -234,6 +248,20 @@ module MSPHY5973 (
     );
 
     (* keep *) MIPI_IOPadVss vss_n_pad (
+        `ifdef USE_POWER_PINS
+        .IOVDD(IOVDD_MIPI), .IOVSS(IOVSS_MIPI), .VDD(VDD), .VSS(VSS),
+        `endif
+        .POLN_RX(pol_n_POLN_RX), .VB(pol_n_VB), .PBIAS(pol_n_PBIAS), .PS(pol_n_PS), .POLN(pol_n_POLN)
+    );
+
+    (* keep *) MIPI_IOPadVdd vdd_n2_pad (
+        `ifdef USE_POWER_PINS
+        .IOVDD(IOVDD_MIPI), .IOVSS(IOVSS_MIPI), .VDD(VDD), .VSS(VSS),
+        `endif
+        .POLN_RX(pol_n_POLN_RX), .VB(pol_n_VB), .PBIAS(pol_n_PBIAS), .PS(pol_n_PS), .POLN(pol_n_POLN)
+    );
+
+    (* keep *) MIPI_IOPadVss vss_n2_pad (
         `ifdef USE_POWER_PINS
         .IOVDD(IOVDD_MIPI), .IOVSS(IOVSS_MIPI), .VDD(VDD), .VSS(VSS),
         `endif

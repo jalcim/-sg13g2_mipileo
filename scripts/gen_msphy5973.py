@@ -92,6 +92,8 @@ def main(out):
     # Couples de plots VDD / VSS de coeur en plus (decision du 29/09 19:22-19:32, IR), plan de 061 db34c2d
     v.append(power_pad("MIPI_IOPadVdd", "vdd_e_pad", MIPI_PWR, E_BIAS))
     v.append(power_pad("MIPI_IOPadVss", "vss_e_pad", MIPI_PWR, E_BIAS))
+    v.append(power_pad("MIPI_IOPadVdd", "vdd_e2_pad", MIPI_PWR, E_BIAS))
+    v.append(power_pad("MIPI_IOPadVss", "vss_e2_pad", MIPI_PWR, E_BIAS))
     v.append(pad("MIPI_IOPadBandgap", "bandgap_pad", MIPI_PWR, E_BIAS, ".PAD(BANDGAP), .VBG(vbg)"))
     for lane in RX_PADS:
         for s in "pn":
@@ -104,6 +106,8 @@ def main(out):
     v.append(pad("MIPI_IOPadAnalog", "tx_analog_pad", MIPI_PWR, N_BIAS, ".PAD(TX_ANALOG), .PADRES(tx_analog_padres_nc)"))
     v.append(power_pad("MIPI_IOPadVdd", "vdd_n_pad", MIPI_PWR, N_BIAS))
     v.append(power_pad("MIPI_IOPadVss", "vss_n_pad", MIPI_PWR, N_BIAS))
+    v.append(power_pad("MIPI_IOPadVdd", "vdd_n2_pad", MIPI_PWR, N_BIAS))
+    v.append(power_pad("MIPI_IOPadVss", "vss_n2_pad", MIPI_PWR, N_BIAS))
     for lane in TX_PADS:
         for s, hs, lp in (("p", "hsp", "lpinp"), ("n", "hsn", "lpinn")):
             v.append(pad("MIPI_IOPadTX", f"tx_{lane}_{s}_pad", MIPI_PWR, N_BIAS,

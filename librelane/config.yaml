@@ -244,14 +244,14 @@ MACROS:
   dphy_rx:
     gds: [dir::../ip/dphy_sm/GDS/dphy_rx.gds]
     lef: [dir::../ip/dphy_sm/LEF/dphy_rx.lef]
-    vh: [dir::../ip/dphy_sm/HDL/dphy_rx.v]
+    vh: [dir::../ip/dphy_sm/HDL/dphy_rx_bb.v]
     nl: [dir::../ip/dphy_sm/HDL/dphy_rx.v]
     instances:
       dphy_rx: {location: [1790.40, 1100.52], orientation: R90}
   dphy_tx:
     gds: [dir::../ip/dphy_sm/GDS/dphy_tx.gds]
     lef: [dir::../ip/dphy_sm/LEF/dphy_tx.lef]
-    vh: [dir::../ip/dphy_sm/HDL/dphy_tx.v]
+    vh: [dir::../ip/dphy_sm/HDL/dphy_tx_bb.v]
     nl: [dir::../ip/dphy_sm/HDL/dphy_tx.v]
     instances:
       dphy_tx: {location: [1400.16, 1791.72], orientation: N}

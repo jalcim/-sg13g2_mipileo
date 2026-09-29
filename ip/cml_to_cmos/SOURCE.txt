@@ -1,0 +1,17 @@
+# Vues importees telles quelles, aucune modification locale.
+depot gitlab.com/nebula_microsystems/mipi
+commit 163130648def60a33b4f0e6796f54961921a750f
+chemin 2_analog/CML_LIB/CML_TO_CMOS/COLLATERALS
+13476a16811cd0ce34d80ff5b861cf09  ./DOC/cml_to_cmos_pex_sim.md
+062b0fb3776924e276b6f6351dbfd719  ./DOC/cml_to_cmos_sim.md
+63a680b135c3a3b69afd8d1dc652da3c  ./DOC/cml_to_cmos_sim.tex
+12e28302bdbd9bb7c6507fc094fc9bbd  ./GDS/cml_to_cmos.gds
+56d0aa678fbeb87875a1ccc13381fb8c  ./GDS/cml_to_cmos_yg_fix.gds
+705852884a694b792394ae301782f0e1  ./GDS/cml_to_cmos_yg.gds
+5f47bc2baeaa6a5d8e0443eedb6b33ee  ./HDL/cml_to_cmos.v
+e8dc5fe7695bfa9dab5cd6e0dc65fb29  ./LEF/cml_to_cmos.lef
+4c61e7538d93cf851b04a541494fdce2  ./LIB/cml_to_cmos_dummy.lib
+e96e9935bbd9673b4f4e2243664cb46a  ./LIB/cml_to_cmos.lib
+959d207250e053390fc3906bef0ab898  ./README_ANGEL.md
+e57f3aa217486df72385994bfd81d37b  ./SPICE/cml_to_cmos_pex.spice
+0dec5e85f985706f003c37e045cb63a0  ./SPICE/cml_to_cmos.spice

@@ -1,0 +1,51 @@
+/* cmos_to_cml.lib -- liberty de cmos_to_cml pour l'outil de synthese de 3_digital (yosys / abc / dfflibmap).
+ * GENERE par 2_analog/CML_LIB/liberty_synthese.py, ne pas editer. NOTE-LIBERTY-SYNTHESE.md : points 1 a 3
+ * (fonction et unateness, capacites, cml_level) ; delais SCALAIRES = pire cas post-layout sur 27 points (Max de
+ * la datasheet), pour qu'abc accepte la liberty : ce n'est pas une caracterisation (ni pente, ni charge, ni
+ * transition : 0). Un seul jeu de conditions nominal (typ), valeurs pire cas.
+ * Equivalent unipolaire : une paire = une borne logique ; P / N au dessin seulement.
+ * Sources : LEF/cmos_to_cml.lef md5 a4bdb3c1bf24f99e7251c239d2253af8 ;
+ *   DOC/cmos_to_cml_pex_sim.md md5 0e31effa614d9672a693e69399d3cf6d ;
+ *   spec cmos_to_cml_spec.tcl md5 f3f18b33784cdb6b9056fb93b4694b74.
+ *   A : C_IN_CMOS max sur 27 fichiers de mesures run/cmos_to_cml_pex/
+ *   OUT : max_capacitance = C_LOAD (spec), A->OUT T_P Max
+ */
+library (cmos_to_cml) {
+  comment : "MIPI D-PHY, lib CML, cmos_to_cml, equivalent unipolaire";
+  define (cml_level, pin, string);
+  delay_model : table_lookup;
+  time_unit : "1ns";
+  voltage_unit : "1V";
+  current_unit : "1uA";
+  leakage_power_unit : "1pW";
+  capacitive_load_unit (1,pf);
+  pulling_resistance_unit : "1kohm";
+  nom_process : 1;
+  nom_temperature : 25;
+  nom_voltage : 1.2;
+  voltage_map (VDD, 1.2);
+  voltage_map (VSS, 0);
+  operating_conditions (typ) { process : 1; temperature : 25; voltage : 1.2; }
+  default_operating_conditions : typ;
+  cell (cmos_to_cml) {
+    area : 515.17;
+    pg_pin (VDD) { pg_type : primary_power;  voltage_name : "VDD"; }
+    pg_pin (VSS) { pg_type : primary_ground; voltage_name : "VSS"; }
+    pin (A) {
+      direction : input;
+      cml_level : "CMOS";
+      capacitance : 0.0243;
+    }
+    pin (OUT) {
+      direction : output;
+      cml_level : "A";
+      max_capacitance : 0.02;
+      function : "A";
+      timing () { related_pin : "A"; timing_sense : positive_unate; cell_rise (scalar) { values ("0.0926"); } cell_fall (scalar) { values ("0.0926"); } rise_transition (scalar) { values ("0"); } fall_transition (scalar) { values ("0"); } }
+    }
+    pin (POLN) {
+      direction : input;
+      cml_level : "POL";
+    }
+  }
+}

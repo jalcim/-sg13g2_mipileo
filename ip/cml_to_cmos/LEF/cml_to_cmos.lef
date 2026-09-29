@@ -1,0 +1,72 @@
+VERSION 5.7 ;
+  NOWIREEXTENSIONATPIN ON ;
+  DIVIDERCHAR "/" ;
+  BUSBITCHARS "[]" ;
+MACRO cml_to_cmos
+  CLASS BLOCK ;
+  FOREIGN cml_to_cmos ;
+  ORIGIN 0.000 0.000 ;
+  SIZE 12.960 BY 22.360 ;
+  PIN VDD
+    DIRECTION INOUT ;
+    USE POWER ;
+    PORT
+      LAYER Metal1 ;
+        RECT 0.000 -1.000 12.960 1.000 ;
+    END
+  END VDD
+  PIN VSS
+    DIRECTION INOUT ;
+    USE GROUND ;
+    PORT
+      LAYER Metal1 ;
+        RECT 0.000 21.360 12.960 23.360 ;
+    END
+  END VSS
+  PIN INN
+    DIRECTION INPUT ;
+    USE SIGNAL ;
+    ANTENNAGATEAREA 0.832000 ;
+    PORT
+      LAYER Metal3 ;
+        RECT -0.150 3.000 0.150 3.600 ;
+    END
+  END INN
+  PIN INP
+    DIRECTION INPUT ;
+    USE SIGNAL ;
+    ANTENNAGATEAREA 0.832000 ;
+    PORT
+      LAYER Metal3 ;
+        RECT -0.150 4.100 0.150 4.700 ;
+    END
+  END INP
+  PIN Y
+    DIRECTION OUTPUT ;
+    USE SIGNAL ;
+    ANTENNADIFFAREA 1.020000 ;
+    PORT
+      LAYER Metal3 ;
+        RECT 12.810 3.000 13.110 3.600 ;
+    END
+  END Y
+  OBS
+      LAYER GatPoly ;
+        RECT 0.630 0.150 12.530 20.560 ;
+      LAYER Metal1 ;
+        RECT 0.700 1.180 12.140 21.180 ;
+      LAYER Metal2 ;
+        RECT 1.040 0.000 11.990 14.505 ;
+        RECT 1.550 -0.050 1.770 0.000 ;
+        RECT 2.530 -0.050 2.750 0.000 ;
+        RECT 3.990 -0.050 4.210 0.000 ;
+        RECT 4.970 -0.050 5.190 0.000 ;
+      LAYER Metal3 ;
+        RECT 0.150 4.910 12.810 7.620 ;
+        RECT 0.360 3.890 12.810 4.910 ;
+        RECT 0.150 3.810 12.810 3.890 ;
+        RECT 0.360 3.150 12.600 3.810 ;
+  END
+END cml_to_cmos
+END LIBRARY
+

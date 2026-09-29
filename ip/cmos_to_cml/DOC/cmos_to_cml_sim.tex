@@ -1,0 +1,70 @@
+% genere par datasheet-sim.tcl le 2026-09-27 -- ne pas editer
+\documentclass[a4paper,10pt,landscape]{article}
+\usepackage[utf8]{inputenc}\usepackage[T1]{fontenc}\usepackage{textcomp}
+\usepackage[margin=10mm]{geometry}\usepackage{array}\usepackage{longtable}\usepackage{booktabs}
+\usepackage{xcolor}\usepackage{graphicx}\usepackage{eso-pic}
+\AddToShipoutPictureBG{\AtPageCenter{\makebox(0,0){\rotatebox{30}{\textcolor{gray!25}{\fontsize{90}{90}\selectfont SIMULATION}}}}}
+\begin{document}
+\section*{cmos\_to\_cml -- resultats de simulation, arch cmos\_to\_cml}
+\textbf{SIMULATION} -- pas une sp\'ecification. G\'en\'er\'e le 2026-09-27 par \texttt{datasheet-sim.tcl}.
+Spec de r\'ef\'erence : \texttt{cmos\_to\_cml\_spec.tcl}. Corners : tt\_typ\_25\_v1p08, tt\_typ\_m40\_v1p08, tt\_typ\_125\_v1p08, ss\_wcs\_25\_v1p08, ss\_wcs\_m40\_v1p08, ss\_wcs\_125\_v1p08, ff\_bcs\_25\_v1p08, ff\_bcs\_m40\_v1p08, ff\_bcs\_125\_v1p08, tt\_typ\_25\_v1p20, tt\_typ\_m40\_v1p20, tt\_typ\_125\_v1p20, ss\_wcs\_25\_v1p20, ss\_wcs\_m40\_v1p20, ss\_wcs\_125\_v1p20, ff\_bcs\_25\_v1p20, ff\_bcs\_m40\_v1p20, ff\_bcs\_125\_v1p20, tt\_typ\_25\_v1p32, tt\_typ\_m40\_v1p32, tt\_typ\_125\_v1p32, ss\_wcs\_25\_v1p32, ss\_wcs\_m40\_v1p32, ss\_wcs\_125\_v1p32, ff\_bcs\_25\_v1p32, ff\_bcs\_m40\_v1p32, ff\_bcs\_125\_v1p32.
+Min / max = pire cas sur ces corners (corner indiqu\'e) ; typ = tt\_typ\_25\_v1p20 ; spec = bornes de la spec, pour le verdict. n.m. = non mesur\'e : la spec attend une valeur, le banc ne l'a pas fournie (cl\'e absente ou NaN) ; ce n'est pas un verdict.
+Netlist du DUT : \texttt{cmos\_to\_cml.spice}, md5 \texttt{3b66b9857690e71288850bc1ab094f78}.
+\textbf{ARCHIVE EN FORCE : verdict global FAIL (CML10), archivee malgre les FAIL (make collaterals FORCE=1).}
+Puis par temp\'erature : min / max des corners du groupe, typ = corner tt du groupe \`a VDD nominal s'il existe.
+
+\subsection*{Conditions par corner}
+\textbf{VDD balaye 1.08, 1.2, 1.32 V (spec CML0 1.08 \ldots{} 1.32 V).}
+
+Dans les tables, le pire corner d'un min ou d'un max est cit\'e par son num\'ero (n), rappel\'e sous chaque table.
+
+\begin{longtable}{rlllrrrl}\toprule
+n & corner & MOS & R & T (C) & VDD (V) & VDDIO (V) & fichier de mesures \\ \midrule\endhead
+(1) & tt\_typ\_25\_v1p08 & tt & typ & 25 & 1.08 & - & {\small\texttt{mesures\_cmos\_to\_cml\_tt\_typ\_25.tcl}} \\
+(2) & tt\_typ\_m40\_v1p08 & tt & typ & -40 & 1.08 & - & {\small\texttt{mesures\_cmos\_to\_cml\_tt\_typ\_m40.tcl}} \\
+(3) & tt\_typ\_125\_v1p08 & tt & typ & 125 & 1.08 & - & {\small\texttt{mesures\_cmos\_to\_cml\_tt\_typ\_125.tcl}} \\
+(4) & ss\_wcs\_25\_v1p08 & ss & wcs & 25 & 1.08 & - & {\small\texttt{mesures\_cmos\_to\_cml\_ss\_wcs\_25.tcl}} \\
+(5) & ss\_wcs\_m40\_v1p08 & ss & wcs & -40 & 1.08 & - & {\small\texttt{mesures\_cmos\_to\_cml\_ss\_wcs\_m40.tcl}} \\
+(6) & ss\_wcs\_125\_v1p08 & ss & wcs & 125 & 1.08 & - & {\small\texttt{mesures\_cmos\_to\_cml\_ss\_wcs\_125.tcl}} \\
+(7) & ff\_bcs\_25\_v1p08 & ff & bcs & 25 & 1.08 & - & {\small\texttt{mesures\_cmos\_to\_cml\_ff\_bcs\_25.tcl}} \\
+(8) & ff\_bcs\_m40\_v1p08 & ff & bcs & -40 & 1.08 & - & {\small\texttt{mesures\_cmos\_to\_cml\_ff\_bcs\_m40.tcl}} \\
+(9) & ff\_bcs\_125\_v1p08 & ff & bcs & 125 & 1.08 & - & {\small\texttt{mesures\_cmos\_to\_cml\_ff\_bcs\_125.tcl}} \\
+(10) & tt\_typ\_25\_v1p20 & tt & typ & 25 & 1.2 & - & {\small\texttt{mesures\_cmos\_to\_cml\_tt\_typ\_25.tcl}} \\
+(11) & tt\_typ\_m40\_v1p20 & tt & typ & -40 & 1.2 & - & {\small\texttt{mesures\_cmos\_to\_cml\_tt\_typ\_m40.tcl}} \\
+(12) & tt\_typ\_125\_v1p20 & tt & typ & 125 & 1.2 & - & {\small\texttt{mesures\_cmos\_to\_cml\_tt\_typ\_125.tcl}} \\
+(13) & ss\_wcs\_25\_v1p20 & ss & wcs & 25 & 1.2 & - & {\small\texttt{mesures\_cmos\_to\_cml\_ss\_wcs\_25.tcl}} \\
+(14) & ss\_wcs\_m40\_v1p20 & ss & wcs & -40 & 1.2 & - & {\small\texttt{mesures\_cmos\_to\_cml\_ss\_wcs\_m40.tcl}} \\
+(15) & ss\_wcs\_125\_v1p20 & ss & wcs & 125 & 1.2 & - & {\small\texttt{mesures\_cmos\_to\_cml\_ss\_wcs\_125.tcl}} \\
+(16) & ff\_bcs\_25\_v1p20 & ff & bcs & 25 & 1.2 & - & {\small\texttt{mesures\_cmos\_to\_cml\_ff\_bcs\_25.tcl}} \\
+(17) & ff\_bcs\_m40\_v1p20 & ff & bcs & -40 & 1.2 & - & {\small\texttt{mesures\_cmos\_to\_cml\_ff\_bcs\_m40.tcl}} \\
+(18) & ff\_bcs\_125\_v1p20 & ff & bcs & 125 & 1.2 & - & {\small\texttt{mesures\_cmos\_to\_cml\_ff\_bcs\_125.tcl}} \\
+(19) & tt\_typ\_25\_v1p32 & tt & typ & 25 & 1.32 & - & {\small\texttt{mesures\_cmos\_to\_cml\_tt\_typ\_25.tcl}} \\
+(20) & tt\_typ\_m40\_v1p32 & tt & typ & -40 & 1.32 & - & {\small\texttt{mesures\_cmos\_to\_cml\_tt\_typ\_m40.tcl}} \\
+(21) & tt\_typ\_125\_v1p32 & tt & typ & 125 & 1.32 & - & {\small\texttt{mesures\_cmos\_to\_cml\_tt\_typ\_125.tcl}} \\
+(22) & ss\_wcs\_25\_v1p32 & ss & wcs & 25 & 1.32 & - & {\small\texttt{mesures\_cmos\_to\_cml\_ss\_wcs\_25.tcl}} \\
+(23) & ss\_wcs\_m40\_v1p32 & ss & wcs & -40 & 1.32 & - & {\small\texttt{mesures\_cmos\_to\_cml\_ss\_wcs\_m40.tcl}} \\
+(24) & ss\_wcs\_125\_v1p32 & ss & wcs & 125 & 1.32 & - & {\small\texttt{mesures\_cmos\_to\_cml\_ss\_wcs\_125.tcl}} \\
+(25) & ff\_bcs\_25\_v1p32 & ff & bcs & 25 & 1.32 & - & {\small\texttt{mesures\_cmos\_to\_cml\_ff\_bcs\_25.tcl}} \\
+(26) & ff\_bcs\_m40\_v1p32 & ff & bcs & -40 & 1.32 & - & {\small\texttt{mesures\_cmos\_to\_cml\_ff\_bcs\_m40.tcl}} \\
+(27) & ff\_bcs\_125\_v1p32 & ff & bcs & 125 & 1.32 & - & {\small\texttt{mesures\_cmos\_to\_cml\_ff\_bcs\_125.tcl}} \\
+\bottomrule\end{longtable}
+\subsection*{Sorties (OUTP, OUTN)}
+{\footnotesize\setlength{\tabcolsep}{3pt}\begin{longtable}{lp{46mm}rrrrrrrrrrrrlp{24mm}p{19mm}}\toprule
+id & Param\`etre & Min & Typ & Max & {\tiny Min 25 C} & {\tiny Typ 25 C} & {\tiny Max 25 C} & {\tiny Min -40 C} & {\tiny Typ -40 C} & {\tiny Max -40 C} & {\tiny Min 125 C} & {\tiny Typ 125 C} & {\tiny Max 125 C} & Unit\'e & Spec & Verdict \\ \midrule\endhead
+CML8 & Niveau haut de sortie {\tiny\texttt{VOH}} & 1.08~(1) & 1.2 & 1.32~(19) & 1.08 & 1.2 & 1.32 & 1.08 & 1.2 & 1.32 & 1.08 & 1.2 & 1.32 & V & - & sans borne \\
+CML9 & Niveau bas de sortie {\tiny\texttt{VOL}} & 0.783~(6) & 0.92 & 1.05~(26) & 0.803 & 0.92 & 1.04 & 0.811 & 0.931 & 1.05 & 0.783 & 0.898 & 1.02 & V & \textgreater{}= 0.75 & PASS \\
+CML10 & Mode commun de sortie {\tiny\texttt{VCM\_OUT}} & 0.932~(6) & 1.06 & 1.19~(26) & 0.941 & 1.06 & 1.18 & 0.945 & 1.07 & 1.19 & 0.932 & 1.05 & 1.17 & V & 0.95 \ldots{} 1.15 & \textbf{FAIL (9) (27) (25) (26) (6) (4) (22) (5) (23) (3) (21) (1) (19) (20)} \\
+CML11 & Swing differentiel de sortie a la frequence cible {\tiny\texttt{VSW\_OUT}} & 0.262~(8) & 0.31 & 0.371~(24) & 0.27 & 0.31 & 0.353 & 0.262 & 0.302 & 0.345 & 0.287 & 0.329 & 0.371 & V & \textgreater{}= 0.25 & PASS \\
+\bottomrule\end{longtable}}
+\noindent{\small (1) tt\_typ\_25\_v1p08, (3) tt\_typ\_125\_v1p08, (4) ss\_wcs\_25\_v1p08, (5) ss\_wcs\_m40\_v1p08, (6) ss\_wcs\_125\_v1p08, (8) ff\_bcs\_m40\_v1p08, (9) ff\_bcs\_125\_v1p08, (19) tt\_typ\_25\_v1p32, (20) tt\_typ\_m40\_v1p32, (21) tt\_typ\_125\_v1p32, (22) ss\_wcs\_25\_v1p32, (23) ss\_wcs\_m40\_v1p32, (24) ss\_wcs\_125\_v1p32, (25) ff\_bcs\_25\_v1p32, (26) ff\_bcs\_m40\_v1p32, (27) ff\_bcs\_125\_v1p32}
+
+\subsection*{Vitesse}
+{\footnotesize\setlength{\tabcolsep}{3pt}\begin{longtable}{lp{46mm}rrrrrrrrrrrrlp{24mm}p{19mm}}\toprule
+id & Param\`etre & Min & Typ & Max & {\tiny Min 25 C} & {\tiny Typ 25 C} & {\tiny Max 25 C} & {\tiny Min -40 C} & {\tiny Typ -40 C} & {\tiny Max -40 C} & {\tiny Min 125 C} & {\tiny Typ 125 C} & {\tiny Max 125 C} & Unit\'e & Spec & Verdict \\ \midrule\endhead
+CMLI12 & Delai de propagation {\tiny\texttt{T\_P}} & 0.0507~(27) & 0.0608 & 0.075~(5) & 0.0511 & 0.0608 & 0.0735 & 0.052 & 0.062 & 0.075 & 0.0507 & 0.0598 & 0.0719 & UI & \textless{}= 0.5 & PASS \\
+CMLI13 & Decalage entre OUTP et OUTN {\tiny\texttt{DT\_PN}} & 14.1~(27) & 16.3 & 22.3~(5) & 14.5 & 16.3 & 22 & 14.9 & 16.7 & 22.3 & 14.1 & 15.7 & 20.7 & ps & \textless{}= 50 & PASS \\
+CMLI14 & Distorsion de rapport cyclique {\tiny\texttt{D\_DUTY}} & 0.484~(27) & 0.59 & 0.774~(23) & 0.511 & 0.59 & 0.695 & 0.556 & 0.662 & 0.774 & 0.484 & 0.536 & 0.62 & \% & \textless{}= 5 & PASS \\
+\bottomrule\end{longtable}}
+\noindent{\small (5) ss\_wcs\_m40\_v1p08, (23) ss\_wcs\_m40\_v1p32, (27) ff\_bcs\_125\_v1p32}
+
+\end{document}

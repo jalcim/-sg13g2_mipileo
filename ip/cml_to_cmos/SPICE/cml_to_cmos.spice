@@ -1,0 +1,45 @@
+* cml_to_cmos -- netlist livrable derivee de cml_to_cmos.sp par make netlist (specification/defs/netlist.tcl)
+* NE PAS EDITER : modifier la source puis make netlist. .param et .subckt seulement, includes inlines, sans modele ni banc.
+* -real-r rppd 1u : resistances ideales -> rppd du PDK, l = ((R) - 2*rz)/rsh*w avec rsh=260.0 rz=rzspec/w, rzspec=35e-6 (res_typ) ; substrat 0 ; gardees ideales : aucune
+* --- inline de CML_TO_CMOS.genes
+.param k_tail = 1
+.param k_WAMP = 1
+.param LAMP   = 130n
+.param NAMP   = 4
+.param k_WMIR = 2.5
+.param LMIR   = 130n
+.param NMIR   = 8
+.param WN1    = 0.5u
+.param WP1    = 2.5u
+.param WN2    = 1u
+.param WP2    = 2u
+.param LINV   = 130n
+* --- fin de CML_TO_CMOS.genes
+.param sortance = 2
+* --- inline de ../SHARED_SPICE/slug_ipol.sp
+.param Fmax    = 2.5g
+.param Cin_max = '10f * sortance'
+.param Vswng   = 0.3
+.param Ipol    = 'Cin_max * Vswng * 10*Fmax'
+* --- fin de ../SHARED_SPICE/slug_ipol.sp
+.param Rtail = '0.2 / (k_tail * Ipol)'
+.param WAMP  = 'Ipol / 23.4 * k_WAMP'
+.param WMIR  = 'Ipol / 23.4 * k_WMIR'
+.subckt c2c_inv a y vdd vss
+XN y a vss vss sg13_lv_nmos W='WN1' L='LINV' NG=1 m=1
+XP y a vdd vdd sg13_lv_pmos W='WP1' L='LINV' NG=1 m=1
+.ends
+.subckt c2c_inv2 a y vdd vss
+XN y a vss vss sg13_lv_nmos W='WN2' L='LINV' NG=1 m=1
+XP y a vdd vdd sg13_lv_pmos W='WP2' L='LINV' NG=1 m=1
+.ends
+.subckt cml_to_cmos INP INN Y VDD VSS
+* paire : INP tire la diode du miroir, INN tire la sortie
+XAP DIO INP TAIL VSS sg13_lv_nmos W='WAMP' L='LAMP' NG='NAMP' m=1
+XAN MID INN TAIL VSS sg13_lv_nmos W='WAMP' L='LAMP' NG='NAMP' m=1
+XMD DIO DIO VDD VDD sg13_lv_pmos W='WMIR' L='LMIR' NG='NMIR' m=1
+XMO MID DIO VDD VDD sg13_lv_pmos W='WMIR' L='LMIR' NG='NMIR' m=1
+XRTail TAIL VSS 0 rppd w=1e-6 l='((Rtail) - 2*35e-6/1e-6)/260.0*1e-6' b=0 m=1
+XI1 MID YMID VDD VSS c2c_inv
+XI2 YMID Y VDD VSS c2c_inv2
+.ends

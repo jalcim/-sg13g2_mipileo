@@ -1,0 +1,47 @@
+/* cml_to_cmos.lib -- liberty de cml_to_cmos pour l'outil de synthese de 3_digital (yosys / abc / dfflibmap).
+ * GENERE par 2_analog/CML_LIB/liberty_synthese.py, ne pas editer. NOTE-LIBERTY-SYNTHESE.md : points 1 a 3
+ * (fonction et unateness, capacites, cml_level) ; delais SCALAIRES = pire cas post-layout sur 27 points (Max de
+ * la datasheet), pour qu'abc accepte la liberty : ce n'est pas une caracterisation (ni pente, ni charge, ni
+ * transition : 0). Un seul jeu de conditions nominal (typ), valeurs pire cas.
+ * Equivalent unipolaire : une paire = une borne logique ; P / N au dessin seulement.
+ * Sources : LEF/cml_to_cmos.lef md5 e8dc5fe7695bfa9dab5cd6e0dc65fb29 ;
+ *   DOC/cml_to_cmos_pex_sim.md md5 13476a16811cd0ce34d80ff5b861cf09 ;
+ *   spec cml_to_cmos_spec.tcl md5 e1353e6f38eed4603d9751a76f843719.
+ *   IN : C_IN Max
+ *   Y : max_capacitance = C_LOAD_CMOS (spec), IN->Y T_P Max
+ */
+library (cml_to_cmos) {
+  comment : "MIPI D-PHY, lib CML, cml_to_cmos, equivalent unipolaire";
+  define (cml_level, pin, string);
+  delay_model : table_lookup;
+  time_unit : "1ns";
+  voltage_unit : "1V";
+  current_unit : "1uA";
+  leakage_power_unit : "1pW";
+  capacitive_load_unit (1,pf);
+  pulling_resistance_unit : "1kohm";
+  nom_process : 1;
+  nom_temperature : 25;
+  nom_voltage : 1.2;
+  voltage_map (VDD, 1.2);
+  voltage_map (VSS, 0);
+  operating_conditions (typ) { process : 1; temperature : 25; voltage : 1.2; }
+  default_operating_conditions : typ;
+  cell (cml_to_cmos) {
+    area : 289.79;
+    pg_pin (VDD) { pg_type : primary_power;  voltage_name : "VDD"; }
+    pg_pin (VSS) { pg_type : primary_ground; voltage_name : "VSS"; }
+    pin (IN) {
+      direction : input;
+      cml_level : "A";
+      capacitance : 0.0238;
+    }
+    pin (Y) {
+      direction : output;
+      cml_level : "CMOS";
+      max_capacitance : 0.02;
+      function : "IN";
+      timing () { related_pin : "IN"; timing_sense : positive_unate; cell_rise (scalar) { values ("0.372"); } cell_fall (scalar) { values ("0.372"); } rise_transition (scalar) { values ("0"); } fall_transition (scalar) { values ("0"); } }
+    }
+  }
+}

@@ -1,0 +1,34 @@
+* cmos_to_cml -- netlist livrable derivee de cmos_to_cml.sp par make netlist (specification/defs/netlist.tcl)
+* NE PAS EDITER : modifier la source puis make netlist. .param et .subckt seulement, includes inlines, sans modele ni banc.
+* -real-r rppd 1u : resistances ideales -> rppd du PDK, l = ((R) - 2*rz)/rsh*w avec rsh=260.0 rz=rzspec/w, rzspec=35e-6 (res_typ) ; substrat 0 ; gardees ideales : aucune
+* --- inline de CMOS_TO_CML.genes
+.param k_load = 1
+.param k_WAMP = 1
+.param LAMP   = 130n
+.param NAMP   = 4
+.param WNI    = 2u
+.param WPI    = 4u
+.param LINV   = 130n
+.param LMT = 0.1313u
+.param NMT = 1   ; un doigt de 8,6 um, proche des doigts de 10 um de la reference HS_TO_CLK : a 2 doigts la copie perd 20 % (27/09)
+* --- fin de CMOS_TO_CML.genes
+.param sortance = 2
+* --- inline de ../SHARED_SPICE/slug_ipol.sp
+.param Fmax    = 2.5g
+.param Cin_max = '10f * sortance'
+.param Vswng   = 0.3
+.param Ipol    = 'Cin_max * Vswng * 10*Fmax'
+* --- fin de ../SHARED_SPICE/slug_ipol.sp
+.param Rload = 'Vswng / (k_load * Ipol)'
+.param WAMP  = 'Ipol / 23.4 * k_WAMP'
+.param WMT   = '40e-6 * Ipol / 700e-6'
+.subckt cmos_to_cml A OUTP OUTN POLN VDD VSS
+XIN AB A VSS VSS sg13_lv_nmos W='WNI' L='LINV' NG=1 m=1
+XIP AB A VDD VDD sg13_lv_pmos W='WPI' L='LINV' NG=1 m=1
+* A haut -> la branche de gauche conduit -> outn bas, outp haut
+XAP OUTN A TAIL VSS sg13_lv_nmos W='WAMP' L='LAMP' NG='NAMP' m=1
+XAN OUTP AB TAIL VSS sg13_lv_nmos W='WAMP' L='LAMP' NG='NAMP' m=1
+XRLP OUTP VDD 0 rppd w=1e-6 l='((Rload) - 2*35e-6/1e-6)/260.0*1e-6' b=0 m=1
+XRLN OUTN VDD 0 rppd w=1e-6 l='((Rload) - 2*35e-6/1e-6)/260.0*1e-6' b=0 m=1
+XTAIL TAIL POLN VSS VSS sg13_lv_nmos W='WMT' L='LMT' NG='NMT' m=1
+.ends

@@ -1,0 +1,7 @@
+# Vues importees telles quelles, aucune modification locale.
+depot gitlab.com/nebula_microsystems/mipi
+commit 25a940756fbe8ac968f8bdf788a80f9abaa30c3d
+chemin 2_analog/HS_TX_PD
+9b3b4103f0e137eb3d6f56e7d2b3688e  ./hs_tx_pd.sp
+7afdb5e7bcccc631fe624eaa319aea31  ./hs_tx_pd.v
+d1e08f408cc881d9dc40036df1899254  ./Note_a_l_attention_du_testeur.md

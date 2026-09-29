@@ -1,0 +1,33 @@
+/* cml_to_cmos_dummy.lib -- liberty MINIMAL de cml_to_cmos pour l'integration (Angel), sans timing ni puissance, comme le
+ * sg13g2_io_dummy.lib du PDK : bornes, directions, rails, surface. Ecrit le 27/09/2026 depuis LEF/cml_to_cmos.lef ;
+ * netlist SPICE/cml_to_cmos.spice md5 0dec5e85f985706f003c37e045cb63a0.
+ * Capacite d'entree : pire cas POST-LAYOUT sur 27 points par borne (cml_to_cmos_pex.spice md5 e0a05bb4ac13a8830b5c88e122b356bd,
+ * DOC/cml_to_cmos_pex_sim.md) : INP 10,1 fF, INN 23,8 fF (spec CML3 <= 9 fF : FAIL, datasheet forcee).
+ * Timing : voir DOC/ et HDL/. */
+library (cml_to_cmos_dummy) {
+  comment : "MIPI D-PHY, lib CML, cellule cml_to_cmos : convertisseur CML -> CMOS, sortie Y rail a rail en phase avec INP";
+  delay_model : table_lookup;
+  time_unit : "1ns";
+  voltage_unit : "1V";
+  current_unit : "1uA";
+  leakage_power_unit : "1pW";
+  capacitive_load_unit (1,pf);
+  pulling_resistance_unit : "1kohm";
+  nom_process : 1;
+  nom_temperature : 25;
+  nom_voltage : 1.2;
+  voltage_map (VDD, 1.2);
+  voltage_map (VSS, 0);
+  operating_conditions (typ) { process : 1; temperature : 25; voltage : 1.2; }
+  default_operating_conditions : typ;
+  cell (cml_to_cmos) {
+    area : 289.79;
+    dont_touch : true;
+    dont_use : true;
+    pg_pin (VDD) { pg_type : primary_power;  voltage_name : "VDD"; }
+    pg_pin (VSS) { pg_type : primary_ground; voltage_name : "VSS"; }
+    pin (INP) { direction : input; related_power_pin : VDD; related_ground_pin : VSS; capacitance : 0.0101; }
+    pin (INN) { direction : input; related_power_pin : VDD; related_ground_pin : VSS; capacitance : 0.0238; }
+    pin (Y) { direction : output; related_power_pin : VDD; related_ground_pin : VSS; }
+  }
+}

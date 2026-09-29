@@ -1,0 +1,162 @@
+
+Note: No compatibility mode selected!
+
+
+Circuit: * banc de caracterisation cml_to_cmos (27/09) : un deck par corner et vdd, lignes "mesure <cle> <valeur>"
+
+Doing analysis at TEMP = -40.000000 and TNOM = 27.000000
+
+Using SPARSE 1.3 as Direct Linear Solver
+
+No. of Data Rows : 1
+MESURE VSW_OUT_DC_NOM 1.32
+MESURE VOH_CMOS 1.32
+MESURE VOL_CMOS 3.71489E-09
+Doing analysis at TEMP = -40.000000 and TNOM = 27.000000
+
+Using SPARSE 1.3 as Direct Linear Solver
+No. of Data Rows : 151
+Note: Starting dynamic gmin stepping
+Note: Dynamic gmin stepping completed
+vsw_m               =  8.11945e-03
+Doing analysis at TEMP = -40.000000 and TNOM = 27.000000
+
+Using SPARSE 1.3 as Direct Linear Solver
+No. of Data Rows : 113
+
+Error: measure  vcml_m  when(WHEN) : out of interval
+ meas dc vcml_m when swo=1.188000e+00 rise=1 failed!
+
+Warning from checkvalid: vector vcml_m is not available or has zero length.
+Error: RHS "vcml_m" invalid
+vcmh_m              =  1.30150e+00
+DC : swing >= 90 % du nominal des 0,2 V de mode commun (bas du balayage)
+MESURE VSW_IN_DC 0.00811945
+MESURE VCM_IN_LOW_DC 0.2
+MESURE VCM_IN_HIGH_DC 1.3015
+MESURE VSW_IN NaN
+MESURE VCM_IN_LOW NaN
+MESURE VCM_IN_HIGH NaN
+Doing analysis at TEMP = -40.000000 and TNOM = 27.000000
+
+Using SPARSE 1.3 as Direct Linear Solver
+
+Initial Transient Solution
+--------------------------
+
+Node                                   Voltage
+----                                   -------
+vddd                                      1.32
+cm                                        1.17
+dif                                        0.3
+dp                                        1.32
+ep_int1                                   1.32
+dn                                        1.02
+en_int1                                   1.02
+xa.dio                                 0.59763
+xa.tail                               0.448281
+xa.mid                                 1.31355
+xa.xrtail.dt                                 0
+xa.ymid                            1.69375e-08
+ya                                        1.32
+xb.dio                                0.695154
+xb.tail                               0.315751
+xb.mid                                0.337361
+xb.xrtail.dt                                 0
+xb.ymid                                   1.32
+yb                                 3.71489e-09
+vddt                                      1.32
+tp                                        1.02
+tn                                        1.32
+xt.dio                                0.695154
+xt.tail                               0.315751
+xt.mid                                0.337361
+xt.xrtail.dt                                 0
+xt.ymid                                   1.32
+yt                                 3.71489e-09
+vddc                                      1.32
+cpp                                       1.02
+cpn                                       1.17
+xcp.dio                               0.694752
+xcp.tail                              0.315306
+xcp.mid                               0.356574
+xcp.xrtail.dt                                0
+xcp.ymid                                  1.32
+ycp                                3.71488e-09
+cnn                                       1.02
+cnp                                       1.17
+xcn.dio                               0.634656
+xcn.tail                              0.377059
+xcn.mid                                1.28066
+xcn.xrtail.dt                                0
+xcn.ymid                           1.73881e-08
+ycn                                       1.32
+ben#branch                                   0
+bep#branch                                   0
+en#branch                         -8.28476e-13
+ep#branch                         -1.26748e-11
+vcnp#branch                       -1.48653e-12
+vcnn#branch                       -3.80487e-13
+vcpn#branch                       -3.36581e-12
+vcpp#branch                       -7.17371e-13
+vddc#branch                       -0.000466353
+vtn#branch                        -9.74887e-12
+vtp#branch                        -7.14581e-13
+vddt#branch                       -0.000212679
+vdif#branch                                  0
+vcm#branch                                   0
+vddd#branch                       -0.000514624
+
+No. of Data Rows : 2494
+tpr_m               =  2.05254e-10 targ=  4.37192e-09 trig=  4.16667e-09
+tpf_m               =  2.03510e-10 targ=  5.37018e-09 trig=  5.16667e-09
+tr_m                =  5.37969e-11 targ=  4.40174e-09 trig=  4.34794e-09
+tf_m                =  5.09162e-11 targ=  5.39671e-09 trig=  5.34579e-09
+th_m                =  9.98256e-10 targ=  5.37018e-09 trig=  4.37192e-09
+tpr_m               =  2.05254e-10 targ=  6.37192e-09 trig=  6.16667e-09
+tpf_m               =  2.03510e-10 targ=  7.37018e-09 trig=  7.16667e-09
+tr_m                =  5.37969e-11 targ=  6.40174e-09 trig=  6.34794e-09
+tf_m                =  5.09162e-11 targ=  7.39671e-09 trig=  7.34579e-09
+th_m                =  9.98256e-10 targ=  7.37018e-09 trig=  6.37192e-09
+tpr_m               =  2.05254e-10 targ=  8.37192e-09 trig=  8.16667e-09
+tpf_m               =  2.03510e-10 targ=  9.37018e-09 trig=  9.16667e-09
+tr_m                =  5.37969e-11 targ=  8.40174e-09 trig=  8.34794e-09
+tf_m                =  5.09162e-11 targ=  9.39671e-09 trig=  9.34579e-09
+th_m                =  9.98256e-10 targ=  9.37018e-09 trig=  8.37192e-09
+per_m               =  6.00000e-09 targ=  1.03719e-08 trig=  4.37192e-09
+t3_m                =  4.37192e-09
+idd_m               =  -2.83816e-04 from=  4.37192e-09 to=  1.03719e-08
+MESURE T_P 0.205254
+MESURE T_P_S 2.05254E-10
+MESURE PERIODE_Y 2E-09
+MESURE D_DUTY 0.0008719
+MESURE T_R_F_CMOS 0.0537969
+MESURE I_DD 0.000283816
+qb0_m               =  -2.39122e-23 from=  0.00000e+00 to=  3.33333e-11
+qa_m                =  -2.06179e-15 from=  3.33333e-11 to=  3.36667e-09
+qw_m                =  -2.06179e-15 from=  3.33333e-11 to=  1.86667e-09
+qa2_m               =  2.05974e-15 from=  3.36667e-09 to=  6.70000e-09
+qw2_m               =  2.05974e-15 from=  3.36667e-09 to=  5.20000e-09
+MESURE C_IN_INP_R 6.87264E-15
+MESURE C_IN_INP_F 6.86581E-15
+qb0_m               =  -1.26832e-23 from=  0.00000e+00 to=  3.33333e-11
+qa_m                =  -5.10616e-15 from=  3.33333e-11 to=  3.36667e-09
+qw_m                =  -5.10615e-15 from=  3.33333e-11 to=  1.86667e-09
+qa2_m               =  5.10430e-15 from=  3.36667e-09 to=  6.70000e-09
+qw2_m               =  5.10430e-15 from=  3.36667e-09 to=  5.20000e-09
+MESURE C_IN_INN_R 1.70205E-14
+MESURE C_IN_INN_F 1.70143E-14
+MESURE C_IN 1.70205E-14
+ngspice-47+ done
+
+=== verdict mesures_cml_to_cmos_ss_wcs_m40.tcl (defs-check.tcl, spec cml_to_cmos_spec.tcl)
+id       sym          cle            borne         valeur     verdict
+------------------------------------------------------------------------------
+CML1a    VCM_IN_LOW   VCM_IN_LOW     max 0.85 V    NaN        n.m.
+CML1b    VCM_IN_HIGH  VCM_IN_HIGH    min 1.15 V    NaN        n.m.
+CML2     VSW_IN       VSW_IN         max 0.25 V    NaN        n.m.
+CML3     C_IN         C_IN           max 9 fF      1.70205e-14 FAIL
+CMLO12   T_P          T_P            max 0.5 UI    0.205254   PASS
+CMLO14   D_DUTY       D_DUTY         max 2 %       0.0008719  PASS
+
+1 FAIL  |  sans formule : CML1a, CML1b, CML2

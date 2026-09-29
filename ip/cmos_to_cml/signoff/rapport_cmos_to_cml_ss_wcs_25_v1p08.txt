@@ -1,0 +1,111 @@
+Note: Starting dynamic gmin stepping
+Note: Dynamic gmin stepping completed
+
+Note: No compatibility mode selected!
+
+
+Circuit: * banc de caracterisation cmos_to_cml (27/09) : un deck par corner et vdd, lignes "mesure <cle> <valeur>"
+
+Doing analysis at TEMP = 25.000000 and TNOM = 27.000000
+
+Using SPARSE 1.3 as Direct Linear Solver
+Note: Dynamic gmin stepping completed
+
+No. of Data Rows : 1
+MESURE VOH 1.08
+MESURE VOL 0.802837
+MESURE VCM_OUT 0.941419
+MESURE VOH_A0 1.08
+MESURE VOL_A0 0.802837
+Doing analysis at TEMP = 25.000000 and TNOM = 27.000000
+
+Using SPARSE 1.3 as Direct Linear Solver
+
+Initial Transient Solution
+--------------------------
+
+Node                                   Voltage
+----                                   -------
+vddb                                      1.08
+pol                                   0.599768
+ah                                        1.08
+al                                           0
+xh.ab                              6.01123e-09
+nh                                    0.802837
+xh.tail                               0.375563
+ph                                        1.08
+xh.xrlp.dt                                   0
+xh.xrln.dt                                   0
+xl.ab                                     1.08
+nl                                        1.08
+xl.tail                               0.375563
+pl                                    0.802837
+xl.xrlp.dt                                   0
+xl.xrln.dt                                   0
+vddt                                      1.08
+at                                           0
+xt.ab                                     1.08
+nt                                        1.08
+xt.tail                               0.375563
+pt                                    0.802837
+xt.xrlp.dt                                   0
+xt.xrln.dt                                   0
+ac                                           0
+xc.ab                                     1.08
+nc                                        1.08
+xc.tail                               0.375563
+pc                                    0.802837
+xc.xrlp.dt                                   0
+xc.xrln.dt                                   0
+vac#branch                         1.57761e-11
+vat#branch                         1.57761e-11
+vddt#branch                       -0.000123479
+val#branch                         1.57761e-11
+vah#branch                        -9.53622e-12
+vddb#branch                        -0.00107044
+
+No. of Data Rows : 6083
+tpr_m               =  7.34911e-11 targ=  4.09849e-09 trig=  4.02500e-09
+tpf_m               =  6.26742e-11 targ=  5.08767e-09 trig=  5.02500e-09
+dtr_m               =  -1.83842e-11 targ=  4.08937e-09 trig=  4.10775e-09
+dtf_m               =  -2.20268e-11 targ=  5.07142e-09 trig=  5.09345e-09
+th_m                =  9.89183e-10 targ=  5.08767e-09 trig=  4.09849e-09
+tpr_m               =  7.34911e-11 targ=  6.09849e-09 trig=  6.02500e-09
+tpf_m               =  6.26742e-11 targ=  7.08767e-09 trig=  7.02500e-09
+dtr_m               =  -1.83842e-11 targ=  6.08937e-09 trig=  6.10775e-09
+dtf_m               =  -2.20268e-11 targ=  7.07142e-09 trig=  7.09345e-09
+th_m                =  9.89183e-10 targ=  7.08767e-09 trig=  6.09849e-09
+tpr_m               =  7.34911e-11 targ=  8.09849e-09 trig=  8.02500e-09
+tpf_m               =  6.26742e-11 targ=  9.08767e-09 trig=  9.02500e-09
+dtr_m               =  -1.83842e-11 targ=  8.08937e-09 trig=  8.10775e-09
+dtf_m               =  -2.20268e-11 targ=  9.07142e-09 trig=  9.09345e-09
+th_m                =  9.89183e-10 targ=  9.08767e-09 trig=  8.09849e-09
+per_m               =  6.00000e-09 targ=  1.00985e-08 trig=  4.09849e-09
+t3_m                =  4.09849e-09
+vdmx_m              =  2.81553e-01 at=  7.00500e-09
+vdmn_m              =  -3.37997e-01 at=  1.00485e-08
+idd_m               =  -1.29403e-04 from=  4.09849e-09 to=  1.00985e-08
+MESURE T_P 0.0734911
+MESURE T_P_S 7.34911E-11
+MESURE DT_PN 2.20268E-11
+MESURE D_DUTY 0.0054085
+MESURE VSW_OUT 0.309775
+MESURE PERIODE 2E-09
+MESURE I_DD 0.000129403
+qc_m                =  -1.97902e-14 from=  1.00000e-10 to=  3.15000e-09
+MESURE C_IN_CMOS 1.83243E-14
+ngspice-47+ done
+
+=== verdict mesures_cmos_to_cml_ss_wcs_25.tcl (defs-check.tcl, spec cmos_to_cml_spec.tcl)
+id       sym          cle            borne         valeur     verdict
+------------------------------------------------------------------------------
+CML8     VOH          -              pas de borne
+CML9     VOL          VOL            min 0.75 V    0.802837   PASS
+CML10    VCM_OUT      VCM_OUT        min 0.95 V    0.941419   FAIL
+CML10    VCM_OUT      VCM_OUT        max 1.15 V    0.941419   PASS
+CML11    VSW_OUT      VSW_OUT        min 0.25 V    0.309775   PASS
+CMLI12   T_P          T_P            max 0.5 UI    0.0734911  PASS
+CMLI13   DT_PN        DT_PN          max 50 ps     2.20268e-11 PASS
+CMLI14   D_DUTY       D_DUTY         max 5 %       0.0054085  PASS
+
+1 FAIL  |  sans formule : aucune

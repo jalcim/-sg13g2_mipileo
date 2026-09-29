@@ -1,0 +1,15 @@
+# Vues importees telles quelles, aucune modification locale.
+depot gitlab.com/nebula_microsystems/mipi
+commit 163130648def60a33b4f0e6796f54961921a750f
+chemin 2_analog/CML_LIB/CMOS_TO_CML/COLLATERALS
+0e31effa614d9672a693e69399d3cf6d  ./DOC/cmos_to_cml_pex_sim.md
+c15dc3705636d007b6e06e709c9a877e  ./DOC/cmos_to_cml_sim.md
+85965e56796fbc444c768ba0172514af  ./DOC/cmos_to_cml_sim.tex
+5aec9a24e5d109dd3dd0ba202bf06899  ./GDS/cmos_to_cml.gds
+e41f2e0f75193f4c67adb8eb36b7f118  ./HDL/cmos_to_cml.v
+a4bdb3c1bf24f99e7251c239d2253af8  ./LEF/cmos_to_cml.lef
+5e059e9c0572a1ee5e93e420c70f1c16  ./LIB/cmos_to_cml_dummy.lib
+44760d3fa46f6e6679f03373b8ea1ebb  ./LIB/cmos_to_cml.lib
+c715f7837806471160a4e7078c3f9093  ./README_ANGEL.md
+4cbc48da57f83826585a3f02256a507b  ./SPICE/cmos_to_cml_pex.spice
+3b66b9857690e71288850bc1ab094f78  ./SPICE/cmos_to_cml.spice

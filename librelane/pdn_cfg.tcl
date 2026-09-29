@@ -182,9 +182,13 @@ if { $::env(PDN_CORE_RING) == 1 } {
     }
 }
 
+# MSPHY5973 : grille de macro limitee aux macros qui exposent VPWR / VGND en TopMetal1 (csi2_top, dphy_rx,
+# dphy_tx). Les macros du kit CML (sr16_rx4, sr16_tx, cml_to_cmos, cmos_to_cml) n ont VDD / VSS qu en Metal1,
+# sous des obstructions Metal2 a Metal5 : PDN-0006 sur sr16_rx4 (coupe3). Elles restent hors grille en v1.0.0,
+# ecart ecrit en tete du README (trou 8 de doc/cablage_msphy5973.md).
 define_pdn_grid \
     -macro \
-    -default \
+    -instances "csi2_top dphy_rx dphy_tx" \
     -name macro \
     -starts_with POWER \
     -halo "$::env(PDN_HORIZONTAL_HALO) $::env(PDN_VERTICAL_HALO)"

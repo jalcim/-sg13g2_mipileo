@@ -72,6 +72,7 @@ PAD_CFG: dir::pad_cfg.tcl
 # Brochage : doc/cablage_msphy5973.md (lanes numerotees depuis 0)
 PAD_EAST: [
   iovdd_mipi_pad, iovss_mipi_pad,
+  bandgap_pad,
   rx_clk_p_pad, rx_clk_n_pad,
   rx_d0_p_pad, rx_d0_n_pad, rx_d1_p_pad, rx_d1_n_pad,
   rx_d2_p_pad, rx_d2_n_pad, rx_d3_p_pad, rx_d3_n_pad
@@ -79,11 +80,11 @@ PAD_EAST: [
 
 PAD_NORTH: [
   vdd_pad, vss_pad,
+  tx_analog_pad,
   tx_clk_p_pad, tx_clk_n_pad,
   tx_d0_p_pad, tx_d0_n_pad, tx_d1_p_pad, tx_d1_n_pad,
   tx_d2_p_pad, tx_d2_n_pad, tx_d3_p_pad, tx_d3_n_pad,
-  clkin_n_pad, clkin_p_pad,
-  bandgap_pad
+  clkin_n_pad, clkin_p_pad
 ]
 
 PAD_WEST: [

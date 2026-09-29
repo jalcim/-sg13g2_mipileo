@@ -11,8 +11,15 @@ from pathlib import Path
 LANES = 4
 MIPI_PWR = ".IOVDD(IOVDD_MIPI), .IOVSS(IOVSS_MIPI), .VDD(VDD), .VSS(VSS)"
 IO_PWR = ".IOVDD(IOVDD), .IOVSS(IOVSS), .VDD(VDD), .VSS(VSS)"
-MIPI_BIAS = ".POLN_RX(POLN_RX), .VB(VB), .PBIAS(PBIAS), .PS(PS), .POLN(POLN)"
-IO_BIAS = ".POLN_RX(POLN_RX_IO), .VB(VB_IO), .PBIAS(PBIAS_IO), .PS(PS_IO), .POLN(POLN_IO)"
+PISTES = ["POLN_RX", "VB", "PBIAS", "PS", "POLN"]
+
+
+def bias(cote):
+    """Pistes de polarisation d'un cote : les coins n'en ont pas, un net par piste et par cote (comme 061)."""
+    return ", ".join(f".{p}(pol_{cote}_{p})" for p in PISTES)
+
+
+E_BIAS, N_BIAS, W_BIAS, S_BIAS = bias("e"), bias("n"), bias("w"), bias("s")
 
 RX_PADS = ["clk"] + [f"d{k}" for k in range(LANES)]
 TX_PADS = ["clk"] + [f"d{k}" for k in range(LANES)]
@@ -38,15 +45,15 @@ def main(out):
         ports += [f"inout RX_{lane.upper()}_P", f"inout RX_{lane.upper()}_N"]
     for lane in TX_PADS:
         ports += [f"inout TX_{lane.upper()}_P", f"inout TX_{lane.upper()}_N"]
-    ports += ["inout CLKIN_P", "inout CLKIN_N", "inout BANDGAP"]
+    ports += ["inout CLKIN_P", "inout CLKIN_N", "inout BANDGAP", "inout TX_ANALOG"]
     ports += [f"inout {name.upper()}" for name in WEST_IN + SOUTH_IN]
 
     v = ["// MSPHY5973 : D-PHY + CSI-2 + E/S, genere par scripts/gen_msphy5973.py, NE PAS EDITER.",
          "// Cablage : doc/cablage_msphy5973.md. v1.0.0 : renvoi RX vers TX non fonctionnel, pont TX en cours (D38).",
          "module MSPHY5973 (", ",\n".join(f"    {p}" for p in ports), ");", ""]
-    v.append("    wire POLN_RX, VB, PBIAS, PS, POLN;")
-    v.append("    wire POLN_RX_IO, VB_IO, PBIAS_IO, PS_IO, POLN_IO;")
-    v.append("    wire vbg;")
+    for cote in "enws":
+        v.append(f"    wire {', '.join(f'pol_{cote}_{p}' for p in PISTES)};")
+    v.append("    wire vbg, tx_analog_padres_nc;")
     for lane in RX_PADS:
         v.append(f"    wire rx_{lane}_p_hs, rx_{lane}_n_hs, rx_{lane}_p_lp, rx_{lane}_n_lp;")
     v.append("    wire clkin_p_hs, clkin_n_hs, clkin_p_lp_nc, clkin_n_lp_nc;")
@@ -76,40 +83,42 @@ def main(out):
     v.append("")
 
     v.append("    // Est : RX")
-    v.append(power_pad("MIPI_IOPadIOVdd", "iovdd_mipi_pad", MIPI_PWR, MIPI_BIAS))
-    v.append(power_pad("MIPI_IOPadIOVss", "iovss_mipi_pad", MIPI_PWR, MIPI_BIAS))
+    v.append(power_pad("MIPI_IOPadIOVdd", "iovdd_mipi_pad", MIPI_PWR, E_BIAS))
+    v.append(power_pad("MIPI_IOPadIOVss", "iovss_mipi_pad", MIPI_PWR, E_BIAS))
+    v.append(pad("MIPI_IOPadBandgap", "bandgap_pad", MIPI_PWR, E_BIAS, ".PAD(BANDGAP), .VBG(vbg)"))
     for lane in RX_PADS:
         for s in "pn":
-            v.append(pad("MIPI_IOPadRX", f"rx_{lane}_{s}_pad", MIPI_PWR, MIPI_BIAS,
+            v.append(pad("MIPI_IOPadRX", f"rx_{lane}_{s}_pad", MIPI_PWR, E_BIAS,
                          f".PAD(RX_{lane.upper()}_{s.upper()}), .OUT(rx_{lane}_{s}_hs), .P2C(rx_{lane}_{s}_lp)"))
 
-    v.append("    // Nord : TX, CLKIN, bandgap")
-    v.append(power_pad("MIPI_IOPadVdd", "vdd_pad", MIPI_PWR, MIPI_BIAS))
-    v.append(power_pad("MIPI_IOPadVss", "vss_pad", MIPI_PWR, MIPI_BIAS))
+    v.append("    // Nord : TX et CLKIN")
+    v.append(power_pad("MIPI_IOPadVdd", "vdd_pad", MIPI_PWR, N_BIAS))
+    v.append(power_pad("MIPI_IOPadVss", "vss_pad", MIPI_PWR, N_BIAS))
+    v.append(pad("MIPI_IOPadAnalog", "tx_analog_pad", MIPI_PWR, N_BIAS, ".PAD(TX_ANALOG), .PADRES(tx_analog_padres_nc)"))
     for lane in TX_PADS:
         for s, hs, lp in (("p", "hsp", "lpinp"), ("n", "hsn", "lpinn")):
-            v.append(pad("MIPI_IOPadTX", f"tx_{lane}_{s}_pad", MIPI_PWR, MIPI_BIAS,
+            v.append(pad("MIPI_IOPadTX", f"tx_{lane}_{s}_pad", MIPI_PWR, N_BIAS,
                          f".PAD(TX_{lane.upper()}_{s.upper()}), .IN_HS(tx_{lane}_{hs}), .LP_IN(tx_{lane}_{lp})"))
     for s in "np":
-        v.append(pad("MIPI_IOPadRX", f"clkin_{s}_pad", MIPI_PWR, MIPI_BIAS,
+        v.append(pad("MIPI_IOPadRX", f"clkin_{s}_pad", MIPI_PWR, N_BIAS,
                      f".PAD(CLKIN_{s.upper()}), .OUT(clkin_{s}_hs), .P2C(clkin_{s}_lp_nc)"))
-    v.append(pad("MIPI_IOPadBandgap", "bandgap_pad", MIPI_PWR, MIPI_BIAS, ".PAD(BANDGAP), .VBG(vbg)"))
 
     v.append("    // Ouest et sud : alimentations et entrees numeriques du domaine IO")
-    v.append(power_pad("MIPI_IOPadIOVdd", "iovdd_pad", IO_PWR, IO_BIAS))
-    v.append(power_pad("MIPI_IOPadIOVss", "iovss_pad", IO_PWR, IO_BIAS))
-    v.append(power_pad("MIPI_IOPadVdd", "vdd_s_pad", IO_PWR, IO_BIAS))
-    v.append(power_pad("MIPI_IOPadVss", "vss_s_pad", IO_PWR, IO_BIAS))
+    v.append(power_pad("MIPI_IOPadIOVdd", "iovdd_pad", IO_PWR, W_BIAS))
+    v.append(power_pad("MIPI_IOPadIOVss", "iovss_pad", IO_PWR, W_BIAS))
+    v.append(power_pad("MIPI_IOPadVdd", "vdd_s_pad", IO_PWR, S_BIAS))
+    v.append(power_pad("MIPI_IOPadVss", "vss_s_pad", IO_PWR, S_BIAS))
     cores = {"clk_sys": "clk_sys", "rst_n": "rst_n", "renvoi_mode0": "renvoi_mode[0]", "renvoi_mode1": "renvoi_mode[1]"}
     cores.update({f"en{k}": f"enable[{k}]" for k in range(LANES)})
     for name in WEST_IN + SOUTH_IN:
-        v.append(pad("MIPI_IOPadIn", f"{name}_pad", IO_PWR, IO_BIAS, f".PAD({name.upper()}), .P2C({cores[name]})"))
+        v.append(pad("MIPI_IOPadIn", f"{name}_pad", IO_PWR, W_BIAS if name in WEST_IN else S_BIAS,
+                     f".PAD({name.upper()}), .P2C({cores[name]})"))
 
     v.append("    // RX : deserialiseur CML, machines d'etats, conversion vers CMOS")
     d_ports = ", ".join(f".D{k}_P(rx_d{k}_p_hs), .D{k}_N(rx_d{k}_n_hs)" for k in range(LANES))
     m_ports = ", ".join(f".MOT{i}_P(mot_p[{i}]), .MOT{i}_N(mot_n[{i}])" for i in range(32))
     v.append("    sr16_rx4 sr16_rx4 (\n        `ifdef USE_POWER_PINS\n        .VDD(VDD), .VSS(VSS),\n        `endif\n"
-             f"        .POLN(POLN), .CK_P(rx_clk_p_hs), .CK_N(rx_clk_n_hs),\n        {d_ports},\n"
+             f"        .POLN(pol_e_POLN), .CK_P(rx_clk_p_hs), .CK_N(rx_clk_n_hs),\n        {d_ports},\n"
              f"        {m_ports},\n        .CLK_W_P(clk_w_p), .CLK_W_N(clk_w_n)\n    );")
     c2c = []
     for i in range(32):
@@ -122,7 +131,7 @@ def main(out):
         v.append(f"    cml_to_cmos {name} (\n        `ifdef USE_POWER_PINS\n        .VDD(VDD), .VSS(VSS),\n        `endif\n"
                  f"        .INP({inp}), .INN({inn}), .Y({y})\n    );")
     v.append("    dphy_rx dphy_rx (\n        `ifdef USE_POWER_PINS\n        .VPWR(VDD), .VGND(VSS),\n        `endif\n"
-             "        .PG(POLN_RX), .rx_clk(rx_clk), .clk_lp_p(rx_clk_p_lp), .clk_lp_n(rx_clk_n_lp),\n"
+             "        .PG(), .rx_clk(rx_clk), .clk_lp_p(rx_clk_p_lp), .clk_lp_n(rx_clk_n_lp),\n"
              "        .clk_stop(), .clk_term_en(), .clk_rx_en(), .clk_miss(),\n"
              f"        .lp_p({{{', '.join(f'rx_d{k}_p_lp' for k in reversed(range(LANES)))}}}),\n"
              f"        .lp_n({{{', '.join(f'rx_d{k}_n_lp' for k in reversed(range(LANES)))}}}),\n"
@@ -142,7 +151,7 @@ def main(out):
 
     v.append("    // TX : machines d'etats, serialiseurs et pre-drivers. HS inactif en v1.0.0 (pas de pont TX ni de /4 TX).")
     v.append("    dphy_tx dphy_tx (\n        `ifdef USE_POWER_PINS\n        .VPWR(VDD), .VGND(VSS),\n        `endif\n"
-             "        .PG(POLN_RX), .clk(tx_ck), .rst(~rst_n), .clk_request(1'b0), .clk_ready(),\n"
+             "        .PG(), .clk(tx_ck), .rst(~rst_n), .clk_request(1'b0), .clk_ready(),\n"
              "        .clk_lp_p(tx_clk_lp_p), .clk_lp_n(tx_clk_lp_n), .clk_hs_oe(tx_clk_hs_oe), .clk_run(),\n"
              "        .tx_request_hs(4'b0), .tx_ready_hs(), .hs_sync(), .hs_trail(),\n"
              "        .lp_p(tx_lp_p), .lp_n(tx_lp_n), .hs_oe(tx_hs_oe)\n    );")
@@ -150,11 +159,11 @@ def main(out):
     c2l.append(("c2l_tx_clk_w", "tx_clk_w_p", "tx_clk_w_n"))
     for name, outp, outn in c2l:
         v.append(f"    cmos_to_cml {name} (\n        `ifdef USE_POWER_PINS\n        .VDD(VDD), .VSS(VSS),\n        `endif\n"
-                 f"        .POLN(POLN), .A(1'b0), .OUTP({outp}), .OUTN({outn})\n    );")
+                 f"        .POLN(pol_n_POLN), .A(1'b0), .OUTP({outp}), .OUTN({outn})\n    );")
     for k in range(LANES):
         mots = ", ".join(f".MOT{i}_P(tx_mot_p[{k}]), .MOT{i}_N(tx_mot_n[{k}])" for i in range(8))
         v.append(f"    sr16_tx sr16_tx{k} (\n        `ifdef USE_POWER_PINS\n        .VDD(VDD), .VSS(VSS),\n        `endif\n"
-                 f"        .POLN(POLN), .CK_P(clkin_p_hs), .CK_N(clkin_n_hs), .CLK_W_P(tx_clk_w_p), .CLK_W_N(tx_clk_w_n),\n"
+                 f"        .POLN(pol_n_POLN), .CK_P(clkin_p_hs), .CK_N(clkin_n_hs), .CLK_W_P(tx_clk_w_p), .CLK_W_N(tx_clk_w_n),\n"
                  f"        {mots},\n        .DOUT_P(tx_dout_p[{k}]), .DOUT_N(tx_dout_n[{k}])\n    );")
     drv = [("clk", "tx_ck", "tx_clk_hs_oe", "tx_clk_lp_p", "tx_clk_lp_n")]
     drv += [(f"d{k}", f"tx_dout[{k}]", f"tx_hs_oe[{k}]", f"tx_lp_p[{k}]", f"tx_lp_n[{k}]") for k in range(LANES)]

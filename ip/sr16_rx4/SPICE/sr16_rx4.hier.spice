@@ -67,7 +67,7 @@ X2 a_166_n823# G S3 sub sg13_lv_nmos ad=2.7982p pd=17.14u as=1.5637p ps=8.61u w=
 X3 S1 G D0 sub sg13_lv_nmos ad=1.5637p pd=8.61u as=2.7982p ps=17.14u w=8.23u l=0.13u
 .ends
 
-.subckt cml_tlatch VDD OUTP CKN CKP INP INN POLN OUTN VSS
+.subckt cml_tlatch VDD OUTN OUTP CKN CKP INP INN POLN VSS
 Xxamp.xn INN xmux.xn/S9 xmux.xn/S9 VSS xmux.xn/S9 xmux.xn/S9 xmux.xn/S9 OUTP OUTP
 + OUTP OUTP OUTP sg13_lv_nmos_AD63GD
 Xxamp.xp INP xmux.xn/S9 xmux.xn/S9 VSS xmux.xn/S9 xmux.xn/S9 xmux.xn/S9 OUTN OUTN
@@ -100,11 +100,11 @@ X0 R1 R2 B rppd l=13.09u w=1u
 X0 R1 R2 B rppd l=2.72u w=1u
 .ends
 
-.subckt cml_drvb VDD INN INP OUTN OUTP VSS
-Xxamp.xn INP VSS OUTN OUTN xrtail/R2 sg13_lv_nmos_5A5R5E
-Xxamp.xp INN VSS OUTP OUTP xrtail/R2 sg13_lv_nmos_5A5R5E
+.subckt cml_drvb VDD INP OUTN OUTP INN VSS
+Xxamp.xn INP VSS OUTN OUTN xrtail/R1 sg13_lv_nmos_5A5R5E
+Xxamp.xp INN VSS OUTP OUTP xrtail/R1 sg13_lv_nmos_5A5R5E
 Xxlp.xrl VSS OUTP VDD rppd_2ZAP6P
-Xxrtail VSS xrtail/R2 VSS rppd_ACUNYL
+Xxrtail VSS VSS xrtail/R1 rppd_ACUNYL
 Xxln.xrl VSS VDD OUTN rppd_2ZAP6P
 .ends
 
@@ -155,6 +155,10 @@ X1 D2 INP OUTP VSS sg13_lv_nmos ad=0.408p pd=3.08u as=0.228p ps=1.58u w=1.2u l=0
 X2 OUTP INP D2 VSS sg13_lv_nmos ad=0.228p pd=1.58u as=0.228p ps=1.58u w=1.2u l=0.2u
 .ends
 
+.subckt rppd_W2KASE B R2 R1
+X0 R1 R2 B rppd l=7.42u w=1u
+.ends
+
 .subckt sg13_lv_nmos_FTPY57 D10 G S11 D8 D6 sub D4 D2 D0 S9 S7 S5 S3 a_574_n53# S1
 X0 S5 G D4 sub sg13_lv_nmos ad=0.1007p pd=0.91u as=0.1007p ps=0.91u w=0.53u l=0.13u
 X1 D4 G S3 sub sg13_lv_nmos ad=0.1007p pd=0.91u as=0.1007p ps=0.91u w=0.53u l=0.13u
@@ -170,25 +174,21 @@ X10 a_574_n53# G S11 sub sg13_lv_nmos ad=0.1802p pd=1.74u as=0.1007p ps=0.91u w=
 X11 S7 G D6 sub sg13_lv_nmos ad=0.1007p pd=0.91u as=0.1007p ps=0.91u w=0.53u l=0.13u
 .ends
 
-.subckt rppd_W2KASE B R2 R1
-X0 R1 R2 B rppd l=7.42u w=1u
-.ends
-
 .subckt rppd_XV6GFH B R2 R1
 X0 R1 R2 B rppd l=4.86u w=1u
 .ends
 
 .subckt cml_gate2 VDD AN AP XN XP BN BP VSS
-Xxamp.xn XN AP xmux.xp/D8 XN XN VSS XN XN XN xmux.xp/D8 xmux.xp/D8 xmux.xp/D8 xmux.xp/D8
-+ XN xmux.xp/D8 sg13_lv_nmos_FTPY57
-Xxamp.xp XP AN xmux.xp/D8 XP XP VSS XP XP XP xmux.xp/D8 xmux.xp/D8 xmux.xp/D8 xmux.xp/D8
-+ XP xmux.xp/D8 sg13_lv_nmos_FTPY57
 Xxlp.xrl VSS XP VDD rppd_W2KASE
-Xxmux.xn XP BN xrtail/R1 XP XP VSS XP XP XP xrtail/R1 xrtail/R1 xrtail/R1 xrtail/R1
-+ XP xrtail/R1 sg13_lv_nmos_FTPY57
+Xsg13_lv_nmos_FTPY57_0 xmux.xn/S9 AN XP xmux.xn/S9 xmux.xn/S9 VSS xmux.xn/S9 xmux.xn/S9
++ xmux.xn/S9 XP XP XP XP xmux.xn/S9 XP sg13_lv_nmos_FTPY57
+Xsg13_lv_nmos_FTPY57_1 xmux.xn/S9 AP XN xmux.xn/S9 xmux.xn/S9 VSS xmux.xn/S9 xmux.xn/S9
++ xmux.xn/S9 XN XN XN XN xmux.xn/S9 XN sg13_lv_nmos_FTPY57
+Xxmux.xn xrtail/R1 BP xmux.xn/S9 xrtail/R1 xrtail/R1 VSS xrtail/R1 xrtail/R1 xrtail/R1
++ xmux.xn/S9 xmux.xn/S9 xmux.xn/S9 xmux.xn/S9 xrtail/R1 xmux.xn/S9 sg13_lv_nmos_FTPY57
 Xxrtail VSS VSS xrtail/R1 rppd_XV6GFH
-Xxmux.xp xmux.xp/D8 BP xrtail/R1 xmux.xp/D8 xmux.xp/D8 VSS xmux.xp/D8 xmux.xp/D8 xmux.xp/D8
-+ xrtail/R1 xrtail/R1 xrtail/R1 xrtail/R1 xmux.xp/D8 xrtail/R1 sg13_lv_nmos_FTPY57
+Xxmux.xp xrtail/R1 BN XP xrtail/R1 xrtail/R1 VSS xrtail/R1 xrtail/R1 xrtail/R1 XP
++ XP XP XP xrtail/R1 XP sg13_lv_nmos_FTPY57
 Xxln.xrl VSS XN VDD rppd_W2KASE
 .ends
 
@@ -232,218 +232,218 @@ Xxln.xrl VSS OUTN VDD rppd_KGSVTB
 + MOT22_N MOT22_P MOT23_N MOT23_P MOT24_N MOT24_P MOT25_N MOT25_P MOT26_N MOT26_P
 + MOT27_N MOT27_P MOT28_N MOT28_P MOT29_N MOT29_P MOT30_N MOT30_P MOT31_N MOT31_P
 + CLK_W_N CLK_W_P
-Xcml_tlatch_19 VDD A1_8_P CKA1_P CKA1_N stub_bi_8/TOPN stub_bi_8/TOPP POLN A1_8_N
+Xcml_tlatch_19 VDD MOT5_N MOT5_P CKHB0_N CKHB0_P stub_bi_2/INP stub_bi_2/INN POLN
 + VSS cml_tlatch
-Xcml_drvb_1 VDD GB0_N GB0_P CKHB0_N CKHB0_P VSS cml_drvb
-Xcml_tlatch_3 VDD MOT9_P CKHB1_N CKHB1_P B1_8_P B1_8_N POLN MOT9_N VSS cml_tlatch
-Xcml_drvb_2 VDD GA1_N GA1_P CKHA1_N CKHA1_P VSS cml_drvb
-Xcml_tlatch_4 VDD MOT11_P CKHB1_N CKHB1_P stub_bi_9/INP stub_bi_9/INN POLN MOT11_N
+Xcml_drvb_1 VDD GB0_P CKHB0_N CKHB0_P GB0_N VSS cml_drvb
+Xcml_tlatch_3 VDD stub_bi_4/INN stub_bi_4/INP CKA0_N CKA0_P stub_bi_5/INP stub_bi_5/INN
++ POLN VSS cml_tlatch
+Xcml_drvb_2 VDD GA0_P CKHA0_N CKHA0_P GA0_N VSS cml_drvb
+Xcml_tlatch_4 VDD MOT9_N MOT9_P CKHB1_N CKHB1_P B1_8_P B1_8_N POLN VSS cml_tlatch
+Xcml_drvb_3 VDD GA1_P CKHA1_N CKHA1_P GA1_N VSS cml_drvb
+Xcml_tlatch_5 VDD MOT11_N MOT11_P CKHB1_N CKHB1_P stub_bi_12/INP stub_bi_12/INN POLN
 + VSS cml_tlatch
-Xcml_drvb_3 VDD GA0_N GA0_P CKHA0_N CKHA0_P VSS cml_drvb
-Xcml_tlatch_5 VDD MOT13_P CKHB1_N CKHB1_P stub_bi_11/INP stub_bi_11/INN POLN MOT13_N
+Xcml_drvb_4 VDD GA2_P CKHA2_N CKHA2_P GA2_N VSS cml_drvb
+Xcml_tlatch_6 VDD MOT13_N MOT13_P CKHB1_N CKHB1_P stub_bi_14/INP stub_bi_14/INN POLN
 + VSS cml_tlatch
-Xcml_drvb_4 VDD GA3_N GA3_P CKHA3_N CKHA3_P VSS cml_drvb
-Xcml_tlatch_6 VDD MOT15_P CKHB1_N CKHB1_P B1_2_P B1_2_N POLN MOT15_N VSS cml_tlatch
-Xcml_drvb_5 VDD GA2_N GA2_P CKHA2_N CKHA2_P VSS cml_drvb
-Xcml_tlatch_7 VDD stub_bi_3/INP CKB0_P CKB0_N stub_bi_4/INP stub_bi_4/INN POLN stub_bi_3/INN
-+ VSS cml_tlatch
-Xcml_drvb_6 VDD GB3_N GB3_P CKHB3_N CKHB3_P VSS cml_drvb
-Xcml_tlatch_8 VDD stub_bi_4/INP CKB0_N CKB0_P stub_bi_5/INP stub_bi_5/INN POLN stub_bi_4/INN
-+ VSS cml_tlatch
-Xcml_drvb_7 VDD GB2_N GB2_P CKHB2_N CKHB2_P VSS cml_drvb
-Xcml_tlatch_9 VDD A0_8_P CKA0_P CKA0_N stub_bi_2/TOPN stub_bi_2/TOPP POLN A0_8_N VSS
-+ cml_tlatch
-Xcml_drvb_8 VDD J4_P J4_N NS1_N NS1_P VSS cml_drvb
+Xcml_drvb_5 VDD GA3_P CKHA3_N CKHA3_P GA3_N VSS cml_drvb
+Xcml_tlatch_7 VDD MOT15_N MOT15_P CKHB1_N CKHB1_P B1_2_P B1_2_N POLN VSS cml_tlatch
+Xcml_drvb_6 VDD GB3_P CKHB3_N CKHB3_P GB3_N VSS cml_drvb
+Xcml_tlatch_8 VDD stub_bi_5/INN stub_bi_5/INP CKA0_P CKA0_N stub_bi_6/INP stub_bi_6/INN
++ POLN VSS cml_tlatch
+Xcml_drvb_7 VDD GB2_P CKHB2_N CKHB2_P GB2_N VSS cml_drvb
+Xcml_tlatch_9 VDD stub_bi_6/INN stub_bi_6/INP CKA0_N CKA0_P stub_bi_7/INP stub_bi_7/INN
++ POLN VSS cml_tlatch
+Xcml_drvb_8 VDD J4_N NS1_N NS1_P J4_P VSS cml_drvb
 Xhs_to_clk_0 VDD CK_N CK_P CKA0_N CKA0_P POLN VSS hs_to_clk
-Xcml_drvb_9 VDD CLK_W_N CLK_W_P NM1_N NM1_P VSS cml_drvb
+Xcml_drvb_9 VDD CLK_W_P NM1_N NM1_P CLK_W_N VSS cml_drvb
 Xhs_to_clk_1 VDD CK_P CK_N CKB0_N CKB0_P POLN VSS hs_to_clk
 Xcml_gate2_0 VDD ENB1_N ENB1_P GB1_N GB1_P CKA1_N CKA1_P VSS cml_gate2
 Xhs_to_clk_2 VDD CK_P CK_N CKB1_N CKB1_P POLN VSS hs_to_clk
 Xcml_gate2_1 VDD ENB1_N ENB1_P GB0_N GB0_P CKA0_N CKA0_P VSS cml_gate2
 Xhs_to_clk_3 VDD CK_N CK_P CKA1_N CKA1_P POLN VSS hs_to_clk
-Xcml_gate2_2 VDD ENA0_N ENA0_P GA1_N GA1_P CKB1_N CKB1_P VSS cml_gate2
-Xhs_to_clk_4 VDD CK_P CK_N CKB2_N CKB2_P POLN VSS hs_to_clk
-Xcml_gate2_3 VDD ENA0_N ENA0_P GA0_N GA0_P CKB0_N CKB0_P VSS cml_gate2
+Xcml_gate2_2 VDD ENA0_N ENA0_P GA0_N GA0_P CKB0_N CKB0_P VSS cml_gate2
+Xhs_to_clk_4 VDD CK_N CK_P CKA2_N CKA2_P POLN VSS hs_to_clk
+Xcml_gate2_3 VDD ENA0_N ENA0_P GA1_N GA1_P CKB1_N CKB1_P VSS cml_gate2
 Xhs_to_clk_5 VDD CK_P CK_N CKB3_N CKB3_P POLN VSS hs_to_clk
-Xcml_gate2_4 VDD ENA1_N ENA1_P GA3_N GA3_P CKB3_N CKB3_P VSS cml_gate2
-Xhs_to_clk_6 VDD CK_N CK_P CKA3_N CKA3_P POLN VSS hs_to_clk
-Xcml_gate2_5 VDD ENA1_N ENA1_P GA2_N GA2_P CKB2_N CKB2_P VSS cml_gate2
-Xhs_to_clk_7 VDD CK_N CK_P CKA2_N CKA2_P POLN VSS hs_to_clk
+Xcml_gate2_4 VDD ENA1_N ENA1_P GA2_N GA2_P CKB2_N CKB2_P VSS cml_gate2
+Xhs_to_clk_6 VDD CK_P CK_N CKB2_N CKB2_P POLN VSS hs_to_clk
+Xcml_gate2_5 VDD ENA1_N ENA1_P GA3_N GA3_P CKB3_N CKB3_P VSS cml_gate2
+Xhs_to_clk_7 VDD CK_N CK_P CKA3_N CKA3_P POLN VSS hs_to_clk
 Xcml_gate2_6 VDD ENB0_N ENB0_P GB3_N GB3_P CKA3_N CKA3_P VSS cml_gate2
-Xcml_gate2_7 VDD ENB0_N ENB0_P GB2_N GB2_P CKA2_N CKA2_P VSS cml_gate2
 Xhs_to_clk_8 VDD CK_N CK_P CKJ_N CKJ_P POLN VSS hs_to_clk
+Xcml_gate2_7 VDD ENB0_N ENB0_P GB2_N GB2_P CKA2_N CKA2_P VSS cml_gate2
 Xcml_gate2_8 VDD J2_N J2_P ENB_N ENB_P NS1_N NS1_P VSS cml_gate2
 Xcml_drv_0 VDD ENB_N ENB_P ENB1_N ENB1_P VSS cml_drv
 Xcml_gate2_9 VDD J1_N J1_P ENA_N ENA_P NM1_N NM1_P VSS cml_gate2
 Xcml_drv_1 VDD ENA_N ENA_P ENA1_N ENA1_P VSS cml_drv
 Xcml_drv_2 VDD ENB_N ENB_P ENB0_N ENB0_P VSS cml_drv
-Xcml_tlatch_90 VDD stub_bi_60/INP CKB2_P CKB2_N stub_bi_32/INP stub_bi_32/INN POLN
-+ stub_bi_60/INN VSS cml_tlatch
+Xcml_tlatch_90 VDD J4_N J4_P CKJ_P CKJ_N CLK_W_N CLK_W_P POLN VSS cml_tlatch
 Xcml_drv_3 VDD ENA_N ENA_P ENA0_N ENA0_P VSS cml_drv
-Xcml_tlatch_80 VDD MOT23_P CKHB2_N CKHB2_P B2_2_P B2_2_N POLN MOT23_N VSS cml_tlatch
-Xcml_tlatch_91 VDD stub_bi_55/INP CKA2_P CKA2_N stub_bi_38/INP stub_bi_38/INN POLN
-+ stub_bi_55/INN VSS cml_tlatch
-Xcml_tlatch_70 VDD stub_bi_52/INP CKA3_P CKA3_N stub_bi_53/INP stub_bi_53/INN POLN
-+ stub_bi_52/INN VSS cml_tlatch
-Xcml_tlatch_81 VDD B2_8_P CKB2_P CKB2_N stub_bi_57/INP stub_bi_57/INN POLN B2_8_N
+Xcml_tlatch_91 VDD CLK_W_P CLK_W_N CKJ_N CKJ_P J2_P J2_N POLN VSS cml_tlatch
+Xcml_tlatch_80 VDD stub_bi_59/INN stub_bi_59/INP CKB2_N CKB2_P stub_bi_60/INP stub_bi_60/INN
++ POLN VSS cml_tlatch
+Xcml_tlatch_92 VDD J2_N J2_P CKJ_P CKJ_N J1_P J1_N POLN VSS cml_tlatch
+Xcml_tlatch_81 VDD A2_8_N A2_8_P CKA2_P CKA2_N stub_bi_62/INP stub_bi_62/INN POLN
 + VSS cml_tlatch
-Xcml_tlatch_92 VDD J4_P CKJ_P CKJ_N CLK_W_N CLK_W_P POLN J4_N VSS cml_tlatch
-Xcml_tlatch_71 VDD stub_bi_53/INP CKA3_N CKA3_P stub_bi_54/INP stub_bi_54/INN POLN
-+ stub_bi_53/INN VSS cml_tlatch
-Xcml_tlatch_82 VDD stub_bi_57/INP CKB2_N CKB2_P stub_bi_58/INP stub_bi_58/INN POLN
-+ stub_bi_57/INN VSS cml_tlatch
-Xcml_tlatch_60 VDD A2_2_P CKA2_P CKA2_N stub_bi_43/INP stub_bi_43/INN POLN A2_2_N
+Xcml_tlatch_70 VDD MOT29_N MOT29_P CKHB3_N CKHB3_P stub_bi_48/INP stub_bi_48/INN POLN
 + VSS cml_tlatch
-Xcml_tlatch_93 VDD CLK_W_N CKJ_N CKJ_P J2_P J2_N POLN CLK_W_P VSS cml_tlatch
-Xcml_tlatch_50 VDD B3_2_P CKB3_P CKB3_N stub_bi_37/INP stub_bi_37/INN POLN B3_2_N
+Xcml_tlatch_60 VDD B3_8_N B3_8_P CKB3_P CKB3_N stub_bi_45/INP stub_bi_45/INN POLN
 + VSS cml_tlatch
-Xcml_tlatch_72 VDD MOT25_P CKHB3_N CKHB3_P B3_8_P B3_8_N POLN MOT25_N VSS cml_tlatch
-Xcml_tlatch_83 VDD stub_bi_58/INP CKB2_P CKB2_N stub_bi_59/INP stub_bi_59/INN POLN
-+ stub_bi_58/INN VSS cml_tlatch
-Xcml_tlatch_61 VDD stub_bi_43/INP CKA2_N CKA2_P D2_P D2_N POLN stub_bi_43/INN VSS
+Xcml_tlatch_93 VDD J1_N J1_P CKJ_N CKJ_P J4_N J4_P POLN VSS cml_tlatch
+Xcml_tlatch_82 VDD stub_bi_62/INN stub_bi_62/INP CKA2_N CKA2_P stub_bi_63/INP stub_bi_63/INN
++ POLN VSS cml_tlatch
+Xcml_tlatch_71 VDD MOT31_N MOT31_P CKHB3_N CKHB3_P B3_2_P B3_2_N POLN VSS cml_tlatch
+Xcml_tlatch_94 VDD stub_bi_14/INN stub_bi_14/INP CKB1_P CKB1_N stub_bi_26/INP stub_bi_26/INN
++ POLN VSS cml_tlatch
+Xcml_tlatch_83 VDD stub_bi_63/INN stub_bi_63/INP CKA2_P CKA2_N stub_bi_49/INP stub_bi_49/INN
++ POLN VSS cml_tlatch
+Xcml_tlatch_72 VDD stub_bi_49/INN stub_bi_49/INP CKA2_N CKA2_P stub_bi_55/INP stub_bi_55/INN
++ POLN VSS cml_tlatch
+Xcml_tlatch_50 VDD MOT20_N MOT20_P CKHA2_N CKHA2_P stub_bi_55/INP stub_bi_55/INN POLN
++ VSS cml_tlatch
+Xcml_tlatch_61 VDD stub_bi_45/INN stub_bi_45/INP CKB3_N CKB3_P stub_bi_46/INP stub_bi_46/INN
++ POLN VSS cml_tlatch
+Xcml_tlatch_40 VDD MOT12_N MOT12_P CKHA1_N CKHA1_P stub_bi_0/INP stub_bi_0/INN POLN
++ VSS cml_tlatch
+Xcml_tlatch_51 VDD MOT22_N MOT22_P CKHA2_N CKHA2_P A2_2_P A2_2_N POLN VSS cml_tlatch
+Xcml_tlatch_62 VDD stub_bi_46/INN stub_bi_46/INP CKB3_P CKB3_N stub_bi_47/INP stub_bi_47/INN
++ POLN VSS cml_tlatch
+Xcml_tlatch_95 VDD stub_bi_0/INN stub_bi_0/INP CKA1_P CKA1_N stub_bi_29/INP stub_bi_29/INN
++ POLN VSS cml_tlatch
+Xcml_tlatch_73 VDD MOT17_N MOT17_P CKHB2_N CKHB2_P B2_8_P B2_8_N POLN VSS cml_tlatch
+Xcml_tlatch_84 VDD stub_bi_48/INN stub_bi_48/INP CKB3_P CKB3_N stub_bi_35/INP stub_bi_35/INN
++ POLN VSS cml_tlatch
+Xcml_tlatch_30 VDD stub_bi_23/INN stub_bi_23/INP CKA0_N CKA0_P A0_2_P A0_2_N POLN
++ VSS cml_tlatch
+Xcml_tlatch_41 VDD MOT14_N MOT14_P CKHA1_N CKHA1_P A1_2_P A1_2_N POLN VSS cml_tlatch
+Xcml_tlatch_96 VDD MOT8_N MOT8_P CKHA1_N CKHA1_P A1_8_P A1_8_N POLN VSS cml_tlatch
+Xcml_tlatch_74 VDD MOT19_N MOT19_P CKHB2_N CKHB2_P stub_bi_58/INP stub_bi_58/INN POLN
++ VSS cml_tlatch
+Xcml_tlatch_52 VDD stub_bi_39/INN stub_bi_39/INP CKA3_N CKA3_P A3_2_P A3_2_N POLN
++ VSS cml_tlatch
+Xcml_tlatch_85 VDD stub_bi_54/INN stub_bi_54/INP CKA3_P CKA3_N stub_bi_39/INP stub_bi_39/INN
++ POLN VSS cml_tlatch
+Xcml_tlatch_63 VDD stub_bi_47/INN stub_bi_47/INP CKB3_N CKB3_P stub_bi_48/INP stub_bi_48/INN
++ POLN VSS cml_tlatch
+Xcml_tlatch_64 VDD A3_8_N A3_8_P CKA3_P CKA3_N stub_bi_51/INP stub_bi_51/INN POLN
++ VSS cml_tlatch
+Xcml_tlatch_20 VDD MOT7_N MOT7_P CKHB0_N CKHB0_P B0_2_P B0_2_N POLN VSS cml_tlatch
+Xcml_tlatch_97 VDD MOT0_N MOT0_P CKHA0_N CKHA0_P A0_8_P A0_8_N POLN VSS cml_tlatch
+Xcml_tlatch_31 VDD A0_2_N A0_2_P CKA0_P CKA0_N stub_bi_25/INP stub_bi_25/INN POLN
++ VSS cml_tlatch
+Xcml_tlatch_42 VDD stub_bi_32/INN stub_bi_32/INP CKA2_N CKA2_P D2_P D2_N POLN VSS
 + cml_tlatch
-Xcml_tlatch_94 VDD J2_P CKJ_P CKJ_N J1_P J1_N POLN J2_N VSS cml_tlatch
-Xcml_tlatch_51 VDD stub_bi_37/INP CKB3_N CKB3_P D3_P D3_N POLN stub_bi_37/INN VSS
+Xcml_tlatch_75 VDD MOT21_N MOT21_P CKHB2_N CKHB2_P stub_bi_60/INP stub_bi_60/INN POLN
++ VSS cml_tlatch
+Xcml_tlatch_86 VDD MOT24_N MOT24_P CKHA3_N CKHA3_P A3_8_P A3_8_N POLN VSS cml_tlatch
+Xcml_tlatch_53 VDD A3_2_N A3_2_P CKA3_P CKA3_N stub_bi_41/INP stub_bi_41/INN POLN
++ VSS cml_tlatch
+Xcml_tlatch_65 VDD stub_bi_51/INN stub_bi_51/INP CKA3_N CKA3_P stub_bi_52/INP stub_bi_52/INN
++ POLN VSS cml_tlatch
+Xcml_tlatch_10 VDD B0_8_N B0_8_P CKB0_P CKB0_N stub_bi_9/INP stub_bi_9/INN POLN VSS
 + cml_tlatch
-Xcml_tlatch_73 VDD MOT27_P CKHB3_N CKHB3_P stub_bi_46/INP stub_bi_46/INN POLN MOT27_N
+Xcml_tlatch_98 VDD stub_bi_2/INN stub_bi_2/INP CKB0_P CKB0_N stub_bi_20/INP stub_bi_20/INN
++ POLN VSS cml_tlatch
+Xcml_tlatch_21 VDD A1_8_N A1_8_P CKA1_P CKA1_N stub_bi_17/INP stub_bi_17/INN POLN
 + VSS cml_tlatch
-Xcml_tlatch_62 VDD MOT24_P CKHA3_N CKHA3_P A3_8_P A3_8_N POLN MOT24_N VSS cml_tlatch
-Xcml_tlatch_84 VDD stub_bi_59/INP CKB2_N CKB2_P stub_bi_60/INP stub_bi_60/INN POLN
-+ stub_bi_59/INN VSS cml_tlatch
-Xcml_tlatch_95 VDD J1_P CKJ_N CKJ_P J4_N J4_P POLN J1_N VSS cml_tlatch
-Xcml_tlatch_40 VDD A1_2_P CKA1_P CKA1_N stub_bi_31/INP stub_bi_31/INN POLN A1_2_N
+Xcml_tlatch_32 VDD stub_bi_26/INN stub_bi_26/INP CKB1_N CKB1_P B1_2_P B1_2_N POLN
 + VSS cml_tlatch
-Xcml_tlatch_74 VDD MOT29_P CKHB3_N CKHB3_P stub_bi_48/INP stub_bi_48/INN POLN MOT29_N
+Xcml_tlatch_43 VDD stub_bi_33/INN stub_bi_33/INP CKB2_N CKB2_P B2_2_P B2_2_N POLN
 + VSS cml_tlatch
-Xcml_tlatch_63 VDD MOT26_P CKHA3_N CKHA3_P stub_bi_52/INP stub_bi_52/INN POLN MOT26_N
-+ VSS cml_tlatch
-Xcml_tlatch_52 VDD MOT16_P CKHA2_N CKHA2_P A2_8_P A2_8_N POLN MOT16_N VSS cml_tlatch
-Xcml_tlatch_85 VDD A2_8_P CKA2_P CKA2_N stub_bi_62/INP stub_bi_62/INN POLN A2_8_N
-+ VSS cml_tlatch
-Xcml_tlatch_96 VDD stub_bi_11/INP CKB1_P CKB1_N stub_bi_26/INP stub_bi_26/INN POLN
-+ stub_bi_11/INN VSS cml_tlatch
-Xcml_tlatch_41 VDD stub_bi_31/INP CKA1_N CKA1_P D1_P D1_N POLN stub_bi_31/INN VSS
+Xcml_tlatch_87 VDD MOT16_N MOT16_P CKHA2_N CKHA2_P A2_8_P A2_8_N POLN VSS cml_tlatch
+Xcml_tlatch_76 VDD MOT23_N MOT23_P CKHB2_N CKHB2_P B2_2_P B2_2_N POLN VSS cml_tlatch
+Xcml_tlatch_54 VDD stub_bi_41/INN stub_bi_41/INP CKA3_N CKA3_P D3_P D3_N POLN VSS
 + cml_tlatch
-Xcml_tlatch_30 VDD stub_bi_20/INP CKB0_N CKB0_P B0_2_P B0_2_N POLN stub_bi_20/INN
+Xcml_tlatch_11 VDD stub_bi_9/INN stub_bi_9/INP CKB0_N CKB0_P stub_bi_5/TOPN stub_bi_5/TOPP
++ POLN VSS cml_tlatch
+Xcml_tlatch_99 VDD stub_bi_7/INN stub_bi_7/INP CKA0_P CKA0_N stub_bi_23/INP stub_bi_23/INN
++ POLN VSS cml_tlatch
+Xcml_tlatch_22 VDD stub_bi_17/INN stub_bi_17/INP CKA1_N CKA1_P stub_bi_18/INP stub_bi_18/INN
++ POLN VSS cml_tlatch
+Xcml_tlatch_33 VDD B1_2_N B1_2_P CKB1_P CKB1_N stub_bi_28/INP stub_bi_28/INN POLN
 + VSS cml_tlatch
-Xcml_tlatch_64 VDD B3_8_P CKB3_P CKB3_N stub_bi_45/INP stub_bi_45/INN POLN B3_8_N
+Xcml_tlatch_55 VDD stub_bi_42/INN stub_bi_42/INP CKA2_N CKA2_P A2_2_P A2_2_N POLN
 + VSS cml_tlatch
-Xcml_tlatch_75 VDD MOT31_P CKHB3_N CKHB3_P B3_2_P B3_2_N POLN MOT31_N VSS cml_tlatch
-Xcml_tlatch_53 VDD MOT18_P CKHA2_N CKHA2_P stub_bi_63/INP stub_bi_63/INN POLN MOT18_N
+Xcml_tlatch_44 VDD B2_2_N B2_2_P CKB2_P CKB2_N stub_bi_38/INP stub_bi_38/INN POLN
 + VSS cml_tlatch
-Xcml_tlatch_86 VDD stub_bi_62/INP CKA2_N CKA2_P stub_bi_63/INP stub_bi_63/INN POLN
-+ stub_bi_62/INN VSS cml_tlatch
-Xcml_tlatch_20 VDD stub_bi_8/TOPN CKA1_N CKA1_P stub_bi_9/TOPN stub_bi_9/TOPP POLN
-+ stub_bi_8/TOPP VSS cml_tlatch
-Xcml_tlatch_97 VDD stub_bi_18/INP CKA1_P CKA1_N stub_bi_29/INP stub_bi_29/INN POLN
-+ stub_bi_18/INN VSS cml_tlatch
-Xcml_tlatch_31 VDD B0_2_P CKB0_P CKB0_N stub_bi_22/INP stub_bi_22/INN POLN B0_2_N
+Xcml_tlatch_88 VDD stub_bi_60/INN stub_bi_60/INP CKB2_P CKB2_N stub_bi_33/INP stub_bi_33/INN
++ POLN VSS cml_tlatch
+Xcml_tlatch_77 VDD B2_8_N B2_8_P CKB2_P CKB2_N stub_bi_57/INP stub_bi_57/INN POLN
 + VSS cml_tlatch
-Xcml_tlatch_42 VDD MOT8_P CKHA1_N CKHA1_P A1_8_P A1_8_N POLN MOT8_N VSS cml_tlatch
-Xcml_tlatch_65 VDD stub_bi_45/INP CKB3_N CKB3_P stub_bi_46/INP stub_bi_46/INN POLN
-+ stub_bi_45/INN VSS cml_tlatch
-Xcml_tlatch_54 VDD MOT20_P CKHA2_N CKHA2_P stub_bi_55/INP stub_bi_55/INN POLN MOT20_N
-+ VSS cml_tlatch
-Xcml_tlatch_76 VDD stub_bi_49/INP CKA2_N CKA2_P stub_bi_55/INP stub_bi_55/INN POLN
-+ stub_bi_49/INN VSS cml_tlatch
-Xcml_tlatch_87 VDD stub_bi_63/INP CKA2_P CKA2_N stub_bi_49/INP stub_bi_49/INN POLN
-+ stub_bi_63/INN VSS cml_tlatch
-Xcml_tlatch_10 VDD B1_8_P CKB1_P CKB1_N stub_bi_8/INP stub_bi_8/INN POLN B1_8_N VSS
+Xcml_tlatch_66 VDD stub_bi_52/INN stub_bi_52/INP CKA3_P CKA3_N stub_bi_53/INP stub_bi_53/INN
++ POLN VSS cml_tlatch
+Xcml_tlatch_23 VDD stub_bi_18/INN stub_bi_18/INP CKA1_P CKA1_N stub_bi_19/INP stub_bi_19/INN
++ POLN VSS cml_tlatch
+Xcml_tlatch_34 VDD stub_bi_28/INN stub_bi_28/INP CKB1_N CKB1_P D1_P D1_N POLN VSS
 + cml_tlatch
-Xcml_tlatch_21 VDD stub_bi_9/TOPN CKA1_P CKA1_N stub_bi_17/INP stub_bi_17/INN POLN
-+ stub_bi_9/TOPP VSS cml_tlatch
-Xcml_tlatch_32 VDD stub_bi_22/INP CKB0_N CKB0_P D0_P D0_N POLN stub_bi_22/INN VSS
+Xcml_tlatch_12 VDD B1_8_N B1_8_P CKB1_P CKB1_N stub_bi_11/INP stub_bi_11/INN POLN
++ VSS cml_tlatch
+Xcml_tlatch_56 VDD A2_2_N A2_2_P CKA2_P CKA2_N stub_bi_32/INP stub_bi_32/INN POLN
++ VSS cml_tlatch
+Xcml_tlatch_78 VDD stub_bi_57/INN stub_bi_57/INP CKB2_N CKB2_P stub_bi_58/INP stub_bi_58/INN
++ POLN VSS cml_tlatch
+Xcml_tlatch_45 VDD stub_bi_35/INN stub_bi_35/INP CKB3_N CKB3_P B3_2_P B3_2_N POLN
++ VSS cml_tlatch
+Xcml_tlatch_67 VDD stub_bi_53/INN stub_bi_53/INP CKA3_N CKA3_P stub_bi_54/INP stub_bi_54/INN
++ POLN VSS cml_tlatch
+Xcml_tlatch_89 VDD stub_bi_55/INN stub_bi_55/INP CKA2_P CKA2_N stub_bi_42/INP stub_bi_42/INN
++ POLN VSS cml_tlatch
+Xcml_tlatch_24 VDD MOT2_N MOT2_P CKHA0_N CKHA0_P stub_bi_5/INP stub_bi_5/INN POLN
++ VSS cml_tlatch
+Xcml_tlatch_35 VDD stub_bi_25/INN stub_bi_25/INP CKA0_N CKA0_P D0_P D0_N POLN VSS
 + cml_tlatch
-Xcml_tlatch_98 VDD stub_bi_5/INP CKB0_P CKB0_N stub_bi_20/INP stub_bi_20/INN POLN
-+ stub_bi_5/INN VSS cml_tlatch
-Xcml_tlatch_43 VDD MOT10_P CKHA1_N CKHA1_P stub_bi_9/TOPN stub_bi_9/TOPP POLN MOT10_N
+Xcml_tlatch_13 VDD stub_bi_11/INN stub_bi_11/INP CKB1_N CKB1_P stub_bi_12/INP stub_bi_12/INN
++ POLN VSS cml_tlatch
+Xcml_tlatch_79 VDD stub_bi_58/INN stub_bi_58/INP CKB2_P CKB2_N stub_bi_59/INP stub_bi_59/INN
++ POLN VSS cml_tlatch
+Xcml_tlatch_57 VDD MOT26_N MOT26_P CKHA3_N CKHA3_P stub_bi_52/INP stub_bi_52/INN POLN
 + VSS cml_tlatch
-Xcml_tlatch_66 VDD stub_bi_46/INP CKB3_P CKB3_N stub_bi_47/INP stub_bi_47/INN POLN
-+ stub_bi_46/INN VSS cml_tlatch
-Xcml_tlatch_88 VDD stub_bi_48/INP CKB3_P CKB3_N stub_bi_35/INP stub_bi_35/INN POLN
-+ stub_bi_48/INN VSS cml_tlatch
-Xcml_tlatch_44 VDD MOT28_P CKHA3_N CKHA3_P stub_bi_54/INP stub_bi_54/INN POLN MOT28_N
+Xcml_tlatch_68 VDD MOT25_N MOT25_P CKHB3_N CKHB3_P B3_8_P B3_8_N POLN VSS cml_tlatch
+Xcml_tlatch_46 VDD B3_2_N B3_2_P CKB3_P CKB3_N stub_bi_37/INP stub_bi_37/INN POLN
 + VSS cml_tlatch
-Xcml_tlatch_77 VDD MOT17_P CKHB2_N CKHB2_P B2_8_P B2_8_N POLN MOT17_N VSS cml_tlatch
-Xcml_tlatch_55 VDD MOT22_P CKHA2_N CKHA2_P A2_2_P A2_2_N POLN MOT22_N VSS cml_tlatch
-Xcml_tlatch_11 VDD stub_bi_8/INP CKB1_N CKB1_P stub_bi_9/INP stub_bi_9/INN POLN stub_bi_8/INN
+Xcml_tlatch_25 VDD MOT4_N MOT4_P CKHA0_N CKHA0_P stub_bi_7/INP stub_bi_7/INN POLN
 + VSS cml_tlatch
-Xcml_tlatch_22 VDD stub_bi_17/INP CKA1_N CKA1_P stub_bi_18/INP stub_bi_18/INN POLN
-+ stub_bi_17/INN VSS cml_tlatch
-Xcml_tlatch_33 VDD stub_bi_23/INP CKA0_N CKA0_P A0_2_P A0_2_N POLN stub_bi_23/INN
+Xcml_tlatch_36 VDD stub_bi_29/INN stub_bi_29/INP CKA1_N CKA1_P A1_2_P A1_2_N POLN
 + VSS cml_tlatch
-Xcml_tlatch_99 VDD stub_bi_0/INP CKA0_P CKA0_N stub_bi_23/INP stub_bi_23/INN POLN
-+ stub_bi_0/INN VSS cml_tlatch
-Xcml_tlatch_67 VDD stub_bi_47/INP CKB3_N CKB3_P stub_bi_48/INP stub_bi_48/INN POLN
-+ stub_bi_47/INN VSS cml_tlatch
-Xcml_tlatch_89 VDD stub_bi_54/INP CKA3_P CKA3_N stub_bi_39/INP stub_bi_39/INN POLN
-+ stub_bi_54/INN VSS cml_tlatch
-Xcml_tlatch_56 VDD stub_bi_39/INP CKA3_N CKA3_P A3_2_P A3_2_N POLN stub_bi_39/INN
+Xcml_tlatch_14 VDD stub_bi_12/INN stub_bi_12/INP CKB1_P CKB1_N stub_bi_13/INP stub_bi_13/INN
++ POLN VSS cml_tlatch
+Xcml_tlatch_58 VDD MOT28_N MOT28_P CKHA3_N CKHA3_P stub_bi_54/INP stub_bi_54/INN POLN
 + VSS cml_tlatch
-Xcml_tlatch_45 VDD MOT30_P CKHA3_N CKHA3_P A3_2_P A3_2_N POLN MOT30_N VSS cml_tlatch
-Xcml_tlatch_78 VDD MOT19_P CKHB2_N CKHB2_P stub_bi_58/INP stub_bi_58/INN POLN MOT19_N
+Xcml_tlatch_69 VDD MOT27_N MOT27_P CKHB3_N CKHB3_P stub_bi_46/INP stub_bi_46/INN POLN
 + VSS cml_tlatch
-Xcml_tlatch_12 VDD stub_bi_9/INP CKB1_P CKB1_N stub_bi_10/INP stub_bi_10/INN POLN
-+ stub_bi_9/INN VSS cml_tlatch
-Xcml_tlatch_34 VDD A0_2_P CKA0_P CKA0_N stub_bi_25/INP stub_bi_25/INN POLN A0_2_N
-+ VSS cml_tlatch
-Xcml_tlatch_23 VDD stub_bi_3/TOPN CKA0_P CKA0_N stub_bi_4/TOPN stub_bi_4/TOPP POLN
-+ stub_bi_3/TOPP VSS cml_tlatch
-Xcml_tlatch_68 VDD A3_8_P CKA3_P CKA3_N stub_bi_51/INP stub_bi_51/INN POLN A3_8_N
-+ VSS cml_tlatch
-Xcml_tlatch_57 VDD A3_2_P CKA3_P CKA3_N stub_bi_41/INP stub_bi_41/INN POLN A3_2_N
-+ VSS cml_tlatch
-Xcml_tlatch_79 VDD MOT21_P CKHB2_N CKHB2_P stub_bi_60/INP stub_bi_60/INN POLN MOT21_N
-+ VSS cml_tlatch
-Xcml_tlatch_46 VDD stub_bi_32/INP CKB2_N CKB2_P B2_2_P B2_2_N POLN stub_bi_32/INN
-+ VSS cml_tlatch
-Xcml_tlatch_13 VDD stub_bi_10/INP CKB1_N CKB1_P stub_bi_11/INP stub_bi_11/INN POLN
-+ stub_bi_10/INN VSS cml_tlatch
-Xcml_tlatch_35 VDD stub_bi_26/INP CKB1_N CKB1_P B1_2_P B1_2_N POLN stub_bi_26/INN
-+ VSS cml_tlatch
-Xcml_tlatch_24 VDD MOT12_P CKHA1_N CKHA1_P stub_bi_18/INP stub_bi_18/INN POLN MOT12_N
-+ VSS cml_tlatch
-Xcml_tlatch_69 VDD stub_bi_51/INP CKA3_N CKA3_P stub_bi_52/INP stub_bi_52/INN POLN
-+ stub_bi_51/INN VSS cml_tlatch
-Xcml_tlatch_58 VDD stub_bi_41/INP CKA3_N CKA3_P D3_P D3_N POLN stub_bi_41/INN VSS
+Xcml_tlatch_47 VDD stub_bi_37/INN stub_bi_37/INP CKB3_N CKB3_P D3_P D3_N POLN VSS
 + cml_tlatch
-Xcml_tlatch_47 VDD B2_2_P CKB2_P CKB2_N stub_bi_34/INP stub_bi_34/INN POLN B2_2_N
+Xcml_tlatch_26 VDD MOT6_N MOT6_P CKHA0_N CKHA0_P A0_2_P A0_2_N POLN VSS cml_tlatch
+Xcml_tlatch_37 VDD A1_2_N A1_2_P CKA1_P CKA1_N stub_bi_31/INP stub_bi_31/INN POLN
 + VSS cml_tlatch
-Xcml_tlatch_36 VDD B1_2_P CKB1_P CKB1_N stub_bi_28/INP stub_bi_28/INN POLN B1_2_N
-+ VSS cml_tlatch
-Xcml_tlatch_14 VDD MOT1_P CKHB0_N CKHB0_P B0_8_P B0_8_N POLN MOT1_N VSS cml_tlatch
-Xcml_tlatch_25 VDD MOT14_P CKHA1_N CKHA1_P A1_2_P A1_2_N POLN MOT14_N VSS cml_tlatch
-Xcml_tlatch_48 VDD stub_bi_34/INP CKB2_N CKB2_P D2_P D2_N POLN stub_bi_34/INN VSS
+Xcml_tlatch_15 VDD stub_bi_13/INN stub_bi_13/INP CKB1_N CKB1_P stub_bi_14/INP stub_bi_14/INN
++ POLN VSS cml_tlatch
+Xcml_tlatch_48 VDD stub_bi_38/INN stub_bi_38/INP CKB2_N CKB2_P D2_P D2_N POLN VSS
 + cml_tlatch
-Xcml_tlatch_59 VDD stub_bi_38/INP CKA2_N CKA2_P A2_2_P A2_2_N POLN stub_bi_38/INN
+Xcml_tlatch_59 VDD MOT30_N MOT30_P CKHA3_N CKHA3_P A3_2_P A3_2_N POLN VSS cml_tlatch
+Xcml_tlatch_16 VDD stub_bi_5/TOPP stub_bi_5/TOPN CKB0_P CKB0_N stub_bi_1/INP stub_bi_1/INN
++ POLN VSS cml_tlatch
+Xcml_tlatch_27 VDD stub_bi_20/INN stub_bi_20/INP CKB0_N CKB0_P B0_2_P B0_2_N POLN
 + VSS cml_tlatch
-Xcml_tlatch_37 VDD stub_bi_28/INP CKB1_N CKB1_P D1_P D1_N POLN stub_bi_28/INN VSS
+Xcml_tlatch_38 VDD stub_bi_31/INN stub_bi_31/INP CKA1_N CKA1_P D1_P D1_N POLN VSS
 + cml_tlatch
-Xcml_tlatch_26 VDD MOT0_P CKHA0_N CKHA0_P A0_8_P A0_8_N POLN MOT0_N VSS cml_tlatch
-Xcml_tlatch_15 VDD MOT3_P CKHB0_N CKHB0_P stub_bi_3/INP stub_bi_3/INN POLN MOT3_N
+Xcml_tlatch_49 VDD MOT18_N MOT18_P CKHA2_N CKHA2_P stub_bi_63/INP stub_bi_63/INN POLN
 + VSS cml_tlatch
-Xcml_tlatch_49 VDD stub_bi_35/INP CKB3_N CKB3_P B3_2_P B3_2_N POLN stub_bi_35/INN
+Xcml_tlatch_0 VDD stub_bi_19/INN stub_bi_19/INP CKA1_N CKA1_P stub_bi_0/INP stub_bi_0/INN
++ POLN VSS cml_tlatch
+Xcml_tlatch_17 VDD MOT1_N MOT1_P CKHB0_N CKHB0_P B0_8_P B0_8_N POLN VSS cml_tlatch
+Xcml_tlatch_28 VDD B0_2_N B0_2_P CKB0_P CKB0_N stub_bi_22/INP stub_bi_22/INN POLN
 + VSS cml_tlatch
-Xcml_tlatch_38 VDD stub_bi_25/INP CKA0_N CKA0_P D0_P D0_N POLN stub_bi_25/INN VSS
+Xcml_tlatch_39 VDD MOT10_N MOT10_P CKHA1_N CKHA1_P stub_bi_18/INP stub_bi_18/INN POLN
++ VSS cml_tlatch
+Xcml_tlatch_1 VDD stub_bi_1/INN stub_bi_1/INP CKB0_N CKB0_P stub_bi_2/INP stub_bi_2/INN
++ POLN VSS cml_tlatch
+Xcml_tlatch_18 VDD MOT3_N MOT3_P CKHB0_N CKHB0_P stub_bi_5/TOPN stub_bi_5/TOPP POLN
++ VSS cml_tlatch
+Xcml_tlatch_29 VDD stub_bi_22/INN stub_bi_22/INP CKB0_N CKB0_P D0_P D0_N POLN VSS
 + cml_tlatch
-Xcml_tlatch_27 VDD MOT2_P CKHA0_N CKHA0_P stub_bi_3/TOPN stub_bi_3/TOPP POLN MOT2_N
-+ VSS cml_tlatch
-Xcml_tlatch_16 VDD MOT5_P CKHB0_N CKHB0_P stub_bi_5/INP stub_bi_5/INN POLN MOT5_N
-+ VSS cml_tlatch
-Xcml_tlatch_0 VDD stub_bi_4/TOPN CKA0_N CKA0_P stub_bi_0/INP stub_bi_0/INN POLN stub_bi_4/TOPP
-+ VSS cml_tlatch
-Xcml_tlatch_39 VDD stub_bi_29/INP CKA1_N CKA1_P A1_2_P A1_2_N POLN stub_bi_29/INN
-+ VSS cml_tlatch
-Xcml_tlatch_28 VDD MOT4_P CKHA0_N CKHA0_P stub_bi_0/INP stub_bi_0/INN POLN MOT4_N
-+ VSS cml_tlatch
-Xcml_tlatch_17 VDD MOT7_P CKHB0_N CKHB0_P B0_2_P B0_2_N POLN MOT7_N VSS cml_tlatch
-Xcml_tlatch_1 VDD B0_8_P CKB0_P CKB0_N stub_bi_2/INP stub_bi_2/INN POLN B0_8_N VSS
+Xcml_drvb_0 VDD GB1_P CKHB1_N CKHB1_P GB1_N VSS cml_drvb
+Xcml_tlatch_2 VDD A0_8_N A0_8_P CKA0_P CKA0_N stub_bi_4/INP stub_bi_4/INN POLN VSS
 + cml_tlatch
-Xcml_tlatch_18 VDD stub_bi_2/TOPN CKA0_N CKA0_P stub_bi_3/TOPN stub_bi_3/TOPP POLN
-+ stub_bi_2/TOPP VSS cml_tlatch
-Xcml_tlatch_29 VDD MOT6_P CKHA0_N CKHA0_P A0_2_P A0_2_N POLN MOT6_N VSS cml_tlatch
-Xcml_drvb_0 VDD GB1_N GB1_P CKHB1_N CKHB1_P VSS cml_drvb
-Xcml_tlatch_2 VDD stub_bi_2/INP CKB0_N CKB0_P stub_bi_3/INP stub_bi_3/INN POLN stub_bi_2/INN
-+ VSS cml_tlatch
 .ends
 

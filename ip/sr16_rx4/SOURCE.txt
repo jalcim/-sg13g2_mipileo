@@ -1,10 +1,11 @@
-# Vues importees telles quelles, aucune modification locale.
+# Vues importees telles quelles, aucune modification locale (sauf HDL/sr16_rx4_bb.v, genere depuis le LEF).
 depot gitlab.com/nebula_microsystems/mipi
-commit a0f94510f346604d96d90bcc2b1fa6bb52e3d848
+commit 7ed5d558da04bc5505b7cfce2e4e0b0279157f22
 chemin 3_digital/CML_SR/SR16_RX4/COLLATERALS
-96322f17a13b2d9d86d3a7b642db5245  ./DEF/sr16_rx4.def
-cf150417b4fd543f9d2f4a094d319a20  ./GDS/sr16_rx4.gds
+286a6d5f7ef26d047af7e4d8c1149206  ./DEF/sr16_rx4.def
+ec7bfff98263d6b1794721388a747596  ./GDS/sr16_rx4.gds
 0c18a4337c5401bba69292f91553ac65  ./HDL/sr16_mot.vhd
-317b73d23517ad72c21c86d57c85c388  ./LEF/sr16_rx4.lef
-9e5cd670a24564607871c7a48d3850db  ./SPICE/sr16_rx4.hier.spice
-ceb872347224f0d6cdadf3eff36d1273  ./SPICE/sr16_rx4.spice
+174da7752b0d299de861018b42f3297c  ./HDL/sr16_rx4_bb.v
+1a5a06949228cdb6449f5fa4543c6ffd  ./LEF/sr16_rx4.lef
+a1ef07948c3332fd272d5a711a8c2e6f  ./SPICE/sr16_rx4.hier.spice
+86899f8106c82fdeee9364a0d583a3f2  ./SPICE/sr16_rx4.spice

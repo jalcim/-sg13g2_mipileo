@@ -5302,15 +5302,15 @@
    <comment />
    <image />
    <values>
-    <value>polygon: (-0.15,-1;-0.15,314.04;190.23,314.04;190.23,-1)</value>
+    <value>polygon: (-0.15,-1;-0.15,314.04;189.27,314.04;189.27,-1)</value>
     <value>text: 'Global Density Violation'</value>
-    <value>text: 'chip_bbox_um      : (-0.150,-1.000) - (190.230,314.040)'</value>
-    <value>text: 'chip_area_um2     : 59977.315'</value>
+    <value>text: 'chip_bbox_um      : (-0.150,-1.000) - (189.270,314.040)'</value>
+    <value>text: 'chip_area_um2     : 59674.877'</value>
     <value>text: 'layer_area_um2    : 7810.052'</value>
-    <value>text: 'ratio_percent     : 13.022'</value>
+    <value>text: 'ratio_percent     : 13.088'</value>
     <value>text: 'limit_percent     : 35.000 (min)'</value>
-    <value>text: 'gap_percent       : 21.978 (below limit)'</value>
-    <value>text: 'area_gap_um2      : 13182.008'</value>
+    <value>text: 'gap_percent       : 21.912 (below limit)'</value>
+    <value>text: 'area_gap_um2      : 13076.154'</value>
    </values>
   </item>
   <item>
@@ -5322,15 +5322,15 @@
    <comment />
    <image />
    <values>
-    <value>polygon: (-0.15,-1;-0.15,314.04;190.23,314.04;190.23,-1)</value>
+    <value>polygon: (-0.15,-1;-0.15,314.04;189.27,314.04;189.27,-1)</value>
     <value>text: 'Global Density Violation'</value>
-    <value>text: 'chip_bbox_um      : (-0.150,-1.000) - (190.230,314.040)'</value>
-    <value>text: 'chip_area_um2     : 59977.315'</value>
+    <value>text: 'chip_bbox_um      : (-0.150,-1.000) - (189.270,314.040)'</value>
+    <value>text: 'chip_area_um2     : 59674.877'</value>
     <value>text: 'layer_area_um2    : 4955.483'</value>
-    <value>text: 'ratio_percent     : 8.262'</value>
+    <value>text: 'ratio_percent     : 8.304'</value>
     <value>text: 'limit_percent     : 15.000 (min)'</value>
-    <value>text: 'gap_percent       : 6.738 (below limit)'</value>
-    <value>text: 'area_gap_um2      : 4041.114'</value>
+    <value>text: 'gap_percent       : 6.696 (below limit)'</value>
+    <value>text: 'area_gap_um2      : 3995.749'</value>
    </values>
   </item>
   <item>
@@ -5342,15 +5342,15 @@
    <comment />
    <image />
    <values>
-    <value>polygon: (-0.15,-1;-0.15,314.04;190.23,314.04;190.23,-1)</value>
+    <value>polygon: (-0.15,-1;-0.15,314.04;189.27,314.04;189.27,-1)</value>
     <value>text: 'Global Density Violation'</value>
-    <value>text: 'chip_bbox_um      : (-0.150,-1.000) - (190.230,314.040)'</value>
-    <value>text: 'chip_area_um2     : 59977.315'</value>
-    <value>text: 'layer_area_um2    : 11598.455'</value>
-    <value>text: 'ratio_percent     : 19.338'</value>
+    <value>text: 'chip_bbox_um      : (-0.150,-1.000) - (189.270,314.040)'</value>
+    <value>text: 'chip_area_um2     : 59674.877'</value>
+    <value>text: 'layer_area_um2    : 11560.571'</value>
+    <value>text: 'ratio_percent     : 19.373'</value>
     <value>text: 'limit_percent     : 35.000 (min)'</value>
-    <value>text: 'gap_percent       : 15.662 (below limit)'</value>
-    <value>text: 'area_gap_um2      : 9393.605'</value>
+    <value>text: 'gap_percent       : 15.627 (below limit)'</value>
+    <value>text: 'area_gap_um2      : 9325.636'</value>
    </values>
   </item>
   <item>
@@ -5362,15 +5362,15 @@
    <comment />
    <image />
    <values>
-    <value>polygon: (-0.15,-1;-0.15,314.04;190.23,314.04;190.23,-1)</value>
+    <value>polygon: (-0.15,-1;-0.15,314.04;189.27,314.04;189.27,-1)</value>
     <value>text: 'Global Density Violation'</value>
-    <value>text: 'chip_bbox_um      : (-0.150,-1.000) - (190.230,314.040)'</value>
-    <value>text: 'chip_area_um2     : 59977.315'</value>
-    <value>text: 'layer_area_um2    : 9734.780'</value>
-    <value>text: 'ratio_percent     : 16.231'</value>
+    <value>text: 'chip_bbox_um      : (-0.150,-1.000) - (189.270,314.040)'</value>
+    <value>text: 'chip_area_um2     : 59674.877'</value>
+    <value>text: 'layer_area_um2    : 10145.338'</value>
+    <value>text: 'ratio_percent     : 17.001'</value>
     <value>text: 'limit_percent     : 35.000 (min)'</value>
-    <value>text: 'gap_percent       : 18.769 (below limit)'</value>
-    <value>text: 'area_gap_um2      : 11257.280'</value>
+    <value>text: 'gap_percent       : 17.999 (below limit)'</value>
+    <value>text: 'area_gap_um2      : 10740.869'</value>
    </values>
   </item>
   <item>
@@ -5382,15 +5382,15 @@
    <comment />
    <image />
    <values>
-    <value>polygon: (-0.15,-1;-0.15,314.04;190.23,314.04;190.23,-1)</value>
+    <value>polygon: (-0.15,-1;-0.15,314.04;189.27,314.04;189.27,-1)</value>
     <value>text: 'Global Density Violation'</value>
-    <value>text: 'chip_bbox_um      : (-0.150,-1.000) - (190.230,314.040)'</value>
-    <value>text: 'chip_area_um2     : 59977.315'</value>
-    <value>text: 'layer_area_um2    : 5001.020'</value>
-    <value>text: 'ratio_percent     : 8.338'</value>
+    <value>text: 'chip_bbox_um      : (-0.150,-1.000) - (189.270,314.040)'</value>
+    <value>text: 'chip_area_um2     : 59674.877'</value>
+    <value>text: 'layer_area_um2    : 4848.405'</value>
+    <value>text: 'ratio_percent     : 8.125'</value>
     <value>text: 'limit_percent     : 35.000 (min)'</value>
-    <value>text: 'gap_percent       : 26.662 (below limit)'</value>
-    <value>text: 'area_gap_um2      : 15991.041'</value>
+    <value>text: 'gap_percent       : 26.875 (below limit)'</value>
+    <value>text: 'area_gap_um2      : 16037.802'</value>
    </values>
   </item>
   <item>
@@ -5402,15 +5402,15 @@
    <comment />
    <image />
    <values>
-    <value>polygon: (-0.15,-1;-0.15,314.04;190.23,314.04;190.23,-1)</value>
+    <value>polygon: (-0.15,-1;-0.15,314.04;189.27,314.04;189.27,-1)</value>
     <value>text: 'Global Density Violation'</value>
-    <value>text: 'chip_bbox_um      : (-0.150,-1.000) - (190.230,314.040)'</value>
-    <value>text: 'chip_area_um2     : 59977.315'</value>
-    <value>text: 'layer_area_um2    : 1159.482'</value>
-    <value>text: 'ratio_percent     : 1.933'</value>
+    <value>text: 'chip_bbox_um      : (-0.150,-1.000) - (189.270,314.040)'</value>
+    <value>text: 'chip_area_um2     : 59674.877'</value>
+    <value>text: 'layer_area_um2    : 1158.054'</value>
+    <value>text: 'ratio_percent     : 1.941'</value>
     <value>text: 'limit_percent     : 35.000 (min)'</value>
-    <value>text: 'gap_percent       : 33.067 (below limit)'</value>
-    <value>text: 'area_gap_um2      : 19832.579'</value>
+    <value>text: 'gap_percent       : 33.059 (below limit)'</value>
+    <value>text: 'area_gap_um2      : 19728.153'</value>
    </values>
   </item>
   <item>
@@ -5422,15 +5422,15 @@
    <comment />
    <image />
    <values>
-    <value>polygon: (-0.15,-1;-0.15,314.04;190.23,314.04;190.23,-1)</value>
+    <value>polygon: (-0.15,-1;-0.15,314.04;189.27,314.04;189.27,-1)</value>
     <value>text: 'Global Density Violation'</value>
-    <value>text: 'chip_bbox_um      : (-0.150,-1.000) - (190.230,314.040)'</value>
-    <value>text: 'chip_area_um2     : 59977.315'</value>
-    <value>text: 'layer_area_um2    : 1355.655'</value>
-    <value>text: 'ratio_percent     : 2.260'</value>
+    <value>text: 'chip_bbox_um      : (-0.150,-1.000) - (189.270,314.040)'</value>
+    <value>text: 'chip_area_um2     : 59674.877'</value>
+    <value>text: 'layer_area_um2    : 1289.926'</value>
+    <value>text: 'ratio_percent     : 2.162'</value>
     <value>text: 'limit_percent     : 35.000 (min)'</value>
-    <value>text: 'gap_percent       : 32.740 (below limit)'</value>
-    <value>text: 'area_gap_um2      : 19636.405'</value>
+    <value>text: 'gap_percent       : 32.838 (below limit)'</value>
+    <value>text: 'area_gap_um2      : 19596.280'</value>
    </values>
   </item>
   <item>
@@ -5442,15 +5442,15 @@
    <comment />
    <image />
    <values>
-    <value>polygon: (-0.15,-1;-0.15,314.04;190.23,314.04;190.23,-1)</value>
+    <value>polygon: (-0.15,-1;-0.15,314.04;189.27,314.04;189.27,-1)</value>
     <value>text: 'Global Density Violation'</value>
-    <value>text: 'chip_bbox_um      : (-0.150,-1.000) - (190.230,314.040)'</value>
-    <value>text: 'chip_area_um2     : 59977.315'</value>
+    <value>text: 'chip_bbox_um      : (-0.150,-1.000) - (189.270,314.040)'</value>
+    <value>text: 'chip_area_um2     : 59674.877'</value>
     <value>text: 'layer_area_um2    : 0.000'</value>
     <value>text: 'ratio_percent     : 0.000'</value>
     <value>text: 'limit_percent     : 25.000 (min)'</value>
     <value>text: 'gap_percent       : 25.000 (below limit)'</value>
-    <value>text: 'area_gap_um2      : 14994.329'</value>
+    <value>text: 'area_gap_um2      : 14918.719'</value>
    </values>
   </item>
   <item>
@@ -5462,15 +5462,15 @@
    <comment />
    <image />
    <values>
-    <value>polygon: (-0.15,-1;-0.15,314.04;190.23,314.04;190.23,-1)</value>
+    <value>polygon: (-0.15,-1;-0.15,314.04;189.27,314.04;189.27,-1)</value>
     <value>text: 'Global Density Violation'</value>
-    <value>text: 'chip_bbox_um      : (-0.150,-1.000) - (190.230,314.040)'</value>
-    <value>text: 'chip_area_um2     : 59977.315'</value>
+    <value>text: 'chip_bbox_um      : (-0.150,-1.000) - (189.270,314.040)'</value>
+    <value>text: 'chip_area_um2     : 59674.877'</value>
     <value>text: 'layer_area_um2    : 0.000'</value>
     <value>text: 'ratio_percent     : 0.000'</value>
     <value>text: 'limit_percent     : 25.000 (min)'</value>
     <value>text: 'gap_percent       : 25.000 (below limit)'</value>
-    <value>text: 'area_gap_um2      : 14994.329'</value>
+    <value>text: 'area_gap_um2      : 14918.719'</value>
    </values>
   </item>
  </items>

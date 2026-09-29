@@ -150,3 +150,53 @@ python3.13 $PDK_ROOT/$PDK/libs.tech/klayout/tech/drc/run_drc.py --path <gds> --r
 make tb MACRO=CML_SR/SR16_RX4 FIN=1e9 ; make tb MACRO=CML_SR/SR16_RX4 FIN=2.5e9
 ```
 Le GDS `../GDS/sr16_rx4.gds` est ignoré par `.gitignore` (`*.gds`) : à ajouter avec `git add -f`, comme celui de SR16_RX.
+
+## Régénération du 29/09 après fusion ANALOG_DESIGN
+Après la fusion af2d308e (layouts de Yann, fe70f9b8 : `cml_gate2` 23,04 -> 12,48 µm, `cml_drvb` 11,52 -> 8,16 µm,
+`cml_tlatch` au même cadre, bornes et ligne POLN, mais quatre colonnes Metal2 / Via1 VSS à 0,66 µm de son bord VSS ;
+`cml_drvb` sans rien hors cadre mais Via1 / Metal2 VSS à 0,25 / 0,195 µm de son bord VSS).
+- `../../SR16_RX4.py` modifié (routeur et `outils_caelum.py` inchangés). Sans retouche : 1er essai, routage en échec
+  (« liaison A2_2_N : aucune piste libre », le routeur glouton est sensible aux positions), et coutures VSS en faute
+  (Via1 du drvb sur ceux des doigts du hs_to_clk d'en face : V1 non carrés ; colonnes du latch à 0,04 µm des doigts
+  de XCKJ : M2). Corrections, même fonction et mêmes liaisons (118, même ordre) :
+  - vides en tête de rangée (`VIDES_TENUE` 9, `VIDES_MILIEU` 6, `VIDES_D` 6, `VIDES_J` 10) : chaque drvb et chaque
+    latch face au hs_to_clk d'une chaîne (x = 3,84) est à 0,22 µm au moins de ses doigts ; latchs de tenue à +3,36
+    (moitié A) / -0,96 µm (moitié B) de leur place du 28/09, XCKJ 74,88 -> 74,40, XEA0 / XEB0 34,56 -> 32,16 ;
+  - `barre_vss_xckj()` : barre Metal2 VSS 29,28 x 0,30 µm (x 75,375..104,65, y 133,36..133,66) sous XCKJ, qui fond ses
+    doigts et les colonnes VSS des latchs de B1 (même net VSS ; aucune position de XCKJ ne les évite), aussi en OBS
+    Metal2 du LEF Caelum.
+- GDS sha1 `a970bd9a386424dadc480a00f22f5b889f5a36d2` (avant `5f4aa886` ; le GDS du commit ec6fe343 était un état
+  intermédiaire NON routé), = `final/gds` des runs `drc_20260929_154920_1` et `macro_20260929_155038` ; reconstruction
+  à neuf : XOR nul, LEF et DEF identiques. Cadre **189,12 x 313,04 µm** (190,08 avant), 397 instances (69 vides de plus).
+  66 broches sur 79 déplacées (MOT0..31 : +3,36 / -0,96 µm en x ; CLK_W -0,48) ; CK, D0..3, POLN inchangées.
+- DRC KLayout `--no_density` : 0. NebulaCellDRC : 9 (densité / fill). Magic : 0.
+- LVS `~/verif_srrx/lvs/lvs4.sh` : MATCH, après mise à jour de l'intention : **ordre des bornes de `cml_drvb` changé**
+  (`VDD VSS INP OUTN OUTP INN`) ; `gen_sr16_rx4_intent.py` et `sr16_rx4.intent.spice` réordonnés (même câblage).
+  Avec l'ancienne intention : MISMATCH.
+- Contrôle logique (`logique4/lancer4.sh`, 7 x 3960 comparaisons) : intention OK et extrait hiérarchique OK
+  (Johnson = `Xcml_tlatch_93..90`), 0 écart, 0 indéfini ; 5 mutants sur 5 attrapés.
+- Extrait à plat : même netlist qu'avant la fusion (netgen : match). L'extrait n'a aucune capacité : les bancs ne
+  voient ni le nouveau layout des cellules ni les vides, seulement la topologie (inchangée).
+- Banc `make tb MACRO=CML_SR/SR16_RX4` (4 lanes, 96 bits comparés par lane ; diagnostics à 32 bits, NBITS=64) :
+
+| Corner | Débit | Bits faux (par lane) | Marge | CLK_W | CK crête min | Impulsion CKHA | I sr16_rx4 | Verdict |
+|---|---|---|---|---|---|---|---|---|
+| tt_typ_25, 1,2 V, V_OD 0,2 | 1 Gb/s | 0 / 96 | 515 mV | 8 UI | 0,49 V | 0,56 V | 46,1 mA | VRAI OK |
+| tt_typ_25 | 2,5 Gb/s | 0 / 96 | 514 mV | 8 UI | 0,40 V | 0,32 V | 44,3 mA | VRAI OK |
+| ff_bcs_m40, 1,32 V, V_OD 0,27 | 2,5 Gb/s | 0 / 96 | 559 mV | 8 UI | 0,50 V | 0,59 V | 56,5 mA | VRAI OK |
+| **ss_wcs_125, 1,08 V, V_OD 0,14** | 1 Gb/s | **42 / 50 / 42 / 34 sur 104-120** | 69 mV | **4 UI** | 0,27 V | 0,04 V | 28,8 mA | **ECHEC** |
+| ss_wcs_125, 1,2 V, V_OD 0,14 | 1 Gb/s | 11 / 12 / 12 / 9 sur 32 | 430 mV | 8 UI | 0,27 V | 0,32 V | 36,5 mA | ECHEC |
+| ss_wcs_125, 1,08 V, V_OD 0,2 | 1 Gb/s | 2 / 2 / 3 / 1 sur 32 | 327 mV | 8 UI | 0,37 V | 0,31 V | 30,9 mA | ECHEC |
+| ss_wcs_125, 1,2 V, V_OD 0,2 | 1 Gb/s | 0 / 32 | 480 mV | 8 UI | 0,38 V | 0,40 V | 38,1 mA | VRAI OK |
+| ss_wcs_m40, 1,08 V, V_OD 0,14 | 1 Gb/s | 0 / 32 | 360 mV | 8 UI | 0,43 V | 0,36 V | 28,5 mA | VRAI OK |
+
+  Diagnostic ss_wcs_125 / 1,08 V / 0,14 V : deux causes cumulées. (1) Amplitude d'horloge : les hs_to_clk suivent le
+  HS-RX, crête 0,27 V à V_OD 0,14 quel que soit VDD (0,49 V à tt) ; à 1,2 V le compteur marche mais les chaînes
+  perdent 9 à 12 bits sur 32. (2) Tension : à 1,08 V le **compteur de Johnson ne divise plus que par 2** (CLK_W de
+  4 UI, sorties J1 / J2 / J4 de ±0,21..0,33 V qui suivent l'horloge : les latchs ne mémorisent plus), l'impulsion
+  d'horloge de tenue tombe à 0,04 V (porte GA 0,06..0,10 V). Mode commun d'horloge 0,63 V (0,75 V à tt) et courant
+  -37 % : queue probablement en régime linéaire (non mesuré directement). À -40 °C tout passe (crête 0,43 V).
+  Il faut V_OD 0,2 ET 1,2 V à 125 °C. Même comportement avant la fusion (même netlist ; SR16_RX avant layout : 44 / 120).
+- Runs : `../../work/tb/{tt_1e9_20260929_155226, tt_2.5e9_20260929_161657, ff_bcs_m40_2.5e9_vdd1.32_vod0.27_20260929_161658,
+  ss_1e9_20260929_155228, ss_wcs_125_1e9_vdd1.2_vod0.2_n64_20260929_164102, ss_wcs_m40_1e9_vdd1.08_vod0.14_n64_20260929_164104,
+  ss_wcs_125_1e9_vdd1.2_vod0.14_n64_20260929_164106, ss_wcs_125_1e9_vdd1.08_vod0.2_n64_20260929_164108}` (locaux).

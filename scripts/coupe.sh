@@ -6,7 +6,7 @@ cd "$(dirname "$0")/.."
 TAG=${1:-p063_coupe}
 SAUTS="OpenROAD.STAPrePNR OpenROAD.STAMidPNR OpenROAD.STAPostPNR OpenROAD.ResizerTimingPostCTS OpenROAD.ResizerTimingPostGRT
  OpenROAD.RCX OpenROAD.IRDropReport Checker.PowerGridViolations Checker.DisconnectedPins Checker.WireLength
- KLayout.Render KLayout.XOR Checker.XOR KLayout.Antenna Checker.KLayoutAntenna"
+ Magic.StreamOut KLayout.Render KLayout.XOR Checker.XOR KLayout.Antenna Checker.KLayoutAntenna"
 ARGS=""
 for s in $SAUTS; do ARGS="$ARGS --skip $s"; done
 export PYTHONHASHSEED=13

@@ -11,6 +11,8 @@ u ip/dphy_sm/GDS/dphy_tx.gds librelane/gen/dphy_tx.gds dphy_tx "dphy_tx"
 for m in sr16_rx4 sr16_tx cml_to_cmos cmos_to_cml cml_gate2; do
   u ip/$m/GDS/${m}_alim.gds librelane/gen/$m.gds $m "$m"
 done
+u ip/hs_tx_pd/GDS/hs_tx_pd.gds librelane/gen/hs_tx_pd.gds hs_tx_pd "hs_tx_pd"
+u ip/iref/GDS/iref.gds librelane/gen/iref.gds iref "iref"
 u ip/CSI2_DPHY_RING/GDS/MIPI_ring.gds librelane/gen/MIPI_ring.gds MIPI_ring "MIPI_.*"
 # Controle : plus aucune sous-cellule homonyme au contenu different (cellules standard du PDK et bondpad compris).
 SC=/opt/nebula-eda/IHP-Open-PDK/ihp-sg13g2/libs.ref/sg13g2_stdcell/gds/sg13g2_stdcell.gds

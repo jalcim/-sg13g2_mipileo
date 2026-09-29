@@ -63,6 +63,7 @@ module MSPHY5973 (
     wire clk_sys, rst_n, rx_clk, clk_w, clk_tx, clk_q, clk_lane;
     wire cml_ckg_p, cml_ckg_n, clk_rx_en, cml_clk_rx_en_p, cml_clk_rx_en_n;
     wire tx_clk_run, run_q1, run_q2, run_q1_n_nc, run_q2_n_nc;
+    wire pg_rx, pg_tx;
     wire [3:0] enable;
     wire [1:0] renvoi_mode;
     wire [31:0] mots;
@@ -106,6 +107,20 @@ module MSPHY5973 (
     );
 
     (* keep *) MIPI_IOPadIOVss iovss_mipi_pad (
+        `ifdef USE_POWER_PINS
+        .IOVDD(IOVDD_MIPI), .IOVSS(IOVSS_MIPI), .VDD(VDD), .VSS(VSS),
+        `endif
+        .POLN_RX(pol_e_POLN_RX), .VB(pol_e_VB), .PBIAS(pol_e_PBIAS), .PS(pol_e_PS), .POLN(pol_e_POLN)
+    );
+
+    (* keep *) MIPI_IOPadVdd vdd_e_pad (
+        `ifdef USE_POWER_PINS
+        .IOVDD(IOVDD_MIPI), .IOVSS(IOVSS_MIPI), .VDD(VDD), .VSS(VSS),
+        `endif
+        .POLN_RX(pol_e_POLN_RX), .VB(pol_e_VB), .PBIAS(pol_e_PBIAS), .PS(pol_e_PS), .POLN(pol_e_POLN)
+    );
+
+    (* keep *) MIPI_IOPadVss vss_e_pad (
         `ifdef USE_POWER_PINS
         .IOVDD(IOVDD_MIPI), .IOVSS(IOVSS_MIPI), .VDD(VDD), .VSS(VSS),
         `endif
@@ -209,6 +224,20 @@ module MSPHY5973 (
         .IOVDD(IOVDD_MIPI), .IOVSS(IOVSS_MIPI), .VDD(VDD), .VSS(VSS),
         `endif
         .POLN_RX(pol_n_POLN_RX), .VB(pol_n_VB), .PBIAS(pol_n_PBIAS), .PS(pol_n_PS), .POLN(pol_n_POLN), .PAD(TX_ANALOG), .PADRES(tx_analog_padres_nc)
+    );
+
+    (* keep *) MIPI_IOPadVdd vdd_n_pad (
+        `ifdef USE_POWER_PINS
+        .IOVDD(IOVDD_MIPI), .IOVSS(IOVSS_MIPI), .VDD(VDD), .VSS(VSS),
+        `endif
+        .POLN_RX(pol_n_POLN_RX), .VB(pol_n_VB), .PBIAS(pol_n_PBIAS), .PS(pol_n_PS), .POLN(pol_n_POLN)
+    );
+
+    (* keep *) MIPI_IOPadVss vss_n_pad (
+        `ifdef USE_POWER_PINS
+        .IOVDD(IOVDD_MIPI), .IOVSS(IOVSS_MIPI), .VDD(VDD), .VSS(VSS),
+        `endif
+        .POLN_RX(pol_n_POLN_RX), .VB(pol_n_VB), .PBIAS(pol_n_PBIAS), .PS(pol_n_PS), .POLN(pol_n_POLN)
     );
 
     (* keep *) MIPI_IOPadTX tx_clk_p_pad (
@@ -657,11 +686,24 @@ module MSPHY5973 (
         `endif
         .POLN(pol_e_POLN), .A(clk_rx_en), .OUTP(cml_clk_rx_en_p), .OUTN(cml_clk_rx_en_n)
     );
+    // PG des tempo : une iref par dphy (iref-layout), decision de la principale apres pg-mesure (PBIAS KO).
+    (* keep *) iref iref_rx (
+        `ifdef USE_POWER_PINS
+        .VDD(VDD), .VSS(VSS),
+        `endif
+        .PG(pg_rx)
+    );
+    (* keep *) iref iref_tx (
+        `ifdef USE_POWER_PINS
+        .VDD(VDD), .VSS(VSS),
+        `endif
+        .PG(pg_tx)
+    );
     (* keep *) dphy_rx dphy_rx (
         `ifdef USE_POWER_PINS
         .VPWR(VDD), .VGND(VSS),
         `endif
-        .PG(pol_e_PBIAS), .rx_clk(rx_clk), .clk_lp_p(rx_clk_p_lp), .clk_lp_n(rx_clk_n_lp),
+        .PG(pg_rx), .rx_clk(rx_clk), .clk_lp_p(rx_clk_p_lp), .clk_lp_n(rx_clk_n_lp),
         .clk_stop(), .clk_term_en(), .clk_rx_en(clk_rx_en), .clk_miss(),
         .lp_p({rx_d3_p_lp, rx_d2_p_lp, rx_d1_p_lp, rx_d0_p_lp}),
         .lp_n({rx_d3_n_lp, rx_d2_n_lp, rx_d1_n_lp, rx_d0_n_lp}),
@@ -684,7 +726,7 @@ module MSPHY5973 (
         `ifdef USE_POWER_PINS
         .VPWR(VDD), .VGND(VSS),
         `endif
-        .PG(pol_e_PBIAS), .clk(clk_tx), .rst(~rst_n), .clk_request(1'b0), .clk_ready(),
+        .PG(pg_tx), .clk(clk_tx), .rst(~rst_n), .clk_request(1'b0), .clk_ready(),
         .clk_lp_p(tx_clk_lp_p), .clk_lp_n(tx_clk_lp_n), .clk_hs_oe(tx_clk_hs_oe), .clk_run(tx_clk_run),
         .tx_request_hs(4'b0), .tx_ready_hs(), .hs_sync(), .hs_trail(),
         .lp_p(tx_lp_p), .lp_n(tx_lp_n), .hs_oe(tx_hs_oe)
@@ -693,37 +735,37 @@ module MSPHY5973 (
         `ifdef USE_POWER_PINS
         .VDD(VDD), .VSS(VSS),
         `endif
-        .POLN(pol_n_POLN), .A(1'b0), .OUTP(tx_mot_p[0]), .OUTN(tx_mot_n[0])
+        .POLN(pol_e_POLN), .A(1'b0), .OUTP(tx_mot_p[0]), .OUTN(tx_mot_n[0])
     );
     (* keep *) cmos_to_cml c2m_mot1 (
         `ifdef USE_POWER_PINS
         .VDD(VDD), .VSS(VSS),
         `endif
-        .POLN(pol_n_POLN), .A(1'b0), .OUTP(tx_mot_p[1]), .OUTN(tx_mot_n[1])
+        .POLN(pol_e_POLN), .A(1'b0), .OUTP(tx_mot_p[1]), .OUTN(tx_mot_n[1])
     );
     (* keep *) cmos_to_cml c2m_mot2 (
         `ifdef USE_POWER_PINS
         .VDD(VDD), .VSS(VSS),
         `endif
-        .POLN(pol_n_POLN), .A(1'b0), .OUTP(tx_mot_p[2]), .OUTN(tx_mot_n[2])
+        .POLN(pol_e_POLN), .A(1'b0), .OUTP(tx_mot_p[2]), .OUTN(tx_mot_n[2])
     );
     (* keep *) cmos_to_cml c2m_mot3 (
         `ifdef USE_POWER_PINS
         .VDD(VDD), .VSS(VSS),
         `endif
-        .POLN(pol_n_POLN), .A(1'b0), .OUTP(tx_mot_p[3]), .OUTN(tx_mot_n[3])
+        .POLN(pol_e_POLN), .A(1'b0), .OUTP(tx_mot_p[3]), .OUTN(tx_mot_n[3])
     );
     (* keep *) cmos_to_cml c2m_clk_w (
         `ifdef USE_POWER_PINS
         .VDD(VDD), .VSS(VSS),
         `endif
-        .POLN(pol_n_POLN), .A(1'b0), .OUTP(tx_clk_w_p), .OUTN(tx_clk_w_n)
+        .POLN(pol_e_POLN), .A(1'b0), .OUTP(tx_clk_w_p), .OUTN(tx_clk_w_n)
     );
     (* keep *) sr16_tx sr16_tx0 (
         `ifdef USE_POWER_PINS
         .VDD(VDD), .VSS(VSS),
         `endif
-        .POLN(pol_n_POLN), .CK_P(clkin_i_p_hs), .CK_N(clkin_i_n_hs), .CLK_W_P(tx_clk_w_p), .CLK_W_N(tx_clk_w_n),
+        .POLN(pol_e_POLN), .CK_P(clkin_i_p_hs), .CK_N(clkin_i_n_hs), .CLK_W_P(tx_clk_w_p), .CLK_W_N(tx_clk_w_n),
         .MOT0_P(tx_mot_p[0]), .MOT0_N(tx_mot_n[0]), .MOT1_P(tx_mot_p[0]), .MOT1_N(tx_mot_n[0]), .MOT2_P(tx_mot_p[0]), .MOT2_N(tx_mot_n[0]), .MOT3_P(tx_mot_p[0]), .MOT3_N(tx_mot_n[0]), .MOT4_P(tx_mot_p[0]), .MOT4_N(tx_mot_n[0]), .MOT5_P(tx_mot_p[0]), .MOT5_N(tx_mot_n[0]), .MOT6_P(tx_mot_p[0]), .MOT6_N(tx_mot_n[0]), .MOT7_P(tx_mot_p[0]), .MOT7_N(tx_mot_n[0]),
         .DOUT_P(tx_dout_p[0]), .DOUT_N(tx_dout_n[0])
     );
@@ -731,7 +773,7 @@ module MSPHY5973 (
         `ifdef USE_POWER_PINS
         .VDD(VDD), .VSS(VSS),
         `endif
-        .POLN(pol_n_POLN), .CK_P(clkin_i_p_hs), .CK_N(clkin_i_n_hs), .CLK_W_P(tx_clk_w_p), .CLK_W_N(tx_clk_w_n),
+        .POLN(pol_e_POLN), .CK_P(clkin_i_p_hs), .CK_N(clkin_i_n_hs), .CLK_W_P(tx_clk_w_p), .CLK_W_N(tx_clk_w_n),
         .MOT0_P(tx_mot_p[1]), .MOT0_N(tx_mot_n[1]), .MOT1_P(tx_mot_p[1]), .MOT1_N(tx_mot_n[1]), .MOT2_P(tx_mot_p[1]), .MOT2_N(tx_mot_n[1]), .MOT3_P(tx_mot_p[1]), .MOT3_N(tx_mot_n[1]), .MOT4_P(tx_mot_p[1]), .MOT4_N(tx_mot_n[1]), .MOT5_P(tx_mot_p[1]), .MOT5_N(tx_mot_n[1]), .MOT6_P(tx_mot_p[1]), .MOT6_N(tx_mot_n[1]), .MOT7_P(tx_mot_p[1]), .MOT7_N(tx_mot_n[1]),
         .DOUT_P(tx_dout_p[1]), .DOUT_N(tx_dout_n[1])
     );
@@ -739,7 +781,7 @@ module MSPHY5973 (
         `ifdef USE_POWER_PINS
         .VDD(VDD), .VSS(VSS),
         `endif
-        .POLN(pol_n_POLN), .CK_P(clkin_i_p_hs), .CK_N(clkin_i_n_hs), .CLK_W_P(tx_clk_w_p), .CLK_W_N(tx_clk_w_n),
+        .POLN(pol_e_POLN), .CK_P(clkin_i_p_hs), .CK_N(clkin_i_n_hs), .CLK_W_P(tx_clk_w_p), .CLK_W_N(tx_clk_w_n),
         .MOT0_P(tx_mot_p[2]), .MOT0_N(tx_mot_n[2]), .MOT1_P(tx_mot_p[2]), .MOT1_N(tx_mot_n[2]), .MOT2_P(tx_mot_p[2]), .MOT2_N(tx_mot_n[2]), .MOT3_P(tx_mot_p[2]), .MOT3_N(tx_mot_n[2]), .MOT4_P(tx_mot_p[2]), .MOT4_N(tx_mot_n[2]), .MOT5_P(tx_mot_p[2]), .MOT5_N(tx_mot_n[2]), .MOT6_P(tx_mot_p[2]), .MOT6_N(tx_mot_n[2]), .MOT7_P(tx_mot_p[2]), .MOT7_N(tx_mot_n[2]),
         .DOUT_P(tx_dout_p[2]), .DOUT_N(tx_dout_n[2])
     );
@@ -747,22 +789,42 @@ module MSPHY5973 (
         `ifdef USE_POWER_PINS
         .VDD(VDD), .VSS(VSS),
         `endif
-        .POLN(pol_n_POLN), .CK_P(clkin_i_p_hs), .CK_N(clkin_i_n_hs), .CLK_W_P(tx_clk_w_p), .CLK_W_N(tx_clk_w_n),
+        .POLN(pol_e_POLN), .CK_P(clkin_i_p_hs), .CK_N(clkin_i_n_hs), .CLK_W_P(tx_clk_w_p), .CLK_W_N(tx_clk_w_n),
         .MOT0_P(tx_mot_p[3]), .MOT0_N(tx_mot_n[3]), .MOT1_P(tx_mot_p[3]), .MOT1_N(tx_mot_n[3]), .MOT2_P(tx_mot_p[3]), .MOT2_N(tx_mot_n[3]), .MOT3_P(tx_mot_p[3]), .MOT3_N(tx_mot_n[3]), .MOT4_P(tx_mot_p[3]), .MOT4_N(tx_mot_n[3]), .MOT5_P(tx_mot_p[3]), .MOT5_N(tx_mot_n[3]), .MOT6_P(tx_mot_p[3]), .MOT6_N(tx_mot_n[3]), .MOT7_P(tx_mot_p[3]), .MOT7_N(tx_mot_n[3]),
         .DOUT_P(tx_dout_p[3]), .DOUT_N(tx_dout_n[3])
     );
     sg13g2_dfrbp_1 sync_run1 (.CLK(clk_q), .D(tx_clk_run), .RESET_B(rst_n), .Q(run_q1), .Q_N(run_q1_n_nc));
     sg13g2_dfrbp_1 sync_run2 (.CLK(clk_q), .D(run_q1), .RESET_B(rst_n), .Q(run_q2), .Q_N(run_q2_n_nc));
     sg13g2_lgcp_1 gate_clk_lane (.CLK(clk_q), .GATE(run_q2), .GCLK(clk_lane));
-    (* keep *) hs_tx_pd pd_clk (.d(clk_lane), .oe(tx_clk_hs_oe), .lpp(tx_clk_lp_p), .lpn(tx_clk_lp_n),
+    (* keep *) hs_tx_pd hstxpd_clk (
+        `ifdef USE_POWER_PINS
+        .VPWR(VDD), .VGND(VSS),
+        `endif
+        .d(clk_lane), .oe(tx_clk_hs_oe), .lpp(tx_clk_lp_p), .lpn(tx_clk_lp_n),
         .hsp(tx_clk_hsp), .hsn(tx_clk_hsn), .lpinp(tx_clk_lpinp), .lpinn(tx_clk_lpinn));
-    (* keep *) hs_tx_pd pd_d0 (.d(tx_dout[0]), .oe(tx_hs_oe[0]), .lpp(tx_lp_p[0]), .lpn(tx_lp_n[0]),
+    (* keep *) hs_tx_pd hstxpd_d0 (
+        `ifdef USE_POWER_PINS
+        .VPWR(VDD), .VGND(VSS),
+        `endif
+        .d(tx_dout[0]), .oe(tx_hs_oe[0]), .lpp(tx_lp_p[0]), .lpn(tx_lp_n[0]),
         .hsp(tx_d0_hsp), .hsn(tx_d0_hsn), .lpinp(tx_d0_lpinp), .lpinn(tx_d0_lpinn));
-    (* keep *) hs_tx_pd pd_d1 (.d(tx_dout[1]), .oe(tx_hs_oe[1]), .lpp(tx_lp_p[1]), .lpn(tx_lp_n[1]),
+    (* keep *) hs_tx_pd hstxpd_d1 (
+        `ifdef USE_POWER_PINS
+        .VPWR(VDD), .VGND(VSS),
+        `endif
+        .d(tx_dout[1]), .oe(tx_hs_oe[1]), .lpp(tx_lp_p[1]), .lpn(tx_lp_n[1]),
         .hsp(tx_d1_hsp), .hsn(tx_d1_hsn), .lpinp(tx_d1_lpinp), .lpinn(tx_d1_lpinn));
-    (* keep *) hs_tx_pd pd_d2 (.d(tx_dout[2]), .oe(tx_hs_oe[2]), .lpp(tx_lp_p[2]), .lpn(tx_lp_n[2]),
+    (* keep *) hs_tx_pd hstxpd_d2 (
+        `ifdef USE_POWER_PINS
+        .VPWR(VDD), .VGND(VSS),
+        `endif
+        .d(tx_dout[2]), .oe(tx_hs_oe[2]), .lpp(tx_lp_p[2]), .lpn(tx_lp_n[2]),
         .hsp(tx_d2_hsp), .hsn(tx_d2_hsn), .lpinp(tx_d2_lpinp), .lpinn(tx_d2_lpinn));
-    (* keep *) hs_tx_pd pd_d3 (.d(tx_dout[3]), .oe(tx_hs_oe[3]), .lpp(tx_lp_p[3]), .lpn(tx_lp_n[3]),
+    (* keep *) hs_tx_pd hstxpd_d3 (
+        `ifdef USE_POWER_PINS
+        .VPWR(VDD), .VGND(VSS),
+        `endif
+        .d(tx_dout[3]), .oe(tx_hs_oe[3]), .lpp(tx_lp_p[3]), .lpn(tx_lp_n[3]),
         .hsp(tx_d3_hsp), .hsn(tx_d3_hsn), .lpinp(tx_d3_lpinp), .lpinn(tx_d3_lpinn));
 
 endmodule

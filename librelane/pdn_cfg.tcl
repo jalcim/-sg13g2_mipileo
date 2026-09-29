@@ -188,7 +188,7 @@ if { $::env(PDN_CORE_RING) == 1 } {
 # alimentees par pcml_pdn.tcl ci-dessous (alim-cml, preuve 7).
 define_pdn_grid \
     -macro \
-    -instances "csi2_top dphy_rx dphy_tx" \
+    -instances "csi2_top dphy_rx dphy_tx hstxpd_clk hstxpd_d0 hstxpd_d1 hstxpd_d2 hstxpd_d3 iref_rx iref_tx" \
     -name macro \
     -starts_with POWER \
     -halo "$::env(PDN_HORIZONTAL_HALO) $::env(PDN_VERTICAL_HALO)"

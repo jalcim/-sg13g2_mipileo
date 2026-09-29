@@ -269,7 +269,7 @@ MACROS:
       sr16_rx4: {location: [1949.76, 423.36], orientation: N}
   cml_to_cmos:
     gds: [dir::../ip/cml_to_cmos/GDS/cml_to_cmos.gds]
-    lef: [dir::../ip/cml_to_cmos/LEF/cml_to_cmos.lef]
+    lef: [dir::../ip/cml_to_cmos/LEF/cml_to_cmos_integ.lef]
     vh: [dir::../ip/cml_to_cmos/HDL/cml_to_cmos_bb.v]
     spice: [dir::../ip/cml_to_cmos/SPICE/cml_to_cmos.spice]
     instances:
@@ -314,7 +314,7 @@ MACROS:
       c2c_tx_dout3: {location: [1853.28, 2075.22], orientation: N}
   cmos_to_cml:
     gds: [dir::../ip/cmos_to_cml/GDS/cmos_to_cml.gds]
-    lef: [dir::../ip/cmos_to_cml/LEF/cmos_to_cml.lef]
+    lef: [dir::../ip/cmos_to_cml/LEF/cmos_to_cml_integ.lef]
     vh: [dir::../ip/cmos_to_cml/HDL/cmos_to_cml_bb.v]
     spice: [dir::../ip/cmos_to_cml/SPICE/cmos_to_cml.spice]
     instances:

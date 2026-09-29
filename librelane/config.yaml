@@ -237,6 +237,8 @@ PDN_VERTICAL_HALO: 7.56
 
 # Positions : plan de masse de la livraison 1 (061, msphy4263/scripts/floorplan.py, a408a54, die 2 560).
 # Kit CML : vues enveloppees d alim-cml (preuve 7), alimentees par librelane/pcml_pdn.tcl.
+# Grille RX des cml_to_cmos au pas de 75,6 um (= PDN_HPITCH), y = 786,24 + 75,6 j : chaque rangee croise une bande
+# TopMetal2 VDD et une VSS (complet7 : PDN-9002 sur la rangee y 895,86, entre deux paires de bandes).
 MACROS:
   csi2_top:
     gds: [dir::../ip/csi2_top/GDS/csi2_top.gds]
@@ -285,40 +287,40 @@ MACROS:
     instances:
       c2c_clk_tx: {location: [1107.84, 2113.02], orientation: N}
       c2c_clk_q: {location: [1140.96, 2113.02], orientation: N}
-      c2c_mot0: {location: [1949.76, 759.78], orientation: N}
-      c2c_mot1: {location: [1982.88, 759.78], orientation: N}
-      c2c_mot2: {location: [2016.00, 759.78], orientation: N}
-      c2c_mot3: {location: [2049.12, 759.78], orientation: N}
-      c2c_mot4: {location: [2082.24, 759.78], orientation: N}
-      c2c_mot5: {location: [2115.36, 759.78], orientation: N}
-      c2c_mot6: {location: [1949.76, 805.14], orientation: N}
-      c2c_mot7: {location: [1982.88, 805.14], orientation: N}
-      c2c_mot8: {location: [2016.00, 805.14], orientation: N}
-      c2c_mot9: {location: [2049.12, 805.14], orientation: N}
-      c2c_mot10: {location: [2082.24, 805.14], orientation: N}
-      c2c_mot11: {location: [2115.36, 805.14], orientation: N}
-      c2c_mot12: {location: [1949.76, 850.50], orientation: N}
-      c2c_mot13: {location: [1982.88, 850.50], orientation: N}
-      c2c_mot14: {location: [2016.00, 850.50], orientation: N}
-      c2c_mot15: {location: [2049.12, 850.50], orientation: N}
-      c2c_mot16: {location: [2082.24, 850.50], orientation: N}
-      c2c_mot17: {location: [2115.36, 850.50], orientation: N}
-      c2c_mot18: {location: [1949.76, 895.86], orientation: N}
-      c2c_mot19: {location: [1982.88, 895.86], orientation: N}
-      c2c_mot20: {location: [2016.00, 895.86], orientation: N}
-      c2c_mot21: {location: [2049.12, 895.86], orientation: N}
-      c2c_mot22: {location: [2082.24, 895.86], orientation: N}
-      c2c_mot23: {location: [2115.36, 895.86], orientation: N}
-      c2c_mot24: {location: [1949.76, 941.22], orientation: N}
-      c2c_mot25: {location: [1982.88, 941.22], orientation: N}
-      c2c_mot26: {location: [2016.00, 941.22], orientation: N}
-      c2c_mot27: {location: [2049.12, 941.22], orientation: N}
-      c2c_mot28: {location: [2082.24, 941.22], orientation: N}
-      c2c_mot29: {location: [2115.36, 941.22], orientation: N}
-      c2c_mot30: {location: [1949.76, 986.58], orientation: N}
-      c2c_mot31: {location: [1982.88, 986.58], orientation: N}
-      c2c_clk_w: {location: [2016.00, 986.58], orientation: N}
-      c2c_rx_clk: {location: [2049.12, 986.58], orientation: N}
+      c2c_mot0: {location: [1949.76, 786.24], orientation: N}
+      c2c_mot1: {location: [1982.88, 786.24], orientation: N}
+      c2c_mot2: {location: [2016.00, 786.24], orientation: N}
+      c2c_mot3: {location: [2049.12, 786.24], orientation: N}
+      c2c_mot4: {location: [2082.24, 786.24], orientation: N}
+      c2c_mot5: {location: [2115.36, 786.24], orientation: N}
+      c2c_mot6: {location: [1949.76, 861.84], orientation: N}
+      c2c_mot7: {location: [1982.88, 861.84], orientation: N}
+      c2c_mot8: {location: [2016.00, 861.84], orientation: N}
+      c2c_mot9: {location: [2049.12, 861.84], orientation: N}
+      c2c_mot10: {location: [2082.24, 861.84], orientation: N}
+      c2c_mot11: {location: [2115.36, 861.84], orientation: N}
+      c2c_mot12: {location: [1949.76, 937.44], orientation: N}
+      c2c_mot13: {location: [1982.88, 937.44], orientation: N}
+      c2c_mot14: {location: [2016.00, 937.44], orientation: N}
+      c2c_mot15: {location: [2049.12, 937.44], orientation: N}
+      c2c_mot16: {location: [2082.24, 937.44], orientation: N}
+      c2c_mot17: {location: [2115.36, 937.44], orientation: N}
+      c2c_mot18: {location: [1949.76, 1013.04], orientation: N}
+      c2c_mot19: {location: [1982.88, 1013.04], orientation: N}
+      c2c_mot20: {location: [2016.00, 1013.04], orientation: N}
+      c2c_mot21: {location: [2049.12, 1013.04], orientation: N}
+      c2c_mot22: {location: [2082.24, 1013.04], orientation: N}
+      c2c_mot23: {location: [2115.36, 1013.04], orientation: N}
+      c2c_mot24: {location: [1949.76, 1088.64], orientation: N}
+      c2c_mot25: {location: [1982.88, 1088.64], orientation: N}
+      c2c_mot26: {location: [2016.00, 1088.64], orientation: N}
+      c2c_mot27: {location: [2049.12, 1088.64], orientation: N}
+      c2c_mot28: {location: [2082.24, 1088.64], orientation: N}
+      c2c_mot29: {location: [2115.36, 1088.64], orientation: N}
+      c2c_mot30: {location: [1949.76, 1164.24], orientation: N}
+      c2c_mot31: {location: [1982.88, 1164.24], orientation: N}
+      c2c_clk_w: {location: [2016.00, 1164.24], orientation: N}
+      c2c_rx_clk: {location: [2049.12, 1164.24], orientation: N}
       c2c_dout0: {location: [1174.08, 2113.02], orientation: N}
       c2c_dout1: {location: [1207.20, 2113.02], orientation: N}
       c2c_dout2: {location: [1240.32, 2113.02], orientation: N}
@@ -329,7 +331,7 @@ MACROS:
     vh: [dir::../ip/cmos_to_cml/HDL/cmos_to_cml_bb.v]
     instances:
       c2m_clk_w: {location: [1306.56, 2113.02], orientation: N}
-      c2m_clk_rx_en: {location: [1982.40, 1031.94], orientation: N}
+      c2m_clk_rx_en: {location: [1982.40, 1239.84], orientation: N}
       c2m_mot0: {location: [1349.76, 2113.02], orientation: N}
       c2m_mot1: {location: [1392.96, 2113.02], orientation: N}
       c2m_mot2: {location: [1436.16, 2113.02], orientation: N}
@@ -339,7 +341,7 @@ MACROS:
     lef: [dir::../ip/cml_gate2/LEF/cml_gate2_alim.lef]
     vh: [dir::../ip/cml_gate2/HDL/cml_gate2_bb.v]
     instances:
-      gate_rx_clk: {location: [1949.76, 1031.94], orientation: N}
+      gate_rx_clk: {location: [1949.76, 1239.84], orientation: N}
 
 # LVS de puce : plots, bondpad et macros extraits en cellules abstraites (boites noires), comme la livraison 1
 # (061, ee396f4) et TPU9012 ; netgen compare les connexions a leurs broches. Coquilles .subckt vides dans

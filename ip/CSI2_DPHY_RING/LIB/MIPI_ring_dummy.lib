@@ -60,6 +60,31 @@ library (MIPI_ring_dummy) {
             pg_type : primary_power;
             voltage_name : "VDD";
         }
+        pin (POLN_RX) {
+            direction : inout;
+            related_ground_pin : VSS;
+            related_power_pin : VDD;
+        }
+        pin (VB) {
+            direction : inout;
+            related_ground_pin : VSS;
+            related_power_pin : VDD;
+        }
+        pin (PBIAS) {
+            direction : inout;
+            related_ground_pin : VSS;
+            related_power_pin : VDD;
+        }
+        pin (PS) {
+            direction : inout;
+            related_ground_pin : VSS;
+            related_power_pin : VDD;
+        }
+        pin (POLN) {
+            direction : inout;
+            related_ground_pin : VSS;
+            related_power_pin : VDD;
+        }
     }
     cell (MIPI_Filler400) {
         area : 360;
@@ -82,6 +107,31 @@ library (MIPI_ring_dummy) {
         pg_pin (VDD) {
             pg_type : primary_power;
             voltage_name : "VDD";
+        }
+        pin (POLN_RX) {
+            direction : inout;
+            related_ground_pin : VSS;
+            related_power_pin : VDD;
+        }
+        pin (VB) {
+            direction : inout;
+            related_ground_pin : VSS;
+            related_power_pin : VDD;
+        }
+        pin (PBIAS) {
+            direction : inout;
+            related_ground_pin : VSS;
+            related_power_pin : VDD;
+        }
+        pin (PS) {
+            direction : inout;
+            related_ground_pin : VSS;
+            related_power_pin : VDD;
+        }
+        pin (POLN) {
+            direction : inout;
+            related_ground_pin : VSS;
+            related_power_pin : VDD;
         }
     }
     cell (MIPI_Filler1000) {
@@ -106,6 +156,31 @@ library (MIPI_ring_dummy) {
             pg_type : primary_power;
             voltage_name : "VDD";
         }
+        pin (POLN_RX) {
+            direction : inout;
+            related_ground_pin : VSS;
+            related_power_pin : VDD;
+        }
+        pin (VB) {
+            direction : inout;
+            related_ground_pin : VSS;
+            related_power_pin : VDD;
+        }
+        pin (PBIAS) {
+            direction : inout;
+            related_ground_pin : VSS;
+            related_power_pin : VDD;
+        }
+        pin (PS) {
+            direction : inout;
+            related_ground_pin : VSS;
+            related_power_pin : VDD;
+        }
+        pin (POLN) {
+            direction : inout;
+            related_ground_pin : VSS;
+            related_power_pin : VDD;
+        }
     }
     cell (MIPI_Filler2000) {
         area : 1800;
@@ -128,6 +203,31 @@ library (MIPI_ring_dummy) {
         pg_pin (VDD) {
             pg_type : primary_power;
             voltage_name : "VDD";
+        }
+        pin (POLN_RX) {
+            direction : inout;
+            related_ground_pin : VSS;
+            related_power_pin : VDD;
+        }
+        pin (VB) {
+            direction : inout;
+            related_ground_pin : VSS;
+            related_power_pin : VDD;
+        }
+        pin (PBIAS) {
+            direction : inout;
+            related_ground_pin : VSS;
+            related_power_pin : VDD;
+        }
+        pin (PS) {
+            direction : inout;
+            related_ground_pin : VSS;
+            related_power_pin : VDD;
+        }
+        pin (POLN) {
+            direction : inout;
+            related_ground_pin : VSS;
+            related_power_pin : VDD;
         }
     }
     cell (MIPI_Filler4000) {
@@ -152,6 +252,31 @@ library (MIPI_ring_dummy) {
             pg_type : primary_power;
             voltage_name : "VDD";
         }
+        pin (POLN_RX) {
+            direction : inout;
+            related_ground_pin : VSS;
+            related_power_pin : VDD;
+        }
+        pin (VB) {
+            direction : inout;
+            related_ground_pin : VSS;
+            related_power_pin : VDD;
+        }
+        pin (PBIAS) {
+            direction : inout;
+            related_ground_pin : VSS;
+            related_power_pin : VDD;
+        }
+        pin (PS) {
+            direction : inout;
+            related_ground_pin : VSS;
+            related_power_pin : VDD;
+        }
+        pin (POLN) {
+            direction : inout;
+            related_ground_pin : VSS;
+            related_power_pin : VDD;
+        }
     }
     cell (MIPI_Filler10000) {
         area : 9000;
@@ -174,6 +299,31 @@ library (MIPI_ring_dummy) {
         pg_pin (VDD) {
             pg_type : primary_power;
             voltage_name : "VDD";
+        }
+        pin (POLN_RX) {
+            direction : inout;
+            related_ground_pin : VSS;
+            related_power_pin : VDD;
+        }
+        pin (VB) {
+            direction : inout;
+            related_ground_pin : VSS;
+            related_power_pin : VDD;
+        }
+        pin (PBIAS) {
+            direction : inout;
+            related_ground_pin : VSS;
+            related_power_pin : VDD;
+        }
+        pin (PS) {
+            direction : inout;
+            related_ground_pin : VSS;
+            related_power_pin : VDD;
+        }
+        pin (POLN) {
+            direction : inout;
+            related_ground_pin : VSS;
+            related_power_pin : VDD;
         }
     }
     cell (MIPI_Corner) {
@@ -207,13 +357,11 @@ library (MIPI_ring_dummy) {
         pad_cell : true;
         pin (IOVSS_A) {
             direction : inout;
-            is_pad : true;
             related_ground_pin : VSS;
             related_power_pin : VDD;
         }
         pin (IOVDD_A) {
             direction : inout;
-            is_pad : true;
             related_ground_pin : VSS;
             related_power_pin : VDD;
         }
@@ -227,13 +375,11 @@ library (MIPI_ring_dummy) {
         }
         pin (IOVSS_B) {
             direction : inout;
-            is_pad : true;
             related_ground_pin : VSS;
             related_power_pin : VDD;
         }
         pin (IOVDD_B) {
             direction : inout;
-            is_pad : true;
             related_ground_pin : VSS;
             related_power_pin : VDD;
         }
@@ -292,6 +438,31 @@ library (MIPI_ring_dummy) {
             pg_type : primary_power;
             voltage_name : "VDD";
         }
+        pin (POLN_RX) {
+            direction : inout;
+            related_ground_pin : VSS;
+            related_power_pin : VDD;
+        }
+        pin (VB) {
+            direction : inout;
+            related_ground_pin : VSS;
+            related_power_pin : VDD;
+        }
+        pin (PBIAS) {
+            direction : inout;
+            related_ground_pin : VSS;
+            related_power_pin : VDD;
+        }
+        pin (PS) {
+            direction : inout;
+            related_ground_pin : VSS;
+            related_power_pin : VDD;
+        }
+        pin (POLN) {
+            direction : inout;
+            related_ground_pin : VSS;
+            related_power_pin : VDD;
+        }
     }
     cell (MIPI_IOPadIOVdd) {
         area : 14400;
@@ -315,6 +486,31 @@ library (MIPI_ring_dummy) {
         pg_pin (VDD) {
             pg_type : primary_power;
             voltage_name : "VDD";
+        }
+        pin (POLN_RX) {
+            direction : inout;
+            related_ground_pin : VSS;
+            related_power_pin : VDD;
+        }
+        pin (VB) {
+            direction : inout;
+            related_ground_pin : VSS;
+            related_power_pin : VDD;
+        }
+        pin (PBIAS) {
+            direction : inout;
+            related_ground_pin : VSS;
+            related_power_pin : VDD;
+        }
+        pin (PS) {
+            direction : inout;
+            related_ground_pin : VSS;
+            related_power_pin : VDD;
+        }
+        pin (POLN) {
+            direction : inout;
+            related_ground_pin : VSS;
+            related_power_pin : VDD;
         }
     }
     cell (MIPI_IOPadVdd) {
@@ -340,6 +536,31 @@ library (MIPI_ring_dummy) {
             voltage_name : "VDD";
             is_pad : true;
         }
+        pin (POLN_RX) {
+            direction : inout;
+            related_ground_pin : VSS;
+            related_power_pin : VDD;
+        }
+        pin (VB) {
+            direction : inout;
+            related_ground_pin : VSS;
+            related_power_pin : VDD;
+        }
+        pin (PBIAS) {
+            direction : inout;
+            related_ground_pin : VSS;
+            related_power_pin : VDD;
+        }
+        pin (PS) {
+            direction : inout;
+            related_ground_pin : VSS;
+            related_power_pin : VDD;
+        }
+        pin (POLN) {
+            direction : inout;
+            related_ground_pin : VSS;
+            related_power_pin : VDD;
+        }
     }
     cell (MIPI_IOPadVss) {
         area : 14400;
@@ -364,6 +585,31 @@ library (MIPI_ring_dummy) {
             pg_type : primary_power;
             voltage_name : "VDD";
         }
+        pin (POLN_RX) {
+            direction : inout;
+            related_ground_pin : VSS;
+            related_power_pin : VDD;
+        }
+        pin (VB) {
+            direction : inout;
+            related_ground_pin : VSS;
+            related_power_pin : VDD;
+        }
+        pin (PBIAS) {
+            direction : inout;
+            related_ground_pin : VSS;
+            related_power_pin : VDD;
+        }
+        pin (PS) {
+            direction : inout;
+            related_ground_pin : VSS;
+            related_power_pin : VDD;
+        }
+        pin (POLN) {
+            direction : inout;
+            related_ground_pin : VSS;
+            related_power_pin : VDD;
+        }
     }
     cell (MIPI_IOPadAnalog) {
         area : 14400;
@@ -387,6 +633,31 @@ library (MIPI_ring_dummy) {
             pg_type : primary_power;
             voltage_name : "VDD";
         }
+        pin (POLN_RX) {
+            direction : inout;
+            related_ground_pin : VSS;
+            related_power_pin : VDD;
+        }
+        pin (VB) {
+            direction : inout;
+            related_ground_pin : VSS;
+            related_power_pin : VDD;
+        }
+        pin (PBIAS) {
+            direction : inout;
+            related_ground_pin : VSS;
+            related_power_pin : VDD;
+        }
+        pin (PS) {
+            direction : inout;
+            related_ground_pin : VSS;
+            related_power_pin : VDD;
+        }
+        pin (POLN) {
+            direction : inout;
+            related_ground_pin : VSS;
+            related_power_pin : VDD;
+        }
         pin (PAD) {
             direction : inout;
             is_pad : true;
@@ -396,6 +667,311 @@ library (MIPI_ring_dummy) {
         pin (PADRES) {
             direction : inout;
             is_pad : true;
+            related_ground_pin : VSS;
+            related_power_pin : VDD;
+        }
+    }
+    cell (MIPI_IOPadRX) {
+        area : 14400;
+        dont_touch : true;
+        dont_use : true;
+        timing_model_type : abstracted;
+        pad_cell : true;
+        pg_pin (IOVSS) {
+            pg_type : primary_ground;
+            voltage_name : "IOVSS";
+        }
+        pg_pin (IOVDD) {
+            pg_type : primary_power;
+            voltage_name : "IOVDD";
+        }
+        pg_pin (VSS) {
+            pg_type : primary_ground;
+            voltage_name : "VSS";
+        }
+        pg_pin (VDD) {
+            pg_type : primary_power;
+            voltage_name : "VDD";
+        }
+        pin (POLN_RX) {
+            direction : input;
+            related_ground_pin : VSS;
+            related_power_pin : VDD;
+        }
+        pin (VB) {
+            direction : input;
+            related_ground_pin : VSS;
+            related_power_pin : VDD;
+        }
+        pin (PBIAS) {
+            direction : inout;
+            related_ground_pin : VSS;
+            related_power_pin : VDD;
+        }
+        pin (PS) {
+            direction : inout;
+            related_ground_pin : VSS;
+            related_power_pin : VDD;
+        }
+        pin (POLN) {
+            direction : inout;
+            related_ground_pin : VSS;
+            related_power_pin : VDD;
+        }
+        pin (PAD) {
+            direction : inout;
+            is_pad : true;
+            related_ground_pin : VSS;
+            related_power_pin : VDD;
+        }
+        pin (P2C) {
+            direction : output;
+            related_ground_pin : VSS;
+            related_power_pin : VDD;
+        }
+        pin (OUT) {
+            direction : output;
+            related_ground_pin : VSS;
+            related_power_pin : VDD;
+        }
+    }
+    cell (MIPI_IOPadTX) {
+        area : 14400;
+        dont_touch : true;
+        dont_use : true;
+        timing_model_type : abstracted;
+        pad_cell : true;
+        pg_pin (IOVSS) {
+            pg_type : primary_ground;
+            voltage_name : "IOVSS";
+        }
+        pg_pin (IOVDD) {
+            pg_type : primary_power;
+            voltage_name : "IOVDD";
+        }
+        pg_pin (VSS) {
+            pg_type : primary_ground;
+            voltage_name : "VSS";
+        }
+        pg_pin (VDD) {
+            pg_type : primary_power;
+            voltage_name : "VDD";
+        }
+        pin (POLN_RX) {
+            direction : inout;
+            related_ground_pin : VSS;
+            related_power_pin : VDD;
+        }
+        pin (VB) {
+            direction : inout;
+            related_ground_pin : VSS;
+            related_power_pin : VDD;
+        }
+        pin (PBIAS) {
+            direction : input;
+            related_ground_pin : VSS;
+            related_power_pin : VDD;
+        }
+        pin (PS) {
+            direction : input;
+            related_ground_pin : VSS;
+            related_power_pin : VDD;
+        }
+        pin (POLN) {
+            direction : inout;
+            related_ground_pin : VSS;
+            related_power_pin : VDD;
+        }
+        pin (PAD) {
+            direction : inout;
+            is_pad : true;
+            related_ground_pin : VSS;
+            related_power_pin : VDD;
+        }
+        pin (IN_HS) {
+            direction : input;
+            related_ground_pin : VSS;
+            related_power_pin : VDD;
+        }
+        pin (LP_IN) {
+            direction : input;
+            related_ground_pin : VSS;
+            related_power_pin : VDD;
+        }
+    }
+    cell (MIPI_IOPadIn) {
+        area : 14400;
+        dont_touch : true;
+        dont_use : true;
+        timing_model_type : abstracted;
+        pad_cell : true;
+        pg_pin (IOVSS) {
+            pg_type : primary_ground;
+            voltage_name : "IOVSS";
+        }
+        pg_pin (IOVDD) {
+            pg_type : primary_power;
+            voltage_name : "IOVDD";
+        }
+        pg_pin (VSS) {
+            pg_type : primary_ground;
+            voltage_name : "VSS";
+        }
+        pg_pin (VDD) {
+            pg_type : primary_power;
+            voltage_name : "VDD";
+        }
+        pin (POLN_RX) {
+            direction : inout;
+            related_ground_pin : VSS;
+            related_power_pin : VDD;
+        }
+        pin (VB) {
+            direction : inout;
+            related_ground_pin : VSS;
+            related_power_pin : VDD;
+        }
+        pin (PBIAS) {
+            direction : inout;
+            related_ground_pin : VSS;
+            related_power_pin : VDD;
+        }
+        pin (PS) {
+            direction : inout;
+            related_ground_pin : VSS;
+            related_power_pin : VDD;
+        }
+        pin (POLN) {
+            direction : inout;
+            related_ground_pin : VSS;
+            related_power_pin : VDD;
+        }
+        pin (PAD) {
+            direction : inout;
+            is_pad : true;
+            related_ground_pin : VSS;
+            related_power_pin : VDD;
+        }
+        pin (P2C) {
+            direction : output;
+            related_ground_pin : VSS;
+            related_power_pin : VDD;
+        }
+    }
+    cell (MIPI_IOPadOut) {
+        area : 14400;
+        dont_touch : true;
+        dont_use : true;
+        timing_model_type : abstracted;
+        pad_cell : true;
+        pg_pin (IOVSS) {
+            pg_type : primary_ground;
+            voltage_name : "IOVSS";
+        }
+        pg_pin (IOVDD) {
+            pg_type : primary_power;
+            voltage_name : "IOVDD";
+        }
+        pg_pin (VSS) {
+            pg_type : primary_ground;
+            voltage_name : "VSS";
+        }
+        pg_pin (VDD) {
+            pg_type : primary_power;
+            voltage_name : "VDD";
+        }
+        pin (POLN_RX) {
+            direction : inout;
+            related_ground_pin : VSS;
+            related_power_pin : VDD;
+        }
+        pin (VB) {
+            direction : inout;
+            related_ground_pin : VSS;
+            related_power_pin : VDD;
+        }
+        pin (PBIAS) {
+            direction : inout;
+            related_ground_pin : VSS;
+            related_power_pin : VDD;
+        }
+        pin (PS) {
+            direction : inout;
+            related_ground_pin : VSS;
+            related_power_pin : VDD;
+        }
+        pin (POLN) {
+            direction : inout;
+            related_ground_pin : VSS;
+            related_power_pin : VDD;
+        }
+        pin (PAD) {
+            direction : inout;
+            is_pad : true;
+            related_ground_pin : VSS;
+            related_power_pin : VDD;
+        }
+        pin (A) {
+            direction : input;
+            related_ground_pin : VSS;
+            related_power_pin : VDD;
+        }
+    }
+    cell (MIPI_IOPadBandgap) {
+        area : 28800;
+        dont_touch : true;
+        dont_use : true;
+        timing_model_type : abstracted;
+        pad_cell : true;
+        pg_pin (IOVSS) {
+            pg_type : primary_ground;
+            voltage_name : "IOVSS";
+        }
+        pg_pin (IOVDD) {
+            pg_type : primary_power;
+            voltage_name : "IOVDD";
+        }
+        pg_pin (VSS) {
+            pg_type : primary_ground;
+            voltage_name : "VSS";
+        }
+        pg_pin (VDD) {
+            pg_type : primary_power;
+            voltage_name : "VDD";
+        }
+        pin (POLN_RX) {
+            direction : inout;
+            related_ground_pin : VSS;
+            related_power_pin : VDD;
+        }
+        pin (VB) {
+            direction : inout;
+            related_ground_pin : VSS;
+            related_power_pin : VDD;
+        }
+        pin (PBIAS) {
+            direction : inout;
+            related_ground_pin : VSS;
+            related_power_pin : VDD;
+        }
+        pin (PS) {
+            direction : inout;
+            related_ground_pin : VSS;
+            related_power_pin : VDD;
+        }
+        pin (POLN) {
+            direction : inout;
+            related_ground_pin : VSS;
+            related_power_pin : VDD;
+        }
+        pin (PAD) {
+            direction : inout;
+            is_pad : true;
+            related_ground_pin : VSS;
+            related_power_pin : VDD;
+        }
+        pin (VBG) {
+            direction : output;
             related_ground_pin : VSS;
             related_power_pin : VDD;
         }

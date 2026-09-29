@@ -1,0 +1,11 @@
+# Vues importees telles quelles, aucune modification locale.
+depot gitlab.com/nebula_microsystems/mipi
+commit 501b142a8275c5ac58e95f5f6af8556493e063bc
+chemin 3_digital/CML_SR/SR16_TX/COLLATERALS
+b1df1cfe41c2ac042592ae1c3163d1c6  ./DEF/sr16_tx.def
+f4ff3ca67045726a7b4704ec413e310c  ./GDS/sr16_tx.gds
+4095b72c76ae02ecd802678c7c1b0e4d  ./HDL/sr16_mot.vhd
+6b3de586e1ba1e9b00f90503f642d22c  ./HDL/sr16_tx.vhd
+d3525b2bec80e170b6810ebf66bcd50a  ./LEF/sr16_tx.lef
+66b3fcf963dbe3943ed30167c2d47cc1  ./SPICE/sr16_tx.hier.spice
+6ac3129653f79741a2986436ad880615  ./SPICE/sr16_tx.spice

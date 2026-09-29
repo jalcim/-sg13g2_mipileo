@@ -1,0 +1,322 @@
+/* MIPI_io_ss_wcs_125 : IO LVCMOS 1,2 V du ring MIPI (MIPI_IOPadIn, MIPI_IOPadOut).
+   Genere par 2_analog/LVCMOS12/lib/gen_mipi_io_lib.py le 2026-09-29 -- ne pas editer, relancer le script.
+   Corner ss_wcs_125 : VDD = IOVDD = 1.08 V, 125 degC. Delais et transitions simules ngspice sur les netlists
+   schematiques (lvcmos12_schm_in.sp, lvcmos12_out.sp) + sg13g2_SecondaryProtection et DCN/DCP d'IHP, sans
+   parasites de layout. Pas de puissance interne. */
+library (MIPI_io_ss_wcs_125) {
+  comment : "MIPI D-PHY ring, IO LVCMOS 1.2 V, characterized ss_wcs_125";
+  date : "2026-09-29";
+  revision : "0.1";
+  delay_model : table_lookup;
+  capacitive_load_unit (1,pf);
+  current_unit : "1uA";
+  leakage_power_unit : "1pW";
+  pulling_resistance_unit : "1kohm";
+  time_unit : "1ns";
+  voltage_unit : "1V";
+  default_cell_leakage_power : 0;
+  default_fanout_load : 1;
+  default_inout_pin_cap : 0;
+  default_input_pin_cap : 0;
+  default_output_pin_cap : 0;
+  default_leakage_power_density : 0;
+  default_max_transition : 5;
+  in_place_swap_mode : match_footprint;
+  input_threshold_pct_fall : 50;
+  input_threshold_pct_rise : 50;
+  output_threshold_pct_fall : 50;
+  output_threshold_pct_rise : 50;
+  slew_lower_threshold_pct_fall : 10;
+  slew_lower_threshold_pct_rise : 10;
+  slew_upper_threshold_pct_fall : 90;
+  slew_upper_threshold_pct_rise : 90;
+  slew_derate_from_library : 1;
+  nom_process : 1;
+  nom_temperature : 125;
+  nom_voltage : 1.08;
+  voltage_map (VDD, 1.08);
+  voltage_map (VSS, 0);
+  voltage_map (IOVDD, 1.08);
+  voltage_map (IOVSS, 0);
+  operating_conditions (MIPI_io_ss_wcs_125) {
+    process : 1;
+    temperature : 125;
+    voltage : 1.08;
+  }
+  default_operating_conditions : MIPI_io_ss_wcs_125;
+  input_voltage (core) {
+    vih : 1.08;
+    vil : 0;
+    vimax : 1.08;
+    vimin : 0;
+  }
+  input_voltage (pad) {
+    vih : 1.08;
+    vil : 0;
+    vimax : 1.08;
+    vimin : 0;
+  }
+  output_voltage (core) {
+    voh : 1.08;
+    vol : 0;
+    vomax : 1.08;
+    vomin : 0;
+  }
+  output_voltage (pad) {
+    voh : 1.08;
+    vol : 0;
+    vomax : 1.08;
+    vomin : 0;
+  }
+  lu_table_template (in_delay_5x5) {
+    variable_1 : input_net_transition;
+    variable_2 : total_output_net_capacitance;
+    index_1 ("0.1, 0.3, 1, 2.5, 5");
+    index_2 ("0.002, 0.005, 0.01, 0.03, 0.1");
+  }
+  lu_table_template (out_delay_5x5) {
+    variable_1 : input_net_transition;
+    variable_2 : total_output_net_capacitance;
+    index_1 ("0.02, 0.1, 0.3, 0.8, 2");
+    index_2 ("1, 3, 8, 15, 30");
+  }
+  cell (MIPI_IOPadIn) {
+    area : 14400;
+    dont_touch : true;
+    dont_use : true;
+    cell_footprint : "input";
+    pad_cell : true;
+    pg_pin (VDD) {
+      pg_type : primary_power;
+      voltage_name : "VDD";
+    }
+    pg_pin (VSS) {
+      pg_type : primary_ground;
+      voltage_name : "VSS";
+    }
+    pg_pin (IOVDD) {
+      pg_type : primary_power;
+      voltage_name : "IOVDD";
+    }
+    pg_pin (IOVSS) {
+      pg_type : primary_ground;
+      voltage_name : "IOVSS";
+    }
+    leakage_power () {
+      value : 1040.84;
+      when : "!PAD&!P2C";
+      related_pg_pin : VDD;
+    }
+    leakage_power () {
+      value : 11.9028;
+      when : "!PAD&!P2C";
+      related_pg_pin : IOVDD;
+    }
+    leakage_power () {
+      value : 1144.2;
+      when : "PAD&P2C";
+      related_pg_pin : VDD;
+    }
+    leakage_power () {
+      value : 2.48064e-06;
+      when : "PAD&P2C";
+      related_pg_pin : IOVDD;
+    }
+    leakage_power () {
+      value : 1092.52;
+      related_pg_pin : VDD;
+    }
+    leakage_power () {
+      value : 5.9514;
+      related_pg_pin : IOVDD;
+    }
+    pin (P2C) {
+      direction : output;
+      function : "PAD";
+      output_voltage : core;
+      related_ground_pin : VSS;
+      related_power_pin : VDD;
+      max_capacitance : 0.1;
+      timing () {
+        related_pin : "PAD";
+        timing_sense : positive_unate;
+        timing_type : combinational;
+        cell_rise (in_delay_5x5) {
+          index_1 ("0.1, 0.3, 1, 2.5, 5");
+          index_2 ("0.002, 0.005, 0.01, 0.03, 0.1");
+          values ( \
+            "0.170992, 0.18825, 0.214167, 0.312498, 0.650566", \
+            "0.252569, 0.269684, 0.295487, 0.393385, 0.731482", \
+            "0.52319, 0.54159, 0.568138, 0.666727, 1.0047", \
+            "1.00699, 1.02704, 1.05483, 1.15395, 1.4936", \
+            "1.70252, 1.72438, 1.75349, 1.85337, 2.19217" \
+          );
+        }
+        rise_transition (in_delay_5x5) {
+          index_1 ("0.1, 0.3, 1, 2.5, 5");
+          index_2 ("0.002, 0.005, 0.01, 0.03, 0.1");
+          values ( \
+            "0.0520542, 0.0801449, 0.128223, 0.326666, 1.03203", \
+            "0.0542347, 0.0813136, 0.128991, 0.327079, 1.03202", \
+            "0.0659882, 0.0904931, 0.135896, 0.33013, 1.03247", \
+            "0.0739081, 0.100279, 0.143288, 0.334742, 1.03521", \
+            "0.0833089, 0.108658, 0.150656, 0.338821, 1.03648" \
+          );
+        }
+        cell_fall (in_delay_5x5) {
+          index_1 ("0.1, 0.3, 1, 2.5, 5");
+          index_2 ("0.002, 0.005, 0.01, 0.03, 0.1");
+          values ( \
+            "0.23603, 0.251872, 0.27235, 0.33479, 0.522117", \
+            "0.312151, 0.327996, 0.348416, 0.410686, 0.597942", \
+            "0.610371, 0.626851, 0.64772, 0.710717, 0.898198", \
+            "1.1479, 1.16689, 1.19042, 1.25808, 1.44943", \
+            "1.90027, 1.92177, 1.94787, 2.01959, 2.21279" \
+          );
+        }
+        fall_transition (in_delay_5x5) {
+          index_1 ("0.1, 0.3, 1, 2.5, 5");
+          index_2 ("0.002, 0.005, 0.01, 0.03, 0.1");
+          values ( \
+            "0.0544623, 0.0701523, 0.0944931, 0.187862, 0.526177", \
+            "0.0575014, 0.0726871, 0.0961315, 0.188633, 0.52637", \
+            "0.0626823, 0.0789715, 0.101428, 0.191366, 0.527003", \
+            "0.0793316, 0.0944174, 0.116594, 0.206147, 0.536526", \
+            "0.0933614, 0.110025, 0.132416, 0.218599, 0.543887" \
+          );
+        }
+      }
+    }
+    pin (PAD) {
+      direction : input;
+      is_pad : true;
+      input_voltage : pad;
+      related_ground_pin : IOVSS;
+      related_power_pin : IOVDD;
+      max_transition : 5;
+      capacitance : 0.129375;
+      rise_capacitance : 0.129458;
+      fall_capacitance : 0.129292;
+    }
+  }
+  cell (MIPI_IOPadOut) {
+    area : 14400;
+    dont_touch : true;
+    dont_use : true;
+    cell_footprint : "output";
+    pad_cell : true;
+    pg_pin (VDD) {
+      pg_type : primary_power;
+      voltage_name : "VDD";
+    }
+    pg_pin (VSS) {
+      pg_type : primary_ground;
+      voltage_name : "VSS";
+    }
+    pg_pin (IOVDD) {
+      pg_type : primary_power;
+      voltage_name : "IOVDD";
+    }
+    pg_pin (IOVSS) {
+      pg_type : primary_ground;
+      voltage_name : "IOVSS";
+    }
+    leakage_power () {
+      value : 216.706;
+      when : "!A&!PAD";
+      related_pg_pin : VDD;
+    }
+    leakage_power () {
+      value : 53395.6;
+      when : "!A&!PAD";
+      related_pg_pin : IOVDD;
+    }
+    leakage_power () {
+      value : 826.978;
+      when : "A&PAD";
+      related_pg_pin : VDD;
+    }
+    leakage_power () {
+      value : 27775.1;
+      when : "A&PAD";
+      related_pg_pin : IOVDD;
+    }
+    leakage_power () {
+      value : 521.842;
+      related_pg_pin : VDD;
+    }
+    leakage_power () {
+      value : 40585.3;
+      related_pg_pin : IOVDD;
+    }
+    pin (PAD) {
+      direction : output;
+      function : "A";
+      is_pad : true;
+      drive_current : 4000;
+      output_voltage : pad;
+      related_ground_pin : IOVSS;
+      related_power_pin : IOVDD;
+      max_capacitance : 30;
+      timing () {
+        related_pin : "A";
+        timing_sense : positive_unate;
+        timing_type : combinational;
+        cell_rise (out_delay_5x5) {
+          index_1 ("0.02, 0.1, 0.3, 0.8, 2");
+          index_2 ("1, 3, 8, 15, 30");
+          values ( \
+            "0.62065, 0.743105, 1.04204, 1.45822, 2.34852", \
+            "0.643527, 0.765981, 1.06489, 1.48107, 2.37136", \
+            "0.683542, 0.805777, 1.10462, 1.52077, 2.41103", \
+            "0.747099, 0.869343, 1.16818, 1.58435, 2.47461", \
+            "0.852848, 0.974912, 1.27373, 1.68988, 2.58011" \
+          );
+        }
+        rise_transition (out_delay_5x5) {
+          index_1 ("0.02, 0.1, 0.3, 0.8, 2");
+          index_2 ("1, 3, 8, 15, 30");
+          values ( \
+            "0.2194, 0.554234, 1.39857, 2.58769, 5.13923", \
+            "0.219483, 0.554283, 1.39856, 2.58768, 5.13923", \
+            "0.220252, 0.554487, 1.39856, 2.58766, 5.1392", \
+            "0.22088, 0.55469, 1.39857, 2.58767, 5.1392", \
+            "0.219863, 0.554785, 1.39855, 2.58766, 5.13919" \
+          );
+        }
+        cell_fall (out_delay_5x5) {
+          index_1 ("0.02, 0.1, 0.3, 0.8, 2");
+          index_2 ("1, 3, 8, 15, 30");
+          values ( \
+            "0.439329, 0.573046, 0.899472, 1.35387, 2.3261", \
+            "0.464559, 0.598278, 0.924686, 1.37908, 2.35131", \
+            "0.509721, 0.643361, 0.969748, 1.42411, 2.39631", \
+            "0.567351, 0.700937, 1.02719, 1.48158, 2.45376", \
+            "0.635392, 0.768869, 1.09513, 1.5495, 2.52168" \
+          );
+        }
+        fall_transition (out_delay_5x5) {
+          index_1 ("0.02, 0.1, 0.3, 0.8, 2");
+          index_2 ("1, 3, 8, 15, 30");
+          values ( \
+            "0.223767, 0.562899, 1.41581, 2.61478, 5.18622", \
+            "0.223839, 0.56291, 1.4158, 2.61478, 5.18621", \
+            "0.224097, 0.562983, 1.41581, 2.61474, 5.18618", \
+            "0.22462, 0.563147, 1.41583, 2.61478, 5.18617", \
+            "0.224274, 0.563206, 1.41583, 2.61478, 5.18617" \
+          );
+        }
+      }
+    }
+    pin (A) {
+      direction : input;
+      input_voltage : core;
+      related_ground_pin : VSS;
+      related_power_pin : VDD;
+      max_transition : 2;
+      capacitance : 0.00994227;
+      rise_capacitance : 0.00994472;
+      fall_capacitance : 0.00993981;
+    }
+  }
+}

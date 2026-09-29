@@ -1,0 +1,22 @@
+# Vues importees telles quelles, aucune modification locale.
+depot gitlab.com/nebula_microsystems/mipi
+commit 7efada02e3eb064415d03a9bd1c4a68ce85d70d0
+chemin 2_analog/CSI2_DPHY_RING/COLLATERALS
+442941d85b8fbc15200ad6a3cd40a5e3  ./DOC/cap_fuite_MIPI_IOPadIOVdd.cir
+4f915203175466f9a3fb9c01a119a647  ./DOC/cap_fuite_MIPI_IOPadIOVss.cir
+b76d76117b7e2ffd6fbf20311a33c992  ./DOC/cap_fuite_MIPI_IOPadVdd.cir
+9411f61ca4eb411107a0776f9611a2c9  ./DOC/cap_fuite_MIPI_IOPadVss.cir
+088fa15e7ee42deb6d9c22841be9eb69  ./DOC/em_estimate.py
+51c27187070173b212e216cfc746bc11  ./DOC/MIPI_IOPadIn.md
+5cb2d98cb2dafc5753978225538a15ee  ./DOC/MIPI_IOPadIOVdd.md
+cdc6320f755190e746cabc713cfe75b5  ./DOC/MIPI_IOPadIOVss.md
+9a9d6b46ace1e128fb215466bed80921  ./DOC/MIPI_IOPadOut.md
+eda44d4968168e8bf0db969f2b5666bd  ./DOC/MIPI_IOPadVdd.md
+7d4207255da525401a61b268b94e5023  ./DOC/MIPI_IOPadVss.md
+39764c66ef8bb7c1c3662de441cb924c  ./GDS/MIPI_ring.gds
+f5c08c45d1b41081bfe0de09a466ac2d  ./HDL/MIPI_ring.v
+2e89d8aa6c28453905fb9e46cec1d4d6  ./LEF/MIPI_ring.lef
+02abb98d5abc83dda9df31d6a7a68083  ./LIB/MIPI_io_ff_bcs_m40.lib
+1b59e9d8fb1252815176bbbe1a481dda  ./LIB/MIPI_io_ss_wcs_125.lib
+c950fe9514f9b9d605c53e7852bd1bd8  ./LIB/MIPI_io_tt_typ_25.lib
+4ac4520c7031da2f7b3429004f9e8e1b  ./LIB/MIPI_ring_dummy.lib

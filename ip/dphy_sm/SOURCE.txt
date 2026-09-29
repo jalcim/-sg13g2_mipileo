@@ -1,0 +1,14 @@
+# Vues importees telles quelles, aucune modification locale.
+depot gitlab.com/nebula_microsystems/mipi
+commit 501b142a8275c5ac58e95f5f6af8556493e063bc
+chemin 3_digital/DPHY_SM/COLLATERALS
+de094875d421e0da9d21948c73b2a2f7  ./DEF/dphy_rx.def
+e9cd8245f727c91f32aaf0457b4d9a5e  ./DEF/dphy_tx.def
+9cf74cdf8a2d3f4c3ce663ab924717b0  ./GDS/dphy_rx.gds
+02f1d4ef191ea8635cce35252205690c  ./GDS/dphy_tx.gds
+a089c9537b206baeaa94da2ebcc6cf98  ./HDL/dphy_rx.v
+29004724a1ba9791d2a08d9c745f1aef  ./HDL/dphy_tx.v
+3334d13cb66d2bb6012ed1423bc8e263  ./LEF/dphy_rx.lef
+117d9dee57775942c8893fcfd70e178d  ./LEF/dphy_tx.lef
+c8ea344cd6686d1153f44e43255dddf7  ./SPICE/dphy_rx.spice
+54ca7033ab6f51c75a749dcb1c795579  ./SPICE/dphy_tx.spice

@@ -1,0 +1,8 @@
+{
+    "klayout__drc_error__count": 9,
+    "nebula_drc_latchup_scope": "complete",
+    "nebula_drc_extra_rules_scope": "complete",
+    "nebula_drc_antenna_rules": 31,
+    "nebula_drc_verdict": "tolerated",
+    "nebula_drc_verdict__klayout": "tolerated"
+}

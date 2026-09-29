@@ -1,0 +1,24 @@
+{
+    "magic__drc_error__count": 0,
+    "nebula_erc_clean": false,
+    "nebula_erc_findings": [
+        "input port 'MOT2_P' is declared in the contract but absent from the extracted netlist 'flatpost' (ports found: VDD, VSS, CK_N, CK_P, CLK_W_N, CLK_W_P, MOT0_N, MOT0_P, MOT1_N, MOT1_P, MOT2_N)",
+        "input port 'MOT3_N' is declared in the contract but absent from the extracted netlist 'flatpost' (ports found: VDD, VSS, CK_N, CK_P, CLK_W_N, CLK_W_P, MOT0_N, MOT0_P, MOT1_N, MOT1_P, MOT2_N)",
+        "input port 'MOT3_P' is declared in the contract but absent from the extracted netlist 'flatpost' (ports found: VDD, VSS, CK_N, CK_P, CLK_W_N, CLK_W_P, MOT0_N, MOT0_P, MOT1_N, MOT1_P, MOT2_N)",
+        "input port 'MOT4_N' is declared in the contract but absent from the extracted netlist 'flatpost' (ports found: VDD, VSS, CK_N, CK_P, CLK_W_N, CLK_W_P, MOT0_N, MOT0_P, MOT1_N, MOT1_P, MOT2_N)",
+        "input port 'MOT4_P' is declared in the contract but absent from the extracted netlist 'flatpost' (ports found: VDD, VSS, CK_N, CK_P, CLK_W_N, CLK_W_P, MOT0_N, MOT0_P, MOT1_N, MOT1_P, MOT2_N)",
+        "input port 'MOT5_N' is declared in the contract but absent from the extracted netlist 'flatpost' (ports found: VDD, VSS, CK_N, CK_P, CLK_W_N, CLK_W_P, MOT0_N, MOT0_P, MOT1_N, MOT1_P, MOT2_N)",
+        "input port 'MOT5_P' is declared in the contract but absent from the extracted netlist 'flatpost' (ports found: VDD, VSS, CK_N, CK_P, CLK_W_N, CLK_W_P, MOT0_N, MOT0_P, MOT1_N, MOT1_P, MOT2_N)",
+        "input port 'MOT6_N' is declared in the contract but absent from the extracted netlist 'flatpost' (ports found: VDD, VSS, CK_N, CK_P, CLK_W_N, CLK_W_P, MOT0_N, MOT0_P, MOT1_N, MOT1_P, MOT2_N)",
+        "input port 'MOT6_P' is declared in the contract but absent from the extracted netlist 'flatpost' (ports found: VDD, VSS, CK_N, CK_P, CLK_W_N, CLK_W_P, MOT0_N, MOT0_P, MOT1_N, MOT1_P, MOT2_N)",
+        "input port 'MOT7_N' is declared in the contract but absent from the extracted netlist 'flatpost' (ports found: VDD, VSS, CK_N, CK_P, CLK_W_N, CLK_W_P, MOT0_N, MOT0_P, MOT1_N, MOT1_P, MOT2_N)",
+        "input port 'MOT7_P' is declared in the contract but absent from the extracted netlist 'flatpost' (ports found: VDD, VSS, CK_N, CK_P, CLK_W_N, CLK_W_P, MOT0_N, MOT0_P, MOT1_N, MOT1_P, MOT2_N)",
+        "input port 'POLN' is declared in the contract but absent from the extracted netlist 'flatpost' (ports found: VDD, VSS, CK_N, CK_P, CLK_W_N, CLK_W_P, MOT0_N, MOT0_P, MOT1_N, MOT1_P, MOT2_N)",
+        "output port 'DOUT_N' is declared in the contract but absent from the extracted netlist 'flatpost' (ports found: VDD, VSS, CK_N, CK_P, CLK_W_N, CLK_W_P, MOT0_N, MOT0_P, MOT1_N, MOT1_P, MOT2_N)",
+        "output port 'DOUT_P' is declared in the contract but absent from the extracted netlist 'flatpost' (ports found: VDD, VSS, CK_N, CK_P, CLK_W_N, CLK_W_P, MOT0_N, MOT0_P, MOT1_N, MOT1_P, MOT2_N)"
+    ],
+    "nebula_lvs_skip": "declared",
+    "nebula_drc_verdict": "clean",
+    "nebula_drc_verdict__magic": "clean",
+    "nebula_function_verdict": "not-run"
+}

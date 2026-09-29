@@ -10,80 +10,80 @@ module chip_top (
     wire flow_in_c;
     wire flow_out_c;
     wire thru_c;
-    wire padres_sig_in_pad_nc;
-    wire padres_sig_out_pad_nc;
-    wire padres_flow_in_pad_nc;
-    wire padres_flow_out_pad_nc;
-    wire padres_thru_n_pad_nc;
-    wire padres_thru_s_pad_nc;
-    wire padres_open_pad_nc;
+    wire PADRES_sig_in_pad_nc;
+    wire PADRES_sig_out_pad_nc;
+    wire PADRES_flow_in_pad_nc;
+    wire PADRES_flow_out_pad_nc;
+    wire PADRES_thru_n_pad_nc;
+    wire PADRES_thru_s_pad_nc;
+    wire PADRES_open_pad_nc;
 
-    (* keep *) sg13g2_IOPadIOVdd iovdd_pad (
+    (* keep *) MIPI_IOPadIOVdd iovdd_pad (
         `ifdef USE_POWER_PINS
-        .iovdd(IOVDD), .iovss(IOVSS), .vdd(VDD), .vss(VSS)
+        .IOVDD(IOVDD), .IOVSS(IOVSS), .VDD(VDD), .VSS(VSS)
         `endif
     );
-    (* keep *) sg13g2_IOPadIOVss iovss_pad (
+    (* keep *) MIPI_IOPadIOVss iovss_pad (
         `ifdef USE_POWER_PINS
-        .iovdd(IOVDD), .iovss(IOVSS), .vdd(VDD), .vss(VSS)
+        .IOVDD(IOVDD), .IOVSS(IOVSS), .VDD(VDD), .VSS(VSS)
         `endif
     );
-    (* keep *) sg13g2_IOPadVdd vdd_pad (
+    (* keep *) MIPI_IOPadVdd vdd_pad (
         `ifdef USE_POWER_PINS
-        .iovdd(IOVDD), .iovss(IOVSS), .vdd(VDD), .vss(VSS)
+        .IOVDD(IOVDD), .IOVSS(IOVSS), .VDD(VDD), .VSS(VSS)
         `endif
     );
-    (* keep *) sg13g2_IOPadVss vss_pad (
+    (* keep *) MIPI_IOPadVss vss_pad (
         `ifdef USE_POWER_PINS
-        .iovdd(IOVDD), .iovss(IOVSS), .vdd(VDD), .vss(VSS)
+        .IOVDD(IOVDD), .IOVSS(IOVSS), .VDD(VDD), .VSS(VSS)
         `endif
     );
-    (* keep *) sg13g2_IOPadVdd vdd_pad_1 (
+    (* keep *) MIPI_IOPadVdd vdd_pad_1 (
         `ifdef USE_POWER_PINS
-        .iovdd(IOVDD), .iovss(IOVSS), .vdd(VDD), .vss(VSS)
+        .IOVDD(IOVDD), .IOVSS(IOVSS), .VDD(VDD), .VSS(VSS)
         `endif
     );
-    (* keep *) sg13g2_IOPadAnalog sig_in_pad (
+    (* keep *) MIPI_IOPadAnalog sig_in_pad (
         `ifdef USE_POWER_PINS
-        .iovdd(IOVDD), .iovss(IOVSS), .vdd(VDD), .vss(VSS),
+        .IOVDD(IOVDD), .IOVSS(IOVSS), .VDD(VDD), .VSS(VSS),
         `endif
-        .pad(sig_in_pad_PAD), .padres(padres_sig_in_pad_nc), .padbare(sig_in_pad_PAD)
+        .PAD(sig_in_pad_PAD), .PADRES(sig_in_pad_PAD)
     );
-    (* keep *) sg13g2_IOPadAnalog sig_out_pad (
+    (* keep *) MIPI_IOPadAnalog sig_out_pad (
         `ifdef USE_POWER_PINS
-        .iovdd(IOVDD), .iovss(IOVSS), .vdd(VDD), .vss(VSS),
+        .IOVDD(IOVDD), .IOVSS(IOVSS), .VDD(VDD), .VSS(VSS),
         `endif
-        .pad(sig_out_pad_PAD), .padres(padres_sig_out_pad_nc), .padbare(sig_out_pad_PAD)
+        .PAD(sig_out_pad_PAD), .PADRES(sig_out_pad_PAD)
     );
-    (* keep *) sg13g2_IOPadAnalog flow_in_pad (
+    (* keep *) MIPI_IOPadAnalog flow_in_pad (
         `ifdef USE_POWER_PINS
-        .iovdd(IOVDD), .iovss(IOVSS), .vdd(VDD), .vss(VSS),
+        .IOVDD(IOVDD), .IOVSS(IOVSS), .VDD(VDD), .VSS(VSS),
         `endif
-        .padres(padres_flow_in_pad_nc), .padbare(flow_in_c)
+        .PADRES(flow_in_c)
     );
-    (* keep *) sg13g2_IOPadAnalog flow_out_pad (
+    (* keep *) MIPI_IOPadAnalog flow_out_pad (
         `ifdef USE_POWER_PINS
-        .iovdd(IOVDD), .iovss(IOVSS), .vdd(VDD), .vss(VSS),
+        .IOVDD(IOVDD), .IOVSS(IOVSS), .VDD(VDD), .VSS(VSS),
         `endif
-        .padres(padres_flow_out_pad_nc), .padbare(flow_out_c)
+        .PADRES(flow_out_c)
     );
-    (* keep *) sg13g2_IOPadAnalog thru_n_pad (
+    (* keep *) MIPI_IOPadAnalog thru_n_pad (
         `ifdef USE_POWER_PINS
-        .iovdd(IOVDD), .iovss(IOVSS), .vdd(VDD), .vss(VSS),
+        .IOVDD(IOVDD), .IOVSS(IOVSS), .VDD(VDD), .VSS(VSS),
         `endif
-        .padres(padres_thru_n_pad_nc), .padbare(thru_c)
+        .PADRES(thru_c)
     );
-    (* keep *) sg13g2_IOPadAnalog thru_s_pad (
+    (* keep *) MIPI_IOPadAnalog thru_s_pad (
         `ifdef USE_POWER_PINS
-        .iovdd(IOVDD), .iovss(IOVSS), .vdd(VDD), .vss(VSS),
+        .IOVDD(IOVDD), .IOVSS(IOVSS), .VDD(VDD), .VSS(VSS),
         `endif
-        .padres(padres_thru_s_pad_nc), .padbare(thru_c)
+        .PADRES(thru_c)
     );
-    (* keep *) sg13g2_IOPadAnalog open_pad (
+    (* keep *) MIPI_IOPadAnalog open_pad (
         `ifdef USE_POWER_PINS
-        .iovdd(IOVDD), .iovss(IOVSS), .vdd(VDD), .vss(VSS),
+        .IOVDD(IOVDD), .IOVSS(IOVSS), .VDD(VDD), .VSS(VSS),
         `endif
-        .pad(open_pad_PAD), .padres(padres_open_pad_nc), .padbare(open_pad_PAD)
+        .PAD(open_pad_PAD), .PADRES(PADRES_open_pad_nc)
     );
     //remplissage_gatpoly remplissage_so ();
     //remplissage_gatpoly remplissage_no ();

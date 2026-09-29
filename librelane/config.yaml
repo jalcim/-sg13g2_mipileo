@@ -109,8 +109,8 @@ SETUP_VIOLATION_CORNERS: ["*"]
 # Floorplanning
 FP_SIZING: absolute
 
-DIE_AREA: [0, 0, 900, 900]
-CORE_AREA: [365.28, 366.66, 534.72, 532.98]
+DIE_AREA: [0, 0, 1730, 1730]
+CORE_AREA: [365.28, 366.66, 1364.72, 1362.98]
 
 # Increase for more logic on your die
 PL_TARGET_DENSITY_PCT: 10
@@ -144,21 +144,47 @@ EXTRA_GDS:
 EXTRA_LEFS:
 - dir::../ip/sg13g2_bondpad_70x70_novias/lef/bondpad_70x70_novias.lef
 
-# Use custom IO with padbare pin
-PAD_LEFS: dir::../ip/sg13g2_io_custom/sg13g2_io.lef
-PAD_VERILOG_MODELS: dir::../ip/sg13g2_io_custom/sg13g2_io.v
 
+# MIPI_ring I/Os
+
+# Set IO pad information
+PAD_CORNER: [MIPI_Corner] # MIPI_CornerStop, CORNER_Breaker
+PAD_FILLERS:
+- MIPI_Filler10000
+- MIPI_Filler4000
+- MIPI_Filler2000
+- MIPI_Filler1000
+- MIPI_Filler400
+- MIPI_Filler200
+
+PAD_BONDPAD_OFFSETS:
+  "MIPI_IOPad*": [5.0, -70.0]
+
+PAD_LEFS: [dir::../ip/CSI2_DPHY_RING/LEF/MIPI_ring.lef]
+PAD_GDS: [dir::../ip/CSI2_DPHY_RING/GDS/MIPI_ring.gds]
+PAD_VERILOG_MODELS: [dir::../ip/CSI2_DPHY_RING/HDL/MIPI_ring.v]
+
+# Technology lib
 LIB:
   "*_typ_1p20V_25C":
     - pdk_dir::libs.ref/sg13g2_stdcell/lib/sg13g2_stdcell_typ_1p20V_25C.lib
-    #- pdk_dir::libs.ref/sg13g2_io/lib/sg13g2_io_typ_1p2V_3p3V_25C.lib
-    - dir::../ip/sg13g2_io_custom/sg13g2_io_typ_1p2V_3p3V_25C.lib
+    - pdk_dir::libs.ref/sg13g2_io/lib/sg13g2_io_typ_1p2V_3p3V_25C.lib
+    - dir::../ip/CSI2_DPHY_RING/LIB/MIPI_ring_dummy.lib
   "*_fast_1p32V_m40C":
     - pdk_dir::libs.ref/sg13g2_stdcell/lib/sg13g2_stdcell_fast_1p32V_m40C.lib
     - pdk_dir::libs.ref/sg13g2_io/lib/sg13g2_io_fast_1p32V_3p6V_m40C.lib
+    - dir::../ip/CSI2_DPHY_RING/LIB/MIPI_ring_dummy.lib
   "*_slow_1p08V_125C":
     - pdk_dir::libs.ref/sg13g2_stdcell/lib/sg13g2_stdcell_slow_1p08V_125C.lib
     - pdk_dir::libs.ref/sg13g2_io/lib/sg13g2_io_slow_1p08V_3p0V_125C.lib
+    - dir::../ip/CSI2_DPHY_RING/LIB/MIPI_ring_dummy.lib
+
+#PAD_SPICE_MODELS: ["pdk_dir::libs.ref/sg13g2_io/spice/sg13g2_io.spice"]
+#PAD_CDLS: ["pdk_dir::libs.ref/sg13g2_io/cdl/sg13g2_io.cdl"]
+
+# Use custom IO with padbare pin
+#PAD_LEFS: dir::../ip/sg13g2_io_custom/sg13g2_io.lef
+#PAD_VERILOG_MODELS: dir::../ip/sg13g2_io_custom/sg13g2_io.v
 
 IGNORE_DISCONNECTED_MODULES:
 - bondpad_70x70_novias

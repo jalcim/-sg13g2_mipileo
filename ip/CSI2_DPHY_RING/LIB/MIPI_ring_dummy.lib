@@ -1,0 +1,402 @@
+library (MIPI_ring_dummy) {
+    delay_model : table_lookup;
+    capacitive_load_unit (1,ff);
+    current_unit : "1mA";
+    leakage_power_unit : "1mW";
+    pulling_resistance_unit : "1kohm";
+    time_unit : "1ps";
+    voltage_unit : "1V";
+    voltage_map (VDD, 1.2);
+    voltage_map (VSS, 0.0);
+    voltage_map (IOVDD, 1.2);
+    voltage_map (IOVSS, 0.0);
+    voltage_map (IOVDD_MIPI, 1.2);
+    voltage_map (IOVSS_MIPI, 0.0);
+    voltage_map (IOVDD33, 3.3);
+    default_cell_leakage_power : 0;
+    default_inout_pin_cap : 1;
+    default_input_pin_cap : 1;
+    default_output_pin_cap : 0;
+    default_max_transition : 5000;
+    in_place_swap_mode : match_footprint;
+    input_threshold_pct_fall : 50;
+    input_threshold_pct_rise : 50;
+    nom_process : 1;
+    nom_temperature : 25;
+    nom_voltage : 1.2;
+    output_threshold_pct_fall : 50;
+    output_threshold_pct_rise : 50;
+    slew_lower_threshold_pct_fall : 20;
+    slew_lower_threshold_pct_rise : 20;
+    slew_upper_threshold_pct_fall : 80;
+    slew_upper_threshold_pct_rise : 80;
+    operating_conditions ("typ") {
+        process : 1;
+        temperature : 25;
+        voltage : 1.2;
+        tree_type : "balanced_tree";
+    }
+    default_operating_conditions : "typ";
+    cell (MIPI_Filler200) {
+        area : 180;
+        dont_touch : true;
+        dont_use : true;
+        timing_model_type : abstracted;
+        pad_cell : true;
+        pg_pin (IOVSS) {
+            pg_type : primary_ground;
+            voltage_name : "IOVSS";
+        }
+        pg_pin (IOVDD) {
+            pg_type : primary_power;
+            voltage_name : "IOVDD";
+        }
+        pg_pin (VSS) {
+            pg_type : primary_ground;
+            voltage_name : "VSS";
+        }
+        pg_pin (VDD) {
+            pg_type : primary_power;
+            voltage_name : "VDD";
+        }
+    }
+    cell (MIPI_Filler400) {
+        area : 360;
+        dont_touch : true;
+        dont_use : true;
+        timing_model_type : abstracted;
+        pad_cell : true;
+        pg_pin (IOVSS) {
+            pg_type : primary_ground;
+            voltage_name : "IOVSS";
+        }
+        pg_pin (IOVDD) {
+            pg_type : primary_power;
+            voltage_name : "IOVDD";
+        }
+        pg_pin (VSS) {
+            pg_type : primary_ground;
+            voltage_name : "VSS";
+        }
+        pg_pin (VDD) {
+            pg_type : primary_power;
+            voltage_name : "VDD";
+        }
+    }
+    cell (MIPI_Filler1000) {
+        area : 900;
+        dont_touch : true;
+        dont_use : true;
+        timing_model_type : abstracted;
+        pad_cell : true;
+        pg_pin (IOVSS) {
+            pg_type : primary_ground;
+            voltage_name : "IOVSS";
+        }
+        pg_pin (IOVDD) {
+            pg_type : primary_power;
+            voltage_name : "IOVDD";
+        }
+        pg_pin (VSS) {
+            pg_type : primary_ground;
+            voltage_name : "VSS";
+        }
+        pg_pin (VDD) {
+            pg_type : primary_power;
+            voltage_name : "VDD";
+        }
+    }
+    cell (MIPI_Filler2000) {
+        area : 1800;
+        dont_touch : true;
+        dont_use : true;
+        timing_model_type : abstracted;
+        pad_cell : true;
+        pg_pin (IOVSS) {
+            pg_type : primary_ground;
+            voltage_name : "IOVSS";
+        }
+        pg_pin (IOVDD) {
+            pg_type : primary_power;
+            voltage_name : "IOVDD";
+        }
+        pg_pin (VSS) {
+            pg_type : primary_ground;
+            voltage_name : "VSS";
+        }
+        pg_pin (VDD) {
+            pg_type : primary_power;
+            voltage_name : "VDD";
+        }
+    }
+    cell (MIPI_Filler4000) {
+        area : 3600;
+        dont_touch : true;
+        dont_use : true;
+        timing_model_type : abstracted;
+        pad_cell : true;
+        pg_pin (IOVSS) {
+            pg_type : primary_ground;
+            voltage_name : "IOVSS";
+        }
+        pg_pin (IOVDD) {
+            pg_type : primary_power;
+            voltage_name : "IOVDD";
+        }
+        pg_pin (VSS) {
+            pg_type : primary_ground;
+            voltage_name : "VSS";
+        }
+        pg_pin (VDD) {
+            pg_type : primary_power;
+            voltage_name : "VDD";
+        }
+    }
+    cell (MIPI_Filler10000) {
+        area : 9000;
+        dont_touch : true;
+        dont_use : true;
+        timing_model_type : abstracted;
+        pad_cell : true;
+        pg_pin (IOVSS) {
+            pg_type : primary_ground;
+            voltage_name : "IOVSS";
+        }
+        pg_pin (IOVDD) {
+            pg_type : primary_power;
+            voltage_name : "IOVDD";
+        }
+        pg_pin (VSS) {
+            pg_type : primary_ground;
+            voltage_name : "VSS";
+        }
+        pg_pin (VDD) {
+            pg_type : primary_power;
+            voltage_name : "VDD";
+        }
+    }
+    cell (MIPI_Corner) {
+        area : 32400;
+        dont_touch : true;
+        dont_use : true;
+        timing_model_type : abstracted;
+        pad_cell : true;
+        pg_pin (IOVSS) {
+            pg_type : primary_ground;
+            voltage_name : "IOVSS";
+        }
+        pg_pin (IOVDD) {
+            pg_type : primary_power;
+            voltage_name : "IOVDD";
+        }
+        pg_pin (VSS) {
+            pg_type : primary_ground;
+            voltage_name : "VSS";
+        }
+        pg_pin (VDD) {
+            pg_type : primary_power;
+            voltage_name : "VDD";
+        }
+    }
+    cell (MIPI_CornerStop) {
+        area : 32400;
+        dont_touch : true;
+        dont_use : true;
+        timing_model_type : abstracted;
+        pad_cell : true;
+        pin (IOVSS_A) {
+            direction : inout;
+            is_pad : true;
+            related_ground_pin : VSS;
+            related_power_pin : VDD;
+        }
+        pin (IOVDD_A) {
+            direction : inout;
+            is_pad : true;
+            related_ground_pin : VSS;
+            related_power_pin : VDD;
+        }
+        pg_pin (VSS) {
+            pg_type : primary_ground;
+            voltage_name : "VSS";
+        }
+        pg_pin (VDD) {
+            pg_type : primary_power;
+            voltage_name : "VDD";
+        }
+        pin (IOVSS_B) {
+            direction : inout;
+            is_pad : true;
+            related_ground_pin : VSS;
+            related_power_pin : VDD;
+        }
+        pin (IOVDD_B) {
+            direction : inout;
+            is_pad : true;
+            related_ground_pin : VSS;
+            related_power_pin : VDD;
+        }
+    }
+    cell (CORNER_Breaker) {
+        area : 32400;
+        dont_touch : true;
+        dont_use : true;
+        timing_model_type : abstracted;
+        pad_cell : true;
+        pg_pin (IOVSS_MIPI) {
+            pg_type : primary_ground;
+            voltage_name : "IOVSS_MIPI";
+        }
+        pg_pin (IOVDD_MIPI) {
+            pg_type : primary_power;
+            voltage_name : "IOVDD_MIPI";
+        }
+        pg_pin (VSS) {
+            pg_type : primary_ground;
+            voltage_name : "VSS";
+        }
+        pg_pin (VDD) {
+            pg_type : primary_power;
+            voltage_name : "VDD";
+        }
+        pg_pin (IOVSS) {
+            pg_type : primary_ground;
+            voltage_name : "IOVSS";
+        }
+        pg_pin (IOVDD) {
+            pg_type : primary_power;
+            voltage_name : "IOVDD33";
+        }
+    }
+    cell (MIPI_IOPadIOVss) {
+        area : 14400;
+        dont_touch : true;
+        dont_use : true;
+        timing_model_type : abstracted;
+        pad_cell : true;
+        pg_pin (IOVSS) {
+            pg_type : primary_ground;
+            voltage_name : "IOVSS";
+            is_pad : true;
+        }
+        pg_pin (IOVDD) {
+            pg_type : primary_power;
+            voltage_name : "IOVDD";
+        }
+        pg_pin (VSS) {
+            pg_type : primary_ground;
+            voltage_name : "VSS";
+        }
+        pg_pin (VDD) {
+            pg_type : primary_power;
+            voltage_name : "VDD";
+        }
+    }
+    cell (MIPI_IOPadIOVdd) {
+        area : 14400;
+        dont_touch : true;
+        dont_use : true;
+        timing_model_type : abstracted;
+        pad_cell : true;
+        pg_pin (IOVSS) {
+            pg_type : primary_ground;
+            voltage_name : "IOVSS";
+        }
+        pg_pin (IOVDD) {
+            pg_type : primary_power;
+            voltage_name : "IOVDD";
+            is_pad : true;
+        }
+        pg_pin (VSS) {
+            pg_type : primary_ground;
+            voltage_name : "VSS";
+        }
+        pg_pin (VDD) {
+            pg_type : primary_power;
+            voltage_name : "VDD";
+        }
+    }
+    cell (MIPI_IOPadVdd) {
+        area : 14400;
+        dont_touch : true;
+        dont_use : true;
+        timing_model_type : abstracted;
+        pad_cell : true;
+        pg_pin (IOVSS) {
+            pg_type : primary_ground;
+            voltage_name : "IOVSS";
+        }
+        pg_pin (IOVDD) {
+            pg_type : primary_power;
+            voltage_name : "IOVDD";
+        }
+        pg_pin (VSS) {
+            pg_type : primary_ground;
+            voltage_name : "VSS";
+        }
+        pg_pin (VDD) {
+            pg_type : primary_power;
+            voltage_name : "VDD";
+            is_pad : true;
+        }
+    }
+    cell (MIPI_IOPadVss) {
+        area : 14400;
+        dont_touch : true;
+        dont_use : true;
+        timing_model_type : abstracted;
+        pad_cell : true;
+        pg_pin (IOVSS) {
+            pg_type : primary_ground;
+            voltage_name : "IOVSS";
+        }
+        pg_pin (IOVDD) {
+            pg_type : primary_power;
+            voltage_name : "IOVDD";
+        }
+        pg_pin (VSS) {
+            pg_type : primary_ground;
+            voltage_name : "VSS";
+            is_pad : true;
+        }
+        pg_pin (VDD) {
+            pg_type : primary_power;
+            voltage_name : "VDD";
+        }
+    }
+    cell (MIPI_IOPadAnalog) {
+        area : 14400;
+        dont_touch : true;
+        dont_use : true;
+        timing_model_type : abstracted;
+        pad_cell : true;
+        pg_pin (IOVSS) {
+            pg_type : primary_ground;
+            voltage_name : "IOVSS";
+        }
+        pg_pin (IOVDD) {
+            pg_type : primary_power;
+            voltage_name : "IOVDD";
+        }
+        pg_pin (VSS) {
+            pg_type : primary_ground;
+            voltage_name : "VSS";
+        }
+        pg_pin (VDD) {
+            pg_type : primary_power;
+            voltage_name : "VDD";
+        }
+        pin (PAD) {
+            direction : inout;
+            is_pad : true;
+            related_ground_pin : VSS;
+            related_power_pin : VDD;
+        }
+        pin (PADRES) {
+            direction : inout;
+            is_pad : true;
+            related_ground_pin : VSS;
+            related_power_pin : VDD;
+        }
+    }
+}

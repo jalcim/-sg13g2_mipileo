@@ -1,0 +1,31 @@
+* Short-circuit verification of the three stress sources (same topology as gen_decks.py)
+* HBM 1 kV into short (JS-001 : Ip 0.60-0.73 A/kV, tr 2-10 ns, decay 130-170 ns)
+* MM 200 V into short (JESD22-A115 : Ip1 ~2.8-3.8 A, ring 11-16 MHz)
+* CDM +500 V, pin shorted to the charged body (JS-002 small module order of magnitude)
+Vh hv 0 PWL(0 0 10p 1000)
+Ch hv h1 100p
+Lh h1 h2 2.5u
+Rh h2 0 1500
+Vm mv 0 PWL(0 0 10p 200)
+Cm mv m1 200p
+Lm m1 m2 0.75u
+Rm m2 0 1
+Cc body c1 6.8p
+Vc c1 0 PWL(0 0 10p 500)
+Lc body n1 5n
+Rc n1 0 70
+.control
+tran 0.02n 300n 0 0.05n
+meas tran hbm_ip max i(Lh)
+meas tran hbm_t10 when i(Lh)=0.064 rise=1
+meas tran hbm_t90 when i(Lh)=0.576 rise=1
+meas tran hbm_tdec when i(Lh)=0.2355 fall=1
+meas tran mm_ip max i(Lm)
+meas tran mm_z1 when i(Lm)=0 fall=1
+meas tran mm_z2 when i(Lm)=0 fall=2
+tran 1p 3n
+meas tran cdm_ip max i(Lc)
+meas tran cdm_ta when i(Lc)=2.84 rise=1
+meas tran cdm_tb when i(Lc)=2.84 fall=1
+.endc
+.end

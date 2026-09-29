@@ -1,0 +1,22 @@
+* Capacite et fuite vues du plot, sg13g2_IOPadVss (netlist IHP), tt. Lancer : cd DOC; PDK_ROOT=... PDK=ihp-sg13g2 ngspice -b (avec le .spiceinit IHP)
+.lib cornerMOShv.lib mos_tt
+.lib cornerMOSlv.lib mos_tt
+.lib cornerRES.lib res_typ
+.lib cornerDIO.lib dio_tt
+.global sub!
+.include sg13g2_io.spice
+.temp 27
+* 105 C : remplacer par .temp 105
+X1 vdd vss iovdd iovss sg13g2_IOPadVss
+Vvdd vdd 0 1.2
+Vvss vss 0 dc 0 ac 1
+Viovss iovss 0 0
+Viovdd iovdd 0 3.3
+.control
+op
+print i(vvss) i(viovdd) i(viovss)
+ac dec 1 1e3 1e9
+let c = -imag(i(vvss))/(2*3.14159265*frequency)
+print frequency c
+.endc
+.end

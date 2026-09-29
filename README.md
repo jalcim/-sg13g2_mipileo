@@ -20,6 +20,9 @@ With this shell enabled, run the implementation:
 make librelane
 ```
 
+> [!TIP]
+> Run `make librelane-nodrc` to skip the DRCs.
+
 ## View the Design
 
 After completion, you can view the design using the OpenROAD GUI:

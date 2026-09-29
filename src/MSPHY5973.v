@@ -376,7 +376,7 @@ module MSPHY5973 (
     );
 
     // RX : deserialiseur CML, machines d'etats, conversion vers CMOS
-    sr16_rx4 sr16_rx4 (
+    (* keep *) sr16_rx4 sr16_rx4 (
         `ifdef USE_POWER_PINS
         .VDD(VDD), .VSS(VSS),
         `endif
@@ -385,241 +385,241 @@ module MSPHY5973 (
         .MOT0_P(mot_p[0]), .MOT0_N(mot_n[0]), .MOT1_P(mot_p[1]), .MOT1_N(mot_n[1]), .MOT2_P(mot_p[2]), .MOT2_N(mot_n[2]), .MOT3_P(mot_p[3]), .MOT3_N(mot_n[3]), .MOT4_P(mot_p[4]), .MOT4_N(mot_n[4]), .MOT5_P(mot_p[5]), .MOT5_N(mot_n[5]), .MOT6_P(mot_p[6]), .MOT6_N(mot_n[6]), .MOT7_P(mot_p[7]), .MOT7_N(mot_n[7]), .MOT8_P(mot_p[8]), .MOT8_N(mot_n[8]), .MOT9_P(mot_p[9]), .MOT9_N(mot_n[9]), .MOT10_P(mot_p[10]), .MOT10_N(mot_n[10]), .MOT11_P(mot_p[11]), .MOT11_N(mot_n[11]), .MOT12_P(mot_p[12]), .MOT12_N(mot_n[12]), .MOT13_P(mot_p[13]), .MOT13_N(mot_n[13]), .MOT14_P(mot_p[14]), .MOT14_N(mot_n[14]), .MOT15_P(mot_p[15]), .MOT15_N(mot_n[15]), .MOT16_P(mot_p[16]), .MOT16_N(mot_n[16]), .MOT17_P(mot_p[17]), .MOT17_N(mot_n[17]), .MOT18_P(mot_p[18]), .MOT18_N(mot_n[18]), .MOT19_P(mot_p[19]), .MOT19_N(mot_n[19]), .MOT20_P(mot_p[20]), .MOT20_N(mot_n[20]), .MOT21_P(mot_p[21]), .MOT21_N(mot_n[21]), .MOT22_P(mot_p[22]), .MOT22_N(mot_n[22]), .MOT23_P(mot_p[23]), .MOT23_N(mot_n[23]), .MOT24_P(mot_p[24]), .MOT24_N(mot_n[24]), .MOT25_P(mot_p[25]), .MOT25_N(mot_n[25]), .MOT26_P(mot_p[26]), .MOT26_N(mot_n[26]), .MOT27_P(mot_p[27]), .MOT27_N(mot_n[27]), .MOT28_P(mot_p[28]), .MOT28_N(mot_n[28]), .MOT29_P(mot_p[29]), .MOT29_N(mot_n[29]), .MOT30_P(mot_p[30]), .MOT30_N(mot_n[30]), .MOT31_P(mot_p[31]), .MOT31_N(mot_n[31]),
         .CLK_W_P(clk_w_p), .CLK_W_N(clk_w_n)
     );
-    cml_to_cmos c2c_mot0 (
+    (* keep *) cml_to_cmos c2c_mot0 (
         `ifdef USE_POWER_PINS
         .VDD(VDD), .VSS(VSS),
         `endif
         .INP(mot_p[0]), .INN(mot_n[0]), .Y(mots[0])
     );
-    cml_to_cmos c2c_mot1 (
+    (* keep *) cml_to_cmos c2c_mot1 (
         `ifdef USE_POWER_PINS
         .VDD(VDD), .VSS(VSS),
         `endif
         .INP(mot_p[1]), .INN(mot_n[1]), .Y(mots[1])
     );
-    cml_to_cmos c2c_mot2 (
+    (* keep *) cml_to_cmos c2c_mot2 (
         `ifdef USE_POWER_PINS
         .VDD(VDD), .VSS(VSS),
         `endif
         .INP(mot_p[2]), .INN(mot_n[2]), .Y(mots[2])
     );
-    cml_to_cmos c2c_mot3 (
+    (* keep *) cml_to_cmos c2c_mot3 (
         `ifdef USE_POWER_PINS
         .VDD(VDD), .VSS(VSS),
         `endif
         .INP(mot_p[3]), .INN(mot_n[3]), .Y(mots[3])
     );
-    cml_to_cmos c2c_mot4 (
+    (* keep *) cml_to_cmos c2c_mot4 (
         `ifdef USE_POWER_PINS
         .VDD(VDD), .VSS(VSS),
         `endif
         .INP(mot_p[4]), .INN(mot_n[4]), .Y(mots[4])
     );
-    cml_to_cmos c2c_mot5 (
+    (* keep *) cml_to_cmos c2c_mot5 (
         `ifdef USE_POWER_PINS
         .VDD(VDD), .VSS(VSS),
         `endif
         .INP(mot_p[5]), .INN(mot_n[5]), .Y(mots[5])
     );
-    cml_to_cmos c2c_mot6 (
+    (* keep *) cml_to_cmos c2c_mot6 (
         `ifdef USE_POWER_PINS
         .VDD(VDD), .VSS(VSS),
         `endif
         .INP(mot_p[6]), .INN(mot_n[6]), .Y(mots[6])
     );
-    cml_to_cmos c2c_mot7 (
+    (* keep *) cml_to_cmos c2c_mot7 (
         `ifdef USE_POWER_PINS
         .VDD(VDD), .VSS(VSS),
         `endif
         .INP(mot_p[7]), .INN(mot_n[7]), .Y(mots[7])
     );
-    cml_to_cmos c2c_mot8 (
+    (* keep *) cml_to_cmos c2c_mot8 (
         `ifdef USE_POWER_PINS
         .VDD(VDD), .VSS(VSS),
         `endif
         .INP(mot_p[8]), .INN(mot_n[8]), .Y(mots[8])
     );
-    cml_to_cmos c2c_mot9 (
+    (* keep *) cml_to_cmos c2c_mot9 (
         `ifdef USE_POWER_PINS
         .VDD(VDD), .VSS(VSS),
         `endif
         .INP(mot_p[9]), .INN(mot_n[9]), .Y(mots[9])
     );
-    cml_to_cmos c2c_mot10 (
+    (* keep *) cml_to_cmos c2c_mot10 (
         `ifdef USE_POWER_PINS
         .VDD(VDD), .VSS(VSS),
         `endif
         .INP(mot_p[10]), .INN(mot_n[10]), .Y(mots[10])
     );
-    cml_to_cmos c2c_mot11 (
+    (* keep *) cml_to_cmos c2c_mot11 (
         `ifdef USE_POWER_PINS
         .VDD(VDD), .VSS(VSS),
         `endif
         .INP(mot_p[11]), .INN(mot_n[11]), .Y(mots[11])
     );
-    cml_to_cmos c2c_mot12 (
+    (* keep *) cml_to_cmos c2c_mot12 (
         `ifdef USE_POWER_PINS
         .VDD(VDD), .VSS(VSS),
         `endif
         .INP(mot_p[12]), .INN(mot_n[12]), .Y(mots[12])
     );
-    cml_to_cmos c2c_mot13 (
+    (* keep *) cml_to_cmos c2c_mot13 (
         `ifdef USE_POWER_PINS
         .VDD(VDD), .VSS(VSS),
         `endif
         .INP(mot_p[13]), .INN(mot_n[13]), .Y(mots[13])
     );
-    cml_to_cmos c2c_mot14 (
+    (* keep *) cml_to_cmos c2c_mot14 (
         `ifdef USE_POWER_PINS
         .VDD(VDD), .VSS(VSS),
         `endif
         .INP(mot_p[14]), .INN(mot_n[14]), .Y(mots[14])
     );
-    cml_to_cmos c2c_mot15 (
+    (* keep *) cml_to_cmos c2c_mot15 (
         `ifdef USE_POWER_PINS
         .VDD(VDD), .VSS(VSS),
         `endif
         .INP(mot_p[15]), .INN(mot_n[15]), .Y(mots[15])
     );
-    cml_to_cmos c2c_mot16 (
+    (* keep *) cml_to_cmos c2c_mot16 (
         `ifdef USE_POWER_PINS
         .VDD(VDD), .VSS(VSS),
         `endif
         .INP(mot_p[16]), .INN(mot_n[16]), .Y(mots[16])
     );
-    cml_to_cmos c2c_mot17 (
+    (* keep *) cml_to_cmos c2c_mot17 (
         `ifdef USE_POWER_PINS
         .VDD(VDD), .VSS(VSS),
         `endif
         .INP(mot_p[17]), .INN(mot_n[17]), .Y(mots[17])
     );
-    cml_to_cmos c2c_mot18 (
+    (* keep *) cml_to_cmos c2c_mot18 (
         `ifdef USE_POWER_PINS
         .VDD(VDD), .VSS(VSS),
         `endif
         .INP(mot_p[18]), .INN(mot_n[18]), .Y(mots[18])
     );
-    cml_to_cmos c2c_mot19 (
+    (* keep *) cml_to_cmos c2c_mot19 (
         `ifdef USE_POWER_PINS
         .VDD(VDD), .VSS(VSS),
         `endif
         .INP(mot_p[19]), .INN(mot_n[19]), .Y(mots[19])
     );
-    cml_to_cmos c2c_mot20 (
+    (* keep *) cml_to_cmos c2c_mot20 (
         `ifdef USE_POWER_PINS
         .VDD(VDD), .VSS(VSS),
         `endif
         .INP(mot_p[20]), .INN(mot_n[20]), .Y(mots[20])
     );
-    cml_to_cmos c2c_mot21 (
+    (* keep *) cml_to_cmos c2c_mot21 (
         `ifdef USE_POWER_PINS
         .VDD(VDD), .VSS(VSS),
         `endif
         .INP(mot_p[21]), .INN(mot_n[21]), .Y(mots[21])
     );
-    cml_to_cmos c2c_mot22 (
+    (* keep *) cml_to_cmos c2c_mot22 (
         `ifdef USE_POWER_PINS
         .VDD(VDD), .VSS(VSS),
         `endif
         .INP(mot_p[22]), .INN(mot_n[22]), .Y(mots[22])
     );
-    cml_to_cmos c2c_mot23 (
+    (* keep *) cml_to_cmos c2c_mot23 (
         `ifdef USE_POWER_PINS
         .VDD(VDD), .VSS(VSS),
         `endif
         .INP(mot_p[23]), .INN(mot_n[23]), .Y(mots[23])
     );
-    cml_to_cmos c2c_mot24 (
+    (* keep *) cml_to_cmos c2c_mot24 (
         `ifdef USE_POWER_PINS
         .VDD(VDD), .VSS(VSS),
         `endif
         .INP(mot_p[24]), .INN(mot_n[24]), .Y(mots[24])
     );
-    cml_to_cmos c2c_mot25 (
+    (* keep *) cml_to_cmos c2c_mot25 (
         `ifdef USE_POWER_PINS
         .VDD(VDD), .VSS(VSS),
         `endif
         .INP(mot_p[25]), .INN(mot_n[25]), .Y(mots[25])
     );
-    cml_to_cmos c2c_mot26 (
+    (* keep *) cml_to_cmos c2c_mot26 (
         `ifdef USE_POWER_PINS
         .VDD(VDD), .VSS(VSS),
         `endif
         .INP(mot_p[26]), .INN(mot_n[26]), .Y(mots[26])
     );
-    cml_to_cmos c2c_mot27 (
+    (* keep *) cml_to_cmos c2c_mot27 (
         `ifdef USE_POWER_PINS
         .VDD(VDD), .VSS(VSS),
         `endif
         .INP(mot_p[27]), .INN(mot_n[27]), .Y(mots[27])
     );
-    cml_to_cmos c2c_mot28 (
+    (* keep *) cml_to_cmos c2c_mot28 (
         `ifdef USE_POWER_PINS
         .VDD(VDD), .VSS(VSS),
         `endif
         .INP(mot_p[28]), .INN(mot_n[28]), .Y(mots[28])
     );
-    cml_to_cmos c2c_mot29 (
+    (* keep *) cml_to_cmos c2c_mot29 (
         `ifdef USE_POWER_PINS
         .VDD(VDD), .VSS(VSS),
         `endif
         .INP(mot_p[29]), .INN(mot_n[29]), .Y(mots[29])
     );
-    cml_to_cmos c2c_mot30 (
+    (* keep *) cml_to_cmos c2c_mot30 (
         `ifdef USE_POWER_PINS
         .VDD(VDD), .VSS(VSS),
         `endif
         .INP(mot_p[30]), .INN(mot_n[30]), .Y(mots[30])
     );
-    cml_to_cmos c2c_mot31 (
+    (* keep *) cml_to_cmos c2c_mot31 (
         `ifdef USE_POWER_PINS
         .VDD(VDD), .VSS(VSS),
         `endif
         .INP(mot_p[31]), .INN(mot_n[31]), .Y(mots[31])
     );
-    cml_to_cmos c2c_clk_w (
+    (* keep *) cml_to_cmos c2c_clk_w (
         `ifdef USE_POWER_PINS
         .VDD(VDD), .VSS(VSS),
         `endif
         .INP(clk_w_p), .INN(clk_w_n), .Y(clk_w)
     );
-    cml_to_cmos c2c_rx_clk (
+    (* keep *) cml_to_cmos c2c_rx_clk (
         `ifdef USE_POWER_PINS
         .VDD(VDD), .VSS(VSS),
         `endif
         .INP(rx_clk_p_hs), .INN(rx_clk_n_hs), .Y(rx_clk)
     );
-    cml_to_cmos c2c_tx_ck (
+    (* keep *) cml_to_cmos c2c_tx_ck (
         `ifdef USE_POWER_PINS
         .VDD(VDD), .VSS(VSS),
         `endif
         .INP(clkin_p_hs), .INN(clkin_n_hs), .Y(tx_ck)
     );
-    cml_to_cmos c2c_tx_dout0 (
+    (* keep *) cml_to_cmos c2c_tx_dout0 (
         `ifdef USE_POWER_PINS
         .VDD(VDD), .VSS(VSS),
         `endif
         .INP(tx_dout_p[0]), .INN(tx_dout_n[0]), .Y(tx_dout[0])
     );
-    cml_to_cmos c2c_tx_dout1 (
+    (* keep *) cml_to_cmos c2c_tx_dout1 (
         `ifdef USE_POWER_PINS
         .VDD(VDD), .VSS(VSS),
         `endif
         .INP(tx_dout_p[1]), .INN(tx_dout_n[1]), .Y(tx_dout[1])
     );
-    cml_to_cmos c2c_tx_dout2 (
+    (* keep *) cml_to_cmos c2c_tx_dout2 (
         `ifdef USE_POWER_PINS
         .VDD(VDD), .VSS(VSS),
         `endif
         .INP(tx_dout_p[2]), .INN(tx_dout_n[2]), .Y(tx_dout[2])
     );
-    cml_to_cmos c2c_tx_dout3 (
+    (* keep *) cml_to_cmos c2c_tx_dout3 (
         `ifdef USE_POWER_PINS
         .VDD(VDD), .VSS(VSS),
         `endif
         .INP(tx_dout_p[3]), .INN(tx_dout_n[3]), .Y(tx_dout[3])
     );
-    dphy_rx dphy_rx (
+    (* keep *) dphy_rx dphy_rx (
         `ifdef USE_POWER_PINS
         .VPWR(VDD), .VGND(VSS),
         `endif
@@ -633,7 +633,7 @@ module MSPHY5973 (
 
     // CSI-2 : macro dure t4 g13 (78524823). Entrees d'application a 0, sorties d'application libres.
     // Alimentation de csi2_top par PDN_MACRO_CONNECTIONS : sa boite noire n'a pas de broches VPWR / VGND.
-    csi2_top csi2_top (
+    (* keep *) csi2_top csi2_top (
         .clk(clk_sys), .rst_n(rst_n), .enable(enable), .renvoi_mode(renvoi_mode),
         .clk_w(clk_w), .mots(mots), .hspr(hspr), .statut_phy(statut_phy),
         .cnt_gel(1'b0), .tx_pix_valid(1'b0), .tx_req_valid(1'b0), .tx_pix_data(112'b0),
@@ -642,7 +642,7 @@ module MSPHY5973 (
     );
 
     // TX : machines d'etats, serialiseurs et pre-drivers. HS inactif en v1.0.0 (pas de pont TX ni de /4 TX).
-    dphy_tx dphy_tx (
+    (* keep *) dphy_tx dphy_tx (
         `ifdef USE_POWER_PINS
         .VPWR(VDD), .VGND(VSS),
         `endif
@@ -651,37 +651,37 @@ module MSPHY5973 (
         .tx_request_hs(4'b0), .tx_ready_hs(), .hs_sync(), .hs_trail(),
         .lp_p(tx_lp_p), .lp_n(tx_lp_n), .hs_oe(tx_hs_oe)
     );
-    cmos_to_cml c2l_tx_mot0 (
+    (* keep *) cmos_to_cml c2l_tx_mot0 (
         `ifdef USE_POWER_PINS
         .VDD(VDD), .VSS(VSS),
         `endif
         .POLN(pol_n_POLN), .A(1'b0), .OUTP(tx_mot_p[0]), .OUTN(tx_mot_n[0])
     );
-    cmos_to_cml c2l_tx_mot1 (
+    (* keep *) cmos_to_cml c2l_tx_mot1 (
         `ifdef USE_POWER_PINS
         .VDD(VDD), .VSS(VSS),
         `endif
         .POLN(pol_n_POLN), .A(1'b0), .OUTP(tx_mot_p[1]), .OUTN(tx_mot_n[1])
     );
-    cmos_to_cml c2l_tx_mot2 (
+    (* keep *) cmos_to_cml c2l_tx_mot2 (
         `ifdef USE_POWER_PINS
         .VDD(VDD), .VSS(VSS),
         `endif
         .POLN(pol_n_POLN), .A(1'b0), .OUTP(tx_mot_p[2]), .OUTN(tx_mot_n[2])
     );
-    cmos_to_cml c2l_tx_mot3 (
+    (* keep *) cmos_to_cml c2l_tx_mot3 (
         `ifdef USE_POWER_PINS
         .VDD(VDD), .VSS(VSS),
         `endif
         .POLN(pol_n_POLN), .A(1'b0), .OUTP(tx_mot_p[3]), .OUTN(tx_mot_n[3])
     );
-    cmos_to_cml c2l_tx_clk_w (
+    (* keep *) cmos_to_cml c2l_tx_clk_w (
         `ifdef USE_POWER_PINS
         .VDD(VDD), .VSS(VSS),
         `endif
         .POLN(pol_n_POLN), .A(1'b0), .OUTP(tx_clk_w_p), .OUTN(tx_clk_w_n)
     );
-    sr16_tx sr16_tx0 (
+    (* keep *) sr16_tx sr16_tx0 (
         `ifdef USE_POWER_PINS
         .VDD(VDD), .VSS(VSS),
         `endif
@@ -689,7 +689,7 @@ module MSPHY5973 (
         .MOT0_P(tx_mot_p[0]), .MOT0_N(tx_mot_n[0]), .MOT1_P(tx_mot_p[0]), .MOT1_N(tx_mot_n[0]), .MOT2_P(tx_mot_p[0]), .MOT2_N(tx_mot_n[0]), .MOT3_P(tx_mot_p[0]), .MOT3_N(tx_mot_n[0]), .MOT4_P(tx_mot_p[0]), .MOT4_N(tx_mot_n[0]), .MOT5_P(tx_mot_p[0]), .MOT5_N(tx_mot_n[0]), .MOT6_P(tx_mot_p[0]), .MOT6_N(tx_mot_n[0]), .MOT7_P(tx_mot_p[0]), .MOT7_N(tx_mot_n[0]),
         .DOUT_P(tx_dout_p[0]), .DOUT_N(tx_dout_n[0])
     );
-    sr16_tx sr16_tx1 (
+    (* keep *) sr16_tx sr16_tx1 (
         `ifdef USE_POWER_PINS
         .VDD(VDD), .VSS(VSS),
         `endif
@@ -697,7 +697,7 @@ module MSPHY5973 (
         .MOT0_P(tx_mot_p[1]), .MOT0_N(tx_mot_n[1]), .MOT1_P(tx_mot_p[1]), .MOT1_N(tx_mot_n[1]), .MOT2_P(tx_mot_p[1]), .MOT2_N(tx_mot_n[1]), .MOT3_P(tx_mot_p[1]), .MOT3_N(tx_mot_n[1]), .MOT4_P(tx_mot_p[1]), .MOT4_N(tx_mot_n[1]), .MOT5_P(tx_mot_p[1]), .MOT5_N(tx_mot_n[1]), .MOT6_P(tx_mot_p[1]), .MOT6_N(tx_mot_n[1]), .MOT7_P(tx_mot_p[1]), .MOT7_N(tx_mot_n[1]),
         .DOUT_P(tx_dout_p[1]), .DOUT_N(tx_dout_n[1])
     );
-    sr16_tx sr16_tx2 (
+    (* keep *) sr16_tx sr16_tx2 (
         `ifdef USE_POWER_PINS
         .VDD(VDD), .VSS(VSS),
         `endif
@@ -705,7 +705,7 @@ module MSPHY5973 (
         .MOT0_P(tx_mot_p[2]), .MOT0_N(tx_mot_n[2]), .MOT1_P(tx_mot_p[2]), .MOT1_N(tx_mot_n[2]), .MOT2_P(tx_mot_p[2]), .MOT2_N(tx_mot_n[2]), .MOT3_P(tx_mot_p[2]), .MOT3_N(tx_mot_n[2]), .MOT4_P(tx_mot_p[2]), .MOT4_N(tx_mot_n[2]), .MOT5_P(tx_mot_p[2]), .MOT5_N(tx_mot_n[2]), .MOT6_P(tx_mot_p[2]), .MOT6_N(tx_mot_n[2]), .MOT7_P(tx_mot_p[2]), .MOT7_N(tx_mot_n[2]),
         .DOUT_P(tx_dout_p[2]), .DOUT_N(tx_dout_n[2])
     );
-    sr16_tx sr16_tx3 (
+    (* keep *) sr16_tx sr16_tx3 (
         `ifdef USE_POWER_PINS
         .VDD(VDD), .VSS(VSS),
         `endif

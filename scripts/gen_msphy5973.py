@@ -117,7 +117,7 @@ def main(out):
     v.append("    // RX : deserialiseur CML, machines d'etats, conversion vers CMOS")
     d_ports = ", ".join(f".D{k}_P(rx_d{k}_p_hs), .D{k}_N(rx_d{k}_n_hs)" for k in range(LANES))
     m_ports = ", ".join(f".MOT{i}_P(mot_p[{i}]), .MOT{i}_N(mot_n[{i}])" for i in range(32))
-    v.append("    sr16_rx4 sr16_rx4 (\n        `ifdef USE_POWER_PINS\n        .VDD(VDD), .VSS(VSS),\n        `endif\n"
+    v.append("    (* keep *) sr16_rx4 sr16_rx4 (\n        `ifdef USE_POWER_PINS\n        .VDD(VDD), .VSS(VSS),\n        `endif\n"
              f"        .POLN(pol_e_POLN), .CK_P(rx_clk_p_hs), .CK_N(rx_clk_n_hs),\n        {d_ports},\n"
              f"        {m_ports},\n        .CLK_W_P(clk_w_p), .CLK_W_N(clk_w_n)\n    );")
     c2c = []
@@ -128,9 +128,9 @@ def main(out):
     c2c.append(("c2c_tx_ck", "clkin_p_hs", "clkin_n_hs", "tx_ck"))
     c2c += [(f"c2c_tx_dout{k}", f"tx_dout_p[{k}]", f"tx_dout_n[{k}]", f"tx_dout[{k}]") for k in range(LANES)]
     for name, inp, inn, y in c2c:
-        v.append(f"    cml_to_cmos {name} (\n        `ifdef USE_POWER_PINS\n        .VDD(VDD), .VSS(VSS),\n        `endif\n"
+        v.append(f"    (* keep *) cml_to_cmos {name} (\n        `ifdef USE_POWER_PINS\n        .VDD(VDD), .VSS(VSS),\n        `endif\n"
                  f"        .INP({inp}), .INN({inn}), .Y({y})\n    );")
-    v.append("    dphy_rx dphy_rx (\n        `ifdef USE_POWER_PINS\n        .VPWR(VDD), .VGND(VSS),\n        `endif\n"
+    v.append("    (* keep *) dphy_rx dphy_rx (\n        `ifdef USE_POWER_PINS\n        .VPWR(VDD), .VGND(VSS),\n        `endif\n"
              "        .PG(), .rx_clk(rx_clk), .clk_lp_p(rx_clk_p_lp), .clk_lp_n(rx_clk_n_lp),\n"
              "        .clk_stop(), .clk_term_en(), .clk_rx_en(), .clk_miss(),\n"
              f"        .lp_p({{{', '.join(f'rx_d{k}_p_lp' for k in reversed(range(LANES)))}}}),\n"
@@ -141,7 +141,7 @@ def main(out):
 
     v.append("    // CSI-2 : macro dure t4 g13 (78524823). Entrees d'application a 0, sorties d'application libres.")
     v.append("    // Alimentation de csi2_top par PDN_MACRO_CONNECTIONS : sa boite noire n'a pas de broches VPWR / VGND.")
-    v.append("    csi2_top csi2_top (\n"
+    v.append("    (* keep *) csi2_top csi2_top (\n"
              "        .clk(clk_sys), .rst_n(rst_n), .enable(enable), .renvoi_mode(renvoi_mode),\n"
              "        .clk_w(clk_w), .mots(mots), .hspr(hspr), .statut_phy(statut_phy),\n"
              "        .cnt_gel(1'b0), .tx_pix_valid(1'b0), .tx_req_valid(1'b0), .tx_pix_data(112'b0),\n"
@@ -150,7 +150,7 @@ def main(out):
     v.append("")
 
     v.append("    // TX : machines d'etats, serialiseurs et pre-drivers. HS inactif en v1.0.0 (pas de pont TX ni de /4 TX).")
-    v.append("    dphy_tx dphy_tx (\n        `ifdef USE_POWER_PINS\n        .VPWR(VDD), .VGND(VSS),\n        `endif\n"
+    v.append("    (* keep *) dphy_tx dphy_tx (\n        `ifdef USE_POWER_PINS\n        .VPWR(VDD), .VGND(VSS),\n        `endif\n"
              "        .PG(), .clk(tx_ck), .rst(~rst_n), .clk_request(1'b0), .clk_ready(),\n"
              "        .clk_lp_p(tx_clk_lp_p), .clk_lp_n(tx_clk_lp_n), .clk_hs_oe(tx_clk_hs_oe), .clk_run(),\n"
              "        .tx_request_hs(4'b0), .tx_ready_hs(), .hs_sync(), .hs_trail(),\n"
@@ -158,11 +158,11 @@ def main(out):
     c2l = [(f"c2l_tx_mot{k}", f"tx_mot_p[{k}]", f"tx_mot_n[{k}]") for k in range(LANES)]
     c2l.append(("c2l_tx_clk_w", "tx_clk_w_p", "tx_clk_w_n"))
     for name, outp, outn in c2l:
-        v.append(f"    cmos_to_cml {name} (\n        `ifdef USE_POWER_PINS\n        .VDD(VDD), .VSS(VSS),\n        `endif\n"
+        v.append(f"    (* keep *) cmos_to_cml {name} (\n        `ifdef USE_POWER_PINS\n        .VDD(VDD), .VSS(VSS),\n        `endif\n"
                  f"        .POLN(pol_n_POLN), .A(1'b0), .OUTP({outp}), .OUTN({outn})\n    );")
     for k in range(LANES):
         mots = ", ".join(f".MOT{i}_P(tx_mot_p[{k}]), .MOT{i}_N(tx_mot_n[{k}])" for i in range(8))
-        v.append(f"    sr16_tx sr16_tx{k} (\n        `ifdef USE_POWER_PINS\n        .VDD(VDD), .VSS(VSS),\n        `endif\n"
+        v.append(f"    (* keep *) sr16_tx sr16_tx{k} (\n        `ifdef USE_POWER_PINS\n        .VDD(VDD), .VSS(VSS),\n        `endif\n"
                  f"        .POLN(pol_n_POLN), .CK_P(clkin_p_hs), .CK_N(clkin_n_hs), .CLK_W_P(tx_clk_w_p), .CLK_W_N(tx_clk_w_n),\n"
                  f"        {mots},\n        .DOUT_P(tx_dout_p[{k}]), .DOUT_N(tx_dout_n[{k}])\n    );")
     drv = [("clk", "tx_ck", "tx_clk_hs_oe", "tx_clk_lp_p", "tx_clk_lp_n")]

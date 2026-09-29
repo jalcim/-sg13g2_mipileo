@@ -33,9 +33,12 @@ meta:
     # density cannot be met using KLayout.
     #KLayout.Filler: Magic.Filler
 
-DESIGN_NAME: chip_top
+# MSPHY5973 : flot de Leo (LibreLane dev aaf7a93), PDK du projet (/opt/nebula-eda/IHP-Open-PDK
+# cfc0e22b + correctif HBT), passe par --pdk-root. Cablage : doc/cablage_msphy5973.md.
+DESIGN_NAME: MSPHY5973
 VERILOG_FILES:
-- dir::../src/chip_top.v
+- dir::../src/MSPHY5973.v
+- dir::../ip/hs_tx_pd/hs_tx_pd.v
 
 VERILOG_DEFINES: [FUNCTIONAL]
 
@@ -66,66 +69,33 @@ PAD_CFG: dir::pad_cfg.tcl
 # RX4 Lane P
 # RX4 Lane N
 
-PAD_EAST:  [
-  iovdd_mipi_pad,
-  iovss_mipi_pad,
-  rx_analog_pad,
-  rx_clk_lane_p_pad,
-  rx_clk_lane_n_pad,
-  rx_1_lane_p_pad,
-  rx_1_lane_n_pad,
-  rx_2_lane_p_pad,
-  rx_2_lane_n_pad,
-  rx_3_lane_p_pad,
-  rx_3_lane_n_pad,
-  rx_4_lane_p_pad,
-  rx_4_lane_n_pad
+# Brochage : doc/cablage_msphy5973.md (lanes numerotees depuis 0)
+PAD_EAST: [
+  iovdd_mipi_pad, iovss_mipi_pad,
+  rx_clk_p_pad, rx_clk_n_pad,
+  rx_d0_p_pad, rx_d0_n_pad, rx_d1_p_pad, rx_d1_n_pad,
+  rx_d2_p_pad, rx_d2_n_pad, rx_d3_p_pad, rx_d3_n_pad
 ]
 
-#MIPI_TX : 15 Pads
-# VDD 
-# VSS
-# ANALOG PAD (current setting)
-# CLK Lane P
-# CLK Lane N
-# TX1 Lane P
-# TX1 Lane N
-# TX2 Lane P
-# TX2 Lane N
-# TX3 Lane P
-# TX3 Lane N
-# TX4 Lane P
-# TX4 Lane N
-# CLKIN N
-# CLKIN P
-
-PAD_NORTH:  [
-  vdd_pad,
-  vss_pad,
-  tx_analog_pad,
-  tx_clk_lane_p_pad,
-  tx_clk_lane_n_pad,
-  tx_1_lane_p_pad,
-  tx_1_lane_n_pad,
-  tx_2_lane_p_pad,
-  tx_2_lane_n_pad,
-  tx_3_lane_p_pad,
-  tx_3_lane_n_pad,
-  tx_4_lane_p_pad,
-  tx_4_lane_n_pad,
-  
-  clkin_n_pad,
-  clkin_p_pad
+PAD_NORTH: [
+  vdd_pad, vss_pad,
+  tx_clk_p_pad, tx_clk_n_pad,
+  tx_d0_p_pad, tx_d0_n_pad, tx_d1_p_pad, tx_d1_n_pad,
+  tx_d2_p_pad, tx_d2_n_pad, tx_d3_p_pad, tx_d3_n_pad,
+  clkin_n_pad, clkin_p_pad,
+  bandgap_pad
 ]
 
-#Digital 
-PAD_WEST:  [
-  iovdd_pad,
-  iovss_pad
+PAD_WEST: [
+  iovdd_pad, iovss_pad,
+  clk_sys_pad, rst_n_pad,
+  en0_pad, en1_pad, en2_pad, en3_pad
 ]
 
-#DIGITAL
-PAD_SOUTH: []
+PAD_SOUTH: [
+  vdd_s_pad, vss_s_pad,
+  renvoi_mode0_pad, renvoi_mode1_pad
+]
 
 # SDC files
 PNR_SDC_FILE: dir::chip_top_comb.sdc
@@ -149,8 +119,9 @@ SETUP_VIOLATION_CORNERS: ["*"]
 # Floorplanning
 FP_SIZING: absolute
 
-DIE_AREA: [0, 0, expr::(1730 + 110), expr::(1730 + 110)]
-CORE_AREA: [365.28, 366.66, expr::(1364.72 + 110), expr::(1362.98 + 110)]
+# Die PROVISOIRE de 2 480 um, comme la livraison 1 (csi2_top fait 1 368,5 x 1 387,2 um)
+DIE_AREA: [0, 0, 2480, 2480]
+CORE_AREA: [365.28, 366.66, 2114.72, 2112.98]
 
 # Increase for more logic on your die
 PL_TARGET_DENSITY_PCT: 10
@@ -169,7 +140,7 @@ NON_DEFAULT_RULES:
 
 DRT_ASSIGN_NDR: {}
 
-RSZ_DONT_TOUCH_RX: "^((sig|flow|thru)(_\\w+)?_c|sig_(in|out)_pad_PAD)$"
+RSZ_DONT_TOUCH_RX: "^(pd_\\w+|tx_\\w+_(hsp|hsn|lpinp|lpinn))$"
 
 # PDN
 PDN_CORE_RING: True
@@ -198,7 +169,8 @@ PAD_FILLERS:
 - MIPI_Filler200
 
 PAD_BONDPAD_OFFSETS:
-  "MIPI_IOPad*": [5.0, -70.0]
+  "MIPI_IOPad(IOVdd|IOVss|Vdd|Vss|Analog|RX|TX|In|Out)": [5.0, -70.0]
+  "MIPI_IOPadBandgap": [45.0, -70.0]
 
 PAD_LEFS: [dir::../ip/CSI2_DPHY_RING/LEF/MIPI_ring.lef]
 PAD_GDS: [dir::../ip/CSI2_DPHY_RING/GDS/MIPI_ring.gds]
@@ -257,41 +229,81 @@ MAGIC_EXT_UNIQUE: notopports
 FP_MACRO_VERTICAL_HALO: 7.56
 PDN_VERTICAL_HALO: 7.56
 
-MACROS: {}
-  #remplissage_gatpoly:
-  #  gds:
-  #  - dir::../ip/remplissage_gatpoly/remplissage_gatpoly.gds
-  #  lef:
-  #  - dir::../ip/remplissage_gatpoly/lef/remplissage_gatpoly.lef
-  #  vh:
-  #  - dir::../ip/remplissage_gatpoly/verilog/remplissage_gatpoly.v
-  #  instances:
-  #    remplissage_so:
-  #      location: [48.5, 48.5]
-  #      orientation: N
-  #    remplissage_no:
-  #      location: [48.5, 763.5]
-  #      orientation: N
-  #    remplissage_se:
-  #      location: [763.5, 48.5]
-  #      orientation: N
-  #    remplissage_ne:
-  #      location: [763.5, 763.5]
-  #      orientation: N
-  #suiveur_npn:
-  #  gds:
-  #  - dir::../ip/suiveur_npn/suiveur_npn.gds
-  #  lef:
-  #  - dir::../ip/suiveur_npn/lef/suiveur_npn.lef
-  #  vh:
-  #  - dir::../ip/suiveur_npn/verilog/suiveur_npn.v
-  #  instances:
-  #    suiveur:
-  #      location: [372.48, 480.06]
-  #      orientation: FN
-  #    suiveur_flow:
-  #      location: [445.44, 427.14]
-  #      orientation: N
+MACROS:
+  csi2_top:
+    gds: [dir::../ip/csi2_top/GDS/csi2_top.gds]
+    lef: [dir::../ip/csi2_top/LEF/csi2_top.lef]
+    vh: [dir::../ip/csi2_top/HDL/csi2_top_bb.v]
+    nl: [dir::../ip/csi2_top/HDL/csi2_top.v]
+    lib:
+      "*_slow_1p08V_125C": [dir::../ip/csi2_top/LIB/csi2_top_ss.lib]
+      "*_typ_1p20V_25C": [dir::../ip/csi2_top/LIB/csi2_top_tt.lib]
+      "*_fast_1p32V_m40C": [dir::../ip/csi2_top/LIB/csi2_top_ff.lib]
+    instances:
+      csi2_top: {location: [373.92, 374.22], orientation: N}
+  dphy_rx:
+    gds: [dir::../ip/dphy_sm/GDS/dphy_rx.gds]
+    lef: [dir::../ip/dphy_sm/LEF/dphy_rx.lef]
+    vh: [dir::../ip/dphy_sm/HDL/dphy_rx.v]
+    nl: [dir::../ip/dphy_sm/HDL/dphy_rx.v]
+    instances:
+      dphy_rx: {location: [1790.40, 1100.52], orientation: R90}
+  dphy_tx:
+    gds: [dir::../ip/dphy_sm/GDS/dphy_tx.gds]
+    lef: [dir::../ip/dphy_sm/LEF/dphy_tx.lef]
+    vh: [dir::../ip/dphy_sm/HDL/dphy_tx.v]
+    nl: [dir::../ip/dphy_sm/HDL/dphy_tx.v]
+    instances:
+      dphy_tx: {location: [1400.16, 1791.72], orientation: N}
+  sr16_rx4:
+    gds: [dir::../ip/sr16_rx4/GDS/sr16_rx4.gds]
+    lef: [dir::../ip/sr16_rx4/LEF/sr16_rx4.lef]
+    vh: [dir::../ip/sr16_rx4/HDL/sr16_rx4_bb.v]
+    spice: [dir::../ip/sr16_rx4/SPICE/sr16_rx4.spice]
+    instances:
+      sr16_rx4: {location: [1910.40, 700.56], orientation: N}
+  cml_to_cmos:
+    gds: [dir::../ip/cml_to_cmos/GDS/cml_to_cmos.gds]
+    lef: [dir::../ip/cml_to_cmos/LEF/cml_to_cmos.lef]
+    vh: [dir::../ip/cml_to_cmos/HDL/cml_to_cmos_bb.v]
+    spice: [dir::../ip/cml_to_cmos/SPICE/cml_to_cmos.spice]
+    instances:
+      c2c_mot0: {location: [1770.24, 700.56], orientation: N}
+      c2c_mot1: {location: [1770.24, 730.80], orientation: N}
+      c2c_mot2: {location: [1770.24, 761.04], orientation: N}
+      c2c_mot3: {location: [1770.24, 791.28], orientation: N}
+      c2c_mot4: {location: [1770.24, 821.52], orientation: N}
+      c2c_mot5: {location: [1770.24, 851.76], orientation: N}
+      c2c_mot6: {location: [1770.24, 882.00], orientation: N}
+      c2c_mot7: {location: [1770.24, 912.24], orientation: N}
+      c2c_mot8: {location: [1770.24, 942.48], orientation: N}
+      c2c_mot9: {location: [1795.20, 700.56], orientation: N}
+      c2c_mot10: {location: [1795.20, 730.80], orientation: N}
+      c2c_mot11: {location: [1795.20, 761.04], orientation: N}
+      c2c_mot12: {location: [1795.20, 791.28], orientation: N}
+      c2c_mot13: {location: [1795.20, 821.52], orientation: N}
+      c2c_mot14: {location: [1795.20, 851.76], orientation: N}
+      c2c_mot15: {location: [1795.20, 882.00], orientation: N}
+      c2c_mot16: {location: [1795.20, 912.24], orientation: N}
+      c2c_mot17: {location: [1795.20, 942.48], orientation: N}
+      c2c_mot18: {location: [1820.16, 700.56], orientation: N}
+      c2c_mot19: {location: [1820.16, 730.80], orientation: N}
+      c2c_mot20: {location: [1820.16, 761.04], orientation: N}
+      c2c_mot21: {location: [1820.16, 791.28], orientation: N}
+      c2c_mot22: {location: [1820.16, 821.52], orientation: N}
+      c2c_mot23: {location: [1820.16, 851.76], orientation: N}
+      c2c_mot24: {location: [1820.16, 882.00], orientation: N}
+      c2c_mot25: {location: [1820.16, 912.24], orientation: N}
+      c2c_mot26: {location: [1820.16, 942.48], orientation: N}
+      c2c_mot27: {location: [1845.12, 700.56], orientation: N}
+      c2c_mot28: {location: [1845.12, 730.80], orientation: N}
+      c2c_mot29: {location: [1845.12, 761.04], orientation: N}
+      c2c_mot30: {location: [1845.12, 791.28], orientation: N}
+      c2c_mot31: {location: [1845.12, 821.52], orientation: N}
+      c2c_clk_w: {location: [1870.08, 700.56], orientation: N}
+      c2c_rx_clk: {location: [1870.08, 730.80], orientation: N}
+      c2c_tx_ck: {location: [2000.16, 1791.72], orientation: N}
+
 
 # This is an alternative method compared to
 # specifying the power connections in the RTL

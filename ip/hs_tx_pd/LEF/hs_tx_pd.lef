@@ -1,0 +1,120 @@
+VERSION 5.7 ;
+  NOWIREEXTENSIONATPIN ON ;
+  DIVIDERCHAR "/" ;
+  BUSBITCHARS "[]" ;
+MACRO hs_tx_pd
+  CLASS BLOCK ;
+  FOREIGN hs_tx_pd ;
+  ORIGIN 0.000 0.000 ;
+  SIZE 40.320 BY 45.360 ;
+  PIN VGND
+    DIRECTION INOUT ;
+    USE GROUND ;
+    PORT
+      LAYER TopMetal1 ;
+        RECT 24.460 6.930 26.660 38.430 ;
+    END
+  END VGND
+  PIN VPWR
+    DIRECTION INOUT ;
+    USE POWER ;
+    PORT
+      LAYER TopMetal1 ;
+        RECT 18.260 7.340 20.460 38.020 ;
+    END
+  END VPWR
+  PIN d
+    DIRECTION INPUT ;
+    USE SIGNAL ;
+    ANTENNAGATEAREA 0.455000 ;
+    PORT
+      LAYER Metal3 ;
+        RECT 0.000 6.100 0.400 6.500 ;
+    END
+  END d
+  PIN hsn
+    DIRECTION OUTPUT ;
+    USE SIGNAL ;
+    ANTENNADIFFAREA 5.654400 ;
+    PORT
+      LAYER Metal3 ;
+        RECT 39.920 17.020 40.320 17.420 ;
+    END
+  END hsn
+  PIN hsp
+    DIRECTION OUTPUT ;
+    USE SIGNAL ;
+    ANTENNADIFFAREA 5.654400 ;
+    PORT
+      LAYER Metal3 ;
+        RECT 39.920 6.100 40.320 6.500 ;
+    END
+  END hsp
+  PIN lpinn
+    DIRECTION OUTPUT ;
+    USE SIGNAL ;
+    ANTENNADIFFAREA 1.124800 ;
+    PORT
+      LAYER Metal3 ;
+        RECT 39.920 38.860 40.320 39.260 ;
+    END
+  END lpinn
+  PIN lpinp
+    DIRECTION OUTPUT ;
+    USE SIGNAL ;
+    ANTENNADIFFAREA 1.124800 ;
+    PORT
+      LAYER Metal3 ;
+        RECT 39.920 27.940 40.320 28.340 ;
+    END
+  END lpinp
+  PIN lpn
+    DIRECTION INPUT ;
+    USE SIGNAL ;
+    ANTENNAGATEAREA 0.478400 ;
+    PORT
+      LAYER Metal3 ;
+        RECT 0.000 38.860 0.400 39.260 ;
+    END
+  END lpn
+  PIN lpp
+    DIRECTION INPUT ;
+    USE SIGNAL ;
+    ANTENNAGATEAREA 0.478400 ;
+    PORT
+      LAYER Metal3 ;
+        RECT 0.000 27.940 0.400 28.340 ;
+    END
+  END lpp
+  PIN oe
+    DIRECTION INPUT ;
+    USE SIGNAL ;
+    ANTENNAGATEAREA 1.198600 ;
+    PORT
+      LAYER Metal3 ;
+        RECT 0.000 17.020 0.400 17.420 ;
+    END
+  END oe
+  OBS
+      LAYER GatPoly ;
+        RECT 5.760 7.410 34.560 37.950 ;
+      LAYER Metal1 ;
+        RECT 5.760 7.340 34.560 38.020 ;
+      LAYER Metal2 ;
+        RECT 8.055 6.155 39.945 39.205 ;
+      LAYER Metal3 ;
+        RECT 0.610 38.650 39.710 39.160 ;
+        RECT 0.400 28.550 39.985 38.650 ;
+        RECT 0.610 27.730 39.710 28.550 ;
+        RECT 0.400 17.630 39.985 27.730 ;
+        RECT 0.610 16.810 39.710 17.630 ;
+        RECT 0.400 6.710 39.985 16.810 ;
+        RECT 0.610 6.200 39.710 6.710 ;
+      LAYER Metal4 ;
+        RECT 18.440 7.415 26.480 37.945 ;
+      LAYER Metal5 ;
+        RECT 18.395 7.250 26.525 38.110 ;
+  END
+END hs_tx_pd
+END LIBRARY
+

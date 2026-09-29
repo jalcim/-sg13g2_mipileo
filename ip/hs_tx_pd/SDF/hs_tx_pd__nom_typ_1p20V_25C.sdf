@@ -1,0 +1,143 @@
+(DELAYFILE
+ (SDFVERSION "3.0")
+ (DESIGN "hs_tx_pd")
+ (DATE "Tue Sep 29 18:51:21 2026")
+ (VENDOR "Parallax")
+ (PROGRAM "STA")
+ (VERSION "3.1.0")
+ (DIVIDER .)
+ (VOLTAGE 1.200::1.200)
+ (PROCESS "1.000::1.000")
+ (TEMPERATURE 25.000::25.000)
+ (TIMESCALE 1ns)
+ (CELL
+  (CELLTYPE "hs_tx_pd")
+  (INSTANCE)
+  (DELAY
+   (ABSOLUTE
+    (INTERCONNECT d xdb1.A (0.006:0.006:0.006) (0.005:0.005:0.005))
+    (INTERCONNECT d xdt.A (0.006:0.006:0.006) (0.005:0.005:0.005))
+    (INTERCONNECT lpn xln.A (0.005:0.006:0.007) (0.004:0.005:0.006))
+    (INTERCONNECT lpp xlp.A (0.005:0.005:0.006) (0.004:0.005:0.005))
+    (INTERCONNECT oe xnn.B (0.013:0.014:0.016) (0.011:0.012:0.013))
+    (INTERCONNECT oe xnp.B (0.013:0.014:0.016) (0.011:0.012:0.013))
+    (INTERCONNECT oe xoeb.A (0.012:0.014:0.015) (0.010:0.011:0.012))
+    (INTERCONNECT xdb.Y xnp.A (0.000:0.000:0.000) (0.000:0.000:0.000))
+    (INTERCONNECT xdb1.Y xdb2.A (0.000:0.000:0.000) (0.000:0.000:0.000))
+    (INTERCONNECT xdb2.Y xdb.A (0.000:0.000:0.000) (0.000:0.000:0.000))
+    (INTERCONNECT xdt.X xnn.A (0.000:0.000:0.000) (0.000:0.000:0.000))
+    (INTERCONNECT xln.Y lpinn (0.001:0.001:0.001) (0.001:0.001:0.001))
+    (INTERCONNECT xlp.Y lpinp (0.001:0.001:0.001) (0.001:0.001:0.001))
+    (INTERCONNECT xnn.Y xon.A (0.003:0.003:0.004) (0.003:0.004:0.004))
+    (INTERCONNECT xnp.Y xop.A (0.003:0.004:0.004) (0.003:0.004:0.005))
+    (INTERCONNECT xoeb.Y xln.B (0.000:0.000:0.000) (0.000:0.000:0.000))
+    (INTERCONNECT xoeb.Y xlp.B (0.000:0.000:0.000) (0.000:0.000:0.000))
+    (INTERCONNECT xon.Y hsn (0.019:0.019:0.019) (0.018:0.018:0.019))
+    (INTERCONNECT xop.Y hsp (0.018:0.018:0.018) (0.018:0.018:0.018))
+   )
+  )
+ )
+ (CELL
+  (CELLTYPE "sg13g2_inv_1")
+  (INSTANCE xdb)
+  (DELAY
+   (ABSOLUTE
+    (IOPATH A Y (0.032:0.034:0.036) (0.029:0.032:0.035))
+   )
+  )
+ )
+ (CELL
+  (CELLTYPE "sg13g2_inv_1")
+  (INSTANCE xdb1)
+  (DELAY
+   (ABSOLUTE
+    (IOPATH A Y (0.026:0.027:0.028) (0.025:0.026:0.027))
+   )
+  )
+ )
+ (CELL
+  (CELLTYPE "sg13g2_inv_1")
+  (INSTANCE xdb2)
+  (DELAY
+   (ABSOLUTE
+    (IOPATH A Y (0.026:0.027:0.028) (0.025:0.026:0.027))
+   )
+  )
+ )
+ (CELL
+  (CELLTYPE "sg13g2_buf_2")
+  (INSTANCE xdt)
+  (DELAY
+   (ABSOLUTE
+    (IOPATH A X (0.065:0.067:0.068) (0.067:0.069:0.070))
+   )
+  )
+ )
+ (CELL
+  (CELLTYPE "sg13g2_nand2_2")
+  (INSTANCE xln)
+  (DELAY
+   (ABSOLUTE
+    (IOPATH A Y (0.037:0.038:0.038) (0.055:0.055:0.055))
+    (IOPATH B Y (0.049:0.051:0.052) (0.070:0.072:0.075))
+   )
+  )
+ )
+ (CELL
+  (CELLTYPE "sg13g2_nand2_2")
+  (INSTANCE xlp)
+  (DELAY
+   (ABSOLUTE
+    (IOPATH A Y (0.037:0.037:0.037) (0.054:0.054:0.054))
+    (IOPATH B Y (0.049:0.050:0.051) (0.069:0.071:0.074))
+   )
+  )
+ )
+ (CELL
+  (CELLTYPE "sg13g2_nand2_2")
+  (INSTANCE xnn)
+  (DELAY
+   (ABSOLUTE
+    (IOPATH A Y (0.067:0.081:0.095) (0.100:0.121:0.142))
+    (IOPATH B Y (0.073:0.086:0.100) (0.108:0.129:0.150))
+   )
+  )
+ )
+ (CELL
+  (CELLTYPE "sg13g2_nand2_2")
+  (INSTANCE xnp)
+  (DELAY
+   (ABSOLUTE
+    (IOPATH A Y (0.068:0.082:0.097) (0.103:0.125:0.147))
+    (IOPATH B Y (0.074:0.087:0.101) (0.109:0.130:0.152))
+   )
+  )
+ )
+ (CELL
+  (CELLTYPE "sg13g2_inv_1")
+  (INSTANCE xoeb)
+  (DELAY
+   (ABSOLUTE
+    (IOPATH A Y (0.051:0.056:0.061) (0.047:0.051:0.054))
+   )
+  )
+ )
+ (CELL
+  (CELLTYPE "sg13g2_inv_16")
+  (INSTANCE xon)
+  (DELAY
+   (ABSOLUTE
+    (IOPATH A Y (0.124:0.136:0.148) (0.095:0.105:0.116))
+   )
+  )
+ )
+ (CELL
+  (CELLTYPE "sg13g2_inv_16")
+  (INSTANCE xop)
+  (DELAY
+   (ABSOLUTE
+    (IOPATH A Y (0.126:0.138:0.149) (0.096:0.107:0.117))
+   )
+  )
+ )
+)

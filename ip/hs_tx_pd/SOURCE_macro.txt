@@ -1,0 +1,4 @@
+# Macro hs_tx_pd de prompt-065 (netlist de Lionel 25a940756), vues importees telles quelles (sauf HDL/hs_tx_pd_bb.v, genere du LEF).
+depot gitlab.com/nebula_microsystems/mipi (branche claude/pont-tx)
+commit 78719e40080255bf5114a66102051c234bb4b199
+chemin 3_digital/rtl/hs_tx_pd/COLLATERALS

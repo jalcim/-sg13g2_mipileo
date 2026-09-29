@@ -47,9 +47,44 @@ VERILOG_DEFINES: [FUNCTIONAL]
 PRIMARY_GDSII_STREAMOUT_TOOL: klayout
 
 # Specify the pad instances for the padring
+#Digital 
 PAD_WEST:  [vdd_pad_1, sig_in_pad, sig_out_pad]
+#MIPI RX : 13 pads
+# VDDIO MIPI 
+# VSSIO_MIPI
+# ANALOG PAD (current setting)
+# CLK Lane P
+# CLK Lane N
+# RX1 Lane P
+# RX1 Lane N
+# RX2 Lane P
+# RX2 Lane N
+# RX3 Lane P
+# RX3 Lane N
+# RX4 Lane P
+# RX4 Lane N
+
 PAD_EAST:  [iovss_pad, iovdd_pad, open_pad]
-PAD_NORTH: [flow_in_pad, vdd_pad, thru_n_pad]
+
+#MIPI_TX : 15 Pads
+# VDD 
+# VSS
+# ANALOG PAD (current setting)
+# CLK Lane P
+# CLK Lane N
+# TX1 Lane P
+# TX1 Lane N
+# TX2 Lane P
+# TX2 Lane N
+# TX3 Lane P
+# TX3 Lane N
+# TX4 Lane P
+# TX4 Lane N
+# CLKIN N
+# CLKIN P
+
+PPAD_NORTH: [flow_in_pad, vdd_pad, thru_n_pad]
+#DIGITAL
 PAD_SOUTH: [flow_out_pad, vss_pad, thru_s_pad]
 
 # SDC files

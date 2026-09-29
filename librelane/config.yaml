@@ -239,6 +239,7 @@ PDN_VERTICAL_HALO: 7.56
 # Kit CML : vues enveloppees d alim-cml (preuve 7), alimentees par librelane/pcml_pdn.tcl.
 # Grille RX des cml_to_cmos au pas de 75,6 um (= PDN_HPITCH), y = 786,24 + 75,6 j : chaque rangee croise une bande
 # TopMetal2 VDD et une VSS (complet7 : PDN-9002 sur la rangee y 895,86, entre deux paires de bandes).
+# Rangee TX des convertisseurs a y 2067,66 (paire VDD/VSS 2074,88..2088,88) : a 2113,02 aucune bande VSS (complet8, PSM-0039).
 MACROS:
   csi2_top:
     gds: [dir::../ip/csi2_top/GDS/csi2_top.gds]

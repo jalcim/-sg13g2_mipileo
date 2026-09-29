@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 """Ecrit src/MSPHY5973.v : top de la puce, cablage de doc/cablage_msphy5973.md.
 
-TX provisoire en LP seul (trous 1 et 2 de la fiche : pas de pont TX ni de /4 TX) :
-tx_request_hs et clk_request a 0, d des pre-drivers a 0, fifo_tx_full a 0.
+v1.0.0 (option B du 29/09) : renvoi RX vers TX non fonctionnel, pont TX en cours (D38).
+TX place et relie aux plots, tx_request_hs et clk_request a 0, fifo_tx_* de csi2_top libres.
+Entrees MOT et CLK_W des sr16_tx tenues a 0 par des cmos_to_cml (pas de /4 TX livre).
 """
 import sys
 from pathlib import Path
@@ -15,8 +16,8 @@ IO_BIAS = ".POLN_RX(POLN_RX_IO), .VB(VB_IO), .PBIAS(PBIAS_IO), .PS(PS_IO), .POLN
 
 RX_PADS = ["clk"] + [f"d{k}" for k in range(LANES)]
 TX_PADS = ["clk"] + [f"d{k}" for k in range(LANES)]
-WEST_IN = ["clk_sys", "rst_n"] + [f"en{k}" for k in range(LANES)]
-SOUTH_IN = ["renvoi_mode0", "renvoi_mode1"]
+WEST_IN = ["clk_sys", "rst_n", "renvoi_mode0", "renvoi_mode1"]
+SOUTH_IN = [f"en{k}" for k in range(LANES)]
 
 
 def pad(cell, name, pwr, bias, sigs=""):
@@ -41,7 +42,7 @@ def main(out):
     ports += [f"inout {name.upper()}" for name in WEST_IN + SOUTH_IN]
 
     v = ["// MSPHY5973 : D-PHY + CSI-2 + E/S, genere par scripts/gen_msphy5973.py, NE PAS EDITER.",
-         "// Cablage : doc/cablage_msphy5973.md. TX en LP seul (pas de pont TX ni de /4 TX livres).",
+         "// Cablage : doc/cablage_msphy5973.md. v1.0.0 : renvoi RX vers TX non fonctionnel, pont TX en cours (D38).",
          "module MSPHY5973 (", ",\n".join(f"    {p}" for p in ports), ");", ""]
     v.append("    wire POLN_RX, VB, PBIAS, PS, POLN;")
     v.append("    wire POLN_RX_IO, VB_IO, PBIAS_IO, PS_IO, POLN_IO;")
@@ -61,6 +62,8 @@ def main(out):
     v.append("    wire [11:0] statut_phy;")
     v.append("    wire [3:0] tx_hs_oe, tx_lp_p, tx_lp_n;")
     v.append("    wire tx_clk_hs_oe, tx_clk_lp_p, tx_clk_lp_n;")
+    v.append("    wire [3:0] tx_mot_p, tx_mot_n, tx_dout_p, tx_dout_n, tx_dout;")
+    v.append("    wire tx_clk_w_p, tx_clk_w_n;")
     v.append("")
 
     v.append("    // Coins : domaine MIPI a l'est et au nord, domaine IO a l'ouest et au sud")
@@ -114,6 +117,7 @@ def main(out):
     c2c.append(("c2c_clk_w", "clk_w_p", "clk_w_n", "clk_w"))
     c2c.append(("c2c_rx_clk", "rx_clk_p_hs", "rx_clk_n_hs", "rx_clk"))
     c2c.append(("c2c_tx_ck", "clkin_p_hs", "clkin_n_hs", "tx_ck"))
+    c2c += [(f"c2c_tx_dout{k}", f"tx_dout_p[{k}]", f"tx_dout_n[{k}]", f"tx_dout[{k}]") for k in range(LANES)]
     for name, inp, inn, y in c2c:
         v.append(f"    cml_to_cmos {name} (\n        `ifdef USE_POWER_PINS\n        .VDD(VDD), .VSS(VSS),\n        `endif\n"
                  f"        .INP({inp}), .INN({inn}), .Y({y})\n    );")
@@ -136,16 +140,26 @@ def main(out):
              "        .fifo_tx_full(1'b0), .fifo_tx_wr(), .fifo_tx_wdata(), .fifo_tx_wlanes(), .fifo_tx_fin(), .tx_init()\n    );")
     v.append("")
 
-    v.append("    // TX : machines d'etats et pre-drivers, en LP seul tant que le pont TX et le /4 TX manquent")
+    v.append("    // TX : machines d'etats, serialiseurs et pre-drivers. HS inactif en v1.0.0 (pas de pont TX ni de /4 TX).")
     v.append("    dphy_tx dphy_tx (\n        `ifdef USE_POWER_PINS\n        .VPWR(VDD), .VGND(VSS),\n        `endif\n"
              "        .PG(POLN_RX), .clk(tx_ck), .rst(~rst_n), .clk_request(1'b0), .clk_ready(),\n"
              "        .clk_lp_p(tx_clk_lp_p), .clk_lp_n(tx_clk_lp_n), .clk_hs_oe(tx_clk_hs_oe), .clk_run(),\n"
              "        .tx_request_hs(4'b0), .tx_ready_hs(), .hs_sync(), .hs_trail(),\n"
              "        .lp_p(tx_lp_p), .lp_n(tx_lp_n), .hs_oe(tx_hs_oe)\n    );")
-    drv = [("clk", "tx_clk_hs_oe", "tx_clk_lp_p", "tx_clk_lp_n")]
-    drv += [(f"d{k}", f"tx_hs_oe[{k}]", f"tx_lp_p[{k}]", f"tx_lp_n[{k}]") for k in range(LANES)]
-    for lane, oe, lpp, lpn in drv:
-        v.append(f"    (* keep *) hs_tx_pd pd_{lane} (.d(1'b0), .oe({oe}), .lpp({lpp}), .lpn({lpn}),\n"
+    c2l = [(f"c2l_tx_mot{k}", f"tx_mot_p[{k}]", f"tx_mot_n[{k}]") for k in range(LANES)]
+    c2l.append(("c2l_tx_clk_w", "tx_clk_w_p", "tx_clk_w_n"))
+    for name, outp, outn in c2l:
+        v.append(f"    cmos_to_cml {name} (\n        `ifdef USE_POWER_PINS\n        .VDD(VDD), .VSS(VSS),\n        `endif\n"
+                 f"        .POLN(POLN), .A(1'b0), .OUTP({outp}), .OUTN({outn})\n    );")
+    for k in range(LANES):
+        mots = ", ".join(f".MOT{i}_P(tx_mot_p[{k}]), .MOT{i}_N(tx_mot_n[{k}])" for i in range(8))
+        v.append(f"    sr16_tx sr16_tx{k} (\n        `ifdef USE_POWER_PINS\n        .VDD(VDD), .VSS(VSS),\n        `endif\n"
+                 f"        .POLN(POLN), .CK_P(clkin_p_hs), .CK_N(clkin_n_hs), .CLK_W_P(tx_clk_w_p), .CLK_W_N(tx_clk_w_n),\n"
+                 f"        {mots},\n        .DOUT_P(tx_dout_p[{k}]), .DOUT_N(tx_dout_n[{k}])\n    );")
+    drv = [("clk", "tx_ck", "tx_clk_hs_oe", "tx_clk_lp_p", "tx_clk_lp_n")]
+    drv += [(f"d{k}", f"tx_dout[{k}]", f"tx_hs_oe[{k}]", f"tx_lp_p[{k}]", f"tx_lp_n[{k}]") for k in range(LANES)]
+    for lane, d, oe, lpp, lpn in drv:
+        v.append(f"    (* keep *) hs_tx_pd pd_{lane} (.d({d}), .oe({oe}), .lpp({lpp}), .lpn({lpn}),\n"
                  f"        .hsp(tx_{lane}_hsp), .hsn(tx_{lane}_hsn), .lpinp(tx_{lane}_lpinp), .lpinn(tx_{lane}_lpinn));")
     v.append("")
     v.append("endmodule")

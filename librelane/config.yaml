@@ -89,12 +89,12 @@ PAD_NORTH: [
 PAD_WEST: [
   iovdd_pad, iovss_pad,
   clk_sys_pad, rst_n_pad,
-  en0_pad, en1_pad, en2_pad, en3_pad
+  renvoi_mode0_pad, renvoi_mode1_pad
 ]
 
 PAD_SOUTH: [
   vdd_s_pad, vss_s_pad,
-  renvoi_mode0_pad, renvoi_mode1_pad
+  en0_pad, en1_pad, en2_pad, en3_pad
 ]
 
 # SDC files
@@ -303,6 +303,31 @@ MACROS:
       c2c_clk_w: {location: [1870.08, 700.56], orientation: N}
       c2c_rx_clk: {location: [1870.08, 730.80], orientation: N}
       c2c_tx_ck: {location: [2000.16, 1791.72], orientation: N}
+      c2c_tx_dout0: {location: [1130.40, 1830.06], orientation: N}
+      c2c_tx_dout1: {location: [1155.36, 1830.06], orientation: N}
+      c2c_tx_dout2: {location: [1180.32, 1830.06], orientation: N}
+      c2c_tx_dout3: {location: [1205.28, 1830.06], orientation: N}
+  cmos_to_cml:
+    gds: [dir::../ip/cmos_to_cml/GDS/cmos_to_cml.gds]
+    lef: [dir::../ip/cmos_to_cml/LEF/cmos_to_cml.lef]
+    vh: [dir::../ip/cmos_to_cml/HDL/cmos_to_cml_bb.v]
+    spice: [dir::../ip/cmos_to_cml/SPICE/cmos_to_cml.spice]
+    instances:
+      c2l_tx_mot0: {location: [1130.40, 1780.56], orientation: N}
+      c2l_tx_mot1: {location: [1155.36, 1780.56], orientation: N}
+      c2l_tx_mot2: {location: [1180.32, 1780.56], orientation: N}
+      c2l_tx_mot3: {location: [1205.28, 1780.56], orientation: N}
+      c2l_tx_clk_w: {location: [1230.24, 1780.56], orientation: N}
+  sr16_tx:
+    gds: [dir::../ip/sr16_tx/GDS/sr16_tx.gds]
+    lef: [dir::../ip/sr16_tx/LEF/sr16_tx.lef]
+    vh: [dir::../ip/sr16_tx/HDL/sr16_tx_bb.v]
+    spice: [dir::../ip/sr16_tx/SPICE/sr16_tx.spice]
+    instances:
+      sr16_tx0: {location: [380.16, 1780.56], orientation: N}
+      sr16_tx1: {location: [750.24, 1780.56], orientation: N}
+      sr16_tx2: {location: [380.16, 1897.74], orientation: N}
+      sr16_tx3: {location: [750.24, 1897.74], orientation: N}
 
 
 # This is an alternative method compared to

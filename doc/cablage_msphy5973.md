@@ -1,5 +1,9 @@
 # Câblage de MSPHY5973 sur l'anneau 7efada02e (proposition de prompt-063-leo, 29/09/2026)
 
+Mise à jour : brochage aligné sur la livraison 1 (sg13g2_26a 38f9686, prompt-061, maître du câblage).
+Bandgap à l'est, tx_analog gardé au nord, pistes de polarisation en un net par côté (pol_<côté>_<piste>),
+car les coins n'ont pas de piste. PG des dphy libre. La ligne « un seul bandgap au nord » et « pistes continues sur est et nord » ci-dessous sont remplacées par ceci.
+
 Proposition à valider par 061 et le coordinateur.
 Elle sert aux deux livraisons (même brochage, mêmes connexions).
 Rien n'est inventé côté bloc : chaque ligne renvoie à une vue livrée.
@@ -23,10 +27,10 @@ Les trous sont listés à la fin, avec les options.
 
 | Côté | Plots, dans l'ordre | Domaine |
 |---|---|---|
-| Est (RX) | iovdd_mipi, iovss_mipi, rx_clk_p, rx_clk_n, rx_d0_p, rx_d0_n, rx_d1_p, rx_d1_n, rx_d2_p, rx_d2_n, rx_d3_p, rx_d3_n | IOVDD_MIPI |
-| Nord (TX) | vdd, vss, tx_clk_p, tx_clk_n, tx_d0_p, tx_d0_n, tx_d1_p, tx_d1_n, tx_d2_p, tx_d2_n, tx_d3_p, tx_d3_n, clkin_n, clkin_p, bandgap | IOVDD_MIPI |
-| Ouest | iovdd, iovss, clk_sys, rst_n, en0, en1, en2, en3 | IOVDD |
-| Sud | vdd_s, vss_s, renvoi_mode0, renvoi_mode1 | IOVDD |
+| Est (RX) | iovdd_mipi, iovss_mipi, bandgap, rx_clk_p, rx_clk_n, rx_d0_p, rx_d0_n, rx_d1_p, rx_d1_n, rx_d2_p, rx_d2_n, rx_d3_p, rx_d3_n | IOVDD_MIPI |
+| Nord (TX) | vdd, vss, tx_analog, tx_clk_p, tx_clk_n, tx_d0_p, tx_d0_n, tx_d1_p, tx_d1_n, tx_d2_p, tx_d2_n, tx_d3_p, tx_d3_n, clkin_n, clkin_p | IOVDD_MIPI |
+| Ouest | iovdd, iovss, clk_sys, rst_n, renvoi_mode0, renvoi_mode1 | IOVDD |
+| Sud | vdd_s, vss_s, en0, en1, en2, en3 | IOVDD |
 
 - Lanes RX : MIPI_IOPadRX (plus de MIPI_IOPadAnalog ni de PADRES).
 - Lanes TX : MIPI_IOPadTX.

@@ -144,7 +144,16 @@ NON_DEFAULT_RULES:
     spacing: [Metal2, "0.6", Metal3, "0.6", Metal4, "0.6"]
     via: [Via1_DC1B, Via2_DC1B, Via3_XY]
 
-DRT_ASSIGN_NDR: {}
+  # Meme regle que la livraison 1 (061, e9f5807) pour les nets CML haute frequence.
+  NDR_cml:
+    width:   [Metal2, "0.6", Metal3, "0.6", Metal4, "0.6", Metal5, "0.6"]
+    spacing: [Metal2, "0.4", Metal3, "0.4", Metal4, "0.4", Metal5, "0.4"]
+    via: [Via1_DC1B, Via2_DC1B, Via3_DC1B, Via4_DC1B]
+
+# DRT_ASSIGN_NDR : {expression reguliere de net: NDR} (drt.tcl). Lanes HS des plots vers sr16_rx4, horloges CML
+# (RX coupee, CLKIN_I / CLKIN_Q), autorisation d horloge et sorties serie des sr16_tx.
+DRT_ASSIGN_NDR:
+  "^(rx_(clk|d[0-3])_[pn]_hs|cml_ckg_[pn]|cml_clk_rx_en_[pn]|clkin_[iq]_[pn]_hs|tx_dout_[pn]\\[[0-3]\\])$": NDR_cml
 
 RSZ_DONT_TOUCH_RX: "^(pd_\\w+|tx_\\w+_(hsp|hsn|lpinp|lpinn)|sync_run\\d|gate_clk_lane|run_q\\d|clk_lane|clk_q)$"
 

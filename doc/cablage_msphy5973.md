@@ -85,3 +85,6 @@ Les trous sont listés à la fin, avec les options.
 4. **PG de dphy_rx et dphy_tx** (grille des miroirs des tempo) : net de polarisation à nommer par Lionel (POLN_RX, VB, PBIAS, PS ou POLN).
 5. **Liberty absentes** pour dphy_rx, dphy_tx, sr16_rx4, sr16_tx : STA du top aveugle sur ces macros.
 6. **Routage interne des plots RX et TX** : les en-têtes de ring_RX.tcl et ring_TX.tcl disent « pas encore de routage » et « placement seul ». Le commit 7efada02e dit « RX/TX raccordés ». Vérifier sur le GDS avant le LVS.
+7. **Netlist des plots absente** : les COLLATERALS de MIPI_ring (7efada02e) n'ont ni SPICE ni CDL. Le LVS du top ne peut pas matcher les plots sans elle. À demander à Lionel.
+8. **Alimentation des macros du kit CML** : sr16_rx4, sr16_tx, cml_to_cmos et cmos_to_cml ont VDD et VSS en Metal1 seulement. Le PDN du top (TopMetal1, TopMetal2) ne les atteint pas sans une grille de macro dédiée.
+9. **PG provisoire** : dans le top, PG de dphy_rx et dphy_tx est relié à POLN_RX en attendant la réponse au trou 4.

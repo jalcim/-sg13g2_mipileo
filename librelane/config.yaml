@@ -117,7 +117,9 @@ GND_NETS:
 CLOCK_PORT: null
 CLOCK_NET: null
 
-CLOCK_PERIOD: 20
+# Periode de Clk Systeme (125,125 MHz), horloge virtuelle comme la livraison 1 (msphy4263.sdc) : les chemins de
+# csi2_top sont contraints dans la macro, les plots numeriques attendent les retards de la carte.
+CLOCK_PERIOD: 7.992
 
 SETUP_VIOLATION_CORNERS: ["*"]
 

@@ -179,7 +179,7 @@ PAD_BONDPAD_OFFSETS:
   "MIPI_IOPadBandgap": [45.0, -70.0]
 
 PAD_LEFS: [dir::../ip/CSI2_DPHY_RING/LEF/MIPI_ring.lef]
-PAD_GDS: [dir::../ip/CSI2_DPHY_RING/GDS/MIPI_ring.gds]
+PAD_GDS: [dir::gen/MIPI_ring.gds]
 PAD_VERILOG_MODELS: [dir::../ip/CSI2_DPHY_RING/HDL/MIPI_ring.v]
 
 # Technology lib
@@ -235,6 +235,8 @@ MAGIC_EXT_UNIQUE: notopports
 FP_MACRO_VERTICAL_HALO: 7.56
 PDN_VERTICAL_HALO: 7.56
 
+# GDS : librelane/gen/, produits par scripts/gds_uniques.sh (sous-cellules renommees <macro>__<cellule>, 42 homonymes
+# au contenu different entre les GDS, precheck de coupe6 : 568 M3.b).
 # Positions : plan de masse de la livraison 1 (061, msphy4263/scripts/floorplan.py, a408a54, die 2 560).
 # Kit CML : vues enveloppees d alim-cml (preuve 7), alimentees par librelane/pcml_pdn.tcl.
 # Grille RX des cml_to_cmos au pas de 75,6 um (= PDN_HPITCH), y = 786,24 + 75,6 j : chaque rangee croise une bande
@@ -242,7 +244,7 @@ PDN_VERTICAL_HALO: 7.56
 # Rangee TX des convertisseurs a y 2067,66 (paire VDD/VSS 2074,88..2088,88) : a 2113,02 aucune bande VSS (complet8, PSM-0039).
 MACROS:
   csi2_top:
-    gds: [dir::../ip/csi2_top/GDS/csi2_top.gds]
+    gds: [dir::gen/csi2_top.gds]
     lef: [dir::../ip/csi2_top/LEF/csi2_top.lef]
     vh: [dir::../ip/csi2_top/HDL/csi2_top_bb.v]
     nl: [dir::../ip/csi2_top/HDL/csi2_top.v]
@@ -253,27 +255,27 @@ MACROS:
     instances:
       csi2_top: {location: [420.48, 423.36], orientation: S}
   dphy_rx:
-    gds: [dir::../ip/dphy_sm/GDS/dphy_rx.gds]
+    gds: [dir::gen/dphy_rx.gds]
     lef: [dir::../ip/dphy_sm/LEF/dphy_rx.lef]
     vh: [dir::../ip/dphy_sm/HDL/dphy_rx_bb.v]
     nl: [dir::../ip/dphy_sm/HDL/dphy_rx.v]
     instances:
       dphy_rx: {location: [420.48, 1833.30], orientation: N}
   dphy_tx:
-    gds: [dir::../ip/dphy_sm/GDS/dphy_tx.gds]
+    gds: [dir::gen/dphy_tx.gds]
     lef: [dir::../ip/dphy_sm/LEF/dphy_tx.lef]
     vh: [dir::../ip/dphy_sm/HDL/dphy_tx_bb.v]
     nl: [dir::../ip/dphy_sm/HDL/dphy_tx.v]
     instances:
       dphy_tx: {location: [801.60, 1833.30], orientation: N}
   sr16_rx4:
-    gds: [dir::../ip/sr16_rx4/GDS/sr16_rx4_alim.gds]
+    gds: [dir::gen/sr16_rx4.gds]
     lef: [dir::../ip/sr16_rx4/LEF/sr16_rx4_alim.lef]
     vh: [dir::../ip/sr16_rx4/HDL/sr16_rx4_bb.v]
     instances:
       sr16_rx4: {location: [1949.76, 423.36], orientation: N}
   sr16_tx:
-    gds: [dir::../ip/sr16_tx/GDS/sr16_tx_alim.gds]
+    gds: [dir::gen/sr16_tx.gds]
     lef: [dir::../ip/sr16_tx/LEF/sr16_tx_alim.lef]
     vh: [dir::../ip/sr16_tx/HDL/sr16_tx_bb.v]
     instances:
@@ -282,7 +284,7 @@ MACROS:
       sr16_tx2: {location: [1107.84, 1946.70], orientation: N}
       sr16_tx3: {location: [1483.20, 1946.70], orientation: N}
   cml_to_cmos:
-    gds: [dir::../ip/cml_to_cmos/GDS/cml_to_cmos_alim.gds]
+    gds: [dir::gen/cml_to_cmos.gds]
     lef: [dir::../ip/cml_to_cmos/LEF/cml_to_cmos_alim.lef]
     vh: [dir::../ip/cml_to_cmos/HDL/cml_to_cmos_bb.v]
     instances:
@@ -327,7 +329,7 @@ MACROS:
       c2c_dout2: {location: [1240.32, 2067.66], orientation: N}
       c2c_dout3: {location: [1273.44, 2067.66], orientation: N}
   cmos_to_cml:
-    gds: [dir::../ip/cmos_to_cml/GDS/cmos_to_cml_alim.gds]
+    gds: [dir::gen/cmos_to_cml.gds]
     lef: [dir::../ip/cmos_to_cml/LEF/cmos_to_cml_alim.lef]
     vh: [dir::../ip/cmos_to_cml/HDL/cmos_to_cml_bb.v]
     instances:
@@ -338,7 +340,7 @@ MACROS:
       c2m_mot2: {location: [1436.16, 2067.66], orientation: N}
       c2m_mot3: {location: [1479.36, 2067.66], orientation: N}
   cml_gate2:
-    gds: [dir::../ip/cml_gate2/GDS/cml_gate2_alim.gds]
+    gds: [dir::gen/cml_gate2.gds]
     lef: [dir::../ip/cml_gate2/LEF/cml_gate2_alim.lef]
     vh: [dir::../ip/cml_gate2/HDL/cml_gate2_bb.v]
     instances:

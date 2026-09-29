@@ -9,6 +9,7 @@ SAUTS="OpenROAD.STAPrePNR OpenROAD.STAMidPNR OpenROAD.STAPostPNR OpenROAD.Resize
  Magic.StreamOut KLayout.Render KLayout.XOR Checker.XOR KLayout.Antenna Checker.KLayoutAntenna"
 ARGS=""
 for s in $SAUTS; do ARGS="$ARGS --skip $s"; done
+nix develop --accept-flake-config -c scripts/gds_uniques.sh
 export PYTHONHASHSEED=13
 unset PYTHONPATH
 exec nice -n 19 nix develop --accept-flake-config -c librelane librelane/config.yaml \

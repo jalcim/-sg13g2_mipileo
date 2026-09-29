@@ -7,6 +7,7 @@ set -e
 cd "$(dirname "$0")/.."
 TAG=${1:-p063_complet}
 python3 scripts/coquilles_lvs.py librelane/coquilles_lvs.spice
+nix develop --accept-flake-config -c scripts/gds_uniques.sh
 export PYTHONHASHSEED=13
 unset PYTHONPATH
 exec nice -n 19 nix develop --accept-flake-config -c librelane librelane/config.yaml \

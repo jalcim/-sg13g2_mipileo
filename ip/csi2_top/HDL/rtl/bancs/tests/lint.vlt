@@ -1,0 +1,16 @@
+`verilator_config
+// Dérogations de lint propres au csi2_top (29/09/2026). Celles du LM (rtl/lint.vlt de lm-corrections-revue) et du LLP
+// (rtl/llp/lint.vlt de b09a6a09 patché) sont lues telles quelles depuis sources/ par lint.sh.
+// Montage figé du LM : lm_fifo_async et lm_fifo_sync définis par lm_fifo_async_p.v et lm_fifo_sync_p.v (defines).
+lint_off -rule DECLFILENAME -file "*lm_fifo_async_p.v"
+lint_off -rule DECLFILENAME -file "*lm_fifo_sync_p.v"
+// Sorties du LM laissées libres à dessein (choix 39, comme lm_llp_top.v ; statut et etat : débogage réduit à
+// dbg_verrou, dbg_erreur, choix de Jérémy du 29/09).
+lint_off -rule PINCONNECTEMPTY -file "*csi2_top.v" -match "*'tx_tailles'*"
+lint_off -rule PINCONNECTEMPTY -file "*csi2_top.v" -match "*'tx_tailles_valides'*"
+lint_off -rule PINCONNECTEMPTY -file "*csi2_top.v" -match "*'erreur_deskew'*"
+lint_off -rule PINCONNECTEMPTY -file "*csi2_top.v" -match "*'rx_erreur_burst'*"
+lint_off -rule PINCONNECTEMPTY -file "*csi2_top.v" -match "*'statut'*"
+lint_off -rule PINCONNECTEMPTY -file "*csi2_top.v" -match "*'etat'*"
+// DEBUG = 0 : sorties de débogage tenues à 0, leurs sources rassemblées dans w_non_lus (non lu à dessein)
+lint_off -rule UNUSEDSIGNAL -file "*csi2_top.v" -match "*'w_non_lus'*"

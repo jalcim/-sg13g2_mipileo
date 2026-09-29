@@ -1,0 +1,64 @@
+max_delay/setup group clk
+
+                                     Required   Actual
+Endpoint                                Delay    Delay    Slack
+---------------------------------------------------------------
+_129761_/D (sg13g2_dfrbpq_1)            9.581   12.796   -3.215 (VIOLATED)
+_129760_/D (sg13g2_dfrbpq_1)            9.563   12.755   -3.193 (VIOLATED)
+_129759_/D (sg13g2_dfrbpq_1)            9.581   12.688   -3.107 (VIOLATED)
+_129495_/D (sg13g2_dfrbpq_1)            9.397   12.432   -3.035 (VIOLATED)
+_129758_/D (sg13g2_dfrbpq_1)            9.564   12.546   -2.983 (VIOLATED)
+_129757_/D (sg13g2_dfrbpq_1)            9.573   12.488   -2.915 (VIOLATED)
+_129756_/D (sg13g2_dfrbpq_1)            9.574   12.488   -2.914 (VIOLATED)
+_134100_/D (sg13g2_dfrbpq_1)            9.609   12.474   -2.865 (VIOLATED)
+_129755_/D (sg13g2_dfrbpq_1)            9.569   12.111   -2.542 (VIOLATED)
+_134105_/D (sg13g2_dfrbpq_1)            9.615   12.143   -2.529 (VIOLATED)
+
+max_delay/setup group asynchronous
+
+                                     Required   Actual
+Endpoint                                Delay    Delay    Slack
+---------------------------------------------------------------
+_133031_/RESET_B (sg13g2_dfrbpq_1)      9.360    7.254    2.106 (MET)
+_133049_/RESET_B (sg13g2_dfrbpq_1)      9.360    7.254    2.106 (MET)
+_133030_/RESET_B (sg13g2_dfrbpq_1)      9.361    7.254    2.107 (MET)
+_133027_/RESET_B (sg13g2_dfrbpq_1)      9.363    7.254    2.109 (MET)
+_133026_/RESET_B (sg13g2_dfrbpq_1)      9.363    7.254    2.109 (MET)
+_133032_/RESET_B (sg13g2_dfrbpq_1)      9.361    7.252    2.109 (MET)
+_133029_/RESET_B (sg13g2_dfrbpq_1)      9.363    7.253    2.110 (MET)
+_133025_/RESET_B (sg13g2_dfrbpq_1)      9.362    7.252    2.111 (MET)
+_131261_/RESET_B (sg13g2_dfrbpq_1)      9.342    7.170    2.171 (MET)
+_131260_/RESET_B (sg13g2_dfrbpq_1)      9.342    7.170    2.172 (MET)
+
+max_delay/setup group clk_w
+
+                                     Required   Actual
+Endpoint                                Delay    Delay    Slack
+---------------------------------------------------------------
+_132394_/D (sg13g2_dfrbpq_1)            8.261    4.834    3.427 (MET)
+_132391_/D (sg13g2_dfrbpq_1)            8.261    4.829    3.433 (MET)
+_132392_/D (sg13g2_dfrbpq_1)            8.261    4.826    3.435 (MET)
+_132397_/D (sg13g2_dfrbpq_1)            8.266    4.830    3.436 (MET)
+_132395_/D (sg13g2_dfrbpq_1)            8.279    4.836    3.443 (MET)
+_132396_/D (sg13g2_dfrbpq_1)            8.282    4.826    3.456 (MET)
+_132393_/D (sg13g2_dfrbpq_1)            8.281    4.822    3.459 (MET)
+_132418_/D (sg13g2_dfrbpq_1)            8.280    4.816    3.464 (MET)
+_132390_/D (sg13g2_dfrbpq_1)            8.263    4.794    3.469 (MET)
+_132428_/D (sg13g2_dfrbpq_1)            8.260    4.788    3.471 (MET)
+
+max_delay/setup group path delay
+
+                                     Required   Actual
+Endpoint                                Delay    Delay    Slack
+---------------------------------------------------------------
+_131967_/D (sg13g2_dfrbpq_1)            7.808    3.259    4.550 (MET)
+_132207_/D (sg13g2_dfrbpq_1)            7.805    3.186    4.619 (MET)
+_131923_/D (sg13g2_dfrbpq_1)            7.820    3.155    4.665 (MET)
+_131929_/D (sg13g2_dfrbpq_1)            7.818    3.153    4.665 (MET)
+_131927_/D (sg13g2_dfrbpq_1)            7.820    3.153    4.667 (MET)
+_132047_/D (sg13g2_dfrbpq_1)            7.808    3.139    4.669 (MET)
+_131926_/D (sg13g2_dfrbpq_1)            7.819    3.150    4.669 (MET)
+_131928_/D (sg13g2_dfrbpq_1)            7.821    3.150    4.671 (MET)
+_131925_/D (sg13g2_dfrbpq_1)            7.821    3.150    4.671 (MET)
+_131930_/D (sg13g2_dfrbpq_1)            7.819    3.141    4.677 (MET)
+

@@ -35,7 +35,7 @@ meta:
 
 DESIGN_NAME: chip_top
 VERILOG_FILES:
-- dir::../src/nestis/chip_top.golden.v
+- dir::../src/chip_top.v
 
 VERILOG_DEFINES: [FUNCTIONAL]
 
@@ -108,6 +108,22 @@ EXTRA_GDS:
 
 EXTRA_LEFS:
 - dir::../ip/sg13g2_bondpad_70x70_novias/lef/bondpad_70x70_novias.lef
+
+# Use custom IO with padbare pin
+PAD_LEFS: dir::../ip/sg13g2_io_custom/sg13g2_io.lef
+PAD_VERILOG_MODELS: dir::../ip/sg13g2_io_custom/sg13g2_io.v
+
+LIB:
+  "*_typ_1p20V_25C":
+    - pdk_dir::libs.ref/sg13g2_stdcell/lib/sg13g2_stdcell_typ_1p20V_25C.lib
+    #- pdk_dir::libs.ref/sg13g2_io/lib/sg13g2_io_typ_1p2V_3p3V_25C.lib
+    - dir::../ip/sg13g2_io_custom/sg13g2_io_typ_1p2V_3p3V_25C.lib
+  "*_fast_1p32V_m40C":
+    - pdk_dir::libs.ref/sg13g2_stdcell/lib/sg13g2_stdcell_fast_1p32V_m40C.lib
+    - pdk_dir::libs.ref/sg13g2_io/lib/sg13g2_io_fast_1p32V_3p6V_m40C.lib
+  "*_slow_1p08V_125C":
+    - pdk_dir::libs.ref/sg13g2_stdcell/lib/sg13g2_stdcell_slow_1p08V_125C.lib
+    - pdk_dir::libs.ref/sg13g2_io/lib/sg13g2_io_slow_1p08V_3p0V_125C.lib
 
 IGNORE_DISCONNECTED_MODULES:
 - bondpad_70x70_novias

@@ -13,11 +13,11 @@ X0 R1 R2 B rppd l=13.09u w=1u
 X0 R1 R2 B rppd l=2.72u w=1u
 .ends
 
-.subckt cml_drvb VDD INN INP OUTN OUTP VSS
-Xxamp.xn INP VSS OUTN OUTN xrtail/R2 sg13_lv_nmos_5A5R5E
-Xxamp.xp INN VSS OUTP OUTP xrtail/R2 sg13_lv_nmos_5A5R5E
+.subckt cml_drvb VDD INP OUTN OUTP INN VSS
+Xxamp.xn INP VSS OUTN OUTN xrtail/R1 sg13_lv_nmos_5A5R5E
+Xxamp.xp INN VSS OUTP OUTP xrtail/R1 sg13_lv_nmos_5A5R5E
 Xxlp.xrl VSS OUTP VDD rppd_2ZAP6P
-Xxrtail VSS xrtail/R2 VSS rppd_ACUNYL
+Xxrtail VSS VSS xrtail/R1 rppd_ACUNYL
 Xxln.xrl VSS VDD OUTN rppd_2ZAP6P
 .ends
 
@@ -219,6 +219,10 @@ X1 D2 INP OUTP VSS sg13_lv_nmos ad=0.408p pd=3.08u as=0.228p ps=1.58u w=1.2u l=0
 X2 OUTP INP D2 VSS sg13_lv_nmos ad=0.228p pd=1.58u as=0.228p ps=1.58u w=1.2u l=0.2u
 .ends
 
+.subckt rppd_W2KASE B R2 R1
+X0 R1 R2 B rppd l=7.42u w=1u
+.ends
+
 .subckt sg13_lv_nmos_FTPY57 D10 G S11 D8 D6 sub D4 D2 D0 S9 S7 S5 S3 a_574_n53# S1
 X0 S5 G D4 sub sg13_lv_nmos ad=0.1007p pd=0.91u as=0.1007p ps=0.91u w=0.53u l=0.13u
 X1 D4 G S3 sub sg13_lv_nmos ad=0.1007p pd=0.91u as=0.1007p ps=0.91u w=0.53u l=0.13u
@@ -234,40 +238,36 @@ X10 a_574_n53# G S11 sub sg13_lv_nmos ad=0.1802p pd=1.74u as=0.1007p ps=0.91u w=
 X11 S7 G D6 sub sg13_lv_nmos ad=0.1007p pd=0.91u as=0.1007p ps=0.91u w=0.53u l=0.13u
 .ends
 
-.subckt rppd_W2KASE B R2 R1
-X0 R1 R2 B rppd l=7.42u w=1u
-.ends
-
 .subckt rppd_XV6GFH B R2 R1
 X0 R1 R2 B rppd l=4.86u w=1u
 .ends
 
 .subckt cml_gate2 VDD AN AP XN XP BN BP VSS
-Xxamp.xn XN AP xmux.xp/D8 XN XN VSS XN XN XN xmux.xp/D8 xmux.xp/D8 xmux.xp/D8 xmux.xp/D8
-+ XN xmux.xp/D8 sg13_lv_nmos_FTPY57
-Xxamp.xp XP AN xmux.xp/D8 XP XP VSS XP XP XP xmux.xp/D8 xmux.xp/D8 xmux.xp/D8 xmux.xp/D8
-+ XP xmux.xp/D8 sg13_lv_nmos_FTPY57
 Xxlp.xrl VSS XP VDD rppd_W2KASE
-Xxmux.xn XP BN xrtail/R1 XP XP VSS XP XP XP xrtail/R1 xrtail/R1 xrtail/R1 xrtail/R1
-+ XP xrtail/R1 sg13_lv_nmos_FTPY57
+Xsg13_lv_nmos_FTPY57_0 xmux.xn/S9 AN XP xmux.xn/S9 xmux.xn/S9 VSS xmux.xn/S9 xmux.xn/S9
++ xmux.xn/S9 XP XP XP XP xmux.xn/S9 XP sg13_lv_nmos_FTPY57
+Xsg13_lv_nmos_FTPY57_1 xmux.xn/S9 AP XN xmux.xn/S9 xmux.xn/S9 VSS xmux.xn/S9 xmux.xn/S9
++ xmux.xn/S9 XN XN XN XN xmux.xn/S9 XN sg13_lv_nmos_FTPY57
+Xxmux.xn xrtail/R1 BP xmux.xn/S9 xrtail/R1 xrtail/R1 VSS xrtail/R1 xrtail/R1 xrtail/R1
++ xmux.xn/S9 xmux.xn/S9 xmux.xn/S9 xmux.xn/S9 xrtail/R1 xmux.xn/S9 sg13_lv_nmos_FTPY57
 Xxrtail VSS VSS xrtail/R1 rppd_XV6GFH
-Xxmux.xp xmux.xp/D8 BP xrtail/R1 xmux.xp/D8 xmux.xp/D8 VSS xmux.xp/D8 xmux.xp/D8 xmux.xp/D8
-+ xrtail/R1 xrtail/R1 xrtail/R1 xrtail/R1 xmux.xp/D8 xrtail/R1 sg13_lv_nmos_FTPY57
+Xxmux.xp xrtail/R1 BN XP xrtail/R1 xrtail/R1 VSS xrtail/R1 xrtail/R1 xrtail/R1 XP
++ XP XP XP xrtail/R1 XP sg13_lv_nmos_FTPY57
 Xxln.xrl VSS XN VDD rppd_W2KASE
 .ends
 
 .subckt sr16_tx VDD VSS CK_N CK_P CLK_W_N CLK_W_P MOT0_N MOT0_P MOT1_N MOT1_P MOT2_N
 + MOT2_P MOT3_N MOT3_P MOT4_N MOT4_P MOT5_N MOT5_P MOT6_N MOT6_P MOT7_N MOT7_P DOUT_N
 + DOUT_P POLN
-Xcml_drvb_1 VDD LB_N LB_P cml_mux2_2/SN cml_mux2_2/SP VSS cml_drvb
+Xcml_drvb_1 VDD LB_P cml_mux2_2/SN cml_mux2_2/SP LB_N VSS cml_drvb
 Xcml_tlatch_19 VDD cml_mux2_6/AN cml_mux2_6/AP hs_to_clk_2/OUTP hs_to_clk_2/OUTN cml_tlatch_19/INP
 + cml_tlatch_19/INN POLN VSS cml_tlatch
 Xcml_tlatch_3 VDD cml_tlatch_2/INN cml_tlatch_2/INP interco_h_0/INBN interco_h_0/INBP
 + CLK_W_P CLK_W_N POLN VSS cml_tlatch
-Xcml_drvb_2 VDD cml_mux2_6/SN cml_mux2_6/SP cml_mux2_5/SN cml_mux2_5/SP VSS cml_drvb
+Xcml_drvb_2 VDD cml_mux2_6/SP cml_mux2_5/SN cml_mux2_5/SP cml_mux2_6/SN VSS cml_drvb
 Xcml_tlatch_4 VDD LB_N LB_P interco_h_0/INBN interco_h_0/INBP LD_A_P LD_A_N POLN VSS
 + cml_tlatch
-Xcml_drvb_3 VDD LD_A_N LD_A_P cml_mux2_6/SN cml_mux2_6/SP VSS cml_drvb
+Xcml_drvb_3 VDD LD_A_P cml_mux2_6/SN cml_mux2_6/SP LD_A_N VSS cml_drvb
 Xcml_tlatch_5 VDD cml_mux2_0/BN cml_mux2_0/BP interco_h_9/INBP interco_h_9/INBN cml_tlatch_5/INP
 + cml_tlatch_5/INN POLN VSS cml_tlatch
 Xcml_mux2_0 VDD cml_mux2_0/AN cml_mux2_0/AP cml_mux2_0/XN cml_mux2_0/XP cml_mux2_0/BN
@@ -354,7 +354,7 @@ Xcml_tlatch_18 VDD cml_tlatch_17/INN cml_tlatch_17/INP hs_to_clk_2/OUTN hs_to_cl
 + MOT5_P MOT5_N POLN VSS cml_tlatch
 Xcml_tlatch_29 VDD SA0_N SA0_P cml_mux2_3/SP cml_mux2_3/SN cml_tlatch_29/INP cml_tlatch_29/INN
 + POLN VSS cml_tlatch
-Xcml_drvb_0 VDD cml_mux2_2/SN cml_mux2_2/SP cml_mux2_1/SN cml_mux2_1/SP VSS cml_drvb
+Xcml_drvb_0 VDD cml_mux2_2/SP cml_mux2_1/SN cml_mux2_1/SP cml_mux2_2/SN VSS cml_drvb
 Xcml_tlatch_2 VDD cml_gate2_0/AN cml_gate2_0/AP interco_h_0/INBP interco_h_0/INBN
 + cml_tlatch_2/INP cml_tlatch_2/INN POLN VSS cml_tlatch
 .ends

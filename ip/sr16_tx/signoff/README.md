@@ -67,3 +67,33 @@ reconstruits par `make gds`), Caelum `~/projects/nebula/caelum_official` (`make 
   `tb_lien_lp_hs_lp` 168 / 168 OK (3 corners × CW_Q 1..7 × D0 0..7, avec `sr16_mot.vhd` multi-lane de SR16_RX).
 - Banc SPICE `make tb MACRO=CML_SR/SR16_TX FIN=1e9` (tt_typ_25, 24 mots, entrées par DRVB) : VRAI OK, 160 bits, 0 faux,
   latence 4 UI, marge 304 mV, I(VDD) 18,70 mA.
+
+## Régénération du 29/09 après fusion ANALOG_DESIGN
+Après la fusion af2d308e (layouts de Yann, fe70f9b8) : `make gds` / `drc` / `macro` / `collat` et `lvs/` (`make`),
+script `../../SR16_TX.py` **inchangé**.
+- GDS sha1 `eea3f9ce49dfa66f3a76ac0a65d4dbbecf9c78e0` (avant `ab78a7b4`), = `final/gds` des runs `drc_20260929_155143_1`
+  et `macro_20260929_155246`. Cadre inchangé (355,12 x 89,44 : la rangée W fixe la largeur). `cml_drvb` 11,52 -> 8,16 et
+  `cml_gate2` 23,04 -> 12,48 µm : 7 instances de fin de rangée décalées vers la gauche (XDA2, XDB2, vides de fin ;
+  XVGd 166,96 -> 156,40), rails VDD / VSS des rangées A, B, S raccourcis d'autant ; sonde LD_A déplacée
+  (166,96 -> 156,40). Latch : contenu seul (cadre, bornes, POLN inchangés). Broches de signal inchangées.
+- DRC KLayout `--no_density` : 0. NebulaCellDRC : 9 (densité / fill). Magic : 0.
+- **Ordre des bornes de `cml_drvb` changé** par le layout de Yann (extrait : `VDD INP OUTN OUTP INN VSS`, avant
+  `VDD INN INP OUTN OUTP VSS`). `lvs/intention.py` et `tools/banc_sr16_tx.py` instanciaient le drvb par position :
+  corrigés pour lire l'ordre dans l'extrait (sans cela : LVS « Netlists do not match », banc aux entrées croisées).
+  `3_digital/verif/banc_dphy_spice/banc_dphy.py` (l. 462) a le même motif positionnel et n'est **pas** corrigé.
+- LVS `lvs/` : Circuits match uniquely. Extrait toolchain hiérarchique contre l'intention : match ; extrait à plat
+  toolchain contre `../SPICE/sr16_tx.spice` : match.
+- `../SPICE/sr16_tx.spice` reste l'extrait hiérarchique de `lvs/` (`work/lvs/sr16_tx_ext_vdd.spice`, recopié après
+  `make macro` qui l'écrase) ; `sr16_tx.hier.spice` = extrait hiérarchique toolchain.
+- Banc `make tb MACRO=CML_SR/SR16_TX` (24 mots, entrées par cml_drvb, 160 bits comparés ; pas de V_OD dans ce banc) :
+
+| Corner | Débit | Bits faux | Latence | Marge min | I(VDD) | Verdict |
+|---|---|---|---|---|---|---|
+| tt_typ_25, 1,2 V | 1 Gb/s | 0 / 160 | 4 UI | 304 mV | 18,69 mA | VRAI OK |
+| tt_typ_25, 1,2 V | 2,5 Gb/s | 0 / 160 | 5 UI | 351 mV | 18,29 mA | VRAI OK |
+| ss_wcs_125, 1,08 V | 1 Gb/s | 0 / 160 | 4 UI | 67 mV | 12,85 mA | VRAI OK |
+| ff_bcs_m40, 1,32 V | 2,5 Gb/s | 0 / 160 | 5 UI | 440 mV | 23,05 mA | VRAI OK |
+
+  Runs : `../../work/tb/{tt_1e9_20260929_160346, tt_2.5e9_20260929_161659, ss_wcs_125_1e9_vdd1.08_20260929_161902,
+  ff_bcs_m40_2.5e9_vdd1.32_20260929_161903}` (locaux). tt 1 Gb/s identique au 29/09 matin (304 mV, 18,70 mA). Marge ss faible (67 mV).
+- Limite : extrait sans capacités (`ext2spice lvs`) : les parasites du nouveau layout ne sont pas simulés.

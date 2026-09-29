@@ -1,11 +1,12 @@
-# Vues importees telles quelles, aucune modification locale.
+# Vues importees telles quelles, aucune modification locale (sauf HDL/sr16_tx_bb.v, genere depuis le LEF).
 depot gitlab.com/nebula_microsystems/mipi
-commit 501b142a8275c5ac58e95f5f6af8556493e063bc
+commit 7ed5d558da04bc5505b7cfce2e4e0b0279157f22
 chemin 3_digital/CML_SR/SR16_TX/COLLATERALS
 b1df1cfe41c2ac042592ae1c3163d1c6  ./DEF/sr16_tx.def
 f4ff3ca67045726a7b4704ec413e310c  ./GDS/sr16_tx.gds
 4095b72c76ae02ecd802678c7c1b0e4d  ./HDL/sr16_mot.vhd
+32215f8cbb69936e500d0fb6195ad3cf  ./HDL/sr16_tx_bb.v
 6b3de586e1ba1e9b00f90503f642d22c  ./HDL/sr16_tx.vhd
 d3525b2bec80e170b6810ebf66bcd50a  ./LEF/sr16_tx.lef
-66b3fcf963dbe3943ed30167c2d47cc1  ./SPICE/sr16_tx.hier.spice
-6ac3129653f79741a2986436ad880615  ./SPICE/sr16_tx.spice
+26c9de78f2f86951a13a945dbe459dab  ./SPICE/sr16_tx.hier.spice
+133651bdfd36b7c0dd3d7b4fe5502536  ./SPICE/sr16_tx.spice

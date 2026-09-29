@@ -479,6 +479,27 @@ Cell pin lists are equivalent.
 Device classes rppd_HNU9MK and rppd_HNU9MK are equivalent.
 
 Subcircuit summary:
+Circuit 1: rppd_W2KASE                     |Circuit 2: rppd_W2KASE                     
+-------------------------------------------|-------------------------------------------
+rppd (1)                                   |rppd (1)                                   
+Number of devices: 1                       |Number of devices: 1                       
+Number of nets: 3                          |Number of nets: 3                          
+---------------------------------------------------------------------------------------
+Resolving symmetries by property value.
+Resolving symmetries by pin name.
+Netlists match uniquely.
+
+Subcircuit pins:
+Circuit 1: rppd_W2KASE                     |Circuit 2: rppd_W2KASE                     
+-------------------------------------------|-------------------------------------------
+R2                                         |R2                                         
+R1                                         |R1                                         
+B                                          |B                                          
+---------------------------------------------------------------------------------------
+Cell pin lists are equivalent.
+Device classes rppd_W2KASE and rppd_W2KASE are equivalent.
+
+Subcircuit summary:
 Circuit 1: sg13_lv_nmos_FTPY57             |Circuit 2: sg13_lv_nmos_FTPY57             
 -------------------------------------------|-------------------------------------------
 sg13_lv_nmos (12)                          |sg13_lv_nmos (12)                          
@@ -510,27 +531,6 @@ D6                                         |D6
 ---------------------------------------------------------------------------------------
 Cell pin lists are equivalent.
 Device classes sg13_lv_nmos_FTPY57 and sg13_lv_nmos_FTPY57 are equivalent.
-
-Subcircuit summary:
-Circuit 1: rppd_W2KASE                     |Circuit 2: rppd_W2KASE                     
--------------------------------------------|-------------------------------------------
-rppd (1)                                   |rppd (1)                                   
-Number of devices: 1                       |Number of devices: 1                       
-Number of nets: 3                          |Number of nets: 3                          
----------------------------------------------------------------------------------------
-Resolving symmetries by property value.
-Resolving symmetries by pin name.
-Netlists match uniquely.
-
-Subcircuit pins:
-Circuit 1: rppd_W2KASE                     |Circuit 2: rppd_W2KASE                     
--------------------------------------------|-------------------------------------------
-R2                                         |R2                                         
-R1                                         |R1                                         
-B                                          |B                                          
----------------------------------------------------------------------------------------
-Cell pin lists are equivalent.
-Device classes rppd_W2KASE and rppd_W2KASE are equivalent.
 
 Subcircuit summary:
 Circuit 1: rppd_XV6GFH                     |Circuit 2: rppd_XV6GFH                     
@@ -673,8 +673,8 @@ Device classes hs_to_clk and hs_to_clk are equivalent.
 Subcircuit summary:
 Circuit 1: cml_gate2                       |Circuit 2: cml_gate2                       
 -------------------------------------------|-------------------------------------------
-sg13_lv_nmos_FTPY57 (4)                    |sg13_lv_nmos_FTPY57 (4)                    
 rppd_W2KASE (2)                            |rppd_W2KASE (2)                            
+sg13_lv_nmos_FTPY57 (4)                    |sg13_lv_nmos_FTPY57 (4)                    
 rppd_XV6GFH (1)                            |rppd_XV6GFH (1)                            
 Number of devices: 7                       |Number of devices: 7                       
 Number of nets: 10                         |Number of nets: 10                         
@@ -684,13 +684,13 @@ Netlists match uniquely.
 Subcircuit pins:
 Circuit 1: cml_gate2                       |Circuit 2: cml_gate2                       
 -------------------------------------------|-------------------------------------------
+XN                                         |XN                                         
+AN                                         |AN                                         
+AP                                         |AP                                         
+BP                                         |BP                                         
+BN                                         |BN                                         
 VDD                                        |VDD                                        
 XP                                         |XP                                         
-AP                                         |AP                                         
-AN                                         |AN                                         
-BN                                         |BN                                         
-BP                                         |BP                                         
-XN                                         |XN                                         
 VSS                                        |VSS                                        
 ---------------------------------------------------------------------------------------
 Cell pin lists are equivalent.

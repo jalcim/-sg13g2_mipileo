@@ -5346,11 +5346,11 @@
     <value>text: 'Global Density Violation'</value>
     <value>text: 'chip_bbox_um      : (-0.150,-1.000) - (355.120,90.440)'</value>
     <value>text: 'chip_area_um2     : 32485.889'</value>
-    <value>text: 'layer_area_um2    : 5643.392'</value>
-    <value>text: 'ratio_percent     : 17.372'</value>
+    <value>text: 'layer_area_um2    : 5591.490'</value>
+    <value>text: 'ratio_percent     : 17.212'</value>
     <value>text: 'limit_percent     : 35.000 (min)'</value>
-    <value>text: 'gap_percent       : 17.628 (below limit)'</value>
-    <value>text: 'area_gap_um2      : 5726.669'</value>
+    <value>text: 'gap_percent       : 17.788 (below limit)'</value>
+    <value>text: 'area_gap_um2      : 5778.571'</value>
    </values>
   </item>
   <item>
@@ -5366,11 +5366,11 @@
     <value>text: 'Global Density Violation'</value>
     <value>text: 'chip_bbox_um      : (-0.150,-1.000) - (355.120,90.440)'</value>
     <value>text: 'chip_area_um2     : 32485.889'</value>
-    <value>text: 'layer_area_um2    : 3508.085'</value>
-    <value>text: 'ratio_percent     : 10.799'</value>
+    <value>text: 'layer_area_um2    : 3653.170'</value>
+    <value>text: 'ratio_percent     : 11.245'</value>
     <value>text: 'limit_percent     : 35.000 (min)'</value>
-    <value>text: 'gap_percent       : 24.201 (below limit)'</value>
-    <value>text: 'area_gap_um2      : 7861.976'</value>
+    <value>text: 'gap_percent       : 23.755 (below limit)'</value>
+    <value>text: 'area_gap_um2      : 7716.891'</value>
    </values>
   </item>
   <item>
@@ -5386,11 +5386,11 @@
     <value>text: 'Global Density Violation'</value>
     <value>text: 'chip_bbox_um      : (-0.150,-1.000) - (355.120,90.440)'</value>
     <value>text: 'chip_area_um2     : 32485.889'</value>
-    <value>text: 'layer_area_um2    : 2037.718'</value>
-    <value>text: 'ratio_percent     : 6.273'</value>
+    <value>text: 'layer_area_um2    : 2016.238'</value>
+    <value>text: 'ratio_percent     : 6.207'</value>
     <value>text: 'limit_percent     : 35.000 (min)'</value>
-    <value>text: 'gap_percent       : 28.727 (below limit)'</value>
-    <value>text: 'area_gap_um2      : 9332.343'</value>
+    <value>text: 'gap_percent       : 28.793 (below limit)'</value>
+    <value>text: 'area_gap_um2      : 9353.823'</value>
    </values>
   </item>
   <item>
@@ -5406,11 +5406,11 @@
     <value>text: 'Global Density Violation'</value>
     <value>text: 'chip_bbox_um      : (-0.150,-1.000) - (355.120,90.440)'</value>
     <value>text: 'chip_area_um2     : 32485.889'</value>
-    <value>text: 'layer_area_um2    : 392.766'</value>
-    <value>text: 'ratio_percent     : 1.209'</value>
+    <value>text: 'layer_area_um2    : 393.067'</value>
+    <value>text: 'ratio_percent     : 1.210'</value>
     <value>text: 'limit_percent     : 35.000 (min)'</value>
-    <value>text: 'gap_percent       : 33.791 (below limit)'</value>
-    <value>text: 'area_gap_um2      : 10977.295'</value>
+    <value>text: 'gap_percent       : 33.790 (below limit)'</value>
+    <value>text: 'area_gap_um2      : 10976.994'</value>
    </values>
   </item>
   <item>
@@ -5426,11 +5426,11 @@
     <value>text: 'Global Density Violation'</value>
     <value>text: 'chip_bbox_um      : (-0.150,-1.000) - (355.120,90.440)'</value>
     <value>text: 'chip_area_um2     : 32485.889'</value>
-    <value>text: 'layer_area_um2    : 1519.707'</value>
-    <value>text: 'ratio_percent     : 4.678'</value>
+    <value>text: 'layer_area_um2    : 1512.064'</value>
+    <value>text: 'ratio_percent     : 4.655'</value>
     <value>text: 'limit_percent     : 35.000 (min)'</value>
-    <value>text: 'gap_percent       : 30.322 (below limit)'</value>
-    <value>text: 'area_gap_um2      : 9850.354'</value>
+    <value>text: 'gap_percent       : 30.345 (below limit)'</value>
+    <value>text: 'area_gap_um2      : 9857.997'</value>
    </values>
   </item>
   <item>

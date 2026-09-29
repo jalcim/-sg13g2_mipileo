@@ -51,6 +51,9 @@ PRIMARY_GDSII_STREAMOUT_TOOL: klayout
 
 # Pads
 PAD_CFG: dir::pad_cfg.tcl
+# Pas des ecarts entre plots : 2 um, pour que la marge de chaque cote tombe sur un site entier
+# (ouest et sud a 6 plots sur 2 560 : 1 um donnait 207,5, refuse par pad_cfg.tcl ; coupe2)
+PAD_SPACING_MULTIPLE: 2
 
 # Specify the pad instances for the padring
 

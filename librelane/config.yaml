@@ -83,7 +83,7 @@ PAD_EAST:  [iovss_pad, iovdd_pad, open_pad]
 # CLKIN N
 # CLKIN P
 
-PPAD_NORTH: [flow_in_pad, vdd_pad, thru_n_pad]
+PAD_NORTH: [flow_in_pad, vdd_pad, thru_n_pad]
 #DIGITAL
 PAD_SOUTH: [flow_out_pad, vss_pad, thru_s_pad]
 

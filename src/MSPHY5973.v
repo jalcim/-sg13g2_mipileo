@@ -596,10 +596,8 @@ module MSPHY5973 (
     assign statut_phy = {hspr[3], hsreq[3], stop[3], hspr[2], hsreq[2], stop[2], hspr[1], hsreq[1], stop[1], hspr[0], hsreq[0], stop[0]};
 
     // CSI-2 : macro dure t4 g13 (78524823). Entrees d'application a 0, sorties d'application libres.
+    // Alimentation de csi2_top par PDN_MACRO_CONNECTIONS : sa boite noire n'a pas de broches VPWR / VGND.
     csi2_top csi2_top (
-        `ifdef USE_POWER_PINS
-        .VPWR(VDD), .VGND(VSS),
-        `endif
         .clk(clk_sys), .rst_n(rst_n), .enable(enable), .renvoi_mode(renvoi_mode),
         .clk_w(clk_w), .mots(mots), .hspr(hspr), .statut_phy(statut_phy),
         .cnt_gel(1'b0), .tx_pix_valid(1'b0), .tx_req_valid(1'b0), .tx_pix_data(112'b0),

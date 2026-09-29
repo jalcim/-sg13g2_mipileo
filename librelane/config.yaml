@@ -308,6 +308,7 @@ MACROS:
 # This is an alternative method compared to
 # specifying the power connections in the RTL
 PDN_MACRO_CONNECTIONS:
+- "csi2_top VDD VSS VPWR VGND"
 #- "suiveur VDD VSS VCC VSS"
 #- "suiveur_flow VDD VSS VCC VSS"
 

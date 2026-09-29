@@ -127,7 +127,8 @@ def main(out):
     v.append("")
 
     v.append("    // CSI-2 : macro dure t4 g13 (78524823). Entrees d'application a 0, sorties d'application libres.")
-    v.append("    csi2_top csi2_top (\n        `ifdef USE_POWER_PINS\n        .VPWR(VDD), .VGND(VSS),\n        `endif\n"
+    v.append("    // Alimentation de csi2_top par PDN_MACRO_CONNECTIONS : sa boite noire n'a pas de broches VPWR / VGND.")
+    v.append("    csi2_top csi2_top (\n"
              "        .clk(clk_sys), .rst_n(rst_n), .enable(enable), .renvoi_mode(renvoi_mode),\n"
              "        .clk_w(clk_w), .mots(mots), .hspr(hspr), .statut_phy(statut_phy),\n"
              "        .cnt_gel(1'b0), .tx_pix_valid(1'b0), .tx_req_valid(1'b0), .tx_pix_data(112'b0),\n"
@@ -165,8 +166,18 @@ def lef_to_bb(lef, out):
         elif words[0] == "DIRECTION" and current:
             pins.append((current, {"INPUT": "input", "OUTPUT": "output"}.get(words[1], "inout")))
             current = None
+    buses = {}
+    for name, direction in pins:
+        base, _, bit = name.partition("[")
+        entry = buses.setdefault(base, [direction, []])
+        if bit:
+            entry[1].append(int(bit.rstrip("]")))
+    decls = []
+    for base, (direction, bits) in buses.items():
+        width = f"[{max(bits)}:{min(bits)}] " if bits else ""
+        decls.append(f"    {direction} wire {width}{base}")
     body = [f"(* blackbox *)", f"module {macro} ("]
-    body.append(",\n".join(f"    {d} wire {n}" for n, d in pins))
+    body.append(",\n".join(decls))
     body += [");", "endmodule"]
     Path(out).write_text(f"// Boite noire de {macro}, generee depuis {Path(lef).name} par scripts/gen_msphy5973.py.\n"
                          + "\n".join(body) + "\n")

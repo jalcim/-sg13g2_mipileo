@@ -285,8 +285,8 @@ MACROS:
     lef: [dir::../ip/cml_to_cmos/LEF/cml_to_cmos_alim.lef]
     vh: [dir::../ip/cml_to_cmos/HDL/cml_to_cmos_bb.v]
     instances:
-      c2c_clk_tx: {location: [1107.84, 2113.02], orientation: N}
-      c2c_clk_q: {location: [1140.96, 2113.02], orientation: N}
+      c2c_clk_tx: {location: [1107.84, 2067.66], orientation: N}
+      c2c_clk_q: {location: [1140.96, 2067.66], orientation: N}
       c2c_mot0: {location: [1949.76, 786.24], orientation: N}
       c2c_mot1: {location: [1982.88, 786.24], orientation: N}
       c2c_mot2: {location: [2016.00, 786.24], orientation: N}
@@ -321,21 +321,21 @@ MACROS:
       c2c_mot31: {location: [1982.88, 1164.24], orientation: N}
       c2c_clk_w: {location: [2016.00, 1164.24], orientation: N}
       c2c_rx_clk: {location: [2049.12, 1164.24], orientation: N}
-      c2c_dout0: {location: [1174.08, 2113.02], orientation: N}
-      c2c_dout1: {location: [1207.20, 2113.02], orientation: N}
-      c2c_dout2: {location: [1240.32, 2113.02], orientation: N}
-      c2c_dout3: {location: [1273.44, 2113.02], orientation: N}
+      c2c_dout0: {location: [1174.08, 2067.66], orientation: N}
+      c2c_dout1: {location: [1207.20, 2067.66], orientation: N}
+      c2c_dout2: {location: [1240.32, 2067.66], orientation: N}
+      c2c_dout3: {location: [1273.44, 2067.66], orientation: N}
   cmos_to_cml:
     gds: [dir::../ip/cmos_to_cml/GDS/cmos_to_cml_alim.gds]
     lef: [dir::../ip/cmos_to_cml/LEF/cmos_to_cml_alim.lef]
     vh: [dir::../ip/cmos_to_cml/HDL/cmos_to_cml_bb.v]
     instances:
-      c2m_clk_w: {location: [1306.56, 2113.02], orientation: N}
+      c2m_clk_w: {location: [1306.56, 2067.66], orientation: N}
       c2m_clk_rx_en: {location: [1982.40, 1239.84], orientation: N}
-      c2m_mot0: {location: [1349.76, 2113.02], orientation: N}
-      c2m_mot1: {location: [1392.96, 2113.02], orientation: N}
-      c2m_mot2: {location: [1436.16, 2113.02], orientation: N}
-      c2m_mot3: {location: [1479.36, 2113.02], orientation: N}
+      c2m_mot0: {location: [1349.76, 2067.66], orientation: N}
+      c2m_mot1: {location: [1392.96, 2067.66], orientation: N}
+      c2m_mot2: {location: [1436.16, 2067.66], orientation: N}
+      c2m_mot3: {location: [1479.36, 2067.66], orientation: N}
   cml_gate2:
     gds: [dir::../ip/cml_gate2/GDS/cml_gate2_alim.gds]
     lef: [dir::../ip/cml_gate2/LEF/cml_gate2_alim.lef]

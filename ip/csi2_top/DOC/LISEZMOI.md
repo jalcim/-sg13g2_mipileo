@@ -1,12 +1,12 @@
 # Macro csi2_top : vues d'intégration (livraison à Léo)
 
-Livraison du prompt 060, écrite le 29/09/2026 à 16:44 UTC par exporte.py.
+Livraison du prompt 060, écrite le 29/09/2026 à 19:45 UTC par exporte.py.
 
 ## Provenance
 
 - Run : `tapeout_s3r_t4_R1_13_d60` (nebula:/home/jalcim/depots/p053_s3r_t4/3_digital/rtl/csi2_top/renvoi/runs/tapeout_s3r_t4_R1_13_d60).
 - Montage : worktree p053_s3r_t4, commit 47cfb1acc751e7c911d4a523737d5a942e49d208 ; construit.py --llp-rx v2 --renvoi ; llp_trame t4 (md5 9cafb2e63530ee037724831e73336a20, commit f742941515f15f047c71eb8a2f83a778e3affb65).
-- Vues prises dans : état de sortie de l'étape 63-checker-xor (run non fini : livraison en l'état).
+- Vues prises dans : final/.
 - Netlist : md5 5d483d58b352b075772b9933c5676069.
 - Die : 1368.515 × 1387.235 µm (LEF).
 
@@ -131,6 +131,14 @@ Livraison du prompt 060, écrite le 29/09/2026 à 16:44 UTC par exporte.py.
 | `VGND` | inout | 1 | ? |
 | `VPWR` | inout | 1 | ? |
 
+## Signoff
+
+- DRC Magic : 0 violation(s).
+- DRC KLayout : 0 violation(s).
+- LVS : Circuits match uniquely.
+- antennes : 0 net(s) en violation, 0 broche(s).
+- setup au pire (ns) : ss −3,215, tt +0,803, ff +3,129 ; hold au pire : ss +0,162, tt +0,185, ff +0,097.
+
 ## Timing par mode du renvoi (STA de signoff, OCV ±5 %, set_case_analysis sur renvoi_mode)
 
 | Mode | Coin | Setup (ns) | Hold (ns) | Fréquence max de clk | Pire chemin |
@@ -154,10 +162,7 @@ Livraison du prompt 060, écrite le 29/09/2026 à 16:44 UTC par exporte.py.
 - La marge de 20 % (1,598 ns au coin lent) n'est pas tenue (dette D26).
 - Renvoi, statut au niveau N2 : 36 cas sur 720 des bancs du renvoi échouent avec erreurs injectées (statut relu 3 fois pour 2 justes), défaut du renvoi antérieur à cette macro (dette D33).
 - llp_trame (variante t4) : les sorties trame_* et les compteurs de trame sortent un cycle plus tard que dans l'origine (accord de la session principale, 29/09/2026 14:02 UTC).
-- Signoff (DRC Magic et KLayout, LVS, antennes) : voir signoff/ ; mis à jour si le flot finit après la livraison.
 
 ## Manques
 
-- signoff/drc_magic (étape 64-magic-drc en cours, rapport incomplet non livré)
-- signoff/drc_klayout (étape klayout-drc absente)
-- signoff/lvs (étape netgen-lvs absente)
+- Aucun.

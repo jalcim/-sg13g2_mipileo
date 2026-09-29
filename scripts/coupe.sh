@@ -10,6 +10,7 @@ SAUTS="OpenROAD.STAPrePNR OpenROAD.STAMidPNR OpenROAD.STAPostPNR OpenROAD.Resize
 ARGS=""
 for s in $SAUTS; do ARGS="$ARGS --skip $s"; done
 export PYTHONHASHSEED=13
+unset PYTHONPATH
 exec nice -n 19 nix develop --accept-flake-config -c librelane librelane/config.yaml \
   --pdk ihp-sg13g2 --pdk-root /opt/nebula-eda/IHP-Open-PDK --manual-pdk \
   --run-tag "$TAG" --to KLayout.SealRing $ARGS

@@ -11,12 +11,12 @@
 # A sourcer dans pdn_cfg.tcl apres la grille stdcell_grid, a la place de toute grille qui connecte
 # « TopMetal1 Metal1 » sur ces macros (pdngen ignore l'OBS d'une macro pour les vias de sa propre grille).
 # LibreLane source ce fichier depuis une procedure : les variables lues par les procedures pcml_* sont globales.
-global pcml_block pcml_tm1 pcml_y0 pcml_off pcml_pas pcml_l pcml_dvss pcml_recouv
+global pcml_block pcml_tm1 pcml_y0 pcml_ycoeur pcml_off pcml_pas pcml_l pcml_dvss pcml_recouv
 set pcml_maitres {sr16_rx4 sr16_tx cml_to_cmos cmos_to_cml cml_gate2}
 set pcml_block [ord::get_db_block]
 set pcml_tm1 [[[ord::get_db] getTech] findLayer TopMetal1]
 set pcml_dbu [$pcml_block getDbUnitsPerMicron]
-set pcml_pont_max [expr {int(20.0 * $pcml_dbu)}]
+set pcml_pont_max [expr {int(60.0 * $pcml_dbu)}]
 
 set pcml_instances {}
 set pcml_boites {}
@@ -54,16 +54,21 @@ foreach pcml_inst [$pcml_block getInsts] {
 # Bandes TopMetal2 de la puce (stdcell_grid, starts_with POWER) : centre VDD = coeur.y + PDN_HOFFSET + k * PDN_HPITCH,
 # VSS a + PDN_HWIDTH + PDN_HSPACING (releve du DEF de p063_coupe5).
 set pcml_y0 [[$pcml_block getCoreArea] yMin]
+set pcml_ycoeur [[$pcml_block getCoreArea] yMax]
 set pcml_off [expr {int(round($::env(PDN_HOFFSET) * $pcml_dbu))}]
 set pcml_pas [expr {int(round($::env(PDN_HPITCH) * $pcml_dbu))}]
 set pcml_l [expr {int(round($::env(PDN_HWIDTH) * $pcml_dbu))}]
 set pcml_dvss [expr {int(round(($::env(PDN_HWIDTH) + $::env(PDN_HSPACING)) * $pcml_dbu))}]
 set pcml_recouv [expr {int(2.0 * $pcml_dbu)}]
+# centre de la k-ieme bande TopMetal2 du net, ou "" si elle sort du coeur (elle n'existe pas)
 proc pcml_bande {net k} {
-    upvar #0 pcml_y0 y0 pcml_off off pcml_pas pas pcml_dvss dvss
+    upvar #0 pcml_y0 y0 pcml_ycoeur y1 pcml_off off pcml_pas pas pcml_dvss dvss pcml_l l
     set c [expr {$y0 + $off + $k * $pas}]
     if {$net eq "VSS"} {
         set c [expr {$c + $dvss}]
+    }
+    if {$c - $l / 2 < $y0 || $c + $l / 2 > $y1} {
+        return ""
     }
     return $c
 }
@@ -72,6 +77,9 @@ proc pcml_croise {net bas haut} {
     set k0 [expr {int(floor(double($bas - $y0) / $pas)) - 1}]
     for {set k $k0} {$k <= $k0 + int(ceil(double($haut - $bas) / $pas)) + 2} {incr k} {
         set c [pcml_bande $net $k]
+        if {$c eq ""} {
+            continue
+        }
         set lo [expr {max($c - $l / 2, $bas)}]
         set hi [expr {min($c + $l / 2, $haut)}]
         if {$hi - $lo >= $recouv} {
@@ -88,6 +96,9 @@ proc pcml_rect {net x1 y1 x2 y2} {
 proc pcml_libre {x1 y1 x2 y2} {
     upvar #0 pcml_block block
     foreach inst [$block getInsts] {
+        if {[[$inst getMaster] isCore]} {
+            continue
+        }
         set b [$inst getBBox]
         if {[$b xMin] < $x2 && [$b xMax] > $x1 && [$b yMin] < $y2 && [$b yMax] > $y1} {
             return [$inst getName]
@@ -113,7 +124,11 @@ foreach pcml_cle [lsort [array names pcml_colonnes]] {
     foreach pcml_s [lrange $pcml_seg 1 end] {
         lassign $pcml_s pcml_y1 pcml_y2
         set pcml_ecart [expr {$pcml_y1 - $pcml_haut}]
-        if {$pcml_ecart > $pcml_pont_max} {
+        set pcml_gene ""
+        if {$pcml_ecart > 0 && $pcml_ecart <= $pcml_pont_max} {
+            set pcml_gene [pcml_libre $pcml_x1 [expr {$pcml_haut + 1}] $pcml_x2 [expr {$pcml_y1 - 1}]]
+        }
+        if {$pcml_ecart > $pcml_pont_max || $pcml_gene ne ""} {
             lappend pcml_chaines $pcml_ch
             set pcml_ch {}
         } elseif {$pcml_ecart > 0} {
@@ -152,6 +167,9 @@ foreach pcml_cle [lsort [array names pcml_colonnes]] {
         set pcml_bas_ext ""
         for {set k [expr {$pcml_k - 2}]} {$k <= $pcml_k + 3} {incr k} {
             set c [pcml_bande $pcml_nom $k]
+            if {$c eq ""} {
+                continue
+            }
             if {$c - $pcml_l / 2 >= $pcml_haut - $pcml_recouv && $pcml_haut_ext eq ""} {
                 set pcml_haut_ext [expr {$c + $pcml_l / 2}]
             }

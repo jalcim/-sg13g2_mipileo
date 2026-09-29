@@ -63,6 +63,7 @@ def main(out):
     v.append("    wire clk_sys, rst_n, rx_clk, clk_w, clk_tx, clk_q, clk_lane;")
     v.append("    wire cml_ckg_p, cml_ckg_n, clk_rx_en, cml_clk_rx_en_p, cml_clk_rx_en_n;")
     v.append("    wire tx_clk_run, run_q1, run_q2, run_q1_n_nc, run_q2_n_nc;")
+    v.append("    wire pg_rx, pg_tx;")
     v.append("    wire [3:0] enable;")
     v.append("    wire [1:0] renvoi_mode;")
     v.append("    wire [31:0] mots;")
@@ -140,8 +141,12 @@ def main(out):
              "        .AP(rx_clk_p_hs), .AN(rx_clk_n_hs), .BP(cml_clk_rx_en_p), .BN(cml_clk_rx_en_n), .XP(cml_ckg_p), .XN(cml_ckg_n)\n    );")
     v.append("    (* keep *) cmos_to_cml c2m_clk_rx_en (\n        `ifdef USE_POWER_PINS\n        .VDD(VDD), .VSS(VSS),\n        `endif\n"
              "        .POLN(pol_e_POLN), .A(clk_rx_en), .OUTP(cml_clk_rx_en_p), .OUTN(cml_clk_rx_en_n)\n    );")
+    v.append("    // PG des tempo : une iref par dphy (iref-layout), decision de la principale apres pg-mesure (PBIAS KO).")
+    for cote in ("rx", "tx"):
+        v.append(f"    (* keep *) iref iref_{cote} (\n        `ifdef USE_POWER_PINS\n        .VDD(VDD), .VSS(VSS),\n        `endif\n"
+                 f"        .PG(pg_{cote})\n    );")
     v.append("    (* keep *) dphy_rx dphy_rx (\n        `ifdef USE_POWER_PINS\n        .VPWR(VDD), .VGND(VSS),\n        `endif\n"
-             "        .PG(pol_e_PBIAS), .rx_clk(rx_clk), .clk_lp_p(rx_clk_p_lp), .clk_lp_n(rx_clk_n_lp),\n"
+             "        .PG(pg_rx), .rx_clk(rx_clk), .clk_lp_p(rx_clk_p_lp), .clk_lp_n(rx_clk_n_lp),\n"
              "        .clk_stop(), .clk_term_en(), .clk_rx_en(clk_rx_en), .clk_miss(),\n"
              f"        .lp_p({{{', '.join(f'rx_d{k}_p_lp' for k in reversed(range(LANES)))}}}),\n"
              f"        .lp_n({{{', '.join(f'rx_d{k}_n_lp' for k in reversed(range(LANES)))}}}),\n"
@@ -161,7 +166,7 @@ def main(out):
 
     v.append("    // TX : machines d'etats, serialiseurs et pre-drivers. HS inactif en v1.0.0 (pas de pont TX ni de /4 TX).")
     v.append("    (* keep *) dphy_tx dphy_tx (\n        `ifdef USE_POWER_PINS\n        .VPWR(VDD), .VGND(VSS),\n        `endif\n"
-             "        .PG(pol_e_PBIAS), .clk(clk_tx), .rst(~rst_n), .clk_request(1'b0), .clk_ready(),\n"
+             "        .PG(pg_tx), .clk(clk_tx), .rst(~rst_n), .clk_request(1'b0), .clk_ready(),\n"
              "        .clk_lp_p(tx_clk_lp_p), .clk_lp_n(tx_clk_lp_n), .clk_hs_oe(tx_clk_hs_oe), .clk_run(tx_clk_run),\n"
              "        .tx_request_hs(4'b0), .tx_ready_hs(), .hs_sync(), .hs_trail(),\n"
              "        .lp_p(tx_lp_p), .lp_n(tx_lp_n), .hs_oe(tx_hs_oe)\n    );")
@@ -169,11 +174,11 @@ def main(out):
     c2l.append(("c2m_clk_w", "tx_clk_w_p", "tx_clk_w_n"))
     for name, outp, outn in c2l:
         v.append(f"    (* keep *) cmos_to_cml {name} (\n        `ifdef USE_POWER_PINS\n        .VDD(VDD), .VSS(VSS),\n        `endif\n"
-                 f"        .POLN(pol_n_POLN), .A(1'b0), .OUTP({outp}), .OUTN({outn})\n    );")
+                 f"        .POLN(pol_e_POLN), .A(1'b0), .OUTP({outp}), .OUTN({outn})\n    );")
     for k in range(LANES):
         mots = ", ".join(f".MOT{i}_P(tx_mot_p[{k}]), .MOT{i}_N(tx_mot_n[{k}])" for i in range(8))
         v.append(f"    (* keep *) sr16_tx sr16_tx{k} (\n        `ifdef USE_POWER_PINS\n        .VDD(VDD), .VSS(VSS),\n        `endif\n"
-                 f"        .POLN(pol_n_POLN), .CK_P(clkin_i_p_hs), .CK_N(clkin_i_n_hs), .CLK_W_P(tx_clk_w_p), .CLK_W_N(tx_clk_w_n),\n"
+                 f"        .POLN(pol_e_POLN), .CK_P(clkin_i_p_hs), .CK_N(clkin_i_n_hs), .CLK_W_P(tx_clk_w_p), .CLK_W_N(tx_clk_w_n),\n"
                  f"        {mots},\n        .DOUT_P(tx_dout_p[{k}]), .DOUT_N(tx_dout_n[{k}])\n    );")
     # Lane d'horloge : CLKIN_Q (quadrature), tenue a HS-0 hors clk_run ; clk_run resynchronise sur clk_q par deux
     # bascules, puis porte d'horloge a verrou (pas de glitch). Decision de la principale du 29/09 18:52, calque de 061.

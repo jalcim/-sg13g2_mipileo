@@ -1,0 +1,47 @@
+* iref_ext.spice -> iref (vdd vss pg) ; C retirees sur corps rppd flottants : 0 F
+* NGSPICE file created from iref.ext - technology: ihp-sg13g2
+
+.subckt iref_x VSS VDD PG
+X0 PG a_2364_6920# a_2432_6796# VSS sg13_lv_nmos ad=0.38p pd=2.38u as=0.68p ps=4.68u w=2u l=1u
+X1 a_638_5440# a_478_354# VSS rppd l=25u w=0.5u
+X2 a_5218_5640# VDD VSS rppd l=26u w=0.5u
+X3 a_964_6920# a_2432_6796# a_2364_6920# VDD sg13_lv_pmos ad=0.76p pd=4.38u as=1.36p ps=8.68u w=4u l=2u
+X4 a_4258_5640# a_4098_354# VSS rppd l=26u w=0.5u
+X5 a_4578_5640# a_4738_354# VSS rppd l=26u w=0.5u
+X6 a_958_5440# a_1118_354# VSS rppd l=25u w=0.5u
+X7 a_3618_5640# VSS VSS rppd l=26u w=0.5u
+X8 a_908_6084# a_908_6084# VSS VSS sg13_lv_nmos ad=0.34p pd=2.68u as=0.34p ps=2.68u w=1u l=6u
+X9 a_2432_6796# a_2364_6920# PG VSS sg13_lv_nmos ad=0.68p pd=4.68u as=0.38p ps=2.38u w=2u l=1u
+X10 a_638_5440# a_798_354# VSS rppd l=25u w=0.5u
+X11 a_2364_6920# a_2432_6796# a_964_6920# VDD sg13_lv_pmos ad=1.36p pd=8.68u as=0.76p ps=4.38u w=4u l=2u
+X12 a_964_6920# a_1260_6796# a_908_6084# VDD sg13_lv_pmos ad=0.76p pd=4.38u as=1.36p ps=8.68u w=4u l=2u
+X13 a_4898_5640# a_4738_354# VSS rppd l=26u w=0.5u
+X14 a_1278_5440# a_1118_354# VSS rppd l=25u w=0.5u
+X15 a_3618_5640# a_3778_354# VSS rppd l=26u w=0.5u
+X16 a_2364_6920# a_908_6084# VSS VSS sg13_lv_nmos ad=0.34p pd=2.68u as=0.34p ps=2.68u w=1u l=6u
+X17 a_908_6084# a_1260_6796# a_964_6920# VDD sg13_lv_pmos ad=1.36p pd=8.68u as=0.76p ps=4.38u w=4u l=2u
+X18 a_318_5440# a_268_6796# VSS rppd l=25u w=0.5u
+X19 a_4898_5640# a_5058_354# VSS rppd l=26u w=0.5u
+X20 a_2432_6796# a_2880_354# VSS rppd l=22u w=1u
+X21 a_964_6920# a_268_6796# VDD VDD sg13_lv_pmos ad=0.68p pd=4.68u as=0.68p ps=4.68u w=2u l=1u
+X22 a_4258_5640# a_4418_354# VSS rppd l=26u w=0.5u
+X23 a_2100_4840# a_2360_354# VSS rppd l=22u w=1u
+X24 a_2620_4840# a_2880_354# VSS rppd l=22u w=1u
+X25 a_2364_6920# VSS cap_cmim l=6u w=6u
+X26 a_318_5440# a_478_354# VSS rppd l=25u w=0.5u
+X27 a_958_5440# a_798_354# VSS rppd l=25u w=0.5u
+X28 a_1260_6796# a_4098_354# VSS rppd l=26u w=0.5u
+X29 a_268_6796# a_268_6796# VDD VDD sg13_lv_pmos ad=0.68p pd=4.68u as=0.68p ps=4.68u w=2u l=1u
+X30 a_4578_5640# a_4418_354# VSS rppd l=26u w=0.5u
+X31 a_1278_5440# VSS VSS rppd l=25u w=0.5u
+X32 a_2100_4840# VSS VSS rppd l=22u w=1u
+X33 a_2620_4840# a_2360_354# VSS rppd l=22u w=1u
+X34 a_1260_6796# a_3778_354# VSS rppd l=26u w=0.5u
+X35 a_5218_5640# a_5058_354# VSS rppd l=26u w=0.5u
+X36 PG PG VDD VDD sg13_lv_pmos ad=0.76p pd=4.38u as=1.36p ps=8.68u w=4u l=4u
+X37 VDD PG PG VDD sg13_lv_pmos ad=1.36p pd=8.68u as=0.76p ps=4.38u w=4u l=4u
+.ends iref_x
+
+.subckt iref vdd vss pg
+Xx vss vdd pg iref_x
+.ends iref

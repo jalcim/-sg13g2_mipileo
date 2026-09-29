@@ -1,0 +1,42 @@
+iref -- reference de courant I = VDD/(4R) des cellules tempo, layout IHP SG13G2
+Genere le 29/09/2026 sur nebula par 2_analog/IREF/Makefile (make all), branche claude/iref-layout, base origin/StateMachines 471d6dad9.
+
+Source
+  schema      2_analog/TEMPO/ISOURCE/iref.sp (blob 14bd98dcc), non modifie ; copie dans SPICE/iref.spice
+  layout      2_analog/IREF/layout/iref_layout.py (KLayout 0.30.12, PyCells IHP SG13_dev : nmos, pmos, rppd, cmim)
+  PDK         /opt/nebula-eda/IHP-Open-PDK cfc0e22b (03/09/2026)
+
+Vues
+  GDS/iref.gds        cellule plate "iref", prBoundary 189/4 = 28,000 x 41,000 um, origine (0, 0)
+  LEF/iref.lef        MACRO iref CLASS BLOCK ; OBS = metal reel Metal1..TopMetal1 moins les broches
+  SPICE/iref.spice    netlist livrable (= iref.sp), sous-circuit iref vdd vss pg
+  SPICE/iref_ext.spice extraction Magic des dispositifs (geometries reelles), meme brochage
+  SPICE/iref_pex.spice extraction Magic R + C (cthresh 0, extresist), meme brochage ; 14,4 fF retires sur les corps rppd flottants
+  HDL/iref.v          boite noire (PG, VDD, VSS)
+  DOC/corners_*.txt   I (copie 1:1 de la diode, W 8u L 4u ng 2, sur 0,6 V) et V(pg), 9 coins x 3 VDD
+
+Broches
+  VDD  TopMetal1 y 39,0-41,0 et Metal1 y 39,5-40,7, toute la largeur (haut de la cellule)
+  VSS  TopMetal1 y 0,0-2,0 et Metal1 y 0,0-1,2, toute la largeur (bas de la cellule)
+  PG   Metal3 x 27,4-28,0 y 33,2-33,7 (bord droit), sortie analogique, ANTENNADIFFAREA 2,28 um2
+  Piles Via1..TopVia1 tous les 4 um sous les bandes TopMetal1, le PDN de puce se prend sur les bandes.
+  La TopMetal1 interne (plaque haute de la cmim, net o) est a 1,64 um minimum des bandes, declaree en OBS.
+
+Independance du bandgap
+  Broches VDD, VSS et PG seulement. Aucun net vers VBG, le bandgap ou les polarisations de l'anneau (PBIAS, NBIAS).
+  Reference = pont VDD/4 (rppd 3:1) impose sur R par l'OTA : I = VDD/(4R).
+
+Verifications
+  DRC   KLayout IHP run_drc.py (--no_density, avec et sans --antenna) : 0 violation
+  LVS   Magic 8.3.682 ext2spice lvs + netgen ihp-sg13g2_setup.tcl contre iref.sp : Circuits match uniquely, sans erreur de propriete
+  PEX   tt_typ 25 C, 1,2 V : I = 10,146 uA (schema 10,243), V(pg) = 0,5077 V (schema 0,5060)
+        ecart sur I de -0,68 a -1,17 % sur 27 points, V(pg) +1,3 a +2,3 mV
+        extremes post-extraction : 7,672 uA (ss_wcs 125 C 1,08 V) a 12,964 uA (ff_bcs -40 C 1,32 V)
+  Demarrage (PEX, rampe VDD 10 ns) : I dans +-1 % de sa valeur finale apres 58 ns (tt 25), 60 ns (ff 125), 64 ns (ss -40), pas de blocage
+
+Choix de layout
+  Resistances en segments serie de la PyCell rppd (pas w + 0,3 um, implants fusionnes) : pont 12 x 26 um (0,5 um),
+  R 5 x 22 um (1 um), RB 8 x 25 um (0,5 um). Longueurs totales = iref.sp (netgen fusionne les series).
+  Chaque tete de segment ajoute 35 ohm.um / w (modele rppd) : R +0,7 %, dou lessentiel du -0,9 % sur I.
+  Le rapport du pont 3:1 reste exact (memes segments en haut et en bas).
+  Substrat : prises sous les rails VSS A et B ; NWell unique des PMOS avec prise sous le rail VDD.

@@ -1,0 +1,16 @@
+# Macro iref (iref-layout), vues importees telles quelles (sauf HDL/iref_bb.v, genere du LEF).
+depot gitlab.com/nebula_microsystems/mipi
+commit 8f5f5acdf436f4149013231eeffc0ce79e658d1f
+chemin 2_analog/IREF/COLLATERALS
+7a8960538d3fa1be51dcf201888668f9  ./DOC/corners_compare.txt
+983636830ed7f816f50c06a28b5f84f8  ./DOC/corners_ext.txt
+36e261e09a50e49862abe39f5eeb83bd  ./DOC/corners_pex.txt
+2b441446c3b4d6b3050ba6730da8048c  ./DOC/corners_schema.txt
+5474bead0805abccb0dd632035701288  ./GDS/iref.gds
+dc657274add51091ce8c054a20665283  ./HDL/iref_bb.v
+f2ec70253d0b128be5465eb984a1b94a  ./HDL/iref.v
+9cd1c18486d5928fef89dc1fbf854530  ./LEF/iref.lef
+98ddda28cc82e3327b8a61272e33c72e  ./SOURCE_iref.txt
+a432477ab25630fcc193054cb2ade20f  ./SPICE/iref_ext.spice
+35aa622be10c9b427d8b967ef8ac97bc  ./SPICE/iref_pex.spice
+185a2331a082a98c0cfc218b1315a115  ./SPICE/iref.spice

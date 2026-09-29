@@ -1,0 +1,28 @@
+* iref.spice -- netlist livrable de iref = 2_analog/TEMPO/ISOURCE/iref.sp (blob 14bd98dcc, origin/StateMachines), recopiee sans modification.
+* Reference du LVS de COLLATERALS/GDS/iref.gds. Extractions : iref_ext.spice (dispositifs), iref_pex.spice (R et C).
+* iref -- reference de courant ratiometrique I = VDD/(4R), 27/09/2026
+* Pont 3:1 (rppd) -> VQ = VDD/4 ; OTA 5T entree PMOS force VX = VQ sur R ; MN recopie I = VX/R dans la diode MP.
+* PG : grille de la diode PMOS, a recopier dans chaque timer (rc_charge). IREF = 10 uA a VDD = 1,2 V.
+* VDD/4 et pas VDD/2 : entree PMOS de l'OTA a l'aise de 1,08 a 1,32 V.
+.subckt iref vdd vss pg
+* pont VDD/4 : 3 unites en haut, 1 en bas (unite rppd 0,5u x 78u ~ 40 kohm)
+XRD1 vdd d1  vss rppd w=0.5e-6 l=78e-6 m=1 b=0
+XRD2 d1  d2  vss rppd w=0.5e-6 l=78e-6 m=1 b=0
+XRD3 d2  vq  vss rppd w=0.5e-6 l=78e-6 m=1 b=0
+XRD4 vq  vss vss rppd w=0.5e-6 l=78e-6 m=1 b=0
+* R de temps : VX -> vss
+XR   vx  vss vss rppd w=1e-6 l=110e-6 m=1 b=0
+* polarisation de queue de l'OTA : diode PMOS + resistance
+XMB  bp  bp  vdd vdd sg13_lv_pmos w=2u l=1u ng=1 m=1
+XRB  bp  vss vss rppd w=0.5e-6 l=200e-6 m=1 b=0
+* OTA 5T entree PMOS : + = VQ (cote diode NMOS), - = VX (cote sortie)
+XMT  t   bp  vdd vdd sg13_lv_pmos w=2u l=1u ng=1 m=1
+XM1  a   vq  t   vdd sg13_lv_pmos w=8u l=2u ng=2 m=1
+XM2  o   vx  t   vdd sg13_lv_pmos w=8u l=2u ng=2 m=1
+XM3  a   a   vss vss sg13_lv_nmos w=1u l=6u ng=1 m=1
+XM4  o   a   vss vss sg13_lv_nmos w=1u l=6u ng=1 m=1
+XCC  o   vss cap_cmim w=6e-6 l=6e-6 m=1
+* suiveur et diode de sortie
+XMN  pg  o   vx  vss sg13_lv_nmos w=4u l=1u ng=2 m=1
+XMP  pg  pg  vdd vdd sg13_lv_pmos w=8u l=4u ng=2 m=1
+.ends iref

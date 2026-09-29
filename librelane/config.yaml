@@ -262,7 +262,7 @@ MACROS:
       dphy_tx: {location: [801.60, 1833.30], orientation: N}
   sr16_rx4:
     gds: [dir::../ip/sr16_rx4/GDS/sr16_rx4.gds]
-    lef: [dir::../ip/sr16_rx4/LEF/sr16_rx4.lef]
+    lef: [dir::../ip/sr16_rx4/LEF/sr16_rx4_integ.lef]
     vh: [dir::../ip/sr16_rx4/HDL/sr16_rx4_bb.v]
     spice: [dir::../ip/sr16_rx4/SPICE/sr16_rx4.spice]
     instances:
@@ -325,7 +325,7 @@ MACROS:
       c2l_tx_clk_w: {location: [1753.44, 2075.22], orientation: N}
   sr16_tx:
     gds: [dir::../ip/sr16_tx/GDS/sr16_tx.gds]
-    lef: [dir::../ip/sr16_tx/LEF/sr16_tx.lef]
+    lef: [dir::../ip/sr16_tx/LEF/sr16_tx_integ.lef]
     vh: [dir::../ip/sr16_tx/HDL/sr16_tx_bb.v]
     spice: [dir::../ip/sr16_tx/SPICE/sr16_tx.spice]
     instances:

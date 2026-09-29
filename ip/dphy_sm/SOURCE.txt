@@ -1,14 +1,16 @@
-# Vues importees telles quelles, aucune modification locale.
+# Vues importees telles quelles, aucune modification locale (sauf HDL/*_bb.v, generes depuis les LEF).
 depot gitlab.com/nebula_microsystems/mipi
-commit 501b142a8275c5ac58e95f5f6af8556493e063bc
+commit 3e264d4662df3b484758bbdfce69af73e5aafbfb
 chemin 3_digital/DPHY_SM/COLLATERALS
-de094875d421e0da9d21948c73b2a2f7  ./DEF/dphy_rx.def
-e9cd8245f727c91f32aaf0457b4d9a5e  ./DEF/dphy_tx.def
-9cf74cdf8a2d3f4c3ce663ab924717b0  ./GDS/dphy_rx.gds
-02f1d4ef191ea8635cce35252205690c  ./GDS/dphy_tx.gds
-a089c9537b206baeaa94da2ebcc6cf98  ./HDL/dphy_rx.v
-29004724a1ba9791d2a08d9c745f1aef  ./HDL/dphy_tx.v
-3334d13cb66d2bb6012ed1423bc8e263  ./LEF/dphy_rx.lef
-117d9dee57775942c8893fcfd70e178d  ./LEF/dphy_tx.lef
-c8ea344cd6686d1153f44e43255dddf7  ./SPICE/dphy_rx.spice
-54ca7033ab6f51c75a749dcb1c795579  ./SPICE/dphy_tx.spice
+9d81be2e970f15352dfc69ed05624235  ./DEF/dphy_rx.def
+6b2b6f1fb41b37f21154f1a2e8741602  ./DEF/dphy_tx.def
+234af66afb1a01237c86da85638d3ba2  ./GDS/dphy_rx.gds
+82ccee9448da6aed53e50f8c89386206  ./GDS/dphy_tx.gds
+535eeebc2cc203838fe5fa3f7a0e9ee8  ./HDL/dphy_rx_bb.v
+18d9d7562be93da4bc294426b70abeb7  ./HDL/dphy_rx.v
+e671762e2825dfff84a83de3d44a4a80  ./HDL/dphy_tx_bb.v
+ba3ea3df03c4efa345ed58f12023c2ca  ./HDL/dphy_tx.v
+5993ab69248ccbfa8a5fe81007f8a019  ./LEF/dphy_rx.lef
+658db52ae49ed7397c51b3b43afb9aa7  ./LEF/dphy_tx.lef
+04a786bc7a94de51a97b5f35c7a8e39d  ./SPICE/dphy_rx.spice
+399dde9902c08ff5fcdca8b4e881340e  ./SPICE/dphy_tx.spice

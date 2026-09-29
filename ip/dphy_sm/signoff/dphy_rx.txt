@@ -1,11 +1,11 @@
-# dphy_rx : bilan du run /home/jalcim/depots/p062_hspr/3_digital/DPHY_SM/macro/build/dphy_rx/runs/last
+# dphy_rx : bilan du run /home/jalcim/depots/p062_top_rx/3_digital/DPHY_SM/macro/build/dphy_rx/runs/last
 boite (um)                               0.0 0.0 360.74 302.0
-instances                                2635
-cellules tempo                           32
+instances                                2642
+cellules tempo                           36
 DRC KLayout                              0
-DRC Magic (MIM.e interne aux tempo)      128
+DRC Magic (MIM.e interne aux tempo)      144
 LVS, erreurs                             0
 antennes, nets en faute                  0
 DRC du routeur                           0
-marge setup mini (ns)                    -0.12496470878460662
-marge hold mini (ns)                     -0.041826154834593975
+marge setup mini (ns)                    0.16972534968973152
+marge hold mini (ns)                     0.1847663740969862

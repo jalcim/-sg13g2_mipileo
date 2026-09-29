@@ -267,14 +267,12 @@ MACROS:
     gds: [dir::../ip/sr16_rx4/GDS/sr16_rx4_alim.gds]
     lef: [dir::../ip/sr16_rx4/LEF/sr16_rx4_alim.lef]
     vh: [dir::../ip/sr16_rx4/HDL/sr16_rx4_bb.v]
-    spice: [dir::../ip/sr16_rx4/SPICE/sr16_rx4.spice]
     instances:
       sr16_rx4: {location: [1949.76, 423.36], orientation: N}
   sr16_tx:
     gds: [dir::../ip/sr16_tx/GDS/sr16_tx_alim.gds]
     lef: [dir::../ip/sr16_tx/LEF/sr16_tx_alim.lef]
     vh: [dir::../ip/sr16_tx/HDL/sr16_tx_bb.v]
-    spice: [dir::../ip/sr16_tx/SPICE/sr16_tx.spice]
     instances:
       sr16_tx0: {location: [1107.84, 1833.30], orientation: N}
       sr16_tx1: {location: [1483.20, 1833.30], orientation: N}
@@ -284,7 +282,6 @@ MACROS:
     gds: [dir::../ip/cml_to_cmos/GDS/cml_to_cmos_alim.gds]
     lef: [dir::../ip/cml_to_cmos/LEF/cml_to_cmos_alim.lef]
     vh: [dir::../ip/cml_to_cmos/HDL/cml_to_cmos_bb.v]
-    spice: [dir::../ip/cml_to_cmos/SPICE/cml_to_cmos.spice]
     instances:
       c2c_clk_tx: {location: [1107.84, 2113.02], orientation: N}
       c2c_clk_q: {location: [1140.96, 2113.02], orientation: N}
@@ -330,7 +327,6 @@ MACROS:
     gds: [dir::../ip/cmos_to_cml/GDS/cmos_to_cml_alim.gds]
     lef: [dir::../ip/cmos_to_cml/LEF/cmos_to_cml_alim.lef]
     vh: [dir::../ip/cmos_to_cml/HDL/cmos_to_cml_bb.v]
-    spice: [dir::../ip/cmos_to_cml/SPICE/cmos_to_cml.spice]
     instances:
       c2m_clk_w: {location: [1306.56, 2113.02], orientation: N}
       c2m_clk_rx_en: {location: [1982.40, 1031.94], orientation: N}
@@ -342,9 +338,27 @@ MACROS:
     gds: [dir::../ip/cml_gate2/GDS/cml_gate2_alim.gds]
     lef: [dir::../ip/cml_gate2/LEF/cml_gate2_alim.lef]
     vh: [dir::../ip/cml_gate2/HDL/cml_gate2_bb.v]
-    spice: [dir::../ip/cml_gate2/SPICE/cml_gate2.spice]
     instances:
       gate_rx_clk: {location: [1949.76, 1031.94], orientation: N}
+
+# LVS de puce : plots, bondpad et macros extraits en cellules abstraites (boites noires), comme la livraison 1
+# (061, ee396f4) et TPU9012 ; netgen compare les connexions a leurs broches. Coquilles .subckt vides dans
+# coquilles_lvs.spice (scripts/coquilles_lvs.py). Le LVS interne des plots et des macros releve de leurs auteurs.
+MAGIC_EXT_ABSTRACT_CELLS:
+- "^MIPI_.*"
+- "^bondpad_70x70_novias$"
+- "^csi2_top$"
+- "^dphy_(rx|tx)$"
+- "^sr16_(rx4|tx)$"
+- "^cml_to_cmos$"
+- "^cmos_to_cml$"
+- "^cml_gate2$"
+EXTRA_SPICE_MODELS:
+- dir::coquilles_lvs.spice
+
+# Sorties d application et de debogage de csi2_top libres (option B, renvoi en cours) et broches de dphy_rx /
+# dphy_tx sans usage (clk_miss, term_en...) : le rapport reste, sans arreter le flot.
+ERROR_ON_DISCONNECTED_PINS: false
 
 # This is an alternative method compared to
 # specifying the power connections in the RTL

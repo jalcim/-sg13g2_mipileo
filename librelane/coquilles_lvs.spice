@@ -1,0 +1,85 @@
+* Coquilles vides pour le LVS de puce de MSPHY5973 (scripts/coquilles_lvs.py).
+
+.subckt csi2_top VGND VPWR clk clk_w cnt_gel dbg_erreur dbg_evt dbg_verrou[0] dbg_verrou[1] dbg_verrou[2] dbg_verrou[3] enable[0] enable[1] enable[2] enable[3] fifo_tx_fin fifo_tx_full fifo_tx_wdata[0] fifo_tx_wdata[10] fifo_tx_wdata[11] fifo_tx_wdata[12] fifo_tx_wdata[13] fifo_tx_wdata[14] fifo_tx_wdata[15] fifo_tx_wdata[16] fifo_tx_wdata[17] fifo_tx_wdata[18] fifo_tx_wdata[19] fifo_tx_wdata[1] fifo_tx_wdata[20] fifo_tx_wdata[21] fifo_tx_wdata[22] fifo_tx_wdata[23] fifo_tx_wdata[24] fifo_tx_wdata[25] fifo_tx_wdata[26] fifo_tx_wdata[27] fifo_tx_wdata[28] fifo_tx_wdata[29] fifo_tx_wdata[2] fifo_tx_wdata[30] fifo_tx_wdata[31] fifo_tx_wdata[3] fifo_tx_wdata[4] fifo_tx_wdata[5] fifo_tx_wdata[6] fifo_tx_wdata[7] fifo_tx_wdata[8] fifo_tx_wdata[9] fifo_tx_wlanes[0] fifo_tx_wlanes[1] fifo_tx_wlanes[2] fifo_tx_wlanes[3] fifo_tx_wr hspr[0] hspr[1] hspr[2] hspr[3] llp_cnt_burst[0] llp_cnt_burst[10] llp_cnt_burst[11] llp_cnt_burst[12] llp_cnt_burst[13] llp_cnt_burst[14] llp_cnt_burst[15] llp_cnt_burst[1] llp_cnt_burst[2] llp_cnt_burst[3] llp_cnt_burst[4] llp_cnt_burst[5] llp_cnt_burst[6] llp_cnt_burst[7] llp_cnt_burst[8] llp_cnt_burst[9] llp_cnt_crc[0] llp_cnt_crc[10] llp_cnt_crc[11] llp_cnt_crc[12] llp_cnt_crc[13] llp_cnt_crc[14] llp_cnt_crc[15] llp_cnt_crc[1] llp_cnt_crc[2] llp_cnt_crc[3] llp_cnt_crc[4] llp_cnt_crc[5] llp_cnt_crc[6] llp_cnt_crc[7] llp_cnt_crc[8] llp_cnt_crc[9] llp_cnt_dt[0] llp_cnt_dt[10] llp_cnt_dt[11] llp_cnt_dt[12] llp_cnt_dt[13] llp_cnt_dt[14] llp_cnt_dt[15] llp_cnt_dt[1] llp_cnt_dt[2] llp_cnt_dt[3] llp_cnt_dt[4] llp_cnt_dt[5] llp_cnt_dt[6] llp_cnt_dt[7] llp_cnt_dt[8] llp_cnt_dt[9] llp_cnt_ecc_corrected[0] llp_cnt_ecc_corrected[10] llp_cnt_ecc_corrected[11] llp_cnt_ecc_corrected[12] llp_cnt_ecc_corrected[13] llp_cnt_ecc_corrected[14] llp_cnt_ecc_corrected[15] llp_cnt_ecc_corrected[1] llp_cnt_ecc_corrected[2] llp_cnt_ecc_corrected[3] llp_cnt_ecc_corrected[4] llp_cnt_ecc_corrected[5] llp_cnt_ecc_corrected[6] llp_cnt_ecc_corrected[7] llp_cnt_ecc_corrected[8] llp_cnt_ecc_corrected[9] llp_cnt_ecc_double[0] llp_cnt_ecc_double[10] llp_cnt_ecc_double[11] llp_cnt_ecc_double[12] llp_cnt_ecc_double[13] llp_cnt_ecc_double[14] llp_cnt_ecc_double[15] llp_cnt_ecc_double[1] llp_cnt_ecc_double[2] llp_cnt_ecc_double[3] llp_cnt_ecc_double[4] llp_cnt_ecc_double[5] llp_cnt_ecc_double[6] llp_cnt_ecc_double[7] llp_cnt_ecc_double[8] llp_cnt_ecc_double[9] llp_cnt_ok[0] llp_cnt_ok[10] llp_cnt_ok[11] llp_cnt_ok[12] llp_cnt_ok[13] llp_cnt_ok[14] llp_cnt_ok[15] llp_cnt_ok[1] llp_cnt_ok[2] llp_cnt_ok[3] llp_cnt_ok[4] llp_cnt_ok[5] llp_cnt_ok[6] llp_cnt_ok[7] llp_cnt_ok[8] llp_cnt_ok[9] llp_cnt_sot_err[0] llp_cnt_sot_err[10] llp_cnt_sot_err[11] llp_cnt_sot_err[12] llp_cnt_sot_err[13] llp_cnt_sot_err[14] llp_cnt_sot_err[15] llp_cnt_sot_err[1] llp_cnt_sot_err[2] llp_cnt_sot_err[3] llp_cnt_sot_err[4] llp_cnt_sot_err[5] llp_cnt_sot_err[6] llp_cnt_sot_err[7] llp_cnt_sot_err[8] llp_cnt_sot_err[9] llp_cnt_trunc[0] llp_cnt_trunc[10] llp_cnt_trunc[11] llp_cnt_trunc[12] llp_cnt_trunc[13] llp_cnt_trunc[14] llp_cnt_trunc[15] llp_cnt_trunc[1] llp_cnt_trunc[2] llp_cnt_trunc[3] llp_cnt_trunc[4] llp_cnt_trunc[5] llp_cnt_trunc[6] llp_cnt_trunc[7] llp_cnt_trunc[8] llp_cnt_trunc[9] mots[0] mots[10] mots[11] mots[12] mots[13] mots[14] mots[15] mots[16] mots[17] mots[18] mots[19] mots[1] mots[20] mots[21] mots[22] mots[23] mots[24] mots[25] mots[26] mots[27] mots[28] mots[29] mots[2] mots[30] mots[31] mots[3] mots[4] mots[5] mots[6] mots[7] mots[8] mots[9] renvoi_mode[0] renvoi_mode[1] rst_n rx_eol rx_eol_status[0] rx_eol_status[1] rx_eol_status[2] rx_pix_data[0] rx_pix_data[10] rx_pix_data[11] rx_pix_data[12] rx_pix_data[13] rx_pix_data[14] rx_pix_data[15] rx_pix_data[16] rx_pix_data[17] rx_pix_data[18] rx_pix_data[19] rx_pix_data[1] rx_pix_data[20] rx_pix_data[21] rx_pix_data[22] rx_pix_data[23] rx_pix_data[24] rx_pix_data[25] rx_pix_data[26] rx_pix_data[27] rx_pix_data[28] rx_pix_data[29] rx_pix_data[2] rx_pix_data[30] rx_pix_data[31] rx_pix_data[32] rx_pix_data[33] rx_pix_data[34] rx_pix_data[35] rx_pix_data[36] rx_pix_data[37] rx_pix_data[38] rx_pix_data[39] rx_pix_data[3] rx_pix_data[40] rx_pix_data[41] rx_pix_data[42] rx_pix_data[43] rx_pix_data[44] rx_pix_data[45] rx_pix_data[46] rx_pix_data[47] rx_pix_data[48] rx_pix_data[49] rx_pix_data[4] rx_pix_data[50] rx_pix_data[51] rx_pix_data[52] rx_pix_data[53] rx_pix_data[54] rx_pix_data[55] rx_pix_data[56] rx_pix_data[57] rx_pix_data[58] rx_pix_data[59] rx_pix_data[5] rx_pix_data[60] rx_pix_data[61] rx_pix_data[62] rx_pix_data[63] rx_pix_data[64] rx_pix_data[65] rx_pix_data[66] rx_pix_data[67] rx_pix_data[68] rx_pix_data[69] rx_pix_data[6] rx_pix_data[70] rx_pix_data[71] rx_pix_data[72] rx_pix_data[73] rx_pix_data[74] rx_pix_data[75] rx_pix_data[76] rx_pix_data[77] rx_pix_data[78] rx_pix_data[79] rx_pix_data[7] rx_pix_data[80] rx_pix_data[81] rx_pix_data[82] rx_pix_data[83] rx_pix_data[8] rx_pix_data[9] rx_pix_nb[0] rx_pix_nb[1] rx_pix_nb[2] rx_pix_valid rx_short_data[0] rx_short_data[10] rx_short_data[11] rx_short_data[12] rx_short_data[13] rx_short_data[14] rx_short_data[15] rx_short_data[1] rx_short_data[2] rx_short_data[3] rx_short_data[4] rx_short_data[5] rx_short_data[6] rx_short_data[7] rx_short_data[8] rx_short_data[9] rx_short_dt[0] rx_short_dt[1] rx_short_dt[2] rx_short_dt[3] rx_short_dt[4] rx_short_dt[5] rx_short_ecc_corrected rx_short_sot_err rx_short_valid rx_short_vc[0] rx_short_vc[1] rx_sol rx_sol_dt[0] rx_sol_dt[1] rx_sol_dt[2] rx_sol_dt[3] rx_sol_dt[4] rx_sol_dt[5] rx_sol_ecc_corrected rx_sol_fmt[0] rx_sol_fmt[1] rx_sol_fmt[2] rx_sol_sot_err rx_sol_vc[0] rx_sol_vc[1] rx_sol_wc[0] rx_sol_wc[10] rx_sol_wc[11] rx_sol_wc[12] rx_sol_wc[13] rx_sol_wc[14] rx_sol_wc[15] rx_sol_wc[1] rx_sol_wc[2] rx_sol_wc[3] rx_sol_wc[4] rx_sol_wc[5] rx_sol_wc[6] rx_sol_wc[7] rx_sol_wc[8] rx_sol_wc[9] statut_phy[0] statut_phy[10] statut_phy[11] statut_phy[1] statut_phy[2] statut_phy[3] statut_phy[4] statut_phy[5] statut_phy[6] statut_phy[7] statut_phy[8] statut_phy[9] trame_cnt_err[0] trame_cnt_err[10] trame_cnt_err[11] trame_cnt_err[12] trame_cnt_err[13] trame_cnt_err[14] trame_cnt_err[15] trame_cnt_err[1] trame_cnt_err[2] trame_cnt_err[3] trame_cnt_err[4] trame_cnt_err[5] trame_cnt_err[6] trame_cnt_err[7] trame_cnt_err[8] trame_cnt_err[9] trame_cnt_ligne[0] trame_cnt_ligne[10] trame_cnt_ligne[11] trame_cnt_ligne[12] trame_cnt_ligne[13] trame_cnt_ligne[14] trame_cnt_ligne[15] trame_cnt_ligne[1] trame_cnt_ligne[2] trame_cnt_ligne[3] trame_cnt_ligne[4] trame_cnt_ligne[5] trame_cnt_ligne[6] trame_cnt_ligne[7] trame_cnt_ligne[8] trame_cnt_ligne[9] trame_cnt_ok[0] trame_cnt_ok[10] trame_cnt_ok[11] trame_cnt_ok[12] trame_cnt_ok[13] trame_cnt_ok[14] trame_cnt_ok[15] trame_cnt_ok[1] trame_cnt_ok[2] trame_cnt_ok[3] trame_cnt_ok[4] trame_cnt_ok[5] trame_cnt_ok[6] trame_cnt_ok[7] trame_cnt_ok[8] trame_cnt_ok[9] trame_err_end[0] trame_err_end[1] trame_err_end[2] trame_err_end_vc[0] trame_err_end_vc[1] trame_err_hdr[0] trame_err_hdr[1] trame_err_hdr[2] trame_err_hdr[3] trame_err_hdr[4] trame_err_hdr[5] trame_err_hdr[6] trame_err_hdr_vc[0] trame_err_hdr_vc[1] trame_fe trame_fe_ok trame_fs trame_late trame_late_mask[0] trame_late_mask[1] trame_late_mask[2] trame_late_mask[3] trame_loss[0] trame_loss[1] trame_loss[2] trame_loss_mask[0] trame_loss_mask[1] trame_loss_mask[2] trame_loss_mask[3] trame_numero[0] trame_numero[10] trame_numero[11] trame_numero[12] trame_numero[13] trame_numero[14] trame_numero[15] trame_numero[1] trame_numero[2] trame_numero[3] trame_numero[4] trame_numero[5] trame_numero[6] trame_numero[7] trame_numero[8] trame_numero[9] trame_slots_pleins trame_vc[0] trame_vc[1] tx_evt_nb tx_evt_width tx_init tx_init_done tx_pix_data[0] tx_pix_data[100] tx_pix_data[101] tx_pix_data[102] tx_pix_data[103] tx_pix_data[104] tx_pix_data[105] tx_pix_data[106] tx_pix_data[107] tx_pix_data[108] tx_pix_data[109] tx_pix_data[10] tx_pix_data[110] tx_pix_data[111] tx_pix_data[11] tx_pix_data[12] tx_pix_data[13] tx_pix_data[14] tx_pix_data[15] tx_pix_data[16] tx_pix_data[17] tx_pix_data[18] tx_pix_data[19] tx_pix_data[1] tx_pix_data[20] tx_pix_data[21] tx_pix_data[22] tx_pix_data[23] tx_pix_data[24] tx_pix_data[25] tx_pix_data[26] tx_pix_data[27] tx_pix_data[28] tx_pix_data[29] tx_pix_data[2] tx_pix_data[30] tx_pix_data[31] tx_pix_data[32] tx_pix_data[33] tx_pix_data[34] tx_pix_data[35] tx_pix_data[36] tx_pix_data[37] tx_pix_data[38] tx_pix_data[39] tx_pix_data[3] tx_pix_data[40] tx_pix_data[41] tx_pix_data[42] tx_pix_data[43] tx_pix_data[44] tx_pix_data[45] tx_pix_data[46] tx_pix_data[47] tx_pix_data[48] tx_pix_data[49] tx_pix_data[4] tx_pix_data[50] tx_pix_data[51] tx_pix_data[52] tx_pix_data[53] tx_pix_data[54] tx_pix_data[55] tx_pix_data[56] tx_pix_data[57] tx_pix_data[58] tx_pix_data[59] tx_pix_data[5] tx_pix_data[60] tx_pix_data[61] tx_pix_data[62] tx_pix_data[63] tx_pix_data[64] tx_pix_data[65] tx_pix_data[66] tx_pix_data[67] tx_pix_data[68] tx_pix_data[69] tx_pix_data[6] tx_pix_data[70] tx_pix_data[71] tx_pix_data[72] tx_pix_data[73] tx_pix_data[74] tx_pix_data[75] tx_pix_data[76] tx_pix_data[77] tx_pix_data[78] tx_pix_data[79] tx_pix_data[7] tx_pix_data[80] tx_pix_data[81] tx_pix_data[82] tx_pix_data[83] tx_pix_data[84] tx_pix_data[85] tx_pix_data[86] tx_pix_data[87] tx_pix_data[88] tx_pix_data[89] tx_pix_data[8] tx_pix_data[90] tx_pix_data[91] tx_pix_data[92] tx_pix_data[93] tx_pix_data[94] tx_pix_data[95] tx_pix_data[96] tx_pix_data[97] tx_pix_data[98] tx_pix_data[99] tx_pix_data[9] tx_pix_nb[0] tx_pix_nb[1] tx_pix_nb[2] tx_pix_nb[3] tx_pix_ready tx_pix_valid tx_req_dt[0] tx_req_dt[1] tx_req_dt[2] tx_req_dt[3] tx_req_dt[4] tx_req_dt[5] tx_req_ready tx_req_valid tx_req_vc[0] tx_req_vc[1] tx_req_width[0] tx_req_width[10] tx_req_width[11] tx_req_width[12] tx_req_width[13] tx_req_width[14] tx_req_width[15] tx_req_width[1] tx_req_width[2] tx_req_width[3] tx_req_width[4] tx_req_width[5] tx_req_width[6] tx_req_width[7] tx_req_width[8] tx_req_width[9]
+.ends csi2_top
+
+.subckt dphy_rx PG VGND VPWR clk_lp_n clk_lp_p clk_miss clk_rx_en clk_stop clk_term_en hs_rx_en[0] hs_rx_en[1] hs_rx_en[2] hs_rx_en[3] hspr[0] hspr[1] hspr[2] hspr[3] hsreq[0] hsreq[1] hsreq[2] hsreq[3] lp_n[0] lp_n[1] lp_n[2] lp_n[3] lp_p[0] lp_p[1] lp_p[2] lp_p[3] rx_clk stop[0] stop[1] stop[2] stop[3] term_en[0] term_en[1] term_en[2] term_en[3]
+.ends dphy_rx
+
+.subckt dphy_tx PG VGND VPWR clk clk_hs_oe clk_lp_n clk_lp_p clk_ready clk_request clk_run hs_oe[0] hs_oe[1] hs_oe[2] hs_oe[3] hs_sync[0] hs_sync[1] hs_sync[2] hs_sync[3] hs_trail[0] hs_trail[1] hs_trail[2] hs_trail[3] lp_n[0] lp_n[1] lp_n[2] lp_n[3] lp_p[0] lp_p[1] lp_p[2] lp_p[3] rst tx_ready_hs[0] tx_ready_hs[1] tx_ready_hs[2] tx_ready_hs[3] tx_request_hs[0] tx_request_hs[1] tx_request_hs[2] tx_request_hs[3]
+.ends dphy_tx
+
+.subckt sr16_rx4 CK_N CK_P D0_N D0_P D1_N D1_P D2_N D2_P D3_N D3_P POLN MOT0_N MOT0_P MOT1_N MOT1_P MOT2_N MOT2_P MOT3_N MOT3_P MOT4_N MOT4_P MOT5_N MOT5_P MOT6_N MOT6_P MOT7_N MOT7_P MOT8_N MOT8_P MOT9_N MOT9_P MOT10_N MOT10_P MOT11_N MOT11_P MOT12_N MOT12_P MOT13_N MOT13_P MOT14_N MOT14_P MOT15_N MOT15_P MOT16_N MOT16_P MOT17_N MOT17_P MOT18_N MOT18_P MOT19_N MOT19_P MOT20_N MOT20_P MOT21_N MOT21_P MOT22_N MOT22_P MOT23_N MOT23_P MOT24_N MOT24_P MOT25_N MOT25_P MOT26_N MOT26_P MOT27_N MOT27_P MOT28_N MOT28_P MOT29_N MOT29_P MOT30_N MOT30_P MOT31_N MOT31_P CLK_W_N CLK_W_P VDD VSS
+.ends sr16_rx4
+
+.subckt sr16_tx CK_N CK_P CLK_W_N CLK_W_P MOT0_N MOT0_P MOT1_N MOT1_P MOT2_N MOT2_P MOT3_N MOT3_P MOT4_N MOT4_P MOT5_N MOT5_P MOT6_N MOT6_P MOT7_N MOT7_P DOUT_N DOUT_P POLN VDD VSS
+.ends sr16_tx
+
+.subckt cml_to_cmos VDD VSS INN INP Y
+.ends cml_to_cmos
+
+.subckt cmos_to_cml VDD VSS A OUTN OUTP POLN
+.ends cmos_to_cml
+
+.subckt cml_gate2 VDD VSS AN AP XN XP BN BP
+.ends cml_gate2
+
+.subckt MIPI_Filler200 IOVSS IOVDD VSS VDD POLN_RX VB PBIAS PS POLN
+.ends MIPI_Filler200
+
+.subckt MIPI_Filler400 IOVSS IOVDD VSS VDD POLN_RX VB PBIAS PS POLN
+.ends MIPI_Filler400
+
+.subckt MIPI_Filler1000 IOVSS IOVDD VSS VDD POLN_RX VB PBIAS PS POLN
+.ends MIPI_Filler1000
+
+.subckt MIPI_Filler2000 IOVSS IOVDD VSS VDD POLN_RX VB PBIAS PS POLN
+.ends MIPI_Filler2000
+
+.subckt MIPI_Filler4000 IOVSS IOVDD VSS VDD POLN_RX VB PBIAS PS POLN
+.ends MIPI_Filler4000
+
+.subckt MIPI_Filler10000 IOVSS IOVDD VSS VDD POLN_RX VB PBIAS PS POLN
+.ends MIPI_Filler10000
+
+.subckt MIPI_Corner IOVSS IOVDD VSS VDD
+.ends MIPI_Corner
+
+.subckt MIPI_CornerStop IOVSS_A IOVDD_A VSS VDD IOVSS_B IOVDD_B
+.ends MIPI_CornerStop
+
+.subckt MIPI_CornerBreaker IOVSS_MIPI IOVDD_MIPI VSS VDD IOVSS IOVDD
+.ends MIPI_CornerBreaker
+
+.subckt MIPI_IOPadIOVss IOVSS IOVDD VSS VDD POLN_RX VB PBIAS PS POLN
+.ends MIPI_IOPadIOVss
+
+.subckt MIPI_IOPadIOVdd IOVSS IOVDD VSS VDD POLN_RX VB PBIAS PS POLN
+.ends MIPI_IOPadIOVdd
+
+.subckt MIPI_IOPadVdd IOVSS IOVDD VSS VDD POLN_RX VB PBIAS PS POLN
+.ends MIPI_IOPadVdd
+
+.subckt MIPI_IOPadVss IOVSS IOVDD VSS VDD POLN_RX VB PBIAS PS POLN
+.ends MIPI_IOPadVss
+
+.subckt MIPI_IOPadAnalog IOVSS IOVDD VSS VDD POLN_RX VB PBIAS PS POLN PAD PADRES
+.ends MIPI_IOPadAnalog
+
+.subckt MIPI_IOPadRX IOVSS IOVDD VSS VDD POLN_RX VB PBIAS PS POLN PAD P2C OUT
+.ends MIPI_IOPadRX
+
+.subckt MIPI_IOPadTX IOVSS IOVDD VSS VDD POLN_RX VB PBIAS PS POLN PAD IN_HS LP_IN
+.ends MIPI_IOPadTX
+
+.subckt MIPI_IOPadIn IOVSS IOVDD VSS VDD POLN_RX VB PBIAS PS POLN PAD P2C
+.ends MIPI_IOPadIn
+
+.subckt MIPI_IOPadOut IOVSS IOVDD VSS VDD POLN_RX VB PBIAS PS POLN PAD A
+.ends MIPI_IOPadOut
+
+.subckt MIPI_IOPadBandgap IOVSS IOVDD VSS VDD POLN_RX VB PBIAS PS POLN PAD VBG
+.ends MIPI_IOPadBandgap
+
+.subckt bondpad_70x70_novias pad
+.ends bondpad_70x70_novias

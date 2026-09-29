@@ -1,6 +1,6 @@
 # Macro csi2_top : vues d'intégration (livraison à Léo)
 
-Livraison du prompt 060, écrite le 29/09/2026 à 19:45 UTC par exporte.py.
+Livraison du prompt 060, écrite le 29/09/2026 à 19:50 UTC par exporte.py.
 
 ## Provenance
 
@@ -16,6 +16,12 @@ Livraison du prompt 060, écrite le 29/09/2026 à 19:45 UTC par exporte.py.
 - Horloges : `clk` = Clk Système, 125,125 MHz (période 7,992 ns) ; `clk_w` = horloge de mots du PHY RX, 125 MHz au plus. Passages entre les deux : FIFO asynchrone du LM et synchroniseurs à trois bascules.
 - Reset : `rst_n` asynchrone actif bas, relâché de façon synchrone dans la macro.
 - `renvoi_mode` est statique : il ne change que sous reset.
+- Synthèse avec DEBUG=0 : les sorties de débogage (`dbg_*`, `llp_cnt_*`, `trame_cnt_*`) sont tenues à 0 par des cellules tie, inertes, sans effet fonctionnel.
+
+## Intégration
+
+- **À intégrer comme macro dure signée (GDS, LEF, LIB, netlist) ; ne pas resynthétiser.** Le timing n'est établi que pour cette netlist : entre deux netlists d'un même RTL, le bruit de synthèse mesuré va de 0,4 à 1,1 ns, pour des marges de quelques centaines de ps.
+- `HDL/rtl/` : RTL source exact lu par la synthèse du run (src/), SDC (sdc/), config LibreLane dérivée et résolue (config/ : graine, densité, FP_CORE_UTIL, SYNTH_PARAMETERS) et bancs (bancs/), pour la simulation et la lecture seulement.
 
 ## Contraintes pour l'intégration
 

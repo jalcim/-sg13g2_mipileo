@@ -1,0 +1,79 @@
+{
+    "meta": {
+        "version": 3,
+        "flow": "Classic"
+    },
+    "DESIGN_NAME": "csi2_top",
+    "VERILOG_FILES": [
+        "dir::../sources/csi2_top_renvoi.v",
+        "dir::../sources/lm/lm_top_l22t_arme.v",
+        "dir::../sources/lm/lm_armement.v",
+        "dir::../sources/lm/lm_top_l22t.v",
+        "dir::../sources/lm/lm_aligneur_l22.v",
+        "dir::../sources/lm/lm_aligneur.v",
+        "dir::../sources/lm/lm_cdc.v",
+        "dir::../sources/lm/lm_top.v",
+        "dir::../sources/lm/lm_etage.v",
+        "dir::../sources/lm/lm_lanes_actives.v",
+        "dir::../sources/lm/lm_tailles.v",
+        "dir::../sources/lm/lm_ldf_tx.v",
+        "dir::../sources/lm/lm_lmf_rx.v",
+        "dir::../sources/lm/lm_raz_rx.v",
+        "dir::../sources/lm/lm_statut_resync.v",
+        "dir::../sources/lm/lm_fifo_async_p.v",
+        "dir::../sources/lm/lm_fifo_sync_p.v",
+        "dir::../sources/llp/llp_ecc.v",
+        "dir::../sources/llp/llp_crc.v",
+        "dir::../sources/llp/llp_rx.v",
+        "dir::../sources/llp/llp_tx.v",
+        "dir::../sources/llp/llp_top.v",
+        "dir::../sources/llp/llp_pix_rx.v",
+        "dir::../sources/llp/llp_pix_tx.v",
+        "dir::../sources/llp/llp_trame.v",
+        "dir::renvoi.v",
+        "dir::renvoi_n1.v",
+        "dir::renvoi_n2.v",
+        "dir::renvoi_n3.v",
+        "dir::renvoi_marque.v",
+        "dir::renvoi_tampon.v",
+        "dir::renvoi_statut.v"
+    ],
+    "VERILOG_DEFINES": [
+        "LM_FIFO_ASYNC_P_REMPLACE",
+        "LM_FIFO_SYNC_P_REMPLACE"
+    ],
+    "CLOCK_PORT": [
+        "clk",
+        "clk_w"
+    ],
+    "CLOCK_PERIOD": 7.992,
+    "PNR_SDC_FILE": "dir::../sources/csi2_top_renvoi.sdc",
+    "SIGNOFF_SDC_FILE": "dir::../sources/csi2_top_renvoi.sdc",
+    "FP_CORE_UTIL": 50,
+    "PL_TARGET_DENSITY_PCT": 60,
+    "SYNTH_PARAMETERS": [
+        "REMISE_TAILLE=1",
+        "LANE_ABSENTE=1",
+        "REMISE_RX=1",
+        "ARM_N=8",
+        "STATUT_W=3",
+        "HS_BIT=2",
+        "ETAT_LSB=0",
+        "ETAT_W=3",
+        "CODAGE=0",
+        "NB_VC=4",
+        "SYNC=3",
+        "DEBUG=0"
+    ],
+    "SYNTH_STRATEGY": "DELAY 4",
+    "SYNTH_DRIVING_CELL": "sg13g2_buf_4",
+    "IO_PIN_ORDER_CFG": "dir::../sources/broches_csi2_top_renvoi.cfg",
+    "ERRORS_ON_UNMATCHED_IO": "both",
+    "IO_PIN_H_LENGTH": 0.4,
+    "IO_PIN_V_LENGTH": 0.4,
+    "VERILOG_INCLUDE_DIRS": [
+        "dir::../sources/llp"
+    ],
+    "CTS_DISTANCE_BETWEEN_BUFFERS": 100,
+    "ERROR_ON_UNMAPPED_CELLS": false
+}

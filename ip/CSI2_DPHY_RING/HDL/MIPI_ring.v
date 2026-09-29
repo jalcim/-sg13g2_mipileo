@@ -76,7 +76,7 @@ endmodule
 `endcelldefine
 
 `celldefine
-module CORNER_Breaker (IOVSS_MIPI, IOVDD_MIPI, VSS, VDD, IOVSS, IOVDD);
+module MIPI_CornerBreaker (IOVSS_MIPI, IOVDD_MIPI, VSS, VDD, IOVSS, IOVDD);
     inout IOVSS_MIPI;
     inout IOVDD_MIPI;
     inout VSS;

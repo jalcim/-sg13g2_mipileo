@@ -238,7 +238,7 @@ library (MIPI_ring_dummy) {
             related_power_pin : VDD;
         }
     }
-    cell (CORNER_Breaker) {
+    cell (MIPI_CornerBreaker) {
         area : 32400;
         dont_touch : true;
         dont_use : true;

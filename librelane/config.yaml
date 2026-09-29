@@ -50,8 +50,7 @@ PRIMARY_GDSII_STREAMOUT_TOOL: klayout
 PAD_CFG: dir::pad_cfg.tcl
 
 # Specify the pad instances for the padring
-#Digital 
-PAD_WEST:  [vdd_pad_1, sig_in_pad, sig_out_pad]
+
 #MIPI RX : 13 pads
 # VDDIO MIPI 
 # VSSIO_MIPI
@@ -67,7 +66,21 @@ PAD_WEST:  [vdd_pad_1, sig_in_pad, sig_out_pad]
 # RX4 Lane P
 # RX4 Lane N
 
-PAD_EAST:  [iovss_pad, iovdd_pad, open_pad]
+PAD_EAST:  [
+  iovdd_mipi_pad,
+  iovss_mipi_pad,
+  rx_analog_pad,
+  rx_clk_lane_p_pad,
+  rx_clk_lane_n_pad,
+  rx_1_lane_p_pad,
+  rx_1_lane_n_pad,
+  rx_2_lane_p_pad,
+  rx_2_lane_n_pad,
+  rx_3_lane_p_pad,
+  rx_3_lane_n_pad,
+  rx_4_lane_p_pad,
+  rx_4_lane_n_pad
+]
 
 #MIPI_TX : 15 Pads
 # VDD 
@@ -86,9 +99,33 @@ PAD_EAST:  [iovss_pad, iovdd_pad, open_pad]
 # CLKIN N
 # CLKIN P
 
-PAD_NORTH: [flow_in_pad, vdd_pad, thru_n_pad]
+PAD_NORTH:  [
+  vdd_pad,
+  vss_pad,
+  tx_analog_pad,
+  tx_clk_lane_p_pad,
+  tx_clk_lane_n_pad,
+  tx_1_lane_p_pad,
+  tx_1_lane_n_pad,
+  tx_2_lane_p_pad,
+  tx_2_lane_n_pad,
+  tx_3_lane_p_pad,
+  tx_3_lane_n_pad,
+  tx_4_lane_p_pad,
+  tx_4_lane_n_pad,
+  
+  clkin_n_pad,
+  clkin_p_pad
+]
+
+#Digital 
+PAD_WEST:  [
+  iovdd_pad,
+  iovss_pad
+]
+
 #DIGITAL
-PAD_SOUTH: [flow_out_pad, vss_pad, thru_s_pad]
+PAD_SOUTH: []
 
 # SDC files
 PNR_SDC_FILE: dir::chip_top_comb.sdc
@@ -112,8 +149,8 @@ SETUP_VIOLATION_CORNERS: ["*"]
 # Floorplanning
 FP_SIZING: absolute
 
-DIE_AREA: [0, 0, 1730, 1730]
-CORE_AREA: [365.28, 366.66, 1364.72, 1362.98]
+DIE_AREA: [0, 0, expr::(1730 + 110), expr::(1730 + 110)]
+CORE_AREA: [365.28, 366.66, expr::(1364.72 + 110), expr::(1362.98 + 110)]
 
 # Increase for more logic on your die
 PL_TARGET_DENSITY_PCT: 10

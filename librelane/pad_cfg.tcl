@@ -195,7 +195,7 @@ if {$bl_inst != "NULL"} {
 set bl_inst [$block findInst "corner_se"]
 if {$bl_inst != "NULL"} {
     $bl_inst setOrigin [expr int($DIE_WIDTH - $::env(PAD_EDGE_SPACING)) * $units] [expr int($::env(PAD_EDGE_SPACING)) * $units]
-    $bl_inst setOrient "MY"
+    $bl_inst setOrient "R90"
     $bl_inst setPlacementStatus "FIRM"
 }
 

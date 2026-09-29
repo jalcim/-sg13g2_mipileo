@@ -18,6 +18,32 @@ module chip_top (
     wire PADRES_thru_s_pad_nc;
     wire PADRES_open_pad_nc;
 
+    (* keep *) MIPI_CornerStop corner_ne (
+        `ifdef USE_POWER_PINS
+        .IOVDD_A(IOVDD), .IOVSS_A(IOVSS), .IOVDD_B(IOVDD), .IOVSS_B(IOVSS), .VDD(VDD), .VSS(VSS)
+        `endif
+    );
+    
+    (* keep *) MIPI_Corner corner_nw (
+        `ifdef USE_POWER_PINS
+        .IOVDD(IOVDD), .IOVSS(IOVSS), .VDD(VDD), .VSS(VSS)
+        `endif
+    );
+    
+    (* keep *) MIPI_Corner corner_se (
+        `ifdef USE_POWER_PINS
+        .IOVDD(IOVDD), .IOVSS(IOVSS), .VDD(VDD), .VSS(VSS)
+        `endif
+    );
+    
+    (* keep *) MIPI_Corner corner_sw (
+        `ifdef USE_POWER_PINS
+        .IOVDD(IOVDD), .IOVSS(IOVSS), .VDD(VDD), .VSS(VSS)
+        `endif
+    );
+    
+
+
     (* keep *) MIPI_IOPadIOVdd iovdd_pad (
         `ifdef USE_POWER_PINS
         .IOVDD(IOVDD), .IOVSS(IOVSS), .VDD(VDD), .VSS(VSS)

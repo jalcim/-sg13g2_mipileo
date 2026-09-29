@@ -46,6 +46,9 @@ VERILOG_DEFINES: [FUNCTIONAL]
 # Slightly smaller file sizes
 PRIMARY_GDSII_STREAMOUT_TOOL: klayout
 
+# Pads
+PAD_CFG: dir::pad_cfg.tcl
+
 # Specify the pad instances for the padring
 #Digital 
 PAD_WEST:  [vdd_pad_1, sig_in_pad, sig_out_pad]

@@ -36,6 +36,8 @@ module chip_top (
     
 );
 
+    wire analog_routing;
+
     // Corners
 
     (* keep *) MIPI_Corner corner_ne (
@@ -75,67 +77,67 @@ module chip_top (
         `ifdef USE_POWER_PINS
         .IOVDD(IOVDD_MIPI), .IOVSS(IOVSS_MIPI), .VDD(VDD), .VSS(VSS),
         `endif
-        .PAD(RX_ANALOG_PAD), .PADRES()
+        .PAD(RX_ANALOG_PAD), .PADRES(analog_routing)
     );
     (* keep *) MIPI_IOPadAnalog rx_clk_lane_p_pad (
         `ifdef USE_POWER_PINS
         .IOVDD(IOVDD_MIPI), .IOVSS(IOVSS_MIPI), .VDD(VDD), .VSS(VSS),
         `endif
-        .PAD(RX_CLK_LANE_P_PAD), .PADRES()
+        .PAD(RX_CLK_LANE_P_PAD), .PADRES(analog_routing)
     );
     (* keep *) MIPI_IOPadAnalog rx_clk_lane_n_pad (
         `ifdef USE_POWER_PINS
         .IOVDD(IOVDD_MIPI), .IOVSS(IOVSS_MIPI), .VDD(VDD), .VSS(VSS),
         `endif
-        .PAD(RX_CLK_LANE_N_PAD), .PADRES()
+        .PAD(RX_CLK_LANE_N_PAD), .PADRES(analog_routing)
     );
     (* keep *) MIPI_IOPadAnalog rx_1_lane_p_pad (
         `ifdef USE_POWER_PINS
         .IOVDD(IOVDD_MIPI), .IOVSS(IOVSS_MIPI), .VDD(VDD), .VSS(VSS),
         `endif
-        .PAD(RX_1_LANE_P_PAD), .PADRES()
+        .PAD(RX_1_LANE_P_PAD), .PADRES(analog_routing)
     );
     (* keep *) MIPI_IOPadAnalog rx_1_lane_n_pad (
         `ifdef USE_POWER_PINS
         .IOVDD(IOVDD_MIPI), .IOVSS(IOVSS_MIPI), .VDD(VDD), .VSS(VSS),
         `endif
-        .PAD(RX_1_LANE_N_PAD), .PADRES()
+        .PAD(RX_1_LANE_N_PAD), .PADRES(analog_routing)
     );
     (* keep *) MIPI_IOPadAnalog rx_2_lane_p_pad (
         `ifdef USE_POWER_PINS
         .IOVDD(IOVDD_MIPI), .IOVSS(IOVSS_MIPI), .VDD(VDD), .VSS(VSS),
         `endif
-        .PAD(RX_2_LANE_P_PAD), .PADRES()
+        .PAD(RX_2_LANE_P_PAD), .PADRES(analog_routing)
     );
     (* keep *) MIPI_IOPadAnalog rx_2_lane_n_pad (
         `ifdef USE_POWER_PINS
         .IOVDD(IOVDD_MIPI), .IOVSS(IOVSS_MIPI), .VDD(VDD), .VSS(VSS),
         `endif
-        .PAD(RX_2_LANE_N_PAD), .PADRES()
+        .PAD(RX_2_LANE_N_PAD), .PADRES(analog_routing)
     );
     (* keep *) MIPI_IOPadAnalog rx_3_lane_p_pad (
         `ifdef USE_POWER_PINS
         .IOVDD(IOVDD_MIPI), .IOVSS(IOVSS_MIPI), .VDD(VDD), .VSS(VSS),
         `endif
-        .PAD(RX_3_LANE_P_PAD), .PADRES()
+        .PAD(RX_3_LANE_P_PAD), .PADRES(analog_routing)
     );
     (* keep *) MIPI_IOPadAnalog rx_3_lane_n_pad (
         `ifdef USE_POWER_PINS
         .IOVDD(IOVDD_MIPI), .IOVSS(IOVSS_MIPI), .VDD(VDD), .VSS(VSS),
         `endif
-        .PAD(RX_3_LANE_N_PAD), .PADRES()
+        .PAD(RX_3_LANE_N_PAD), .PADRES(analog_routing)
     );
     (* keep *) MIPI_IOPadAnalog rx_4_lane_p_pad (
         `ifdef USE_POWER_PINS
         .IOVDD(IOVDD_MIPI), .IOVSS(IOVSS_MIPI), .VDD(VDD), .VSS(VSS),
         `endif
-        .PAD(RX_4_LANE_P_PAD), .PADRES()
+        .PAD(RX_4_LANE_P_PAD), .PADRES(analog_routing)
     );
     (* keep *) MIPI_IOPadAnalog rx_4_lane_n_pad (
         `ifdef USE_POWER_PINS
         .IOVDD(IOVDD_MIPI), .IOVSS(IOVSS_MIPI), .VDD(VDD), .VSS(VSS),
         `endif
-        .PAD(RX_4_LANE_N_PAD), .PADRES()
+        .PAD(RX_4_LANE_N_PAD), .PADRES(analog_routing)
     );
 
     // North Side
@@ -160,73 +162,73 @@ module chip_top (
         `ifdef USE_POWER_PINS
         .IOVDD(IOVDD_MIPI), .IOVSS(IOVSS_MIPI), .VDD(VDD), .VSS(VSS),
         `endif
-        .PAD(TX_CLK_LANE_P_PAD), .PADRES()
+        .PAD(TX_CLK_LANE_P_PAD), .PADRES(analog_routing)
     );
     (* keep *) MIPI_IOPadAnalog tx_clk_lane_n_pad (
         `ifdef USE_POWER_PINS
         .IOVDD(IOVDD_MIPI), .IOVSS(IOVSS_MIPI), .VDD(VDD), .VSS(VSS),
         `endif
-        .PAD(TX_CLK_LANE_N_PAD), .PADRES()
+        .PAD(TX_CLK_LANE_N_PAD), .PADRES(analog_routing)
     );
     (* keep *) MIPI_IOPadAnalog tx_1_lane_p_pad (
         `ifdef USE_POWER_PINS
         .IOVDD(IOVDD_MIPI), .IOVSS(IOVSS_MIPI), .VDD(VDD), .VSS(VSS),
         `endif
-        .PAD(TX_1_LANE_P_PAD), .PADRES()
+        .PAD(TX_1_LANE_P_PAD), .PADRES(analog_routing)
     );
     (* keep *) MIPI_IOPadAnalog tx_1_lane_n_pad (
         `ifdef USE_POWER_PINS
         .IOVDD(IOVDD_MIPI), .IOVSS(IOVSS_MIPI), .VDD(VDD), .VSS(VSS),
         `endif
-        .PAD(TX_1_LANE_N_PAD), .PADRES()
+        .PAD(TX_1_LANE_N_PAD), .PADRES(analog_routing)
     );
     (* keep *) MIPI_IOPadAnalog tx_2_lane_p_pad (
         `ifdef USE_POWER_PINS
         .IOVDD(IOVDD_MIPI), .IOVSS(IOVSS_MIPI), .VDD(VDD), .VSS(VSS),
         `endif
-        .PAD(TX_2_LANE_P_PAD), .PADRES()
+        .PAD(TX_2_LANE_P_PAD), .PADRES(analog_routing)
     );
     (* keep *) MIPI_IOPadAnalog tx_2_lane_n_pad (
         `ifdef USE_POWER_PINS
         .IOVDD(IOVDD_MIPI), .IOVSS(IOVSS_MIPI), .VDD(VDD), .VSS(VSS),
         `endif
-        .PAD(TX_2_LANE_N_PAD), .PADRES()
+        .PAD(TX_2_LANE_N_PAD), .PADRES(analog_routing)
     );
     (* keep *) MIPI_IOPadAnalog tx_3_lane_p_pad (
         `ifdef USE_POWER_PINS
         .IOVDD(IOVDD_MIPI), .IOVSS(IOVSS_MIPI), .VDD(VDD), .VSS(VSS),
         `endif
-        .PAD(TX_3_LANE_P_PAD), .PADRES()
+        .PAD(TX_3_LANE_P_PAD), .PADRES(analog_routing)
     );
     (* keep *) MIPI_IOPadAnalog tx_3_lane_n_pad (
         `ifdef USE_POWER_PINS
         .IOVDD(IOVDD_MIPI), .IOVSS(IOVSS_MIPI), .VDD(VDD), .VSS(VSS),
         `endif
-        .PAD(TX_3_LANE_N_PAD), .PADRES()
+        .PAD(TX_3_LANE_N_PAD), .PADRES(analog_routing)
     );
     (* keep *) MIPI_IOPadAnalog tx_4_lane_p_pad (
         `ifdef USE_POWER_PINS
         .IOVDD(IOVDD_MIPI), .IOVSS(IOVSS_MIPI), .VDD(VDD), .VSS(VSS),
         `endif
-        .PAD(TX_4_LANE_P_PAD), .PADRES()
+        .PAD(TX_4_LANE_P_PAD), .PADRES(analog_routing)
     );
     (* keep *) MIPI_IOPadAnalog tx_4_lane_n_pad (
         `ifdef USE_POWER_PINS
         .IOVDD(IOVDD_MIPI), .IOVSS(IOVSS_MIPI), .VDD(VDD), .VSS(VSS),
         `endif
-        .PAD(TX_4_LANE_N_PAD), .PADRES()
+        .PAD(TX_4_LANE_N_PAD), .PADRES(analog_routing)
     );
     (* keep *) MIPI_IOPadAnalog clkin_n_pad (
         `ifdef USE_POWER_PINS
         .IOVDD(IOVDD_MIPI), .IOVSS(IOVSS_MIPI), .VDD(VDD), .VSS(VSS),
         `endif
-        .PAD(CLKIN_N_PAD), .PADRES()
+        .PAD(CLKIN_N_PAD), .PADRES(analog_routing)
     );
     (* keep *) MIPI_IOPadAnalog clkin_p_pad (
         `ifdef USE_POWER_PINS
         .IOVDD(IOVDD_MIPI), .IOVSS(IOVSS_MIPI), .VDD(VDD), .VSS(VSS),
         `endif
-        .PAD(CLKIN_P_PAD), .PADRES()
+        .PAD(CLKIN_P_PAD), .PADRES(analog_routing)
     );
   
     // West Side

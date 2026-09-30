@@ -24,6 +24,12 @@
 .subckt cml_gate2 VDD VSS AN AP XN XP BN BP
 .ends cml_gate2
 
+.subckt hs_tx_pd VGND VPWR d hsn hsp lpinn lpinp lpn lpp oe
+.ends hs_tx_pd
+
+.subckt iref VDD VSS PG
+.ends iref
+
 .subckt MIPI_Filler200 IOVSS IOVDD VSS VDD POLN_RX VB PBIAS PS POLN
 .ends MIPI_Filler200
 
